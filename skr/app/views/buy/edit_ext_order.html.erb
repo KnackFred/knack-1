@@ -1,0 +1,57 @@
+<% content_for :header do %>
+    <%= stylesheet_link_tag "/stylesheets/Global.css" %>
+    <%= stylesheet_link_tag "/stylesheets/Pages/Buy/buy_ext.css" %>
+    <%= javascript_include_tag "/javascripts/plugins/jquery.popupWindow.js"%>
+    <%= javascript_include_tag "/javascripts/pages/Buy/edit_ext.js"%>
+<% end %>
+<div class="centered">
+  <div id="header">
+    <h1>Edit Contribution</h1>
+    <h3>Had an issue with your order?  You can fix it here.</h3>
+  </div>
+
+  <%= show_flash %>
+  <dl class="group">
+    <dt>
+      Product Name:
+    </dt>
+    <dd>
+      <%= @registry_item.product.Name %>
+    </dd>
+    <dt>
+      Current Status:
+    </dt>
+    <dd>
+      <%= formatted_remaining(@registry_item, true)  %>
+    </dd>
+    <dt>
+      Ordered By:
+    </dt>
+    <dd>
+      <%= @order.BillingEmail %>
+    </dd>
+    <dt>
+      Original Quantity:
+    </dt>
+    <dd>
+      <%= @registry_item.quantity_for_contribution(@contribution.Contribute) %>
+    </dd>
+  </dl>
+  <div class="group">
+    <%= form_for @buy_registry_item,:url => "/buy/edit_ext_order/#{@order.id}" do |f| %>
+        <%= f.hidden_field :min_quantity %>
+        <%= f.hidden_field :max_quantity %>
+
+        <%= f.label :quantity, "New Quantity *" %>
+        <%= f.text_field :quantity %>
+        <%= f.label :from, "From *" %>
+        <%= f.text_field :from, :placeholder => "Your name" %>
+        <%= f.label :notes, "Note" %>
+        <%= f.text_area :notes, :placeholder => "A note to the couple"  %>
+        <%= f.submit "Confirm"%>
+    <% end %>
+  </div>
+  <div>
+    <%= link_to "I've decided to get something else", {:controller => :buy, :action => :destroy_ext_order, :id => @order}, :class => "destroy", :confirm => "This will delete this contribution and then take you back to the couples registry.  Would you like to continue?" %>
+  </div>
+</div>

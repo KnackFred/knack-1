@@ -1,0 +1,267 @@
+<% content_for :title do %>
+  Canceled Payment
+<% end %>
+<% content_for :head do %>
+        <%= stylesheet_link_tag "/stylesheets/Pages/Order.css" %>
+<%end%>
+  <% content_for :pagename do %>
+    Canceled Payment
+  <% end %>
+
+ <% content_for :registry do %>
+      <div class="bl-block">
+        <div class="blue-line">
+
+        </div>
+      </div>
+  <% end %>
+
+  <% content_for :background do %>
+      <div class="bl-block">
+        <div class="blue-line">
+          <input type="hidden" value="fghj"/>
+        </div>
+      </div>
+  <% end %>
+
+  <div class="withBackground">
+    <div class="content">
+      <div class="mainBlock">
+        <table cellpadding="0px" cellspacing="0px" border="0px">
+            <tr>
+              <td class="leftMenu">
+                <%= render "left_menu" %>
+              </td>
+              <td class="rigthPane">
+
+                <form action="/administrative/canceled_payment/<%= @payment.id %>" method="post" id="tbl-order">
+                  <input type="hidden" id="at" name="authenticity_token" value="<%= form_authenticity_token %>" />
+                  <%#*--------------------------------%>
+                  <%#* General block%>
+                  <%#*--------------------------------%>
+                  <div class="div-general-block">
+                    <div class="Header">
+                      Order Information
+                    </div>
+
+                    <%#*--------------------------------%>
+                    <%#* ID %>
+                    <%#*--------------------------------%>
+                    <div class="div-block">
+                      <div class="editor-label">
+                        <label for="Id">Id</label>
+                      </div>
+
+                      <div class="editor-field">
+                        <%= @payment.order.id %>
+                      </div>
+                    </div>
+
+                    <%#*--------------------------------%>
+                    <%#* Customer %>
+                    <%#*--------------------------------%>
+                    <div class="div-block">
+                      <div class="editor-label">
+                        <label for="Customer">Customer</label>
+                      </div>
+
+                      <div class="editor-field">
+                        <%= @payment.order.customer %>
+                      </div>
+                    </div>
+
+                    <%#*--------------------------------%>
+                    <%#* Date %>
+                    <%#*--------------------------------%>
+                    <div class="div-block">
+                      <div class="editor-label">
+                        <label for="Date">Date</label>
+                      </div>
+
+                      <div class="editor-field">
+                        <%= Time.parse(@payment.order.DateTime.to_s).strftime("%m/%d/%Y") %>
+                      </div>
+                    </div>
+                  </div>
+
+                  <%#*--------------------------------%>
+                  <%#* Billing address%>
+                  <%#*--------------------------------%>
+                    <div class="div-shipping">
+
+                    <div class="ShippingHeader">
+                      Billing address
+                    </div>
+
+                    <%#*--------------------------------%>
+                    <%#* BillingFirstName %>
+                    <%#*--------------------------------%>
+                    <div class="div-block">
+                      <div class="editor-label">
+                        <label for="First Name">First Name</label>
+                      </div>
+
+                      <div class="editor-field">
+                        <%= @payment.order.BillingFirstName %>
+                      </div>
+                    </div>
+
+                    <%#*--------------------------------%>
+                    <%#* BillingLastName %>
+                    <%#*--------------------------------%>
+                    <div class="div-block">
+                      <div class="editor-label">
+                        <label for="Last Name">Last Name</label>
+                      </div>
+
+                      <div class="editor-field">
+                        <%= @payment.order.BillingLastName %>
+                      </div>
+                    </div>
+
+
+                    <%#*--------------------------------%>
+                    <%#* BillingAddress %>
+                    <%#*--------------------------------%>
+                    <div class="div-block">
+                      <div class="editor-label">
+                        <label for="Address">Address</label>
+                      </div>
+
+                      <div class="editor-field">
+                        <%= @payment.order.BillingAddress %>
+                      </div>
+                    </div>
+
+                    <%#*--------------------------------%>
+                    <%#* BillingCity %>
+                    <%#*--------------------------------%>
+                    <div class="div-block">
+                      <div class="editor-label">
+                        <label for="City">City</label>
+                      </div>
+
+                      <div class="editor-field">
+                        <%= @payment.order.BillingCity %>
+                      </div>
+                    </div>
+
+                    <%#*--------------------------------%>
+                    <%#* BillingState %>
+                    <%#*--------------------------------%>
+                    <div class="div-block">
+                      <div class="editor-label">
+                        <label for="State">State</label>
+                      </div>
+
+                      <div class="editor-field">
+                        <%= @payment.order.get_billing_state_name %>
+                      </div>
+                    </div>
+
+                    <%#*--------------------------------%>
+                    <%#* BillingZip %>
+                    <%#*--------------------------------%>
+                    <div class="div-block">
+                      <div class="editor-label">
+                        <label for="Zip">Zip</label>
+                      </div>
+
+                      <div class="editor-field">
+                        <%= @payment.order.BillingZip %>
+                      </div>
+                    </div>
+
+                    <%#*--------------------------------%>
+                    <%#* BillingPhone %>
+                    <%#*--------------------------------%>
+                    <div class="div-block">
+                      <div class="editor-label">
+                        <label for="Phone">Phone</label>
+                      </div>
+
+                      <div class="editor-field">
+                        <%= @payment.order.BillingPhone %>
+                      </div>
+                    </div>
+
+                    <%#*--------------------------------%>
+                    <%#* BillingEmail %>
+                    <%#*--------------------------------%>
+                    <div class="div-block">
+                      <div class="editor-label">
+                        <label for="Email">Email</label>
+                      </div>
+
+                      <div class="editor-field">
+                        <%= @payment.order.BillingEmail %>
+                      </div>
+                    </div>
+
+                  </div>
+
+                  <%#*--------------------------------%>
+                  <%#* Lines %>
+                  <%#*--------------------------------%>
+                  <div class="div-lines">
+                    <div class="LinesHeader">
+                      Payment info:
+                    </div>
+
+                    <%#*--------------------------------%>
+                    <%#* Type payment %>
+                    <%#*--------------------------------%>
+                    <div class="div-block">
+                      <div class="editor-label">
+                        <label for="TypePayment">Type Payment</label>
+                      </div>
+
+                      <div class="editor-field">
+                        <%= @payment.typepayment.Name %>
+                      </div>
+                    </div>
+
+                    <%#*--------------------------------%>
+                    <%#* Amount %>
+                    <%#*--------------------------------%>
+                    <div class="div-block">
+                      <div class="editor-label">
+                        <label for="Amount">Amount</label>
+                      </div>
+
+                      <div class="editor-field">
+                        <%= formatted_price(@payment.amount) %>
+                      </div>
+                    </div>
+
+                    <%#*--------------------------------%>
+                    <%#* Status %>
+                    <%#*--------------------------------%>
+                    <div class="div-block">
+                      <div class="editor-label">
+                        <label for="Status">Status</label>
+                      </div>
+
+                      <div class="editor-field">
+                        <%= collection_select(:payment, :status_id, @payment_statuses, :id, :Name, @payment.status_id.to_i == 2 ? {:disabled => lambda{|status| status}} : {}) %>
+                      </div>
+                    </div>
+                  </div>
+
+
+                  <%#*--------------------------------%>
+                  <%#* Buttons%>
+                  <%#*--------------------------------%>
+                  <div class="div-buttons">
+                    <%= button_to_function "", "document.location.assign('/administrative/canceled_payments')", :class => "btn-back" %>
+                    <input type="submit" class="btn-save" value=" "/>
+                    <div class="emptyBlock"></div>
+                  </div>
+                </form>
+              </td>
+            </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+

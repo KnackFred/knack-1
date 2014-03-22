@@ -1,0 +1,57 @@
+<% item = i.object %>
+<% available = item.Purchased_ID == RegistryItem::AVAILABLE %>
+
+
+<li class="gift-entry<%= " gift-entry-purchased" if !available %>">
+  <% unless edit%>
+      <a href="<%=  from_registry_path(@registry.id, item.id, item.product.id, "item") %>">
+  <% end %>
+  <%= i.hidden_field :id %>
+  <%= i.hidden_field :order, :class=>"order" %>
+  <%= i.hidden_field :section_id, :class=>"section-id" %>
+  <%= i.hidden_field :section_order, :class=>"section-order" %>
+  <div class="gift-entry-image-box">
+    <%= image_tag item.product.main_product_thumb.url(:medium), :alt => item.product.Name, :class => "product-image-medium" -%>
+  </div>
+  <div class="gift-entry-info">
+    <span class='name'><%= item.product.Name %></span><br/>
+      <span class='price'>
+        <%= formatted_price(item.Price.to_f).to_s %>
+      </span>
+      <span class='status'>
+        <%= formatted_remaining item %>
+      </span>
+  </div>
+  <div class="buttons-left">
+    <%= link_to from_registry_path(@registry.id, item.id, item.product.id, "item"), :class => "button-small" do %>
+        VIEW
+    <% end %>
+  </div>
+  <div class="buttons-top-right">
+    <% if !edit && @registrant%>
+        <a href="<%= add_from_registry_path item.id %>" data-id="<%=item.id%>" class="addfromregistry button-small">
+          ADD TO MY REGISTRY
+        </a>
+    <% end %>
+  </div>  <div class="buttons-right">
+    <% if edit %>
+        <%= link_to "#", :class => "move-item-up" do %>
+            <%= image_tag "/images/pages/manage_registry/move_item_up.png", :alt => "Move Up" %>
+        <% end %>
+
+        <%= link_to "#", :class => "move-item-down" do %>
+            <%= image_tag "/images/pages/manage_registry/move_item_down.png", :alt => "Move Down" %>
+        <% end %>
+    <% elsif available %>
+        <% if !@registry.is_invited? %>
+            <%= link_to "#", :class => "contribute button-small", :itemid => item.id do %>
+                <%= item.allow_contribute? ? "BUY/CONTRIBUTE" : "BUY"%>
+            <% end %>
+        <% end %>
+    <% end %>
+  </div>
+  <% unless edit%>
+      </a>
+  <% end %>
+</li>
+

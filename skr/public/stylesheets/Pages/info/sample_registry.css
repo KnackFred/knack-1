@@ -1,0 +1,136 @@
+p{
+    font-size: 16.5px;
+}
+
+
+.intro {
+    margin: 20px 0 20px 150px;
+    height: 190px;
+}
+
+.intro img{
+    float: left;
+    align: center;
+    max-width: 250px;
+}
+
+.intro div{
+    width: 400px;
+    margin: 0 0 0 20px;
+    float: left;
+}
+
+.category-nav{
+    margin: 80px auto 60px auto;
+    text-align: center;
+}
+
+.category-nav-item{
+    display: inline-block;
+    margin: 0 2px;
+}
+
+a{
+    color: #666666;
+}
+.category-nav-item div{
+   text-align: center;
+   font-weight: bold;
+   font-size: 13.5px;
+   margin-top: 8px;
+}
+
+.category-nav-img{
+    width: 150px;
+    height: 113px;
+    border: 1px solid #cccccc;
+}
+
+.line{
+    height: 1px;
+    background-color: #cccccc;
+    margin:1px auto auto 1px;
+}
+
+.category{
+    padding: 40px 42px 60px 42px;
+}
+
+.category-heading{
+    margin: 0 20px;
+}
+
+.item{
+    display: inline-block;
+    margin:  8px;
+    width: 156px;
+    height: 162px;
+    vertical-align: top;
+}
+
+.item-image-box{
+    width: 156px;
+    height: 118px;
+    border: 1px solid #cccccc;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.item-image-box img{
+    max-width: 156px;
+    max-height: 118px;
+    margin: auto;
+}
+
+.item b{
+    font-size: 13px;
+}
+.item {
+    font-size: 10px;
+}
+
+/* Like Dialog*/
+.like-dialog{
+    position: fixed;
+    right: 0;
+    top: 350px;
+    overflow: hidden;
+    background-color: #FFF;
+    border-width: 1px 0 1px 1px;
+    border-style: solid;
+    border-color: #cccccc;
+    border-radius: 10px 0 0 10px;
+}
+
+.like-dialog #learn-more{
+    font-size: 13.5px;
+    text-decoration: underline;
+    color: #6699cc;
+}
+
+.like-dialog-inner{
+    width: 440px;
+    padding: 0 8px 8px 0px;
+    margin-left: 40px;
+}
+
+.like-dialog-inner h1{
+    font-size: 15.5px;
+}
+
+.like-dialog-inner p {
+    font-size: 13.5px;
+}
+
+.like-dialog .close {
+    position: absolute;
+    top: 6px;
+    left: 6px;
+}
+
+.like-dialog .open {
+    position: absolute;
+    top: 6px;
+    left: 6px;
+}

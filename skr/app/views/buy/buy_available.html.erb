@@ -1,0 +1,88 @@
+<% content_for :header do %>
+    <%= stylesheet_link_tag "/stylesheets/Global.css" %>
+    <%= stylesheet_link_tag "/stylesheets/Pages/buy_contribute.css" %>
+    <%= javascript_include_tag "/javascripts/jquery-1.4.2.min.js"  %>
+    <%= javascript_include_tag "/javascripts/jquery.form.js"  %>
+    <%= javascript_include_tag "/javascripts/jquery.keyfilter-1.7.js"  %>
+    <%= javascript_include_tag "/javascripts/jquery.validate.min.js"  %>
+    <%= javascript_include_tag "/javascripts/knack.buy.buy_available.js"  %>
+<% end %>
+
+<%= form_tag({:controller => 'buy', :action => 'buy_available'}, :id => 'buy', :method => :post) do  %>
+    <div class="pageName">
+      <%= @registry_item.product.Name %>
+    </div>
+
+    <%= error_messages_for :buy_registry_item %>
+    <%= hidden_field :registry_item, :Price %>
+
+    <div class="buyTable">
+      <table cellpadding="0px" cellspacing="0px" border="0">
+        <tr>
+          <td class="firstTD">
+            <%= image_tag @registry_item.product.main_product_thumb.url(:medium),
+                          :alt => @registry_item.product.Name,
+                          :class => "product-image-medium",
+                          :id => "product_image",
+                          :name => "product_image" -%>
+          </td>
+          <td class="descriptionTD">
+            <table>
+              <tr>
+                <td class="firstTD">
+                  Price
+                </td>
+                <td>
+                  <%= formatted_price(@registry_item.Price) %>
+                </td>
+              </tr>
+              <tr>
+                <td class="firstTD">
+                  <%= label :registry_item, :Quantity %>
+                </td>
+                <td>
+                  <%= text_field :registry_item, :Quantity, :readonly => @registry_item.product.IsKind, :id => 'quantity' %>
+                </td>
+              </tr>
+              <tr>
+                <td class="firstTD">
+                  Subtotal
+                </td>
+                <td class="subtotal">
+                  <%= formatted_price(@registry_item.subtotal) %>
+                </td>
+              </tr>
+              <% unless @registry_item.product.colors.blank? %>
+                  <tr>
+                    <td class="firstTD">
+                      Color
+                    </td>
+                    <td>
+                      <%= @registry_item.color.Name %>
+                    </td>
+                  </tr>
+              <% end %>
+
+              <%#*------------------------%>
+              <%#*Item Variants%>
+              <%#*------------------------%>
+              <% @registry_item.product_params2orders.each do |p| %>
+                  <tr>
+                    <td class="firstTD">
+                      <%= p.Name -%>
+                    </td>
+                    <td>
+                      <%= p.Value %>
+                    </td>
+                  </tr>
+              <%end%>
+            </table>
+          </td>
+        </tr>
+      </table>
+      <div class="actions">
+        <a id="proceed-buy" href="/"><div class="btn-proceed"></div></a>
+        <input type="hidden" id="procbuy" name="proceed"/>
+      </div>
+    </div>
+<% end %>

@@ -1,0 +1,360 @@
+.purchContent{
+    width: 915px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.purchHeader{
+    height: 135px;
+    width: 915px;
+    border: 0;
+    padding: 0;
+    margin: 0;
+}
+
+.purchHeaderTable{
+    height: 135px;
+    width: 915px;
+    border: 0;
+}
+
+.imageProfileTD{
+    width: 207px;
+    height:135px;
+    border: 1px solid #cccccc;
+/*    border:0px;*/
+    text-align: center;
+}
+
+.imageProfileTD img{
+    max-height: 133px;
+    max-width: 205px;
+}
+
+.emptyRow{
+    width: 25px;
+}
+
+.topicTD{
+    width: 683px;
+}
+
+.giftListBlock{
+    height: 46px;
+    width: 100%;
+}
+
+.creditBlock{
+    height: 32px;
+    width: 100%;
+    background-color: #d9e5f2;
+    font-size: 14px;
+    color:#666666;
+    font-weight: 500;
+}
+
+.creditBlock label{
+    font-weight: 700;
+}
+
+.creditBlock table{
+    height: 100%;
+}
+
+.creditBlock td{
+    padding-left: 3px;
+}
+
+
+.headerInfoBlock{
+    height: 57px;
+    font-size: 12px;
+}
+
+.headerInfoBlock table{
+    height: 100%;
+}
+
+.headerInfoBlock table td{
+    vertical-align: top;
+    padding-top: 10px;
+}
+
+.headerInfoBlock td{
+    padding-left: 3px;
+}
+
+.giftListBlock table{
+    width: 100%;
+    height: 46px;
+    border: 0;
+}
+
+.giftListBlock table .firstRow{
+    width: 350px;
+    text-align: left;
+    padding-left: 3px;
+    vertical-align: bottom;
+    font-family: Helvetica,sans-serif;
+    font-size: 32px;
+    font-weight: 100;
+    color: #6699cc;
+}
+
+.giftListBlock table .firstRow img{
+    margin-bottom: 7px;
+}
+
+.giftListBlock table .secondRow{
+    width: 335px;
+    text-align: right;
+    padding-right: 9px;
+    vertical-align: bottom;
+    padding-bottom: 4px;
+}
+
+.giftListBlock table .secondRow a{
+    margin-left: 13px;
+    text-decoration: none;
+    font-size: 11.5px;
+    color: #999999;
+}
+
+
+.emtyBlock{
+    height: 18px;
+}
+
+.mainBlock{
+    width: 100%;
+}
+
+
+
+
+/*-----------------Profile------------------*/
+.event form{
+    margin-left: 20px;
+    margin-top: 5px;
+}
+
+#savePayment{
+    margin-top: 8px;
+    float: left;
+    margin-left: 110px;
+}
+
+/*---------------------------------------------*/
+
+.RegistryLink{
+    margin-top: 50px;
+}
+
+.RegistryLink .name{
+    color: #6699cc;
+    font-size: 16px;
+}
+
+.RegistryLink a{
+    text-decoration: none;
+    font-size: 9.5px;
+}
+
+.knackWork{
+    margin-top: 30px;
+}
+
+.knackWork .name{
+    color: #6699cc;
+    font-size: 16px;
+}
+
+.knackWork a{
+    text-decoration: none;
+    font-size: 9.5px;
+}
+
+.rigthPane{
+    vertical-align: top;
+    width: 679px;
+}
+
+.productsTable{
+    margin-top: 50px;
+    margin-left: 15px;
+    width: 665px;
+}
+
+#form-purchased{
+    width: 100%;
+}
+
+.tablePurchased{
+    width: 100%;
+}
+
+.productImage{
+    width: 65px!important;
+    height: 87px !important;
+/*    border: 1px solid #cccccc;
+    text-align: center;*/
+    table-layout: fixed;
+}
+
+.productImage img{
+    max-width: 64px;
+    max-height: 86px;
+}
+
+.productName{
+    width: 182px;
+    vertical-align: top;
+    padding-left: 27px;
+}
+
+.productName .name{
+    font-weight: bold;
+    font-size: 12px;
+    margin: -2px auto auto;
+}
+
+.productName .cash{
+    font-size: 9.5px;
+}
+
+.radButtons{
+    font-size: 12px;
+/*    width: 222px;*/
+    text-align: left;
+    vertical-align: top;
+}
+
+.links{
+    vertical-align: top;
+    font-size: 12px;
+}
+
+.links div{
+    margin-bottom: 2px;
+}
+
+.links a{
+    text-decoration: underline!important;
+}
+
+.emptyTR{
+    height: 33px;
+}
+
+#div-pager{
+    width: 100%;
+    text-align: right;
+    margin-top:34px;
+    margin-bottom: 123px;
+    font-size: 11px;
+}
+
+#div-pager select{
+    margin-right: 10px;
+}
+
+#div-pager span{
+    font-size: 11px;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+#process{
+    width: 153px;
+    height: 19px;
+    background-image: url('/images/design/Buttons/processAllRequests.png');
+    border: 0;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.tabsImg{
+    height: 35px;
+}
+
+.tabsImg a{
+/*    margin-left: 1px;*/
+    
+}
+
+.tabsLine table{
+    margin-left: 1px;
+    width: 100%;
+    height: 1px;
+}
+
+.tabOn{
+    width: 147px;
+}
+
+.tabOf1{
+    width: 151px;
+    background-color: #cccccc;
+}
+
+.tabOf2{
+    width: 381px;
+    background-color: #cccccc;
+}
+
+.registrants
+{
+/*    color: #666666;
+    font-size: 14px;
+    margin:10px auto 4px 1px;*/
+}
+/************************* END TOP MENU *********************/
+
+/************************* CONTENT *********************/
+
+
+
+#tabs
+{
+    margin: 14px auto auto -2px;
+}
+
+.div-rbs
+{
+    margin: -2px auto auto;
+}
+
+.div-links
+{
+    margin: -2px auto auto;
+}
+
+.div-links a
+{
+    text-decoration: none!important;
+}
+
+/************************* END CONTENT *********************/
+
+
+
+.btn-procReq
+{
+    width: 124px;
+    height: 19px;
+    background-image: url('/images/design/Buttons/processRequest.png');
+    border: 0;
+    cursor: pointer;
+}
+
+.div-btn-proc
+{
+    margin: 15px auto auto 5px;
+}
+
+
+
+.gift-entry
+{
+    font-size: 10.5px
+}

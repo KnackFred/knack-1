@@ -1,0 +1,112 @@
+<% content_for :title do %>
+    Register | Knack Registry
+<% end %>
+<% content_for :head do %>
+    <%= stylesheet_link_tag "/stylesheets/Pages/Login.css" %>
+    <%= javascript_include_tag "/javascripts/jquery.form.js"%>
+    <%= javascript_include_tag "/javascripts/pages/Register.js"%>
+<%end%>
+
+<div class="div-container-login">
+  <div class="pageName">Create a registry</div>
+  <div class="facebookBlock">
+      Use your Facebook account:
+
+    <div class="faceBut">
+      <a id="fb-login" href="#">
+        <img src = "/images/general/social/fb-login.png"/>
+      </a>
+      <span id="login_spinner" style="position:absolute;padding-top:2px;padding-left:5px;display:none"><img src="/images/spinner.gif" alt="" /></span>
+    </div>
+    <div class="dont-worry"> We'll never post to your wall without your permission. </div>
+
+  </div>
+  <div class="line"></div>
+  <%= form_tag signup_path do%>
+      <div id="div-reg">
+        <div class="subheaderBlock">
+            Create a New Account with Knack:
+        </div>
+        <div class="div-block">
+          <div class="editor-label">
+            <label for="FirstName">First Name</label>
+          </div>
+          <div class="editor-field">
+            <%=text_field :registrant, :FirstName-%>
+
+          </div>
+          <div class="editor-error">
+            <%= error_message_on :registrant, :FirstName, :prepend_text => StaticDataUtilities.get_prepare_error_message %>
+          </div>
+        </div>
+
+
+        <div class="div-block">
+          <div class="editor-label">
+            <label for="LastName">Last Name</label>
+          </div>
+          <div class="editor-field">
+            <%=text_field :registrant, :LastName-%>
+
+          </div>
+          <div class="editor-error">
+            <%= error_message_on :registrant, :LastName, :prepend_text => StaticDataUtilities.get_prepare_error_message %>
+          </div>
+        </div>
+
+        <div class="div-block">
+          <div class="editor-label">
+            <label for="new_password">State</label>
+          </div>
+          <div class="editor-field">
+            <%= select(:registrant, :State_ID, @states.collect {|s| [s.Name, s.id]}, {:include_blank => 'Select a State'}) %>
+
+          </div>
+          <div class="editor-error">
+            <%= error_message_on :registrant, :State_ID, :prepend_text => StaticDataUtilities.get_prepare_error_message -%>
+          </div>
+        </div>
+
+        <div class="div-block">
+          <div class="editor-label">
+            <label for="Email">Email</label>
+          </div>
+          <div class="editor-field">
+            <%=text_field :registrant, 'Email'-%>
+
+          </div>
+          <div class="editor-error">
+            <%= error_message_on :registrant, :Email, :prepend_text => StaticDataUtilities.get_prepare_error_message %>
+          </div>
+        </div>
+
+        <div class="div-block">
+          <div class="editor-label">
+            <label for="new_password">Password</label>
+          </div>
+          <div class="editor-field">
+            <%=password_field :registrant, :new_password-%>
+
+          </div>
+          <div class="editor-error">
+            <%= error_message_on :registrant, :new_password, :prepend_text => StaticDataUtilities.get_prepare_error_message -%>
+          </div>
+        </div>
+
+        <div id="div-btn-reg">
+          <%=submit_tag 'Register'-%>
+        </div>
+      </div>
+  <%end%>
+
+  <div id="div-accept">
+
+    <span>By registering, you agree to </span> <a target="_blank" href='/info/policy'><span class="sitePolicyHref">Knackregistry.com's website policy</span></a>
+  </div>
+
+
+</div>
+<div class="clearfloat"></div>
+
+
+<%= render :partial => 'shared/fb_init' %>

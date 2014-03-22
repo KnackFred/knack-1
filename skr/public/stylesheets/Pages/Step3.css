@@ -1,0 +1,121 @@
+.div-block-item
+{
+    clear: both;
+    /*    margin-bottom: 21px;*/
+    height: 113px;
+    padding: 4px;
+}
+
+.image-div
+{
+    float: left;
+}
+
+.details-div
+{
+    float: left;
+    margin-left: 8px;
+}
+.productName
+{
+    color: #666666;
+    font-weight: bold;
+    font-size: 15px;
+    width: 250px;
+}
+
+.div-items-amount
+{
+    color: #666666;
+    font-size: 15px;
+}
+
+.imageTable
+{
+    table-layout: fixed;
+    width: 74px;
+}
+
+.imageTable td{
+    border: 1px solid #cccccc;
+    width: 74px;
+    height: 56px!important;
+    vertical-align: middle!important;
+    text-align: center;
+    padding: 0px;
+}
+
+.imageTable td img{
+    max-height: 56px;
+    max-width: 74px;
+    padding: 0px;
+    cursor: pointer;
+}
+
+.div-header-conf
+{
+    margin:15px auto auto 2px;
+}
+
+.div-items
+{
+    margin:23px auto auto;
+}
+
+.div-btn
+{
+    margin: 24px auto 50px 781px;
+}
+
+.btn-process
+{
+    background: url('/images/design/Buttons/processOrder.png') no-repeat;
+    border: 0px;
+    width: 124px;
+    height: 19px;
+}
+
+
+
+
+.centerTD
+{
+    vertical-align: top;
+    width: 250px;
+}
+
+.div-center-block
+{
+    margin: 58px auto auto;
+}
+
+.leftTD
+{
+    width: 393px;
+}
+
+
+/**************** center block *********/
+.info-block
+{
+    float: left;
+    width: 174px;
+}
+
+.div-header-item
+{
+    margin: auto auto 14px;
+    clear: both;
+}
+
+.info-container
+{
+    margin: auto auto 7px;
+    min-height: 80px;
+    font-size: 12px;
+}
+
+.bill-edit a
+{
+    font-size: 11px;
+}

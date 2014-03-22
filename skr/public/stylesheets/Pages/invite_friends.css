@@ -1,0 +1,63 @@
+root {
+    display: block;
+}
+
+.connect-with-fb {
+    margin-top: 65px;
+}
+.connect-with-fb .connect-with-fb-text{
+    color: #6699CC;
+    font-family: Helvetica,sans-serif;
+    font-size: 24px;
+    font-weight: 100;
+    float: left;
+    margin-right: 30px;
+    vertical-align: top;
+
+}
+
+#invite-button {
+    float: right;
+}
+
+#engaged-faces {
+    display: none;
+}
+
+
+.friend .fb_image {
+    float:left;
+    padding-bottom: 10px;
+}
+
+
+#faces .fb-friends-name a{
+    font-weight: bold;
+    color: #666;
+    font-size: 12.5px;
+}
+#faces .fb-friends-view-registry a{
+    text-decoration: underline;
+    font-size: 10.5px;
+}
+
+.friend{
+    float: left;
+    width: 215px;
+    overflow: hidden;
+    margin-right: 10px;
+}
+
+.friend .right{
+    display: table-cell;
+    padding-left: 10px;
+    text-align: left;
+    padding-top: 10px;
+    width: 150px;
+    float: left;
+}
+.clear
+{
+    clear: both;
+}
+

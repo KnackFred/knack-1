@@ -1,0 +1,63 @@
+<% content_for :title do %>
+    Product | Knack Registry
+<% end %>
+<% content_for :head do %>
+    <%= stylesheet_link_tag "/stylesheets/Pages/EditProduct.css" %>
+    <%= stylesheet_link_tag "/javascripts/jcrop/css/jquery.Jcrop.css" %>
+    <%= stylesheet_link_tag "/stylesheets/Controls/Table.css" %>
+    <%= stylesheet_link_tag "/stylesheets/tooltip/jquery.tooltip.css" %>
+    <%= stylesheet_link_tag "/stylesheets/color/jquery.colourPicker.css" %>
+    <%= stylesheet_link_tag "/javascripts/tree/codebase/dhtmlxtree.css" %>
+    <%= javascript_include_tag "/javascripts/tree/codebase/dhtmlxcommon.js" %>
+    <%= javascript_include_tag "/javascripts/tree/codebase/dhtmlxtree.js"  %>
+    <%= javascript_include_tag "/javascripts/tree/codebase/ext/dhtmlxtree_json.js"  %>
+    <%= javascript_include_tag "/javascripts/jquery.form.js"  %>
+    <%= javascript_include_tag "/javascripts/json2.js"  %>
+    <%= javascript_include_tag "/javascripts/jquery.input-file.js"  %>
+    <%= javascript_include_tag "/javascripts/jquery.simplemodal.1.4.1.min.js"  %>
+    <%= javascript_include_tag "/javascripts/color/jquery.colourPicker.js"  %>
+    <%= javascript_include_tag "/javascripts/jcrop/js/adding.js"  %>
+    <%= javascript_include_tag "/javascripts/jcrop/js/jquery.Jcrop.js"  %>
+    <%= javascript_include_tag "/javascripts/pages/edit_product.js"  %>
+<%end%>
+
+<% content_for :pagename do %>
+    <div>
+      Product
+    </div>
+<% end %>
+
+<% content_for :registry do %>
+    <div class="bl-block">
+      <div class="blue-line">
+      </div>
+    </div>
+<% end %>
+
+<% content_for :background do %>
+    <div class="bl-block">
+      <div class="blue-line">
+        <%= hidden_field "s", "s" %>
+      </div>
+    </div>
+<% end %>
+
+
+<div class="withBackground">
+  <div class="content">
+    <div class="mainBlock">
+      <table cellpadding="0px" cellspacing="0px" border="0px">
+        <tr>
+          <td class="leftMenu">
+            <%= render "administrative/left_menu" %>
+          </td>
+          <td class="rigthPane">
+            <%=  show_flash %>
+            <%= render "form" %>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+

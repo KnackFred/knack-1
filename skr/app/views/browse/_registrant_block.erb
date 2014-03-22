@@ -1,0 +1,4 @@
+<%= @registry.name_registry %><br/><br/>
+<%= link_to(registry_path(@registry.id)) do %>
+    <%= render :partial=> 'registrant/registry_image', :locals => {:registrant => @registry}  %>
+<% end %>

@@ -1,0 +1,11 @@
+.notice {
+    color: green;
+}
+
+.field_with_errors {
+    color: red;
+}
+
+#items {
+    margin: 30px 0;
+}

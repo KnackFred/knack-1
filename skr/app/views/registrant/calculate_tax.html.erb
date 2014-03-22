@@ -1,0 +1,157 @@
+<%= form_tag({:controller => :registrant, :action => :calculate_tax}, :id => "form_tax") do %>
+  <div id="tax_calculate" class="placeBlock">
+    <div class="div-block">
+      <div class="editor-label">
+        <%= hidden_field :taxshipment, :MasterPrice %>
+      </div>
+
+      <div class="editor-error">
+        <%= error_message_on :taxshipment, :MasterPrice, :prepend_text => StaticDataUtilities.get_prepare_error_message %>
+      </div>
+    </div>
+    <%#***************************%>
+    <%#*Shop address block%>
+    <%#***************************%>
+
+      <div class="fieldTopic">Please Provide a place where you found gift</div>
+
+      <%#***************************%>
+      <%#*City place%>
+      <%#***************************%>
+      <div class="div-block">
+        <div class="editor-label">
+          City *:
+        </div>
+
+        <div class="editor-field">
+          <%= text_field :taxshipment, :CityPlace %>
+        </div>
+        <div class="editor-error">
+          <%= error_message_on :taxshipment, :CityPlace, :prepend_text => StaticDataUtilities.get_prepare_error_message %>
+        </div>
+      </div>
+
+      <%#***************************%>
+      <%#*State place%>
+      <%#***************************%>
+      <div class="div-block">
+        <div class="editor-label">
+          State *:
+        </div>
+
+        <div class="editor-field">
+          <%= select(:taxshipment, :StatePlace_ID, @states.collect {|s| [s.Name, s.id]}) %>
+
+        </div>
+        <div class="editor-error">
+          <%= error_message_on :taxshipment, :StatePlace_ID, :prepend_text => StaticDataUtilities.get_prepare_error_message %>
+        </div>
+      </div>
+
+      <%#***************************%>
+      <%#*Zip place%>
+      <%#***************************%>
+      <div class="div-block">
+        <div class="editor-label">
+          ZIP *:
+        </div>
+
+        <div class="editor-field">
+          <%= text_field :taxshipment, :ZIPPlace %>
+        </div>
+        <div class="editor-error">
+          <%= error_message_on :taxshipment, :ZIPPlace, :prepend_text => StaticDataUtilities.get_prepare_error_message %>
+        </div>
+      </div>
+
+    <%#***************************%>
+    <%#*END Shop address block%>
+    <%#***************************%>
+
+    <%#***************************%>
+    <%#*Registrant address block%>
+    <%#***************************%>
+      <div class="fieldTopic">Please confirm your addres for correct calqulation of shipment and taxes</div>
+
+      <%#***************************%>
+      <%#*City registrant%>
+      <%#***************************%>
+      <div class="div-block">
+        <div class="editor-label">
+          City *:
+        </div>
+
+        <div class="editor-field">
+          <%= text_field :taxshipment, :CityRegistrant %>
+        </div>
+        <div class="editor-error">
+          <%= error_message_on :taxshipment, :CityRegistrant, :prepend_text => StaticDataUtilities.get_prepare_error_message %>
+        </div>
+      </div>
+
+      <%#***************************%>
+      <%#*State registrant%>
+      <%#***************************%>
+      <div class="div-block">
+        <div class="editor-label">
+          State *:
+        </div>
+
+        <div class="editor-field">
+          <%= select(:taxshipment, :StateRegistrant_ID, @states.collect {|s| [s.Name, s.id]}) %>
+
+        </div>
+        <div class="editor-error">
+          <%= error_message_on :taxshipment, :StateRegistrant_ID, :prepend_text => StaticDataUtilities.get_prepare_error_message %>
+        </div>
+      </div>
+
+      <%#***************************%>
+      <%#*Zip registrant%>
+      <%#***************************%>
+      <div class="div-block">
+        <div class="editor-label">
+          ZIP *:
+        </div>
+
+        <div class="editor-field">
+          <%= text_field :taxshipment, :ZIPRegistrant %>
+
+        </div>
+        <div class="editor-error">
+          <%= error_message_on :taxshipment, :ZIPRegistrant, :prepend_text => StaticDataUtilities.get_prepare_error_message %>
+        </div>
+      </div>
+
+      <%# if !@taxshipment.Tax.blank? %>
+        <%#***************************%>
+        <%#*Tax%>
+        <%#***************************%>
+      <div class="div-block">
+        <div class="editor-label">
+          Tax *:
+        </div>
+
+
+        <div class="editor-field">
+          <%= text_field :taxshipment, :Tax %>
+
+        </div>
+        <div class="editor-error">
+           <%= error_message_on :taxshipment, :Tax, :prepend_text => StaticDataUtilities.get_prepare_error_message %>
+        </div>
+      </div>
+      <%# end %>
+    <%#***************************%>
+    <%#*END Registrant address block%>
+    <%#***************************%>
+    <div class="div-block">
+      <div class="editor-label">
+        <label class="hidden">hidden</label>
+      </div>
+      <div class="editor-field">
+        <a class="calc" id="a_calculate" href=""><b>Calculate Tax</b></a>
+      </div>
+    </div>
+  </div>
+<% end %>

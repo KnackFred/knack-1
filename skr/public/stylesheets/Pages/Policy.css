@@ -1,0 +1,50 @@
+
+
+
+.descriptionTD{
+    width: 235px;
+    vertical-align: top;
+    text-align: left;
+    font-size: 12px;
+}
+
+
+
+.rightPane{
+    width: 770px;
+    vertical-align: top;
+    padding-left: 0px;
+}
+
+.policyContent{
+    margin-left:auto;
+    margin-right:auto;
+    margin-bottom: 30px;
+    width: 90%;
+    color: #8c8c8c;
+    font-size: 12px;
+    font-family: Helvetica;
+    line-height:20px;
+
+}
+
+.topicPage{
+    color: #6699cc;
+    font-size: 32px;
+    font-family: Helvetica,sans-serif;
+}
+
+
+.rule{
+    margin-top: 18px;
+}
+
+.ruleTopic{
+    font-weight: bold;
+}
+
+.ruleContent{
+    margin-top: 7px;
+}
+
+

@@ -1,0 +1,95 @@
+<%= content_for :title do %>
+  Add Gift | Knack Registry
+<% end %>
+<%= content_for :head do %>
+    <%= stylesheet_link_tag "/stylesheets/Pages/AddMyOwnGift.css" %>
+    <%= javascript_include_tag "/javascripts/jquery.simplemodal.1.4.1.min.js"  %>
+    <%= javascript_include_tag "/javascripts/controls/_pop-up.js"%>
+    <%= javascript_include_tag "/javascripts/pages/addgift.js" %>
+<%end%>
+
+<%= content_for :pagename do %>
+  <div>Add Gift</div>
+<% end %>
+
+<%= content_for :registry do %>
+  <%= @registrant.name_registry %>
+<% end %>
+<%= content_for :background do %>
+  <% if !@registrant.is_invited? %>
+    <%= render :partial => 'your_credit', :object => @registrant.get_queue %>
+  <% end %>
+<% end %>
+
+<%= content_for :completemenu do %>
+<% end %>
+
+<% if Rails.env == "production" %>
+<!-- Google Code for Logged in User Remarketing List -->
+<script type="text/javascript">
+/* <![CDATA[ */
+var google_conversion_id = 1014910302;
+var google_conversion_language = "en";
+var google_conversion_format = "3";
+var google_conversion_color = "666666";
+var google_conversion_label = "LT6ICLq3tgIQ3pr54wM";
+var google_conversion_value = 0;
+/* ]]> */
+</script>
+<script type="text/javascript" src="https://www.googleadservices.com/pagead/conversion.js">
+</script>
+<noscript>
+<div style="display:inline;">
+<img height="1" width="1" style="border-style:none;" alt="" src="https://www.googleadservices.com/pagead/conversion/1014910302/?label=LT6ICLq3tgIQ3pr54wM&amp;guid=ON&amp;script=0"/>
+</div>
+</noscript>
+<% end %>
+<%#*-----------------------------%>
+<%#*Content%>
+<%#*-----------------------------%>
+
+<div class="withBackground">
+  <div class="content">
+    <div class="mainBlock">
+      <table cellpadding="0px" cellspacing="0px" border="0px">
+        <tr>
+          <td class="leftMenu">
+            <%= render "left_nav" %>
+          </td>
+          <td class="rightPane">
+            <div class="header-block">
+              <div class="header-text how-it">Build Your Knack List</div>
+              <div class="Line"></div>
+
+              <div class="header-text once">Knack gives you two ways to add items to your Knack List</div>
+
+              <div class="list-text">
+                <%= link_to "toolbars", :class => "btn-external-gifts" do %>
+                  <div class="wrap-text-block list-item2">
+                    <div class="number">1</div>
+                    <div class="text-gifts">Use our <b>Gift List Tool</b> to add any gift from your favorite website!</div>
+                  </div>
+                <% end %>
+                <%= link_to "add_my_gift", :class => "btn-add-gifts" do %>
+                  <div class="wrap-text-block list-item3 ">
+                    <div class="number">2</div>
+                    <div class="text-gifts">Add cooking classes, or anything you can think of using our <b>Add Your Own Tool</b>!</div>
+                  </div>
+                <% end %>
+              </div>
+
+            </div>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="block-iframe tag-none">
+  <iframe src="" id="ifr-popup" width="500" height="490" frameborder="0" style="border: 0;">
+  </iframe>
+</div>
+
+<div class="block-pop-video tag-none">
+</div>

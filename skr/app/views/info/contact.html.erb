@@ -1,0 +1,48 @@
+<% content_for :title do %>
+Contact Us | Knack Registry
+<% end %>
+<% content_for :head do %>
+    <%= stylesheet_link_tag "/stylesheets/Global.css" %>
+    <%= stylesheet_link_tag "/stylesheets/Pages/AboutUs.css" %>
+    <%= stylesheet_link_tag "/stylesheets/Pages/Contact.css" %>
+<%end%>
+
+<div class="div-c">
+
+  <div class="topMenu">
+    <table cellpadding="0px" cellspacing="0px">
+      <tr>
+        <td class="pageNameTD">
+          Contact Us
+        </td>
+        <td class="topMenuTD">
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="loginContent">
+
+    <table cellpadding="0px" cellspacing="0px" border="0">
+      <tr>
+        <td class="descriptionTD">
+          <%= render :partial => 'info_links', :locals => {:selected => "Contact"}%>
+        </td>
+
+        <td class="rightPane">
+
+          <img class="img" width="90" src="/images/contact_img.png"/>
+          Knack LLC<br/>
+          1364 Broadway<br/>
+          San Francisco, CA 94109<br/>
+          <br/><br/>
+          <%#*<iframe width="425" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.com/maps/ms?ie=UTF8&hl=ru&msa=0&msid=110912580157051249764.00048fa4c96c8e65ce33e&ll=37.773276,-122.510026&spn=0.002968,0.00456&z=17&output=embed"></iframe><br />%>
+
+          <br/>
+          email : <a href="mailto:info@knackregistry.com">info@knackregistry.com</a><br>
+          call us : (415) 578-0345 </br>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>

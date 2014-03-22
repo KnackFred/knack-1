@@ -1,0 +1,44 @@
+<% content_for :title do %>
+  Confirm Registration | Knack Registry
+<% end %>
+<% content_for :head do %>
+        <%= stylesheet_link_tag "/stylesheets/Pages/AddMyOwnGift.css" %>
+
+<%end%>
+
+  <% content_for :pagename do %>
+    <div>Confirm registration</div>
+
+  <% end %>
+
+  <% content_for :registry do %>
+      <div class="bl-block">
+        <div class="blue-line">
+          <div class="registrants">
+
+          </div>
+          </div>
+        </div>
+  <% end %>
+    <% content_for :background do %>
+      <div class="bl-block">
+        <div class="blue-line">
+          <input type="hidden" value="fghj"/>
+        </div>
+      </div>
+  <% end %>
+
+
+
+    <%#*-----------------------------%>
+    <%#*Content%>
+    <%#*-----------------------------%>
+
+  <div class="withBackground">
+    <div class="content">
+     <div class="mainBlock">
+        <p>Confirmation letter has been sent to the email address <b><%= @email %></b></p>
+        <%= link_to "Go to Sign in page", :controller => :partner, :action => :partnerslogin %>
+      </div>
+    </div>
+  </div>

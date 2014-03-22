@@ -1,0 +1,280 @@
+<% content_for :title do %>
+  My Cart | Knack Registry
+<% end %>
+<% content_for :head do %>
+  <%= stylesheet_link_tag "/stylesheets/layouts/Cart.css"%>
+  <%= stylesheet_link_tag "/stylesheets/Pages/CheckOutRegistry.css"%>
+  <%= javascript_include_tag "/javascripts/jquery.timers.js"  %>
+  <%= javascript_include_tag "/javascripts/knack.payment.cart.js"  %>
+<%end%>
+<div class="div-c">
+  <div class="topMenu">
+    <table cellpadding="0px" cellspacing="0px">
+      <tr>
+        <td class="pageNameTD">My Cart</td>
+        <td class="topMenuTD">
+        </td>
+      </tr>
+    </table>
+    <% if flash[:success] %>
+      <div class="flash-success">
+        <img class="img-apply" src="/images/apply.png"/><div class="flash-success-text"><%= flash[:success] %></div>
+      </div>
+    <% end %>
+    <% if flash[:alert] %>
+      <div class="flash-alert">
+        <img class="img-apply" src="/images/error.png"/><div class="flash-alert-text"><%= flash[:alert] %></div>
+      </div>
+    <% end %>
+  </div>
+  <div class="withBackground">
+    <div class="content">
+      <div class="searchBlock">
+        <table id="table-header-item" cellpadding="0" cellspacing="0" border="0">
+          <tr>
+            <%#*Images%>
+            <th class="td-image-header">
+              Items
+            </th>
+
+            <th class="td-name-header">
+            </th>
+
+            <%#*Description%>
+            <th class="td-description-header">
+              <span id="span-description">Description</span>
+            </th>
+
+            <% if @cart_information.type == CartInformation::TYPE_BUY_CONTRIBUTE %>
+                <th class="td-price-header">
+                  <span id="span-price">Price</span>
+                </th>
+
+                <th class="td-quantity-header">
+                  <span id="span-quantity">Quantity</span>
+                </th>
+            <% else %>
+                <%#*Withdraw%>
+                <th class="td-withdraw-header">
+                  Withdraw
+                </th>
+
+                <%#*Knack fee%>
+                <th class="td-knackfee-header">
+                  Knack fee
+                </th>
+            <% end %>
+
+            <%#*Total%>
+            <th class="td-total-header">
+              <div class="total-div">
+                <span id="span-total">Total</span>
+              </div>
+            </th>
+          </tr>
+        </table>
+        <div id="line-header" class="Line"></div>
+      </div>
+
+      <div class="mainBlock">
+        <%= form_tag(cart_path, :id => "frm-check") do %>
+          <table id="checkout">
+            <tbody>
+              <% @cart_information.list_registry_items.each do |registry_item| %>
+                <tr>
+                  <%#*Items%>
+                  <td class="td-image">
+                    <div class="imageDIV">
+                      <%= image_tag registry_item.main_product_thumb_url_small,
+                                    :alt => registry_item.product_name,
+                                    :class => "product-image-small" -%>
+                    </div>
+                  </td>
+                  <td class="td-name">
+                    <div class="productName">
+                      <%= registry_item.product_name -%>
+                    </div>
+                  </td>
+
+                  <%#*Description%>
+                  <td class="td-description">
+                    <div class="div-description"><%= formatted_text(registry_item.description, 300, "...") %></div>
+                  </td>
+
+                  <%#*Price%>
+                  <td class="td-price">
+                    <div class="productPrice">
+                      <%= formatted_price(registry_item.price) %>
+                    </div>
+                  </td>
+
+                  <%#*Quantity%>
+                  <td class="td-quantity">
+                    <%= MathUtilite.Round2Trim(registry_item.quantity)%>
+                  </td>
+
+                  <%#*------------------------%>
+                  <%#*Total%>
+                  <%#*------------------------%>
+                  <td class="td-total">
+                    <div class="productPrice total-div">
+											<%= formatted_price(registry_item.subtotal) %>
+                    </div>
+                    <%#*------------------------%>
+                    <%#*Delete%>
+                    <%#*------------------------%>
+                    <div class="div-delete">
+                      <input type="button" r2pid="<%= registry_item.id %>" class="deletefromcart"/>
+                    </div>
+                  </td>
+                </tr>
+              <% end %>
+
+              <% @cart_information.list_products.each do |item| %>
+                <tr>
+                  <%#*Items%>
+                  <td class="td-image">
+                    <%= image_tag item.main_product_thumb_url_small,
+                                  :alt => item.product_name,
+                                  :class => "product-image-small" -%>
+                  </td>
+                  <td class="td-name">
+                    <div class="productName">
+                      <%= item.product_name %>
+                    </div>
+                    <div class="productParams">
+                      <% unless item.color_name.blank? %>
+                          <br/>Color: <%= item.color_name.Name %>
+                      <% end  %>
+                      <% item.list_params.each do |param| %>
+                          <br/><%= param.Name %>: <%= param.Value %>
+                      <% end  %>
+                    </div>
+                  </td>
+
+                  <%#*Description%>
+                  <td class="td-description">
+                    <div class="div-description"><%= formatted_text(item.description, 300, "") %></div>
+                  </td>
+
+                  <%#*Price%>
+                  <td class="td-price">
+                    <div class="productPrice">
+                      <%= formatted_price(item.price) %>
+                    </div>
+                  </td>
+
+                  <%#*Quantity%>
+                  <td class="td-quantity">
+										<%= text_field_tag "quantity", item.quantity, :id => "quantity_#{item.id}", :class => "quantity", :dataid => item.id, :readonly => item.is_kind -%>
+                  </td>
+
+                  <%#*Total%>
+                  <td class="td-total">
+                    <div class="productPrice total-div">
+                      <%= formatted_price(item.subtotal) %>
+                    </div>
+
+                    <%#*Delete%>
+                    <div class="div-delete">
+                      <input type="button" pid="<%= item.id %>" class="deletebuycart"/>
+                    </div>
+                  </td>
+                </tr>
+              <% end %>
+
+
+              <% if @cart_information.type == CartInformation::TYPE_WITHDRAW %>
+                <tr>
+                  <%#*Items%>
+                  <td class="td-image">
+                    <div class="imageDIV">
+                      <table class="imageTable">
+                        <tr>
+                          <td>
+                            <%= image_tag "/images/cash.png", :alt => 'Withdraw', :class => "image_view imageSize" -%>
+                          </td>
+                        </tr>
+                      </table>
+                    </div>
+                  </td>
+                  <td class="td-name">
+                    <div class="productName">
+                      Withdraw cash
+                    </div>
+                  </td>
+
+                  <%#*Description%>
+                  <td class="td-description">
+                    <div class="div-description">You can withdraw money contributed towards your gifts<br/>
+                      Total balance in Queue =  <%= formatted_price(@cart_information.queue) %></div>
+                  </td>
+
+                  <td class="td-withdraw">
+                    <div class="productPrice">
+                      <%= formatted_price(@cart_information.withdraw_total) %>
+                      <%= hidden_field_tag "withdraw", formatted_price(@cart_information.withdraw_total), :class => "withdraw"%>
+                    </div>
+                  </td>
+
+                  <%#*Knack fee%>
+                  <td class="td-knackfee">
+                    <div class="productPrice">
+                      <%= formatted_price(@cart_information.tax_total) %>
+                    </div>
+                  </td>
+
+                  <%#*Total%>
+                  <td class="td-total">
+                    <div class="productPrice total-div">
+                      <%= formatted_price(@cart_information.total) %>
+                    </div>
+
+                    <%#*------------------------%>
+                    <%#*Delete%>
+                    <%#*------------------------%>
+                    <div class="div-delete">
+                      <input type="button" class="deletecash"/>
+                    </div>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+
+          </table>
+          
+          <table id="amount">
+            <tbody>
+							<%= render "empty_tr" %>
+
+							<%= render "empty_tr" %>
+
+							<%= render 'order_summary' %>
+
+							<%= render "empty_tr" %>
+
+              <%#*------------------------%>
+              <%#*Buttons%>
+              <%#*------------------------%>
+              <tr>
+                <td>
+				  				<%= hidden_field_tag "back_path", session[:back_path] -%>
+                  <%= button_to_function "", "continue_shopping();", :class => "contshopping"%>
+                </td>
+                <td class="rightColumn">
+                  <%= button_to_function "", "document.location.assign('/payment/emptycart')", :class => "emptycart" %>
+                  <input type="submit" value="" class="checkout"/>
+                </td>
+              </tr>
+
+							<%= render "empty_tr" %>
+            </tbody>
+          </table>
+
+          <input type="hidden" id="quantityId" name="quantityId"/>
+          <input type="hidden" id="quantityValue" name="quantityValue"/>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

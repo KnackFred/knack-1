@@ -1,0 +1,114 @@
+#orders-table
+{
+    width:100%;
+}
+
+#orders-table thead
+{
+    background-color: #f6e39c;
+}
+
+.searchBlockOrders
+{
+    float:left;
+}
+
+.clearBoth
+{
+    clear: both;
+}
+
+#search
+{
+    width: 100%;
+}
+
+.input-id
+{
+    width: 50px;
+}
+
+.id-block
+{
+    width: 100px;
+}
+
+.block-date
+{
+    width: 160px;
+}
+
+.block-date-to
+{
+    width: 120px;
+    float: left;
+}
+
+.block-date input
+{
+    width: 70px;
+}
+
+.block-date-to input
+{
+    width: 70px;
+}
+
+.block-gross-from input
+{
+    width: 70px;
+}
+
+.block-gross-to input
+{
+    width: 70px;
+}
+
+.block-type
+{
+    float: left;
+}
+
+.block-type input
+{
+    width: 70px;
+}
+
+.block-gross-from
+{
+    float: left;
+    width: 250px;
+}
+
+.block-gross-to
+{
+    float: left;
+    width: 110px;
+}
+
+.block-customer
+{
+    float: left;
+    width: 270px;
+}
+
+.block-customer input
+{
+    width: 150px;
+}
+
+.block-status
+{
+    width: 200px;
+}
+
+#div-buttons
+{
+    text-align: right;
+    margin: 0 15px;
+}
+
+.div-text
+{
+    font-size: 14px;
+}

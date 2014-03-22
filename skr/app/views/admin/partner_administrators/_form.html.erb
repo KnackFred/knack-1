@@ -1,0 +1,169 @@
+<script type="text/javascript">
+    var controller = "<%= @is_admin ? "/administrative" : "/partner" %>";
+</script>
+
+<%= form_for([:admin, @administrator]) do |f| %>
+    <div id="div-reg">
+      <% if @is_admin %>
+          <div class="div-block">
+            <div class="editor-label">
+              <label for="FirstName">Partner</label>
+            </div>
+            <div class="editor-field">
+              <%= f.collection_select :partner_id, Partner.all, :id, :id%>
+            </div>
+            <div class="editor-error">
+              <%= f.error_message_on :partner_id, :prepend_text => StaticDataUtilities.get_prepare_error_message %>
+            </div>
+          </div>
+      <% end %>
+
+      <%#*------------------------------%>
+      <%#*FirstName%>
+      <%#*------------------------------%>
+      <div class="div-block">
+        <div class="editor-label">
+          <label for="FirstName">First Name *</label>
+        </div>
+        <div class="editor-field">
+          <%= f.text_field :first_name%>
+        </div>
+        <div class="editor-error">
+          <%= f.error_message_on :first_name, :prepend_text => StaticDataUtilities.get_prepare_error_message %>
+        </div>
+      </div>
+
+      <%#*------------------------------%>
+      <%#*LastName%>
+      <%#*------------------------------%>
+      <div class="div-block">
+        <div class="editor-label">
+          <label for="lastName">Last Name *</label>
+        </div>
+        <div class="editor-field">
+          <%= f.text_field :last_name%>
+        </div>
+        <div class="editor-error">
+          <%= f.error_message_on :last_name, :prepend_text => StaticDataUtilities.get_prepare_error_message %>
+        </div>
+      </div>
+
+
+      <%#*------------------------------%>
+      <%#*Login%>
+      <%#*------------------------------%>
+      <div class="div-block">
+        <div class="editor-label">
+          <label for="Login">Login(email) *</label>
+        </div>
+        <div class="editor-field">
+          <%= f.text_field :email%>
+        </div>
+        <div class="editor-error">
+          <%= f.error_message_on :email, :prepend_text => StaticDataUtilities.get_prepare_error_message %>
+        </div>
+      </div>
+
+      <% if @administrator.id.blank? %>
+          <%#*------------------------------%>
+          <%#*Password%>
+          <%#*------------------------------%>
+          <div class="div-block">
+            <div class="editor-label">
+              <label for="Password">Password *</label>
+            </div>
+            <div class="editor-field">
+              <%= f.password_field :new_password %>
+            </div>
+            <div class="editor-error">
+              <%= f.error_message_on :new_password, :prepend_text => StaticDataUtilities.get_prepare_error_message  %>
+            </div>
+          </div>
+      <% else %>
+
+          <%#*------------------------------%>
+          <%#*Set new password%>
+          <%#*------------------------------%>
+          <div class="div-block">
+            <div class="editor-label">
+              <label>Set new password </label>
+            </div>
+            <div class="editor-field">
+              <%= f.check_box :change_password %>
+            </div>
+          </div>
+
+
+          <div class="passwordBlock">
+            <%#*------------------------------%>
+            <%#*Old password%>
+            <%#*------------------------------%>
+            <div class="div-block">
+              <div class="editor-label">
+                <label for="OldPassword">Old password *</label>
+              </div>
+              <div class="editor-field">
+                <%= f.password_field :old_password %>
+
+              </div>
+              <div class="editor-error">
+                <%= f.error_message_on :old_password, :prepend_text => StaticDataUtilities.get_prepare_error_message  %>
+              </div>
+            </div>
+
+            <%#*------------------------------%>
+            <%#*New password%>
+            <%#*------------------------------%>
+            <div class="div-block">
+              <div class="editor-label">
+                <label for="NewPassword">New password *</label>
+              </div>
+              <div class="editor-field">
+                <%= f.password_field :new_password %>
+              </div>
+              <div class="editor-error">
+                <%= f.error_message_on :new_password, :prepend_text => StaticDataUtilities.get_prepare_error_message  %>
+              </div>
+            </div>
+
+            <div class="emptyBlock">
+            </div>
+          </div>
+
+      <% end %>
+
+      <%#*------------------------------%>
+      <%#*Phone%>
+      <%#*------------------------------%>
+      <div class="div-block">
+        <div class="editor-label">
+          <label for="Phone">Phone</label>
+        </div>
+        <div class="editor-field">
+          <%= f.text_field :phone %>
+        </div>
+        <div class="editor-error">
+          <%= f.error_message_on :phone, :prepend_text => StaticDataUtilities.get_prepare_error_message %>
+        </div>
+      </div>
+
+
+      <%#*------------------------------%>
+      <%#*Button%>
+      <%#*------------------------------%>
+      <div class="div-block">
+        <div class="editor-label">
+          <input type="hidden" value="d"/>
+          <div class="emptyBlock"></div>
+        </div>
+        <div class="editor-field">
+          <div class="btn-container">
+            <%= button_to_function "", "document.location.assign('/partner/administrators')", :class => "btn-back" %>
+            <%= f.submit :class => "btn-save" %>
+          </div>
+        </div>
+        <div class="editor-error">
+        </div>
+      </div>
+    </div>
+<%end%>

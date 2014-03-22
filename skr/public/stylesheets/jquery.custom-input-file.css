@@ -1,0 +1,115 @@
+.customInputFile {
+/*  border: 1px solid #f4f4f4;*/
+  overflow: hidden;
+/*  padding: 4px;
+  width: 100px;
+  text-align: center;*/
+  width: 50px;
+  cursor: pointer;
+  color: #0000FF;
+  text-decoration: underline;
+}
+.customInputFileName {
+  padding: 2px;
+  border: 1px solid #f4f4f4;
+  display: none;
+}
+.customInputFileHover {
+/*  background: #f2f2f5;
+  border: 1px solid #787878;*/
+cursor: pointer;
+}
+.customInputFileActive {
+/*  background: #bbd2e0;
+  border: 1px solid #003250;*/
+cursor: pointer;
+}
+.customInputFileActive.customInputFileHover {
+/*  background: #787878;
+  color: #f2f2f5;*/
+cursor: pointer;
+}
+/*input[type="file"] {
+  font-size: 4px;
+  cursor: pointer;
+}*/
+#div-imageCategory
+{
+    position: relative;
+    left:430px;
+    top:-165px;
+    width:300px;
+}
+/*#div-knackImageEditCategory
+{
+    position: relative;
+    left:540px;
+    top:-265px;
+    width:70px;
+}*/
+#div-knackImageCategoryList
+{
+    position:relative;
+    left: 90%;
+    width:70px;
+}
+#div-setFilter
+{
+    position:relative;
+    top:-40px;
+    left:200px;
+    width:70%;
+}
+#per_page
+{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+#div-addcancelEditCategory
+{
+    position: relative;
+    top: -120px;
+    margin-left:280px;
+}
+#div-addcancelAddCategory
+{
+    position: relative;
+    top: -40px;
+    margin-left:280px;
+}
+#div-productFilterButton
+{
+    position: relative;
+    left:210px;
+    top:-20px;
+    width:100px;
+}
+#product-table
+{
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 15px;
+}
+#sort
+{
+    margin-top: 10px;
+}
+#div-productAddButton
+{
+    margin-left:940px;
+}
+#catalog-table
+{
+    margin-left: 10px;
+    margin-right: 10px;
+}
+#div-left-block
+{
+    widht:50%;
+    left:0px;
+}
+#div-right-block
+{
+    width: 50%;
+    right: 0px;
+}

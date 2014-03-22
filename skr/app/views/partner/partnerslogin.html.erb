@@ -1,0 +1,83 @@
+<%= content_for :title do %>
+  Partner Login | Knack Registry
+<% end %>
+<%= content_for :head do %>
+  <%= stylesheet_link_tag "/stylesheets/Pages/Login.css" %>
+  <%= javascript_include_tag "/javascripts/pages/partnerslogin.js"%>
+<%  end %>
+
+  <div class="div-container-login">
+          <div class="pageName">
+            Partner Login
+          </div>
+          <div>
+            <%=form_tag :controller => :partner, :action => :partnerslogin do%>
+              <div id="div-login">
+                <div class="div-block">
+                  <div class="editor-label">
+                    <label for="Email">Login<i>(email)</i></label>
+                  </div>
+                  <div class="editor-field">
+                    <%=text_field :partner, 'Email'-%>
+
+                  </div>
+                  <div class="editor-error">
+                    <span class="formError"><%= @err_email %></span>
+                  </div>
+                </div>
+
+                <div class="div-block">
+                  <div class="editor-label">
+                        <label for="Password">Password</label>
+                  </div>
+                  <div class="editor-field">
+                    <%=password_field :partner, :Password-%>
+
+                  </div>
+                  <div class="editor-error">
+                    <span class="formError"><%= @err_pass %></span>
+                  </div>
+                </div>
+
+                <%#*<div class="div-block-captcha">%>
+                  <%#*<div class="editor-label">%>
+                       <%#*<label for="captcha" style="visibility: hidden">Captcha</label>%>
+                  <%#*</div>%>
+                  <%#*<div class="editor-field">%>
+                    <%#= render :partial => "access/captcha" %>
+
+                  <%#*</div>%>
+                  <%#*<div class="editor-error">%>
+                    <%#*<span class="formError"><%= @err_captcha ></span>%>
+                  <%#*</div>%>
+                <%#*</div>%>
+
+
+                <div class="div-block">
+                  <div id="forgotPas" class="editor-label">
+                    <a href="/partner/forgotpassword" >Forgot Password?</a>
+                  </div>
+                  <div id="remember" class="editor-field">
+                    <%= check_box_tag 'rememberMe', 'yes', false %>Remember me
+                  </div>
+                </div>
+
+                <div class="div-block">
+                  <div id="register" class="editor-label">
+                    <a href="/partner/partnerregister" >Not a member? Register!</a>
+                  </div>
+                  <div id="logButton" class="editor-field">
+                    <%=submit_tag 'Login'-%>
+                  </div>
+                </div>
+
+                <div class="error-text div-generr"><%= @err_general %></div>
+
+              </div>
+            <%end%>
+          </div>
+</div>
+  <div class="clearfloat"></div>
+
+
+  

@@ -1,0 +1,900 @@
+<% content_for :title do %>
+  Order
+<% end %>
+<% content_for :head do %>
+        <%= stylesheet_link_tag "/stylesheets/Pages/Order.css" %>
+        <%= stylesheet_link_tag "/stylesheets/Controls/Table.css" %>
+		<%= stylesheet_link_tag "/stylesheets/jquery-ui-1.8.2.custom.css" %>
+        <%= javascript_include_tag "/javascripts/jquery-ui-1.8.2.custom.min.js"  %>
+        <%= javascript_include_tag "/javascripts/pages/order.js"  %>
+<%end%>
+  <% content_for :pagename do %>
+    Edit Merchant
+  <% end %>
+
+ <% content_for :registry do %>
+      <div class="bl-block">
+        <div class="blue-line">
+
+        </div>
+      </div>
+  <% end %>
+
+  <% content_for :background do %>
+      <div class="bl-block">
+        <div class="blue-line">
+          <input type="hidden" value="fghj"/>
+        </div>
+      </div>
+  <% end %>
+
+  <div class="withBackground">
+    <div class="content">
+      <div class="mainBlock">
+        <table cellpadding="0px" cellspacing="0px" border="0px">
+            <tr>
+              <td class="leftMenu">
+                <%= render "left_menu" %>
+              </td>
+              <td class="rigthPane">
+
+                <form action="/administrative/order/<%= @order.id %>" method="post" id="tbl-order">
+                  <input type="hidden" id="at" name="authenticity_token" value="<%= form_authenticity_token %>" />
+                  <%#*--------------------------------%>
+                  <%#* General block%>
+                  <%#*--------------------------------%>
+                  <div class="div-general-block">
+                    <div class="Header">
+                      Order Information
+                    </div>
+
+                    <%#*--------------------------------%>
+                    <%#* ID %>
+                    <%#*--------------------------------%>
+                    <div class="div-block">
+                      <div class="editor-label">
+                        <label for="Id">Id</label>
+                      </div>
+
+                      <div class="editor-field">
+                        <%= @order.id %>
+                      </div>
+                    </div>
+
+                    <%#*--------------------------------%>
+                    <%#* Customer %>
+                    <%#*--------------------------------%>
+                    <div class="div-block">
+                      <div class="editor-label">
+                        <label for="Customer">Customer</label>
+                      </div>
+
+                      <div class="editor-field">
+                        <%= @order.customer %>
+                      </div>
+                    </div>
+
+                    <%#*--------------------------------%>
+                    <%#* Date %>
+                    <%#*--------------------------------%>
+                    <div class="div-block">
+                      <div class="editor-label">
+                        <label for="Date">Date</label>
+                      </div>
+
+                      <div class="editor-field">
+                        <%= Time.parse(@order.DateTime.to_s).strftime("%m/%d/%Y") %>
+                      </div>
+                    </div>
+
+                    <%#*--------------------------------%>
+                    <%#* Status %>
+                    <%#*--------------------------------%>
+                    <div class="div-block">
+                      <div class="editor-label">
+                        <label for="Status">Status</label>
+                      </div>
+
+                      <div class="editor-field status">
+                        <%= collection_select(:order, :OrdersStatus_ID, @order_statuses, :id, :Name, @order.OrdersStatus_ID.to_i == OrdersStatus::STATUSES.invert['Canceled'] ? {:disabled => lambda{|status| status}} : {} ) %>
+                      </div>
+                    </div>
+
+                    <%#*--------------------------------%>
+                    <%#* Shipment tracking %>
+                    <%#*--------------------------------%>
+                    <div class="div-block">
+                      <div class="editor-label">
+                        <label for="tracking">Shipment tracking number *</label>
+                      </div>
+
+                      <div class="editor-field">
+                        <%= text_field :order, :ShipmentTracking %>
+                      </div>
+                    </div>
+
+                    <div class="cursive-text">
+                      Please provide Knack with tracking number in order to receive payment
+                    </div>
+
+                    <%#*--------------------------------%>
+                    <%#* ShippingMethod %>
+                    <%#*--------------------------------%>
+                    <div class="div-block">
+                      <div class="editor-label">
+                        <label for="ShippingMethod">Shipping Method</label>
+                      </div>
+
+                      <div class="editor-field">
+                        <%= select(:order, :ShippingMethod_ID, @shipping_methods.collect { |os| [os.Name, os.id]  }) %>
+                      </div>
+                    </div>
+
+                    <%#*--------------------------------%>
+                    <%#* DELIVERY DATE %>
+                    <%#*--------------------------------%>
+                    <div class="div-block">
+                      <div class="editor-label">
+                        <label for="tracking">Expected delivery date</label>
+                      </div>
+
+                      <div class="editor-field">
+                        <%= text_field :order, :DeliveryDate, :value => Time.parse(@order.DeliveryDate.to_s).strftime("%m/%d/%Y"), :readonly => 'readonly' %>
+                      </div>
+                    </div>
+                  </div>
+
+
+                  <%#*--------------------------------%>
+                  <%#* Shipping address%>
+                  <%#*--------------------------------%>
+                  <% if @order.order_type == Order::BUY %>
+                    <div class="div-shipping">
+
+                    <div class="ShippingHeader">
+                      Shipping address
+                    </div>
+
+                    <%#*--------------------------------%>
+                    <%#* ShippingFirstName %>
+                    <%#*--------------------------------%>
+                    <div class="div-block">
+                      <div class="editor-label">
+                        <label for="First Name">First Name</label>
+                      </div>
+
+                      <div class="editor-field">
+                        <%= @order.ShippingFirstName %>
+                      </div>
+                    </div>
+
+                    <%#*--------------------------------%>
+                    <%#* ShippingLastName %>
+                    <%#*--------------------------------%>
+                    <div class="div-block">
+                      <div class="editor-label">
+                        <label for="Last Name">Last Name</label>
+                      </div>
+
+                      <div class="editor-field">
+                        <%= @order.ShippingLastName %>
+                      </div>
+                    </div>
+
+
+                    <%#*--------------------------------%>
+                    <%#* ShippingAddress %>
+                    <%#*--------------------------------%>
+                    <div class="div-block">
+                      <div class="editor-label">
+                        <label for="Address">Address</label>
+                      </div>
+
+                      <div class="editor-field">
+                        <%= @order.ShippingAddress %>
+                      </div>
+                    </div>
+
+                    <%#*--------------------------------%>
+                    <%#* ShippingCity %>
+                    <%#*--------------------------------%>
+                    <div class="div-block">
+                      <div class="editor-label">
+                        <label for="City">City</label>
+                      </div>
+
+                      <div class="editor-field">
+                        <%= @order.ShippingCity %>
+                      </div>
+                    </div>
+
+                    <%#*--------------------------------%>
+                    <%#* ShippingState %>
+                    <%#*--------------------------------%>
+                    <div class="div-block">
+                      <div class="editor-label">
+                        <label for="State">State</label>
+                      </div>
+
+                      <div class="editor-field">
+                        <%= @order.get_shipping_state_name %>
+                      </div>
+                    </div>
+
+                    <%#*--------------------------------%>
+                    <%#* ShippingZip %>
+                    <%#*--------------------------------%>
+                    <div class="div-block">
+                      <div class="editor-label">
+                        <label for="Zip">Zip</label>
+                      </div>
+
+                      <div class="editor-field">
+                        <%= @order.ShippingZip %>
+                      </div>
+                    </div>
+
+                    <%#*--------------------------------%>
+                    <%#* ShippingPhone %>
+                    <%#*--------------------------------%>
+                    <div class="div-block">
+                      <div class="editor-label">
+                        <label for="Phone">Phone</label>
+                      </div>
+
+                      <div class="editor-field">
+                        <%= @order.ShippingPhone %>
+                      </div>
+                    </div>
+
+                  </div>
+                  <% end %>
+
+                  <%#*--------------------------------%>
+                  <%#* Billing address%>
+                  <%#*--------------------------------%>
+                  <% if @order.order_type == Order::CONTRIBUTE %>
+                    <div class="div-shipping">
+
+                    <div class="ShippingHeader">
+                      Billing address
+                    </div>
+
+                    <%#*--------------------------------%>
+                    <%#* BillingFirstName %>
+                    <%#*--------------------------------%>
+                    <div class="div-block">
+                      <div class="editor-label">
+                        <label for="First Name">First Name</label>
+                      </div>
+
+                      <div class="editor-field">
+                        <%= @order.BillingFirstName %>
+                      </div>
+                    </div>
+
+                    <%#*--------------------------------%>
+                    <%#* BillingLastName %>
+                    <%#*--------------------------------%>
+                    <div class="div-block">
+                      <div class="editor-label">
+                        <label for="Last Name">Last Name</label>
+                      </div>
+
+                      <div class="editor-field">
+                        <%= @order.BillingLastName %>
+                      </div>
+                    </div>
+
+
+                    <%#*--------------------------------%>
+                    <%#* BillingAddress %>
+                    <%#*--------------------------------%>
+                    <div class="div-block">
+                      <div class="editor-label">
+                        <label for="Address">Address</label>
+                      </div>
+
+                      <div class="editor-field">
+                        <%= @order.BillingAddress %>
+                      </div>
+                    </div>
+
+                    <%#*--------------------------------%>
+                    <%#* BillingCity %>
+                    <%#*--------------------------------%>
+                    <div class="div-block">
+                      <div class="editor-label">
+                        <label for="City">City</label>
+                      </div>
+
+                      <div class="editor-field">
+                        <%= @order.BillingCity %>
+                      </div>
+                    </div>
+
+                    <%#*--------------------------------%>
+                    <%#* BillingState %>
+                    <%#*--------------------------------%>
+                    <div class="div-block">
+                      <div class="editor-label">
+                        <label for="State">State</label>
+                      </div>
+
+                      <div class="editor-field">
+                        <%= @order.get_billing_state_name %>
+                      </div>
+                    </div>
+
+                    <%#*--------------------------------%>
+                    <%#* BillingZip %>
+                    <%#*--------------------------------%>
+                    <div class="div-block">
+                      <div class="editor-label">
+                        <label for="Zip">Zip</label>
+                      </div>
+
+                      <div class="editor-field">
+                        <%= @order.BillingZip %>
+                      </div>
+                    </div>
+
+                    <%#*--------------------------------%>
+                    <%#* BillingPhone %>
+                    <%#*--------------------------------%>
+                    <div class="div-block">
+                      <div class="editor-label">
+                        <label for="Phone">Phone</label>
+                      </div>
+
+                      <div class="editor-field">
+                        <%= @order.BillingPhone %>
+                      </div>
+                    </div>
+
+                    <%#*--------------------------------%>
+                    <%#* BillingEmail %>
+                    <%#*--------------------------------%>
+                    <div class="div-block">
+                      <div class="editor-label">
+                        <label for="Email">Email</label>
+                      </div>
+
+                      <div class="editor-field">
+                        <%= @order.BillingEmail %>
+                      </div>
+                    </div>
+
+                  </div>
+                  <% end %>
+
+                  <%#*--------------------------------%>
+                  <%#* Withdraw cash%>
+                  <%#*--------------------------------%>
+                  <% if @order.order_type == Order::WITHDRAW %>
+                    <% unless @order.typepayment.blank? %>
+                      <div class="div-shipping">
+
+                      <div class="ShippingHeader">
+                        Withdraw cash
+                      </div>
+
+                      <%#*--------------------------------%>
+                      <%#* PaymentMethod %>
+                      <%#*--------------------------------%>
+                      <div class="div-block">
+                        <div class="editor-label">
+                          <label for="Email">Payment Method:</label>
+                        </div>
+
+                        <div class="editor-field">
+                          <%= @order.typepayment.Name %>
+                        </div>
+                      </div>
+
+                      <% if @order.PaymentMethod_ID.to_i == 1 %>
+                        <%#*--------------------------------%>
+                        <%#* PayPal Email %>
+                        <%#*--------------------------------%>
+                        <div class="div-block">
+                          <div class="editor-label">
+                            <label for="Email">PayPal Email:</label>
+                          </div>
+
+                          <div class="editor-field">
+                            <%= @order.PayPalEmail %>
+                          </div>
+                        </div>
+                      <% else %>
+                        <div class="div-shipping">
+                          <div class="ShippingHeader">
+                            Billing address
+                          </div>
+
+                          <%#*--------------------------------%>
+                          <%#* BillingFirstName %>
+                          <%#*--------------------------------%>
+                          <div class="div-block">
+                            <div class="editor-label">
+                              <label for="First Name">First Name</label>
+                            </div>
+
+                            <div class="editor-field">
+                              <%= @order.BillingFirstName %>
+                            </div>
+                          </div>
+
+                          <%#*--------------------------------%>
+                          <%#* BillingLastName %>
+                          <%#*--------------------------------%>
+                          <div class="div-block">
+                            <div class="editor-label">
+                              <label for="Last Name">Last Name</label>
+                            </div>
+
+                            <div class="editor-field">
+                              <%= @order.BillingLastName %>
+                            </div>
+                          </div>
+
+
+                          <%#*--------------------------------%>
+                          <%#* BillingAddress %>
+                          <%#*--------------------------------%>
+                          <div class="div-block">
+                            <div class="editor-label">
+                              <label for="Address">Address</label>
+                            </div>
+
+                            <div class="editor-field">
+                              <%= @order.BillingAddress %>
+                            </div>
+                          </div>
+
+                          <%#*--------------------------------%>
+                          <%#* BillingCity %>
+                          <%#*--------------------------------%>
+                          <div class="div-block">
+                            <div class="editor-label">
+                              <label for="City">City</label>
+                            </div>
+
+                            <div class="editor-field">
+                              <%= @order.BillingCity %>
+                            </div>
+                          </div>
+
+                          <%#*--------------------------------%>
+                          <%#* BillingState %>
+                          <%#*--------------------------------%>
+                          <div class="div-block">
+                            <div class="editor-label">
+                              <label for="State">State</label>
+                            </div>
+
+                            <div class="editor-field">
+                              <%= @order.get_billing_state_name %>
+                            </div>
+                          </div>
+
+                          <%#*--------------------------------%>
+                          <%#* BillingZip %>
+                          <%#*--------------------------------%>
+                          <div class="div-block">
+                            <div class="editor-label">
+                              <label for="Zip">Zip</label>
+                            </div>
+
+                            <div class="editor-field">
+                              <%= @order.BillingZip %>
+                            </div>
+                          </div>
+
+                          <%#*--------------------------------%>
+                          <%#* BillingPhone %>
+                          <%#*--------------------------------%>
+                          <div class="div-block">
+                            <div class="editor-label">
+                              <label for="Phone">Phone</label>
+                            </div>
+
+                            <div class="editor-field">
+                              <%= @order.BillingPhone %>
+                            </div>
+                          </div>
+
+                          <%#*--------------------------------%>
+                          <%#* BillingEmail %>
+                          <%#*--------------------------------%>
+                          <div class="div-block">
+                            <div class="editor-label">
+                              <label for="Email">Email</label>
+                            </div>
+
+                            <div class="editor-field">
+                              <%= @order.BillingEmail %>
+                            </div>
+                          </div>
+
+                        </div>
+                      <% end %>
+                    </div>
+                    <% end %>
+                  <% end %>
+
+                  <%#*--------------------------------%>
+                  <%#* Lines %>
+                  <%#*--------------------------------%>
+                  <div class="div-lines">
+                    <div class="LinesHeader">
+                      Order summary:
+                    </div>
+
+                    <%#*--------------------------------%>
+                    <%#* Table lines %>
+                    <%#*--------------------------------%>
+                    <div class="div-table">
+                      <table id="product-table">
+                        <thead>
+                          <tr>
+                            <% if @order.order_type == Order::BUY %>
+                              <th>ID</th>
+                              <th>Gift</th>
+                              <th>Color</th>
+                              <th>Variants</th>
+                              <th>Price</th>
+                              <th>Qty</th>
+                              <th>Shipping</th>
+                              <th>Tax</th>
+                              <th>Gross</th>
+                              <th>Knack Fee</th>
+                              <th>Net</th>
+                              <th>Canceled</th>
+                              <th>Payment</th>
+                              <th></th>
+                            <% end %>
+
+                            <% if @order.order_type == Order::CONTRIBUTE %>
+                              <th>ID</th>
+                              <th>Gift</th>
+                              <td>Color</td>
+                              <th>Variants</th>
+                              <th>Price</th>
+                              <th>Qty</th>
+                              <th>Shipping</th>
+                              <th>Tax</th>
+                              <th>Gross</th>
+                              <th>Knack Fee</th>
+                              <th>Net</th>
+                              <th>Payment</th>
+                            <% end %>
+
+                            <% if @order.order_type == Order::WITHDRAW %>
+                              <th>ID</th>
+                              <th>Gross</th>
+                              <th>Knack Fee</th>
+                              <th>Net</th>
+                              <th>Payment</th>
+                              <th></th>
+                            <% end %>
+                          </tr>
+                        </thead>
+
+                        <tbody>
+                          <% @orders2products.each do |o2p| %>
+                            <%#*------------------%>
+                            <%#*Products%>
+                            <%#*------------------%>
+                            <tr>
+                              <%#*------------------%>
+                              <%#*ID%>
+                              <%#*------------------%>
+                              <td><%= o2p.id %></td>
+
+                              <%#*------------------%>
+                              <%#*Gift%>
+                              <%#*------------------%>
+                              <td><%= o2p.product.Name %></td>
+
+                              <%#*------------------%>
+                              <%#*Color%>
+                              <%#*------------------%>
+                              <td>
+                                <% unless o2p.color.blank? %>
+                                  <%= o2p.color.Name %>
+                                <% end %>
+                              </td>
+
+                              <%#*------------------%>
+                              <%#*Variants%>
+                              <%#*------------------%>
+                              <td>
+                                <% o2p.product_params2orders.each do |p| %>
+                                  <%= p.Name %>: <%= p.Value %><br/>
+                                <% end %>
+                              </td>
+
+                              <%#*------------------%>
+                              <%#*Price%>
+                              <%#*------------------%>
+                              <td><%= formatted_price(o2p.price) %></td>
+
+                              <%#*------------------%>
+                              <%#*Quantity%>
+                              <%#*------------------%>
+                              <td><%= o2p.Quantity %></td>
+
+                              <%#*------------------%>
+                              <%#*Shipping%>
+                              <%#*------------------%>
+                              <td><%= formatted_price(o2p.shipment) %></td>
+
+                              <%#*------------------%>
+                              <%#*Tax%>
+                              <%#*------------------%>
+                              <td><%= formatted_price(o2p.tax) %></td>
+
+                              <%#*------------------%>
+                              <%#*Gross%>
+                              <%#*------------------%>
+                              <td><%= formatted_price(o2p.total) %></td>
+
+                              <%#*------------------%>
+                              <%#*Knack Fee%>
+                              <%#*------------------%>
+                              <td><%= formatted_price(o2p.knack_fee) %></td>
+
+                              <%#*------------------%>
+                              <%#*Net%>
+                              <%#*------------------%>
+                              <td><%= formatted_price(o2p.net) %></td>
+
+                              <%#*------------------%>
+                              <%#* Canceled%>
+                              <%#*------------------%>
+                              <td class ="canceled">
+                                <% if o2p.status_id.to_i == 2 || @order.OrdersStatus_ID.to_i == OrdersStatus::STATUSES.invert['Canceled'] %>
+                                  Not available
+                                <% else %>
+                                  <%= select("canceled_o2p", o2p.id, @line_statuses.collect {|l| [l.name, l.id] }, :class => "canceled") %>
+                                <% end %>
+                              </td>
+
+                              <%#*------------------%>
+                              <%#*View payment%>
+                              <%#*------------------%>
+                              <td><a style="text-decoration: underline" href="<%= @order.OrdersStatus_ID.to_i == OrdersStatus::STATUSES.invert['Canceled'] || o2p.status_id.to_i == 2 ? 'javascript:void(0);' : "/administrative/credits?oid=#{@order.id}&o2pid=#{o2p.id}" %>"><%= formatted_price(o2p.get_amount_knack_payment) %></a></td>
+
+                              <%#*------------------%>
+                              <%#*Add payment%>
+                              <%#*------------------%>
+                              <td><a style="text-decoration: underline" href="<%= @order.OrdersStatus_ID.to_i == OrdersStatus::STATUSES.invert['Canceled'] || o2p.status_id.to_i == 2 ? 'javascript:void(0);' : "/administrative/addpayment?oid=#{@order.id}&o2pid=#{o2p.id}" %>">Add payment</a></td>
+                            </tr>
+                          <% end %>
+
+                          <%#*------------------%>
+                          <%#* Registrant2Products%>
+                          <%#*------------------%>
+                          <% @orders2registry_items.each do |o2p| %>
+                          <% if @order.order_type == Order::CONTRIBUTE %>
+                            <tr>
+                              <%#*------------------%>
+                              <%#*ID%>
+                              <%#*------------------%>
+                              <td><%= o2p.id %></td>
+
+                              <%#*------------------%>
+                              <%#*Gift%>
+                              <%#*------------------%>
+                              <td><%= o2p.name %></td>
+
+                              <%#*------------------%>
+                              <%#*Color%>
+                              <%#*------------------%>
+                              <td>
+                                <% unless o2p.registry_item.color.blank? %>
+                                  <%= o2p.registry_item.color.Name %>
+                                <% end %>
+                              </td>
+
+                              <%#*------------------%>
+                              <%#*Variants%>
+                              <%#*------------------%>
+                              <td>
+                                <% o2p.product_params2orders.each do |p| %>
+                                    <%= p.Name %>: <%= p.Value %><br/>
+                                <% end %>
+                              </td>
+
+                              <%#*------------------%>
+                              <%#*Price%>
+                              <%#*------------------%>
+                              <td><%= formatted_price(o2p.contribute.Contribute) %></td>
+
+                              <%#*------------------%>
+                              <%#*Quantity%>
+                              <%#*------------------%>
+                              <td><%= o2p.quantity.to_i %></td>
+
+                              <%#*------------------%>
+                              <%#*Shipping%>
+                              <%#*------------------%>
+                              <td><%= formatted_price(0) %></td>
+
+                              <%#*------------------%>
+                              <%#*Tax%>
+                              <%#*------------------%>
+                              <td><%= formatted_price(0) %></td>
+
+                              <%#*------------------%>
+                              <%#*Gross%>
+                              <%#*------------------%>
+                              <td><%= formatted_price(0) %></td>
+
+                              <%#*------------------%>
+                              <%#*Knack Fee%>
+                              <%#*------------------%>
+                              <td><%= formatted_price(0) %></td>
+
+                              <%#*------------------%>
+                              <%#*Net%>
+                              <%#*------------------%>
+                              <td><%= formatted_price(o2p.contribute.Contribute) %></td>
+
+                              <%#*------------------%>
+                              <%#*View payment%>
+                              <%#*------------------%>
+                              <td></td>
+                            </tr>
+                          <% else %>
+                            <tr>
+                              <%#*------------------%>
+                              <%#*ID%>
+                              <%#*------------------%>
+                              <td><%= o2p.id %></td>
+
+                              <%#*------------------%>
+                              <%#*Gift%>
+                              <%#*------------------%>
+                              <td><%= o2p.name %></td>
+
+                              <%#*------------------%>
+                              <%#*Color%>
+                              <%#*------------------%>
+                              <td>
+                                <% unless o2p.registry_item.color.blank? %>
+                                  <%= o2p.registry_item.color.Name %>
+                                <% end %>
+                              </td>
+
+                              <%#*------------------%>
+                              <%#*Variants%>
+                              <%#*------------------%>
+                              <td>
+                                <% o2p.product_params2orders.each do |p| %>
+                                  <%= p.Name %>: <%= p.Value %><br/>
+                                <% end %>
+                              </td>
+
+                              <%#*------------------%>
+                              <%#*Price%>
+                              <%#*------------------%>
+                              <td><%= formatted_price(o2p.price) %></td>
+
+                              <%#*------------------%>
+                              <%#*Quantity%>
+                              <%#*------------------%>
+                              <td><%= o2p.quantity %></td>
+
+                              <%#*------------------%>
+                              <%#*Shipping%>
+                              <%#*------------------%>
+                              <td><%= formatted_price(o2p.shipment) %></td>
+
+                              <%#*------------------%>
+                              <%#*Tax%>
+                              <%#*------------------%>
+                              <td><%= formatted_price(o2p.tax) %></td>
+
+                              <%#*------------------%>
+                              <%#*Gross%>
+                              <%#*------------------%>
+                              <td><%= formatted_price(o2p.total) %></td>
+
+                              <%#*------------------%>
+                              <%#*Knack Fee%>
+                              <%#*------------------%>
+                              <td><%= formatted_price(o2p.knack_fee) %></td>
+
+                              <%#*------------------%>
+                              <%#*Net%>
+                              <%#*------------------%>
+                              <td><%= formatted_price(o2p.net) %></td>
+
+                              <%#*------------------%>
+                              <%#* Canceled%>
+                              <%#*------------------%>
+                              <td class ="canceled">
+                                <% if o2p.status_id.to_i == 2 || @order.OrdersStatus_ID.to_i == OrdersStatus::STATUSES.invert['Canceled'] %>
+                                  Not available
+                                <% else %>
+                                  <%= select("canceled_o2r2p", o2p.id, @line_statuses.collect {|l| [l.name, l.id] }, :class => "canceled") %>
+                                <% end %>
+                              </td>
+
+                              <%#*------------------%>
+                              <%#*View payment%>
+                              <%#*------------------%>
+                              <td><a style="text-decoration: underline" href="<%=  @order.OrdersStatus_ID.to_i == OrdersStatus::STATUSES.invert['Canceled'] || o2p.status_id.to_i == 2 ? 'javascript:void(0);' : "/administrative/credits?oid=#{@order.id}&o2r2pid=#{o2p.id}"%>"><%= formatted_price(o2p.get_amount_knack_payment) %></a></td>
+
+                              <%#*------------------%>
+                              <%#*Add payment%>
+                              <%#*------------------%>
+                              <td><a style="text-decoration: underline" href="<%= @order.OrdersStatus_ID.to_i == OrdersStatus::STATUSES.invert['Canceled'] || o2p.status_id.to_i == 2 ? 'javascript:void(0);' : "/administrative/addpayment?oid=#{@order.id}&o2r2pid=#{o2p.id}" %>">Add payment</a></td>
+                            </tr>
+                          <% end %>
+                          <% end %>
+
+                          <%#*------------------%>
+                          <%#* Cash%>
+                          <%#*------------------%>
+                          <% @order.withdrawals.each do |o2p| %>
+                            <tr>
+                              <%#*------------------%>
+                              <%#*ID%>
+                              <%#*------------------%>
+                              <td><%= o2p.id %></td>
+
+                              <%#*------------------%>
+                              <%#*Gross%>
+                              <%#*------------------%>
+                              <td><%= formatted_price(o2p.Cash) %></td>
+
+                              <%#*------------------%>
+                              <%#*Knack Fee%>
+                              <%#*------------------%>
+                              <td><%= formatted_price(o2p.Tax) %></td>
+
+                              <%#*------------------%>
+                              <%#*Net%>
+                              <%#*------------------%>
+                              <td><%= formatted_price(o2p.net) %></td>
+
+                              <%#*------------------%>
+                              <%#*View payment%>
+                              <%#*------------------%>
+                              <td><a style="text-decoration: underline" href="/administrative/credits?oid=<%= @order.id %>&wid=<%= o2p.id %>"><%= formatted_price(o2p.get_amount_knack_payment) %></a></td>
+
+                              <%#*------------------%>
+                              <%#*Add payment%>
+                              <%#*------------------%>
+                              <td><a style="text-decoration: underline" href="/administrative/addpayment?oid=<%= @order.id %>&wid=<%= o2p.id %>">Add payment</a></td>
+                            </tr>
+                          <% end %>
+                        </tbody>
+
+                      </table>
+                    </div>
+                  </div>
+                  <% if @order.order_type == Order::EXTERNAL %>
+                    <div>
+                      <%= link_to "EDIT", {:controller => :buy, :action => :edit_ext_order, :id => @order}, :class => "button-lrg" %>
+                    </div>
+                <% end %>
+                  <%#*--------------------------------%>
+                  <%#* Buttons%>
+                  <%#*--------------------------------%>
+                  <div class="div-buttons">
+                    <%= button_to_function "", "document.location.assign('/administrative/orders')", :class => "btn-back" %>
+                    <input id="save" type="submit" class="btn-save" value=" ">
+                    <div class="emptyBlock"></div>
+                  </div>
+                </form>
+              </td>
+            </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+               

@@ -1,0 +1,302 @@
+<% content_for :title do %>
+    Order Information | Knack Registry
+<% end %>
+<% content_for :head do %>
+    <%= stylesheet_link_tag "/stylesheets/layouts/Cart.css"%>
+    <%= javascript_include_tag "/javascripts/knack.payment.step1.js"  %>
+    <%= stylesheet_link_tag "/stylesheets/Pages/Step1.css"  %>
+<%end%>
+<div class="div-c">
+<div class="topMenu">
+  <div class="pageName">
+    Checkout
+  </div>
+  <div class="div-link-step">
+    <b><%= link_to "1. Billing Information", step1_path %></b>
+    <span>2. Payment Information</span>
+    <span>3. Confirm Order</span>
+  </div>
+</div>
+
+<div class="withBackground">
+<div class="content">
+<div class="mainBlock">
+<div id="line-header" class="Line"></div>
+<table id="table-billing">
+<tr>
+<%#*Left column%>
+<td class="leftTD">
+<%= form_tag step1_path, :id => 'frm-order' do %>
+    <%= hidden_field :order, :GUID  %>
+    <div class="billinf">
+                    <span class="header-column">
+                      Billing Information
+                    </span>
+    </div>
+    <table id="tbl-billing">
+      <%#*Billing First Name%>
+      <tr>
+        <td class="td-label">
+          <label for="BillingFirstName">First Name*</label>
+        </td>
+        <td class="td-info">
+          <%= text_field :order, :BillingFirstName %>
+        </td>
+        <td class="td-error">
+          <%= error_message_on :order, :BillingFirstName, :prepend_text => StaticDataUtilities.get_prepare_error_message  %>
+        </td>
+      </tr>
+
+      <%#*Billing Last Name%>
+      <tr>
+        <td class="td-label">
+          <label for="BillingLastName">Last Name*</label>
+        </td>
+        <td class="td-info">
+          <%= text_field :order, :BillingLastName %>
+        </td>
+        <td class="td-error">
+          <%= error_message_on :order, :BillingLastName, :prepend_text => StaticDataUtilities.get_prepare_error_message  %>
+        </td>
+      </tr>
+
+      <%#*Billing Address%>
+      <tr>
+        <td class="td-label">
+          <label for="BillingAddress">Address*</label>
+        </td>
+        <td class="td-info">
+          <%= text_field :order, :BillingAddress %>
+        </td>
+        <td class="td-error">
+          <%= error_message_on :order, :BillingAddress, :prepend_text => StaticDataUtilities.get_prepare_error_message  %>
+        </td>
+      </tr>
+
+      <%#*Billing City%>
+      <tr>
+        <td class="td-label">
+          <label for="BillingCity">City*</label>
+        </td>
+        <td class="td-info">
+          <%= text_field :order, :BillingCity %>
+        </td>
+        <td class="td-error">
+          <%= error_message_on :order, :BillingCity, :prepend_text => StaticDataUtilities.get_prepare_error_message  %>
+        </td>
+      </tr>
+
+      <%#*Billing State%>
+      <tr>
+        <td class="td-label">
+          <label for="BillingState_ID">State*</label>
+        </td>
+        <td class="td-info">
+          <%= select(:order, :BillingState_ID, @states.collect {|s| [s.Name, s.id]}) %>
+        </td>
+        <td class="td-error">
+          <%= error_message_on :order, :BillingState_ID, :prepend_text => StaticDataUtilities.get_prepare_error_message  %>
+        </td>
+      </tr>
+
+      <%#*Billing ZIP%>
+      <tr>
+        <td class="td-label">
+          <label for="BillingZip">Zip*</label>
+        </td>
+        <td class="td-info">
+          <%= text_field :order, :BillingZip %>
+        </td>
+        <td class="td-error">
+          <%= error_message_on :order, :BillingZip, :prepend_text => StaticDataUtilities.get_prepare_error_message  %>
+        </td>
+      </tr>
+
+      <%#*Billing Phone%>
+      <tr>
+        <td class="td-label">
+          <label for="BillingPhone">Phone</label>
+        </td>
+        <td class="td-info">
+          <%= text_field :order, :BillingPhone %>
+        </td>
+        <td class="td-error">
+          <%= error_message_on :order, :BillingPhone, :prepend_text => StaticDataUtilities.get_prepare_error_message  %>
+        </td>
+      </tr>
+
+      <%#*Billing Email%>
+      <tr>
+        <td class="td-label">
+          <label for="BillingEmail">Email*</label>
+        </td>
+        <td class="td-info">
+          <%= text_field :order, :BillingEmail %>
+        </td>
+        <td class="td-error">
+          <%= error_message_on :order, :BillingEmail, :prepend_text => StaticDataUtilities.get_prepare_error_message  %>
+        </td>
+      </tr>
+    <tr>
+      <td>
+      </td>
+      <td>
+        <a href="#" id="international-link"> International Guests </a>
+      </td>
+    </tr>
+      <tr>
+        <td colspan=3>
+          <div id="international-instructions">
+            Knack does not accept international credit cards, but you may purchase a gift using paypal.  <br/>
+            Simply fill in any U.S. address above, then use the paypal option at step 2.
+          </div>
+        </td>
+      </tr>
+    </table>
+
+    <% if Cart.is_buy?(Cart.get_cart(session)) %>
+        <%= hidden_field_tag 'use', 0 %>
+        <div>
+          <div class="shipinf">
+                      <span class="header-column">
+                        Shipping Address
+                      </span>
+            <div class="use-bill">
+              <%= check_box :order, :is_use_bill_address %>
+              <div class="use-bill-text">Use Billing Address</div>
+            </div>
+          </div>
+
+          <table id="tbl-shipping">
+            <%#*Shipping First Name%>
+            <tr>
+              <td class="td-label">
+                <label for="ShippingFirstName">First Name*</label>
+              </td>
+              <td class="td-info">
+                <%= text_field :order, :ShippingFirstName, :disabled => @order.is_use_bill_address %>
+              </td>
+              <td class="td-error">
+                <%= error_message_on :order, :ShippingFirstName, :prepend_text => StaticDataUtilities.get_prepare_error_message  %>
+              </td>
+            </tr>
+
+            <%#*Shipping Last Name%>
+            <tr>
+              <td class="td-label">
+                <label for="ShippingLastName">Last Name*</label>
+              </td>
+              <td class="td-info">
+                <%= text_field :order, :ShippingLastName, :disabled => @order.is_use_bill_address %>
+              </td>
+              <td class="td-error">
+                <%= error_message_on :order, :ShippingLastName, :prepend_text => StaticDataUtilities.get_prepare_error_message  %>
+              </td>
+            </tr>
+
+            <%#*Shipping Address%>
+            <tr>
+              <td class="td-label">
+                <label for="ShippingAddress">Address*</label>
+              </td>
+              <td class="td-info">
+                <%= text_field :order, :ShippingAddress, :disabled => @order.is_use_bill_address %>
+              </td>
+              <td class="td-error">
+                <%= error_message_on :order, :ShippingAddress, :prepend_text => StaticDataUtilities.get_prepare_error_message  %>
+              </td>
+            </tr>
+
+            <%#*Shipping City%>
+            <tr>
+              <td class="td-label">
+                <label for="ShippingCity">City*</label>
+              </td>
+              <td class="td-info">
+                <%= text_field :order, :ShippingCity, :disabled => @order.is_use_bill_address %>
+              </td>
+              <td class="td-error">
+                <%= error_message_on :order, :ShippingCity, :prepend_text => StaticDataUtilities.get_prepare_error_message  %>
+              </td>
+            </tr>
+
+            <%#*Shipping State%>
+            <tr>
+              <td class="td-label">
+                <label for="ShippingState_ID">State*</label>
+              </td>
+              <td class="td-info">
+                <%= collection_select(:order, :ShippingState_ID, @states, :id, :Name, {:disabled => lambda{|state| @order.is_use_bill_address ? state : nil}}) %>
+              </td>
+              <td class="td-error">
+                <%= error_message_on :order, :ShippingState_ID, :prepend_text => StaticDataUtilities.get_prepare_error_message  %>
+              </td>
+            </tr>
+
+            <%#*Shipping ZIP%>
+            <tr>
+              <td class="td-label">
+                <label for="ShippingZip">Zip*</label>
+              </td>
+              <td class="td-info">
+                <%= text_field :order, :ShippingZip, :disabled => @order.is_use_bill_address %>
+              </td>
+              <td class="td-error">
+                <%= error_message_on :order, :ShippingZip, :prepend_text => StaticDataUtilities.get_prepare_error_message  %>
+              </td>
+            </tr>
+
+            <%#*Shipping Phone%>
+            <tr>
+              <td class="td-label">
+                <label for="ShippingPhone">Phone</label>
+              </td>
+              <td class="td-info">
+                <%= text_field :order, :ShippingPhone, :disabled => @order.is_use_bill_address %>
+              </td>
+              <td class="td-error">
+                <%= error_message_on :order, :ShippingPhone, :prepend_text => StaticDataUtilities.get_prepare_error_message  %>
+              </td>
+            </tr>
+
+          </table>
+        </div>
+    <% elsif Cart.is_contribute?(Cart.get_cart(session)) %>
+        <div>
+          <div class="shipinf">
+            <span class="header-column">
+              Shipping Address
+            </span>
+            <div>
+              All gifts will be shipped directly to the couple.
+            </div>
+          </div>
+        </div>
+    <% end %>
+<% end %>
+</td>
+
+<%#*Right column%>
+<td class="rightTD">
+  <div class="order-summary">
+                <span class="header-column">
+                  Order Summary
+                </span>
+  </div>
+
+  <table id="amount">
+    <tbody>
+    <%= render 'order_summary' %>
+    </tbody>
+  </table>
+</td>
+</tr>
+</table>
+
+<div class="div-btn">
+  <input type="button" class="btn-continue" value=""/>
+</div>
+</div>
+</div>
+</div>
+</div>

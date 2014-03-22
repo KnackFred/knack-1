@@ -1,0 +1,459 @@
+input[type=button]
+{
+    cursor: pointer;
+}
+
+input[type=submit]
+{
+    cursor: pointer;
+}
+
+.findaregistry
+{
+    font-style: italic;
+    font-size: 13px;
+    color: #AAAAAA;
+}
+
+#content{
+/*    margin-top: 32px;*/
+    font-family: Helvetica;
+    color: #666666;
+    font-weight: normal;
+}
+
+#content label{
+    font-size: 15px;
+}
+
+#content input{
+/*    border: 1px solid #cccccc;*/
+}
+
+.pageName{
+    color: #6699cc;
+    font-size: 32px;
+    font-family: Helvetica,sans-serif;
+    margin-bottom: 20px;
+}
+
+#content a{
+    font-size: 11.5px;
+    text-decoration: none;
+}
+
+iframe{
+    border: 0;
+}
+
+.hidden{
+    display:none;
+}
+/***********************************
+For fix bugs with simplemodal
+************************************/
+#helper {
+position: absolute;
+top: 0px;
+left: 0px;
+width: 100%;
+height: 100%;
+z-index: -10;
+}
+
+.display-none
+{
+    display: none;
+}
+
+/*********************************************************
+*POP UP
+*********************************************************/
+#simplemodal-overlay {background-color:#000;}
+#simplemodal-container {background-color:#fff; border:1px solid #444; padding:1px;}
+#simplemodal-container a.modalCloseImg {
+	/*background:url(/img/x.png) no-repeat; /* adjust url as required */
+	/*width:25px;
+	height:29px;*/
+	display:inline;
+	z-index:3200;
+	position:absolute;
+	top: 0px;
+	right: 0px;
+	cursor:pointer;
+}
+
+#cat-iframe
+{
+    width:600px;
+    height: 400px;
+    display: none;
+}
+.tag-none{
+    display: none;
+}
+
+textarea
+{
+    font-family: Helvetica, arial, sans-serif;
+    resize: none;
+    overflow: auto;
+}
+
+.knack-header {
+    background: none repeat scroll 0 0 #D8E4F2;
+    cursor: default;
+    height: 21px;
+    padding: 7px;
+    margin-bottom: 10px;
+}
+
+.knack-header .knack-header-text{
+    color: #669BD1;
+    font: bold 18px Arial;
+    margin:0;
+}
+
+.wait-container{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    vertical-align: middle;
+    margin: 0;
+    padding: 0;
+    background: #FFF;
+    opacity: 50;
+    margin: 0;
+    padding: 0;
+}
+
+.wait-container img{
+    position:absolute;
+    left: 50%;
+    top: 50%;
+    margin: -25px -25px;
+    display: block;
+    width: 50px;
+    height: 50px;
+    vertical-align: middle;
+    text-align: center;
+    background: #FFF;
+    font-size: 180%;
+    padding: 10px;
+}
+
+.btn-close
+{
+    width: 35px;
+}
+
+.btn-save
+{
+    background-image: url('/images/design/Buttons/save41.png');
+    width: 41px!important;
+    height: 19px!important;
+    border: 0;
+    cursor: pointer;
+    color: transparent;
+}
+
+.block-image .btn-save{
+	margin: 10px;
+	float: right;
+}
+
+.img-apply
+{
+    float: left;
+    margin: 14px;
+}
+
+.message-container {
+    text-align: center;
+    padding: 20px;
+}
+/********************************************************
+*Styles for flash messages
+********************************************************/
+
+.flash-image
+{
+    float: left;
+    margin: 14px;
+}
+
+.flash-success, .flash-alert
+{
+    background: #FFFFDD;
+    width: 100%;
+    border: 1px solid #a1a1a1;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.flash-success-text, .flash-alert-text
+{
+    margin: 14px;
+}
+
+/********************************************************
+*Styles for empty text in result-sets
+********************************************************/
+
+.not-found
+{
+    color: #6699CC;
+    font-size: 16px !important;
+    margin: auto;
+    height: 200px;
+    width: 450px;
+    text-align: center;
+}
+
+.not-found a
+{
+    color: #6699CC;
+    font-size: 14px !important;
+    text-decoration: underline!important;
+}
+
+.not-found-heading
+{
+    margin: 15px;
+    font-size: 24px !important;
+}
+
+.not-found-text
+{
+    font-size: 14px !important;
+}
+
+h1
+{
+    font-family: Helvetica,sans-serif;
+    font-size: 32px;
+    font-weight: 100;
+    color: #6699cc;
+}
+
+h2
+{
+    font-family: Helvetica,sans-serif;
+    font-size: 24px;
+    font-weight: 100;
+    color: #6699cc;
+}
+
+h3
+{
+    font-family: Helvetica,sans-serif;
+    font-size: 16px;
+    font-weight: 100;
+    color: #6699cc;
+}
+
+p, dl
+{
+    font-family: Helvetica,sans-serif;
+    color: #666666;
+}
+
+.centered {
+    width: 440px;
+    margin: 0 auto;
+}
+
+.centered h1, .centered h2, .centered h3 {
+    text-align: center;
+}
+/********************************************************
+*Styles for error field
+********************************************************/
+.field_with_errors label{
+	color: red;
+}
+
+.field_with_errors input{
+	border: 1px solid red;
+}
+
+.field_with_errors textarea{
+	border: 1px solid red;
+}
+
+#errorExplanation{
+	background-color: #F0F0F0;
+	border: 1px solid red;
+    margin: 20px 0 20px 150px;
+    width: 690px;
+}
+
+#errorExplanation h2{
+	color: #ffffff;
+    font-family: Helvetica,sans-serif;
+    font-size: 12px;
+	background-color: #CC0012;
+	margin: 0;
+	padding: 8px;
+}
+
+#errorExplanation p{
+    font-family: Helvetica,sans-serif;
+    font-size: 12px;
+	margin: 0;
+	padding: 8px;
+}
+
+#errorExplanation ul{
+	margin: 0;
+	padding: 8px 30px;
+}
+
+#errorExplanation ul li{
+    font-family: Helvetica,sans-serif;
+    font-size: 12px;
+}
+
+a.external {
+    background: url(/images/design/external_link.gif) center right no-repeat;
+    padding-right: 10px;
+}
+
+.group:before,
+.group:after {
+    content: "";
+    display: table;
+}
+.group:after {
+    clear: both;
+}
+.group {
+    zoom: 1; /* IE6&7 */
+}
+
+.product-image-medium {
+    border: 1px solid #CCC;
+    width: 160px;
+    height: 120px
+}
+
+.product-image-small {
+    border: 1px solid #CCC;
+    width: 104px;
+    height: 78px
+}
+
+.product-additional-image-small {
+    border: 1px solid #CCC;
+    width: 52px;
+    height: 52px
+}
+
+.hidden_container {
+    display: none;
+}
+
+.pagination {
+    font-size: 11.5px;
+    color: #999;
+}
+
+.pagination em {
+    font-weight: bold;
+    text-decoration: none;
+}
+
+#infscr-loading {
+    text-align: center;
+}
+
+/* Button Sytles*/
+
+#content .button-lrg, #content .button-red-lrg {
+    padding: 4px 8px;
+    border: 0;
+    border-radius: 12px;
+    display: inline-block;
+    text-align: center;
+    text-transform:uppercase;
+    font-size: 10.5px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-right: 0;
+    margin-left: auto;
+    box-sizing: content-box;
+}
+
+#content .button-lrg img, #content .button-red-lrg img {
+    vertical-align: top;
+}
+#content .button-lrg {
+    background-color: #cacaca;
+    color: #666;
+}
+
+#content .button-red-lrg {
+    background-color: #ed1f24;
+    color: #fff;
+}
+
+#content .button-selected {
+    color: #cacaca;
+    background-color: #666;
+}
+
+#content .button-small {
+    padding: 3px 6px;
+    height: 12px;
+    border: 0;
+    background-color: #cacaca;
+    border-radius: 12px;
+    display: inline-block;
+    color: #666;
+    text-align: center;
+    text-transform:uppercase;
+    font-size: 9.5px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-right: 0;
+    margin-left: auto;
+    box-sizing: content-box;
+}
+
+#content .link-button-red-lrg img, #content .link-button-lrg img, #content .button-lrg img {
+    vertical-align: top;
+}
+
+
+/* HELP TOOLTIP STYLING*/
+.help-tooltip {
+    width: 690px;
+    padding: 8px;
+    background: #FFFFFF;
+    border: 1px solid #666666;
+    border-radius: 15px;
+    display: none;
+}
+
+.help-tooltip h2{
+    font-size: 15.5px;
+}
+
+.help-tooltip p {
+    font-size: 13.5px;
+}
+
+.help-tooltip a {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+/* Form Styles */
+.form-row {
+ padding-bottom: 8px;
+}
+

@@ -1,0 +1,163 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://opengraphprotocol.org/schema/">
+<head>
+  <link rel="shortcut icon" href="/images/fav.gif" />
+  <%= stylesheet_link_tag "/stylesheets/layouts/Registrant.css" %>
+  <%= stylesheet_link_tag "/stylesheets/Global.css" %>
+  <%= stylesheet_link_tag "/stylesheets/Controls/UpdateProgress.css" %>
+  <%= javascript_include_tag "https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"  %>
+  <%= javascript_include_tag "/javascripts/hide_menu.js"  %>
+  <%= javascript_include_tag "/javascripts/jQuery.timer.js"  %>
+  <%= javascript_include_tag "/javascripts/knack.global.js"  %>
+  <%= javascript_tag "var AUTH_TOKEN = #{form_authenticity_token.inspect};" if protect_against_forgery? %>
+  <title><%= yield :title %></title>
+  <%= yield :head %>
+  <%= render :partial => 'layouts/analytics' %>
+</head>
+<body>
+<%= yield :under_body %>
+<div id="helper"></div>
+<div id="wrapper" class="redBorder">
+  <div id="header">
+    <table>
+      <tbody>
+      <tr>
+        <td>
+          <a href="<%= home_path %>"><img id="logo" alt="Knack" src="/images/design/logo.gif"/></a>
+        </td>
+        <td>
+          <div id="navbar">
+            <table id="tbl-nav">
+              <tr>
+                <td class="nav">
+                  <% if session[:full_nav] || session[:registrant] %>
+                      <ul>
+                        <li>
+                          <a href="<%= home_path %>">
+                            <div id="dm-home" class="menu-block">
+                              <span class="b5">HOME</span>
+                            </div>
+                          </a>
+                        </li>
+                        <li>
+                          <a href="<%= feed_path %>">
+                            <div id="dm-browse" class="menu-block">
+                              <span class="b5">WHAT'S HOT</span>
+                            </div>
+                          </a>
+                        </li>
+                        <li>
+                          <a href="<%= give_path %>">
+                            <div id="dm-give" class="menu-block">
+                              <span class="b5">GIVE</span>
+                            </div>
+                          </a>
+                        </li>
+                        <li>
+                          <%= link_to(session[:registrant].blank? ? signin_path : manage_registry_path) do %>
+                              <div id="dm-receive" class="menu-block">
+                                <span class="b5">RECEIVE</span>
+                              </div>
+                          <% end %>
+                        </li>
+                      </ul>
+                  <% end %>
+                </td>
+                <td>
+                  <div id="div-rl">
+                    <% if session[:registrant].blank? %>
+                        <a href="<%= signin_path %>">Sign In</a>
+                        | <a href="<%= signup_path %>"> Sign Up </a>
+                    <% else %>
+                        <a href="<%= profile_path %>"><%= @current_user.display_name -%></a> |
+                        <a href="<%= signout_path %>">Sign Out</a>
+                    <% end %>
+                  </div>
+                </td>
+                <td>
+                  <div id="div-fb">
+                    <a href="<%= cart_path %>"><img src="/images/design/cart.png" alt="cart"/></a>
+                  </div>
+                </td>
+              </tr>
+              <tr id="gr"><td></td><td></td><td></td></tr>
+            </table>
+          </div>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div id="content" >
+    <%= yield :catalog %>
+    <div class="div-c">
+
+      <%#*--------------------------------%>
+      <%#*Top Menu%>
+      <%#*--------------------------------%>
+
+      <div class="topMenu">
+        <table cellpadding="0" cellspacing="0">
+          <tr>
+            <td class="pageNameTD">
+              <%= yield :pagename %>
+            </td>
+            <td class="topMenuTD">
+              <% if !session[:registrant].blank? %>
+                  <% if !@registrant.blank? %>
+                      <div class="div-user-menu">
+                        <a href="<%= addgift_path %>">Add Gift</a>
+                        <a href="<%= manage_registry_path %>">Manage Registry</a>
+                        <a href="<%= registry_path(@registrant) %>">View Registry</a>
+                        <img id="your-friends-icon" src="/images/general/social/fb_small.png"/>
+                        <a href="<%=invite_friends_path%>">Your Friends</a>
+                        <% if !@registrant.is_invited? %>
+                            <a href="<%= links_path %>">Share</a>
+                        <% end %>
+                      </div>
+                  <% end %>
+                  <%= yield :completemenu %>
+              <% end %>
+            </td>
+          </tr>
+          <tr class="second-tr-top-menu">
+            <td class="registry">
+              <div class="empty-padding"></div>
+              <div class="bl-block">
+                <div class="blue-line">
+                  <div class="registrants">
+                    <%= yield :registry %>
+                  </div>
+                  <%= yield :manage %>
+                </div>
+              </div>
+            </td>
+            <td class="registry">
+              <div class="empty-padding"></div>
+              <div class="bl-block">
+                <div class="blue-line">
+                  <input type="hidden" value="fghj"/>
+                  <%= yield :background %>
+                </div>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+
+      <%#*--------------------------------%>
+      <%#*Content%>
+      <%#*--------------------------------%>
+      <%= yield %>
+    </div>
+  </div>
+
+</div>
+<%= render :partial => 'layouts/footer' %>
+
+<%= render :partial => 'layouts/cat-wrapper' %>
+
+<%= render "layouts/snap_engage" %>
+</body>
+</html>

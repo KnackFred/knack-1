@@ -1,0 +1,37 @@
+<% content_for :title do %>
+    Contest Details | Knack Registry
+<% end %>
+<% content_for :head do %>
+    <%= stylesheet_link_tag "/stylesheets/Global.css" %>
+    <%= stylesheet_link_tag "/stylesheets/Pages/AboutUs.css" %>
+
+<%end%>
+<div class="div-c">
+
+  <div class="topMenu">
+    <table cellpadding="0px" cellspacing="0px">
+      <tr>
+        <td class="pageNameTD">
+          Contest Details
+        </td>
+        <td class="topMenuTD">
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="loginContent">
+
+    <table cellpadding="0px" cellspacing="0px" border="0">
+      <tr>
+        <td class="descriptionTD">
+          <%= render :partial => 'info_links', :locals => {:selected => "Contest"}%>
+        </td>
+        <td class="rightPane">
+          <h2>Sorry the contest is now over.  But how about you sign-up anyway.</h2>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+    

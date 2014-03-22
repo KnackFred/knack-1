@@ -1,0 +1,380 @@
+.img-select{
+    height: 72px;
+}
+
+.rigthPane{
+    padding-left: 60px;
+    width: 100%;
+}
+
+.rigthPane label{
+    font-size: 15px;
+}
+
+.rigthPane input{
+    border: 1px solid #cccccc;
+}
+
+.rigthPane textarea{
+    font-family: Arial;
+    border: 1px solid #cccccc;
+}
+
+.topicBlock{
+    font-size: 12px;
+    margin-bottom: 14px;
+}
+
+#div-right{
+    font-size: 12px;
+}
+
+.orImage{
+    margin-left:190px;
+    margin-bottom: 15px;
+}
+
+#faddimage{
+    border: 0;
+}
+
+.ml100{
+    margin-left: 0px;
+}
+
+.ml100 table{
+    margin:10px 0;
+}
+
+.ml100 table .imageTD{
+    border: 1px solid #cccccc;
+    text-align: center;
+    width: 216px;
+    height: 162px;
+}
+
+.ml100 table .imageTD img{
+    border: 0;
+    max-height: 163px !important;
+    max-width: 216px !important;
+}
+
+.ml100 table .linksTD{
+    vertical-align: top;
+    font-size: 12px;
+    padding-top: 4px;
+    text-align: right;
+}
+
+.fieldTopic{
+/*    margin-top: 40px;*/
+    margin-bottom: 15px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+
+.calc{
+    text-decoration: underline!important;
+}
+
+.hidden{
+    visibility: hidden;
+}
+
+/*********************** header block **************/
+.header-text
+{
+    color:#669BD1;
+    text-align:left;
+    vertical-align:top;
+    width:483px;
+    font-weight: bold;
+}
+
+.how-it
+{
+    margin-bottom: 6px;
+}
+
+.Line
+{
+    margin-left: -13px;
+}
+
+.once
+{
+    margin: 15px 0px 15px 0px;
+}
+
+.div-text
+{
+    font-size: 12px;
+}
+
+.div-block-links
+{
+    margin: 30px auto 30px;
+    width: 500px;
+    height: 200px;
+}
+
+.div-links a
+{
+    color: #6699CC;
+    font-size: 16px!important;
+    float: right;
+    text-decoration: underline!important;
+    text-align: right;
+}
+
+/*********************** end header block **************/
+
+.div-addgift
+{
+    clear: both;
+}
+
+.leftMenu
+{
+    padding: 0px;
+}
+
+.addtool
+{
+    margin: 30px 0px 0px;
+}
+
+.createlist
+{
+    margin: 0px 0px 30px;
+}
+
+#taxebleCheck
+{
+    margin-left: 0px;
+}
+
+.grandtotal
+{
+    float: right;
+}
+
+.btn-addtoregistry
+{
+    background: url('/images/design/Buttons/addToRegistry.png') no-repeat;
+    width: 124px;
+    height: 19px;
+    border: 0px!important;
+    margin: 20px 0px 20px;
+}
+
+.formError
+{
+    padding: 0px 0px 0px 10px;
+}
+
+.down-safari
+{
+    background: url('/images/design/Buttons/downloadForSafari.png') no-repeat;
+    width: 159px;
+    height: 24px;
+    border: 0px!important;
+}
+
+.down-firefox
+{
+    background: url('/images/design/Buttons/downloadForFirefox.png') no-repeat;
+    width: 159px;
+    height: 24px;
+    border: 0px!important;
+}
+
+.div-buttons
+{
+    margin-bottom: 30px;
+}
+
+
+/*********************** add gifts **************/
+.list-text .wrap-text-block{
+    height: 70px;
+    width: 670px;
+    border: #dadada solid 1px;
+    border-radius: 15px;
+    margin: 0 0 10px;
+    cursor: pointer;
+}
+
+.list-text .list-item1:hover{
+    border: 3px solid #6999cf;
+    height: 66px;
+    width: 666px;
+    background-color: #D9E5F3
+}
+
+.list-text .list-item2:hover{
+    border: 3px solid #CB0000;
+    height: 66px;
+    width: 666px;
+    background-color: #f6d4d4;
+}
+
+.list-text .list-item3:hover{
+    border: 3px solid #689831;
+    height: 66px;
+    width: 666px;
+    background-color: #d9e5cc;
+}
+
+.list-text .wrap-text-block .number{
+    color: #6699CC;
+    float: left;
+    font: bold 70px Calibri;
+    padding: 0;
+    text-align: center;
+    width: 100px;
+    height: 70px;
+    margin: -10px 0 0 -10px;
+}
+
+.list-text .wrap-text-block .text-gifts{
+    float: left;
+    padding: 15px 0 0;
+    width: 570px;
+    font-size: 16px;
+}
+
+.div-video-block {
+    margin: 50px auto 30px auto;
+    width: 440px;
+    height: 200px;
+}
+.div-video-image {
+    float: left;
+}
+
+
+#div-video-text {
+    float: left;
+    width: 190px;
+    padding-left: 10px;
+    margin-top:40px;
+    font-size: 16px;
+}
+
+/****************** Window Add My Own Gift **********/
+.h110{
+    height: 110px;
+}
+.left-column{
+    width: 380px;
+    float: left;
+}
+
+.right-column{
+    width: 250px;
+    float: right;
+}
+
+.left-column .editor-label{
+    width: 140px;
+    font-size: 13.5px;
+    margin-right: 10px;
+}
+
+.left-column .editor-field{
+    width: 230px;
+}
+
+.left-column .editor-field input, textarea{
+    width: 220px;
+}
+
+.left-column .editor-field select{
+    width: 225px;
+}
+
+.right-column #wrap_image #fupload{
+    /*display: none;*/
+}
+
+.right-column .imageBlock .editor-field{
+    width: 220px;
+}
+
+.right-column .small-label{
+    font-size: 11.5px;
+    color: #999999;
+    margin-bottom: 2px;
+}
+
+#link-stock-image{
+    text-decoration: underline;
+}
+
+
+/***** Stock part ***/
+
+.stock-images #btn-back-stock{
+    background: url('/images/design/Buttons/back.png') no-repeat;
+    width: 41px;
+    height: 19px;
+    border: 0px!important;
+    margin: 20px 0 0 320px;
+}
+
+.stock-container .stock_td table{
+    table-layout: fixed;
+    border: 0;
+    padding: 0;
+    margin: auto;
+}
+
+.stock_image{
+    border: 1px solid #cccccc;
+    width: 112px;
+    height: 74px;
+    float: left;
+    margin: 4px;
+    cursor: pointer;
+}
+
+#stock-preview{
+    border: 1px solid #cccccc;
+    width: 40px;
+    height: 30px;
+    margin-right: 12px;
+    vertical-align: text-top;
+}
+
+/*   Facebook   */
+.fb-like
+{
+    height: 80px
+}
+
+.like-popup
+{
+    margin: 0, 8px, 8px, 8px
+}
+
+.popup-padding
+{
+    margin-left: 12px;
+    margin-right: 12px;
+    width: 450px;
+}
+
+.no-thanks
+{
+    margin-bottom: 8px;
+    float: right;
+}
+
+.details
+{
+    margin-top: 8px;
+    font-size: 12px;
+    float: left;
+}

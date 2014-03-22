@@ -1,0 +1,125 @@
+.filters {
+    padding: 8px;
+}
+
+.message {
+    padding: 8px;
+    margin-bottom: 8px;
+    border: 1px #ccc solid;
+    background: white;
+}
+
+.messge h3 {
+    font-size: 17px;
+}
+
+.message .faceBut {
+    padding-left: 90px;
+}
+
+.message .faceBut, .message h3 {
+    display: inline;
+    vertical-align: bottom;
+    margin-left: 8px;
+}
+
+#items {
+    margin: 0 0 50px 0;
+    padding: 0;
+}
+
+.gift-entry {
+    position: relative;
+    list-style:none;
+    margin:  7px;
+    width: 162px;
+    height: 180px;
+    vertical-align: top;
+    float: left;
+    position: relative;
+    font-size: 11px;
+    text-align: left;
+    word-wrap: break-word;
+    color: #666;
+}
+
+#content .gift-entry-info a {
+    font-size: 11px;
+    color: #666;
+    font-weight: bold;
+}
+
+#content .gift-entry-info a:hover {
+    text-decoration: underline;
+    color: #CC0000;
+}
+
+.faces {
+    float: left;
+}
+
+.faces img {
+    height: 25px;
+    margin: 0 3px 0 1px;
+}
+
+
+.gift-entry:hover > .buttons-left, .gift-entry:hover > .buttons-right, .gift-entry:hover > .buttons-top-right{
+    visibility: visible;
+}
+
+.gift-entry-info{
+    padding-top: 2px;
+}
+
+.gift-entry-info img{
+    vertical-align: top;
+}
+
+.buttons-left {
+    position: absolute;
+    top: 98px;
+    left: 4px;
+    visibility: hidden;
+}
+
+.buttons-right {
+    position: absolute;
+    top: 98px;
+    right: 4px;
+    visibility: hidden;
+}
+
+.buttons-top-right {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    visibility: hidden;
+}
+
+.pagination {
+    margin: 0 9px 15px;
+    float: right;
+    font-size: 13px;
+}
+
+
+#site-block {
+    margin-top: 30px;
+}
+
+.site-registry {
+    float: left;
+    margin-right: 13px;
+    list-style: none;
+}
+
+.site-registry-right {
+    float: left;
+    list-style: none;
+}
+
+.site-registries {
+    padding: 0;
+    margin: 10px 0 20px 10px;
+}

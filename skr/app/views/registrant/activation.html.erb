@@ -1,0 +1,36 @@
+<% content_for :title do %>
+  Account Activated | Knack Registry
+<% end %>
+<% content_for :head do %>
+        <%= stylesheet_link_tag "/stylesheets/Pages/AddMyOwnGift.css" %>
+
+<%end%>
+
+  <%= content_for :pagename do %>
+    <div>Account Activated</div>
+
+  <% end %>
+
+  <%= content_for :registry do %>
+  <% end %>
+  <%= content_for :background do %>
+  <% end %>
+
+
+
+    <%#*-----------------------------%>
+    <%#*Content%>
+    <%#*-----------------------------%>
+
+  <div class="withBackground">
+    <div class="content">
+     <div class="mainBlock">
+       <% if  @registrant.blank? %>
+        Incorrect link
+       <% else %>
+        <p>Your account has been activated successfully.  Sign-in now and start building your registry with Knack.</p>
+        <%= link_to "Go to Sign in page", :controller => :registrant, :action => :login %>
+       <% end %>
+      </div>
+    </div>
+  </div>

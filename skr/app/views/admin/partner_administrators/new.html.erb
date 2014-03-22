@@ -1,0 +1,48 @@
+<% content_for :title do %>
+    Administrator | Knack Registry
+<% end %>
+<% content_for :head do %>
+    <%= javascript_include_tag "/javascripts/pages/Admin/knack.partner.administrator.js" %>
+<%end%>
+
+<% content_for :pagename do %>
+    <div>
+      Administrator
+    </div>
+<% end %>
+
+<% content_for :registry do %>
+    <div class="bl-block">
+      <div class="blue-line">
+
+      </div>
+    </div>
+<% end %>
+
+<% content_for :background do %>
+    <div class="bl-block">
+      <div class="blue-line">
+        <input type="hidden" value="fghj"/>
+      </div>
+    </div>
+<% end %>
+
+<div class="withBackground">
+  <div class="content">
+    <div class="mainBlock">
+      <table cellpadding="0px" cellspacing="0px" border="0px">
+        <tr>
+          <td class="leftMenu">
+            <%= render "administrative/left_menu" %>
+          </td>
+          <td class="rigthPane">
+
+            <%=  show_flash %>
+            <%= render "form" %>
+          </td>
+        </tr>
+      </table>
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,93 @@
+<% content_for :title do %>
+  Share a Link | Knack Registry
+<% end %>
+<% content_for :head do %>
+        <%= stylesheet_link_tag "/stylesheets/Pages/Links.css" %>
+        <%= javascript_include_tag "/javascripts/pages/addgift.js" %>
+<%end%>
+
+  <% content_for :pagename do %>
+    <div>Share a Link</div>
+    
+  <% end %>
+
+<% content_for :registry do %>
+ <%= @registrant.name_registry %>
+<% end %>
+<% content_for :background do %>
+    <% if !@registrant.is_invited? %>
+        <%= render :partial => 'your_credit', :object => @registrant.get_queue %>
+    <% end %>
+<% end %>
+
+
+    <%#*-----------------------------%>
+    <%#*Content%>
+    <%#*-----------------------------%>
+
+    <div class="withBackground">
+      <div class="content">
+
+        <table class="ContentLinks">
+          <tr>
+            <td class="leftTD">
+                  <%= render "left_nav" %>
+            </td>
+
+
+            <td class="rightTD">
+              <%#*------------------------%>
+              <%#*Right column%>
+              <%#*------------------------%>
+              <div id="searchsecondRow">
+                Registry Links
+              </div>
+
+              <div class="Line"></div>
+
+              <div class="centerPane">
+                <h3>
+                  Link to your registry
+                </h3>
+                <p>
+                  This link can be coppied into invitations, emails or wedding websites. It will take guests directly to your registry.  <b>Note:</b> If you visit this link while logged in you will be taken to the registry designer.
+                </p>
+                <p><b>
+                  <%= registry_url(@registrant) %>
+                </b></p>
+
+                <h3>
+                  Knack widgets
+                </h3>
+                <p>
+                  Knack widgets can be embedded into wedding websites that accept HTML.  In addition to linking to your registry, the Knack widgets show the knack logo and display the number of gifts on your registry.
+                </p>
+
+                <div class="div-banner-container">
+
+                  <div class="banner1">
+                    <div><%= raw @banners[0]  %></div>
+                    <textarea cols="30" rows="5" readonly="true" class="banner-src"><%= @banners_src[0] %></textarea>
+                  </div>
+
+                  <div class="banner2">
+                    <div><%= raw @banners[1]  %></div>
+                    <textarea cols="30" rows="5" readonly="true" class="banner-src"><%= @banners_src[1] %></textarea>
+                  </div>
+
+                  <div class="banner3">
+                    <div><%= raw @banners[2]  %></div>
+                    <textarea cols="30" rows="5" readonly="true" class="banner-src"><%= @banners_src[2] %></textarea>
+                  </div>
+
+                  <div class="banner4">
+                    <div><%= raw @banners[3]  %></div>
+                    <textarea cols="30" rows="5" readonly="true" class="banner-src"><%= @banners_src[3] %></textarea>
+                  </div>
+                </div>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>

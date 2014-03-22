@@ -1,0 +1,33 @@
+development:
+  port: 9312
+  #bin_path: "C:/Sphinx/bin"
+  bin_path: "/usr/bin"
+  morphology: stem_en
+  mem_limit: "128M"
+  html_strip: true
+  stopwords: "/home/john/RailsApps/Trunk/config/search-stops.txt"
+
+test:
+  port: 9313
+  #bin_path: "C:/Sphinx/bin"
+  bin_path: "/usr/bin"
+  morphology: stem_en
+  mem_limit: "128M"
+  html_strip: true
+  stopwords: "/home/john/RailsApps/Trunk/config/search-stops.txt"
+
+preview:
+  port: 9313
+  bin_path: "/usr/bin"
+  morphology: stem_en
+  mem_limit: "128M"
+  html_strip: true
+  stopwords: "/home/ilya/public_html/current/config/search-stops.txt"
+
+production:
+  port: 9313
+  bin_path: "/usr/bin"
+  morphology: stem_en
+  mem_limit: "128M"
+  html_strip: true
+  stopwords: "/home/ilya/public_html/current/config/search-stops.txt"

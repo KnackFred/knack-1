@@ -1,0 +1,289 @@
+<% content_for :title do %>
+  Orders
+<% end %>
+<% content_for :head do %>
+        <%= stylesheet_link_tag "/stylesheets/jquery-ui-1.8.2.custom.css" %>
+        <%= stylesheet_link_tag "/stylesheets/Pages/Administrative.Orders.css" %>
+        <%= stylesheet_link_tag "/stylesheets/Controls/Table.css" %>
+        <%= javascript_include_tag "/javascripts/jquery-ui-1.8.2.custom.min.js"  %>
+        <%= javascript_include_tag "/javascripts/datepicker.js"  %>
+        <%= javascript_include_tag "/javascripts/knack.administrative.orders.js"  %>
+<%end%>
+
+  <% content_for :pagename do %>
+    <div>Orders</div>
+  <% end %>
+
+  <% content_for :registry do %>
+      <div class="bl-block">
+        <div class="blue-line">
+          <div class="section-header">
+            Filter by:
+          </div>
+        </div>
+      </div>
+  <% end %>
+
+  <% content_for :background do %>
+      <div class="bl-block">
+        <div class="blue-line">
+          <input type="hidden" value="fghj"/>
+        </div>
+      </div>
+  <% end %>
+
+  <div class="withBackground">
+    <div class="content">
+      <div class="mainBlock">
+
+        <form action="/administrative/orders" method="post" id="filters">
+          <input type="hidden" id="countP" name="countP" value="<%= @pager.page_size%>"/>
+          <input type="hidden" id="currentP" name="currentP" value="<%= @pager.current_page%>"/>
+          <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
+
+          <%#*-----------------------------%>
+          <%#*Filter%>
+          <%#*-----------------------------%>
+          <div id="filter">
+            <div class="fline">
+              <%#*-----------------------------%>
+              <%#*OrderID%>
+              <%#*-----------------------------%>
+              <div class="block-title id-block">
+                <span>Id</span>
+                <%= text_field :filter, :order_id, :class => "input-id" %>
+              </div>
+
+              <%#*-----------------------------%>
+              <%#*Date from%>
+              <%#*-----------------------------%>
+              <div class="block-date">
+                <span>Date from:</span>
+                <%= text_field :filter, :datepicker_from %>
+              </div>
+
+              <%#*-----------------------------%>
+              <%#*Date to%>
+              <%#*-----------------------------%>
+              <div class="block-date-to">
+                <span>to:</span>
+                <%= text_field :filter, :datepicker_to %>
+              </div>
+
+              <%#*-----------------------------%>
+              <%#*Gross from%>
+              <%#*-----------------------------%>
+              <div class="block-gross-from">
+                <span>Gross $ Amount from:</span>
+                <%= text_field :filter, :gross_from %>
+              </div>
+
+              <%#*-----------------------------%>
+              <%#*Gross to%>
+              <%#*-----------------------------%>
+              <div class="block-gross-to">
+                <span>to:</span>
+                <%= text_field :filter, :gross_to %>
+              </div>
+
+              <%#*-----------------------------%>
+              <%#*Type Order%>
+              <%#*-----------------------------%>
+              <div class="block-type">
+                <span>Type</span>
+                <%= select(:filter, :type_order, StaticDataUtilities.get_order_type_select) %>
+              </div>
+
+
+            </div>
+
+            <div class="sline">
+              <%#*-----------------------------%>
+              <%#*Status%>
+              <%#*-----------------------------%>
+              <div class="block-status">
+                <span>Status</span>
+                <%= select(:filter, :status_id, @statuses.collect {|s| [s.Name, s.id.to_i]}) %>
+              </div>
+
+              <%#*-----------------------------%>
+              <%#*Gross to%>
+              <%#*-----------------------------%>
+              <div class="block-customer">
+                <span>Customer</span>
+                <%= text_field :filter, :customer %>
+              </div>
+
+              <%#*-----------------------------%>
+              <%#*Store%>
+              <%#*-----------------------------%>
+              <div class="block-store">
+                <span>Store</span>
+                <%= select(:filter, :store_id, @stores.collect {|s| [s.Name, s.id.to_i]}) %>
+              </div>
+
+              <%#*-----------------------------%>
+              <%#*Paid full%>
+              <%#*-----------------------------%>
+              <div class="block-paid-full">
+                <%= check_box(:filter, :paid_full) %> <span>Is paid in full</span>
+              </div>
+            </div>
+
+            <div class="tline">
+
+              <div id="div-buttons">
+                <%= button_to("Filter", {:controller => self.params[:controller], :action => self.params[:action]}, :method => 'get') %>
+              </div>
+            </div>
+          </div>
+        </form>
+        <div class="div-text">
+          Click view on the orders below to view shipping address and provide Knack with the shipping tracking number.
+          You will receive payment once you have provided a tracking number and Knack has confirmed
+        </div>
+        <%= show_flash %>
+        <table id="product-table" >
+          <thead>
+            <tr>
+              <th>Id</th>
+              <th>Date</th>
+              <th>Status</th>
+              <th>Type</th>
+              <th>Customer</th>
+              <th>Gross</th>
+              <th>Knack Fee</th>
+              <th>Net</th>
+              <th>Store</th>
+              <th>Payment</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @orders.each do |order| %>
+              <% if !order.id.blank? %>
+                <tr class="order">
+                  <%#******************%>
+                  <%#* orderid%>
+                  <%#******************%>
+                  <td><%= order.id%></td>
+
+                  <%#******************%>
+                  <%#* DATETIME%>
+                  <%#******************%>
+                  <td><%= Time.parse(order.DateTime.to_s).strftime("%m/%d/%Y")%></td>
+
+                  <%#******************%>
+                  <%#* STATUS%>
+                  <%#******************%>
+                  <td><%= OrdersStatus::STATUSES[order.OrdersStatus_ID] %></td>
+
+                  <%#******************%>
+                  <%#* Type%>
+                  <%#******************%>
+                  <td><%= Order::TYPES[order.order_type] %></td>
+
+                  <%#******************%>
+                  <%#* Customer%>
+                  <%#******************%>
+                  <td>
+                    <%= order.BillingFirstName %> <%= order.BillingLastName %>
+                  </td>
+
+                  <%#******************%>
+                  <%#* GROSS%>
+                  <%#******************%>
+                  <td>
+                    <%= formatted_price(order.Amount) %>
+                  </td>
+
+                  <%#******************%>
+                  <%#* KNACK FEE%>
+                  <%#******************%>
+                  <td>
+                    <%= formatted_price(order.get_knack_fee()) %>
+                  </td>
+
+                  <%#******************%>
+                  <%#* NET%>
+                  <%#******************%>
+                  <td>
+                    <%= formatted_price(order.get_net()) %>
+                  </td>
+
+
+                  <%#******************%>
+                  <%#* STORE%>
+                  <%#******************%>
+                  <td>
+                    <% if order.order_type == Order::BUY %>
+                      <% i = 0 %>
+                      <% order.get_products().each do |product| %>
+                        <% unless product.stores.blank? %>
+                          <%= product.get_default_store.Name %><% if i < (order.get_products().length - 1) %>; <% end %>
+                          <% i += 1 %>
+                        <% end %>
+                      <%end%>
+                    <% end %>
+                  </td>
+
+                  <%#******************%>
+                  <%#* Payment%>
+                  <%#******************%>
+                  <td><%= formatted_price(order.get_knack_payments()) %></td>
+
+
+                  <%#******************%>
+                  <%#* View%>
+                  <%#******************%>
+                  <td>
+                    <%= link_to "View / Edit", :controller => self.params[:controller], :action => :order, :id => order.id %>
+                  </td>
+                </tr>
+              <% end %>
+            <%end%>
+          </tbody>
+        </table>
+        <% if !@orders.blank? %>
+          <div id="div-pager">
+
+                       <% if @pager.count_page > 1 %>
+                            <%= link_to "Previous", {:controller => self.params[:controller], :action => self.params[:action], :id => @pager.prev_page}, :pageid => @pager.prev_page%>
+                            <% @pager.left_pager.each do |page|%>
+                              <% if page.to_i == @pager.current_page.to_i%>
+                                  <b>
+                              <% end %>
+                                    <%= link_to page, {:controller => self.params[:controller], :action => self.params[:action], :id => page}, :pageid => page%>
+                              <% if page.to_i == @pager.current_page.to_i%>
+                                  </b>
+                              <% end %>
+                            <%end%>
+
+                            <% if @pager.right_pager.count > 0 %>
+                             ...
+                              <% @pager.right_pager.each do |page|%>
+                                <% if page.to_i == @pager.current_page.to_i%>
+                                  <b>
+                                <% end %>
+                                    <%= link_to page, {:controller => self.params[:controller], :action => self.params[:action], :id => page}, :pageid => page%>
+                                <% if page.to_i == @pager.current_page.to_i%>
+                                  </b>
+                                <% end %>
+                              <% end %>
+                            <%end%>
+
+                            <%= link_to "Next", {:controller => self.params[:controller], :action => self.params[:action], :id => @pager.next_page}, :pageid => @pager.next_page%>
+                      <% end %>
+
+                      <span class="span-per-page">Items per page</span>
+                      <select id="per_page">
+                        <option value="50">50</option>
+                        <option value="100">100</option>
+                        <option value="150">150</option>
+                        <option value="200">200</option>
+                      </select>
+                </div>
+        <% end %>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,422 @@
+#knackWindow{
+	font-family:Arial;
+	color:#595858;
+	font-size:10pt;
+	width:550px !important;	
+}
+
+#knakWindow img{
+	border:0;
+}
+
+#knack-header{
+	background:#d8e4f2;
+	text-align:right;
+	padding:5px;
+	max-width:550px !important;
+	
+	padding-right:10px;
+	max-height:35px;
+	cursor:default;
+}
+
+#knackWindow a{
+	color:#595858;
+	text-decoration:none;
+	font-weight:normal;
+}
+
+#knack-header a:link{
+	color:#595858;
+	text-decoration:none;
+}
+#knack-header a:hover{
+	color:#595858 !important;
+	background:#d8e4f2;
+	
+}
+
+#knack-content-wraper{
+	position:relative;
+	z-index:101;
+	top:0px;
+	left:0px;
+	border:solid 0px;
+	
+}
+
+#knack-tax-form{
+	position:absolute;
+	z-index:101;
+	top:35px;
+	left:0px;
+	border:solid 0px;
+	max-width:550px !important;
+	
+	height:310px;
+	background:#fff;
+	visibility:hidden;
+	color:#595858;
+	text-align:right;
+	font-size:10pt;
+	font-family:Arial;
+	font-weight:normal;
+	padding:10px 50px 0 0;
+}
+
+#knack_add_result{
+	position:absolute;
+	z-index:110;
+	top:35px;
+	left:0px;
+	border:solid 0px;
+	max-width:550px !important;
+	width:550px;
+	height:310px;
+	background:#fff;
+	visibility:hidden;
+	color:#6599cb;
+	text-align:center;
+	font-size:14pt;
+	font-family:Arial;
+	font-weight:normal;
+}
+
+#knack-wait-wrapper{
+	position:absolute;
+	z-index:110;
+	top:40px;
+	left:0px;
+	border:solid 0px;
+	max-width:548px !important;
+	width:548px !important;
+	height:310px;
+	background:#fff;
+	visibility:hidden;
+	
+}
+
+#knack-wait-container{
+	 position:relative;
+	 padding-left:250px;
+	 padding-top:125px;
+	 width: 50px !important;
+	 height: 50px !important;
+}
+
+#knack-tax-form label{
+	color:#6599cb;
+	font-weight:bold;
+	font-size:10pt;
+	font-family:Arial;
+	background:#fff;
+}
+#knack-tax-form input{
+	font-family:Arial;
+	font-size:10pt;
+	color:#595858;
+	font-weight:normal;
+	border:1px;
+	border-style:solid;
+	border-color:#999;
+	background:#fff;
+	padding:1px;
+	
+	
+}
+#knack-tax-form input[disabled]{
+	background:#eee;
+	color:#999 ;
+}
+#knack-tax-form  input[type=image]{
+	border:0 !important;
+}
+
+#knack-tax-form  fieldset{
+	border:solid 1px #999;
+	color:#999;
+	padding:5px 15px 10px 15px !important;
+	max-height:110px;
+	width:250px;
+	margin:0 0 10px 0;
+	float:right;
+	background:#fff;
+	
+	
+}
+#knack-tax-form legend{
+	background:#fff !important;
+	color:#999 !important;
+}
+#knack-tax-form input[type=image]{
+	border:0;
+}
+
+#knack-image-side{
+	float:left;
+	width:28%;
+	padding:10px 10px 5px 35px;
+	height:300px;
+}
+#knack-img-navi{
+	width:140px;
+	padding-top:5px;
+	font-family:Arial;
+	font-size:9pt;
+	text-align:center;
+}
+#knack-table{
+	width:250px !important;
+	min-width:250px !important;
+	text-align:left !important;
+	border:solid 0px !important;
+	border-collapse:collapse;
+	
+	background:#fff !important;
+	height:300px !important;
+	max-height:300px !important;
+	
+
+}
+
+#knack-image-number{
+  margin-left:25px;
+  margin-right:25px;
+  
+}
+
+#knack-ht{
+	font-size:13pt;
+	font-weight:bold;
+	color:#000;
+	
+}
+
+#knack-input-form label{
+	font-family:Arial;
+	font-size:10pt;
+	color:#6698cb;
+	font-weight:bold;
+	background:#fff;
+	
+	
+}
+#knack-input-form input,textarea{
+	font-family:Arial;
+	font-size:10pt;
+	color:#8c8c8c !important;
+	font-weight:normal;
+	border:1px;
+	border-style:solid;
+	border-color:#999 !important;
+	background:#fff;
+	padding:1px;
+	margin:0;
+	
+}
+#knack-input-form input[type=image]{
+	border:0 !important;
+}
+
+
+#knack-input-form span{
+	font-family:Arial;
+	font-size:9pt;
+	color:#595858;
+	font-weight:normal;
+	padding-left:2px;
+	
+}
+
+#knack-logo{
+	text-align:center;
+	margin-top:20px;
+	padding-right:5px;
+	
+	
+}
+
+.knack-close {
+    width: 35px;
+    border: 0px;
+}
+
+.div-knack-header
+{
+    float: left;
+    margin: 0;
+    padding: 8px 0 0;
+    width: 450px;
+}
+
+.knack-registry-block
+{
+    float: left;
+}
+
+/*.knackLoginWindow
+{
+    width: 300px;
+    height: 200px;
+}*/
+
+.div-knack-header-login
+{
+    float: left;
+    margin: 0;
+    padding: 8px 0 0;
+    width: 150px;
+}
+
+.knack-div-block
+{
+    clear: both;
+    margin: 0px 0px 10px 20px;
+    height: 30px;
+}
+
+.knack-editor-label
+{
+    width: 100px;
+    float: left;
+    color:#6599cb;
+    font-weight:bold;
+    font-size:10pt;
+    font-family:Arial;
+    background:#fff;
+}
+
+.knack-editor-field
+{
+    width: 150px;
+    float:left;
+    margin: 0!important;
+}
+
+.knack-editor-field input[type=text], input[type=password]
+{
+    background: none repeat scroll 0 0 #FFFFFF;
+    border-color: #999999 !important;
+    border-style: solid;
+    border-width: 1px;
+    color: #8C8C8C !important;
+    font-family: Arial;
+    font-size: 10pt;
+    font-weight: normal;
+}
+
+
+#knack-content-wraper-login{
+	position:relative;
+	z-index:101;
+	top:0px;
+	left:0px;
+	border:solid 0px;
+	padding: 30px 0 0;
+}
+
+#knack-content-wraper-register{
+	position:relative;
+	z-index:101;
+	top:0px;
+	left:0px;
+	border:solid 0px;
+	padding: 30px 0 0;
+}
+
+#knackBtnLogin
+{
+    background: url('https://knackregistry.com/images/design/Buttons/login.png') no-repeat;
+    width: 57px;
+    height: 19px;
+    border: 0px;
+}
+
+#knackBtnRegister
+{
+    background: url('https://knackregistry.com/images/design/Buttons/register.png') no-repeat;
+    width: 89px;
+    height: 19px;
+    border: 0px;
+}
+
+#knack-header-login{
+	background:#d8e4f2;
+	text-align:right;
+	padding:5px;
+	max-width:550px !important;
+
+	padding-right:10px;
+	max-height:35px;
+	cursor:default;
+}
+
+#knack-header-register{
+	background:#d8e4f2;
+	text-align:right;
+	padding:5px;
+	max-width:550px !important;
+
+	padding-right:10px;
+	max-height:35px;
+	cursor:default;
+}
+
+#knack-div-accept{
+    margin: -10px 0 10px 50px;
+    font-size: 11px;
+    color: #8C8C8C;
+    font-family: 'Arial';
+}
+
+#knack-div-accept a{
+    text-decoration: underline;
+    font-family: 'Arial';
+    color: #8C8C8C;
+}
+
+.knack-link-registration
+{
+    color: #999999;
+    font-weight: normal;
+    font-size: 12px;
+}
+
+.div-knack-header-register
+{
+    float: left;
+    margin: 0;
+    padding: 8px 0 0;
+    width: 240px;
+}
+
+#knack-content-wraper-register .knack-editor-label
+{
+    width: 150px!important;
+}
+
+#knack-content-wraper-register .knack-div-block
+{
+    margin-left: 50px!important;
+}
+
+#knackState
+{
+    background: none repeat scroll 0 0 #FFFFFF;
+    border-color: #999999 !important;
+    border-style: solid;
+    border-width: 1px;
+    color: #8C8C8C !important;
+    font-family: Arial;
+    font-size: 10pt;
+    font-weight: normal;
+    width: 152px;
+}
+
+.knack-not-register
+{
+    width: 200px;
+    color: #999999;
+    font-weight: normal;
+    font-size: 12px;
+}

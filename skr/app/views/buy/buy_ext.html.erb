@@ -1,0 +1,107 @@
+<% content_for :header do %>
+    <%= stylesheet_link_tag "/stylesheets/Global.css" %>
+    <%= stylesheet_link_tag "/stylesheets/Pages/Buy/buy_ext.css" %>
+    <%= javascript_include_tag "/javascripts/plugins/jquery.popupWindow.js"%>
+    <%= javascript_include_tag "/javascripts/pages/Buy/buy_ext.js"%>
+<% end %>
+<div id="header">
+  <img id="logo" src="/images/design/logo.gif" alt="Knack">
+</div>
+<div id="source">
+    This gift is from
+    <%= @registry_item.product.source_name %>
+</div>
+
+<div id="step1" class="step group">
+  <div>
+    <h1>1</h1>
+    <h2>Add Gift to Cart</h2>
+    Add the gift to the cart, be sure to check the item and quantity.<br/> <a id="dont-see-link" href="#">I don't see the gift</a>
+  </div>
+  <div id="dont-see" class="tag-none">
+    <br>
+    In addition to this window, you should see a window with the gift in it.  If you do not, <%= link_to "Click Here", skim_link(@registry_item.product.source_url, @registry_item.registrant.id), :id =>"dont-see-page-link" %>.
+  </div>
+  <dl>
+    <dt>
+      Name:
+    </dt>
+    <dd>
+      <%= @registry_item.product.Name %>
+    </dd>
+    <dt>
+      Quantity:
+    </dt>
+    <dd>
+      <%= formatted_remaining(@registry_item, true)  %>
+    </dd>
+    <% if @registry_item.product.ext_color? %>
+        <dt>
+          Style:
+        </dt>
+        <dd>
+          <%= @registry_item.product.ext_color %>
+        </dd>
+    <% end %>
+    <% if @registry_item.product.ext_size? %>
+        <dt>
+          Size:
+        </dt>
+        <dd>
+          <%= @registry_item.product.ext_size %>
+        </dd>
+    <% end %>
+    <% if @registry_item.product.ext_other? %>
+        <dd>
+          <%= @registry_item.product.ext_other %>
+        </dd>
+    <% end %>
+  </dl>
+</div>
+
+<div id="step2" class="step group">
+  <div>
+    <h1>2</h1>
+    <h2>Order the Gift</h2>
+    Order the item from the merchant using the shipping info below.
+  </div>
+  <dl>
+    <dt>
+      Name:
+    </dt>
+    <dd>
+      <%= @registry_item.registrant.name_couple %>
+    </dd>
+    <dt>
+      Address:
+    </dt>
+    <dd>
+      <%= @registry_item.registrant.Address %> <br/>
+      <%= @registry_item.registrant.City %>, <%= @registry_item.registrant.state.Name%>, <%= @registry_item.registrant.ZIP%>
+    </dd>
+  </dl>
+</div>
+
+<div id="step3" class="step group">
+  <div>
+    <h1>3</h1>
+    <h2>Confirm your order</h2>
+    Tell us about it so we can update the registry.  You can also leave the couple a note.
+  </div>
+    <%= form_for @buy_registry_item,:url => "/buy/buy_ext/#{@registry_item.id}" do |f| %>
+      <%= f.hidden_field :min_quantity %>
+      <%= f.hidden_field :max_quantity %>
+
+      <%= f.label :quantity, "Number Ordered *"%>
+      <%= f.text_field :quantity, :placeholder => "Quantity You Ordered"  %>
+      <%= f.label :from, "From *" %>
+      <%= f.text_field :from, :placeholder => "Your name" %>
+      <%= f.label :email, "Email *" %>
+      <%= f.email_field :email, :placeholder => "Your email" %>
+      <%= f.label :notes, "Note" %>
+      <%= f.text_area :notes, :placeholder => "A note to the couple"  %>
+      <button name="cancel" type="cancel" id="cancel">Cancel</button>
+      <%= f.submit "Confirm"%>
+
+  <% end %>
+</div>

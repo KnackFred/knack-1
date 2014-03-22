@@ -1,0 +1,27 @@
+<div class="title">
+  <%= link_to content_tag(:b, "Stores"), stores_path, :id => 'store_link' -%>
+</div>
+<br/>
+
+<div class="title">
+  <%= link_to content_tag(:b, "Brands"), brands_path, :id => 'brand_link' -%>
+</div>
+<br/>
+<br/>
+<br/>
+
+<% if session[:registrant].blank? %>
+    <div class="div-howd">
+      <div class="div-title">What Is Knack?</div>
+      <a class="learn-more" href="/info/tour">Learn More</a>
+    </div>
+<% elsif @product.nil? %>
+    <div class="local-text">
+      <%= image_tag "/images/design/local.png" -%>
+      Support Local
+      <%= tag :br -%>
+      Artisans & Shops
+    </div>
+<% end %>
+
+<br/>

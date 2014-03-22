@@ -1,0 +1,50 @@
+.block-add-ext {
+    width: 480px;
+    height: 285px;
+}
+
+.block-add-ext-inner {
+    padding: 0 10px;
+}
+
+.block-add-ext-inner img{
+    float: right;
+}
+
+.text {
+    float: left;
+    width: 210px;
+}
+
+.block-add-ext p {
+    font-size: 14.5px;
+    margin: 1em 0;
+}
+
+.block-add-ext h2 {
+    margin: -40px 0 12px 0;
+}
+
+.block-add-ext a {
+    float: right;
+    display: block;
+    background: url("/images/design/Buttons/continue.png") top left no-repeat;
+    text-indent: -99999px;
+    width: 124px;
+    height: 19px;
+}
+
+.block-add-ext .note {
+    font-size: 12px;
+    margin: 1em 0;
+}
+
+#simplemodal-data .block-add-ext .knack-header {
+    display: inline;
+}
+
+.do-contribute-ext {
+    position: absolute;
+    bottom: 16px;
+    right: 16px;
+}

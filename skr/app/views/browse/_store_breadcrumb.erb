@@ -1,0 +1,9 @@
+<div class="menu-catalog">
+    Listed in Store: <%= link_to "Catalog", catalog_path, :class => "menu-category-link" %>
+  >
+  <% if @product.nil? %>
+      <%= link_to @store.Name, store_path(@store.id), :class => "current-category-link", :onclick =>"javascript:void(0);" %>
+  <% else %>
+      <%= link_to @store.Name, store_path(@store.id), :class => "menu-category-link" %>
+  <% end %>
+</div>

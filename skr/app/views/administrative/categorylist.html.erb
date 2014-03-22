@@ -1,0 +1,93 @@
+<% content_for :title do %>
+  Categories
+<% end %>
+<% content_for :head do %>
+        <%= stylesheet_link_tag "/stylesheets/Controls/Table.css" %>
+        <%= javascript_include_tag "/javascripts/knack.pager.js"  %>
+        <%= javascript_include_tag "/javascripts/jquery.form.js"  %>
+        <%= javascript_include_tag "/javascripts/jquery.custom-input-file.js"  %>
+        <%= javascript_include_tag "/javascripts/knackregistry.administrative.categorylist.js"  %>
+<%end%>
+<% content_for :pagename do %>
+    <div>Categories</div>
+  <% end %>
+
+  <% content_for :registry do %>
+    <div class="bl-block">
+        <div class="blue-line">
+          <div class="section-header">
+            Filter by:
+          </div>
+        </div>
+      </div>
+  <% end %>
+
+  <% content_for :background do %>
+    <div class="bl-block">
+        <div class="blue-line">
+          <input type="hidden" value="fghj"/>
+        </div>
+      </div>
+  <% end %>
+
+<div class="withBackground">
+    <div class="content">
+      <div class="mainBlock">
+
+        <form action="/administrative/categorylist" method="post" id="filters">
+          <input type="hidden" id="at" name="authenticity_token" value="<%= form_authenticity_token %>" />
+          <input type="hidden" id="title" name="title" value="<%= :title%>"/>
+          <input type="hidden" id="sortby" name="sortby" value="<%= @sortby%>"/>
+          <input type="hidden" id="sortid" name="sortid" value="<%= @sortid%>"/>
+
+           <div id="filter">
+            <div class="fline">
+              <%#*-----------------------------%>
+              <%#*Name%>
+              <%#*-----------------------------%>
+              <div class="block-title">
+                <span>Name</span>
+                <input type="text" id="fname" name="fname" value="<%= @name %>"/>
+              </div>
+
+              <div class="div-btn-filter">
+                  <%= button_to("Filter", {:controller => self.params[:controller], :action => "categorylist"}, :method => 'get') %>
+              </div>
+            </div>
+           </div>
+        </form>
+
+      <div class="table-container">
+        <table id="product-table" >
+          <thead>
+            <th>ID</th>
+            <th>Priority</th>
+            <th>Parent Name</th>
+            <th>Name(items)</th>
+            <th>Per Shipment</th>
+            <th>Visible</th>
+            <th>Edit</th>
+          </thead>
+          <tbody>
+            <% @categories.each do |category| %>
+              <tr class="category-row">
+                <td><%= category.id %></td>
+                <td><%= category.priority %></td>
+                <td><%= category.parent.blank? ? '': category.parent.name %></td>
+                <td><%= category.name%></td>
+                <td><%= formatted_price(category.per_shipment) %></td>
+                <td><%= category.visible? %></td>
+                <td><%= link_to'Edit', :controller => :administrative, :action => :editcategory, :id => category.id unless category.root?%></td>
+              </tr>
+            <%end%>
+          </tbody>
+        </table>
+        <%= will_paginate @categories %>
+        <div class="div-button">
+          <%= button_to(" ", {:controller => "administrative", :action => "editcategory"}, :method => 'get', :class => 'btn-add') %>
+        </div>
+      </div>
+      </div>
+    </div>
+</div>
+

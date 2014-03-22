@@ -1,0 +1,73 @@
+<% content_for :title do %>
+    All Registries | Knack Registry
+<% end %>
+<% content_for :head do %>
+    <%= stylesheet_link_tag "/stylesheets/Pages/Give.css"  %>
+    <%= javascript_include_tag "/javascripts/jquery.form.js"  %>
+    <%= javascript_include_tag "/javascripts/knack.registrant.give.js"  %>
+<%end%>
+
+<% content_for :pagename do %>
+    <div>Find a Registry</div>
+<% end %>
+
+<div class="withBackground">
+  <div class="content">
+
+    <div class="mainBlock">
+      <div class="leftBlock">
+        <%= form_tag( give_path, :id => 'form_find', :method => "get") do%>
+            <div id="div_simple">
+              <input id="tb_find" name="find" type="text" />
+              <input id="sub-find" type="submit" class="btn-search" value=""/>
+            </div>
+        <% end %>
+
+        <table id="tfind">
+          <thead>
+          <th class="fTD"></th>
+          <th class="sTD">Registrant</th>
+          <th class="tTD">Co - registrant</th>
+          <th class="fourTD">Event date</th>
+          </thead>
+          <tbody>
+          <% @registrants.each do |registrant| %>
+              <tr>
+                <td class="fTD">
+                  <div class="imageDIV">
+                    <a href="<%= registry_path(registrant.id) %>">
+                      <%= image_tag registrant.profile_image.url(:small) %>
+                    </a>
+                  </div>
+                </td>
+
+                <td class="sTD">
+                  <a href="<%= registry_path(registrant.id) %>">
+                    <%= registrant.FirstName %> <%= registrant.LastName %>
+                  </a>
+                </td>
+
+                <td class="tTD">
+                  <a href="<%= registry_path(registrant.id) %>">
+                    <%= registrant.FirstNameCoCreated %> <%= registrant.LastNameCoCreated %>
+                  </a>
+                </td>
+
+                <td class="fourTD">
+                  <a href="<%= registry_path(registrant.id) %>">
+                    <%= registrant.EventDate.nil? ? "" : registrant.EventDate.strftime('%m/%d/%Y') %>
+                  </a>
+                </td>
+
+              </tr>
+
+          <% end %>
+          </tbody>
+        </table>
+
+        <%= will_paginate @registrants %>
+
+      </div>
+    </div>
+  </div>
+</div>

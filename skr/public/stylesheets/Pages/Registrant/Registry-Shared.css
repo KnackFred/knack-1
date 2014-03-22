@@ -1,0 +1,199 @@
+
+
+/* ============= registryListBlock =================*/
+
+body {
+    /*background: #F8F4EA url("/images/paper.png");*/
+}
+
+p{
+    font-size: 16.5px;
+    color: #666;
+}
+
+
+.intro {
+    margin: 40px 0 40px 150px;
+    width: 690px;
+}
+
+.intro .image-cont{
+    display: inline-block;
+    vertical-align: middle;
+    zoom: 1;
+    *display: inline;
+
+}
+
+.intro h1 {
+  text-align: center;
+}
+
+.intro .image-cont img{
+    max-width: 250px;
+}
+
+#registrant_Description{
+    display: inline-block;
+    width: 390px;
+    height: 150px;
+    margin: 10px;
+    padding: 10px;
+    font-size: 16.5px;
+    font-family: Helvetica, Arial, sans-serif;
+    color: #666;
+    background-color: transparent;
+    border: 1px solid transparent;
+    vertical-align: middle;
+    overflow:auto;
+    zoom: 1;
+    *display: inline;
+}
+
+.category-nav{
+    margin: 40px auto 40px auto;
+    text-align: center;
+}
+
+.category-nav-item{
+    display: inline-block;
+    margin: 0 3px;
+    list-style-type: none;
+    width: 156px;
+    vertical-align: top;
+    zoom: 1;
+    *display: inline;
+}
+
+a{
+    color: #666666;
+}
+
+#sections {
+    list-style-type: none;
+}
+
+.section{
+    padding: 0 42px 40px 42px;
+    clear: both;
+    position: relative;
+}
+
+.section-heading{
+    margin: 40px;
+}
+
+.section-title{
+    width: 100%;
+    color: #69C;
+    font-size: 24px;
+    font-family: Helvetica, Arial, sans-serif;
+    background-color: transparent;
+    border: 1px solid transparent;
+    vertical-align: middle;
+    padding: 5px;
+}
+
+.section-description{
+    display: inline-block;
+    width: 100%;
+    height: 20px;
+    padding: 5px;
+    font-size: 16.5px;
+    font-family: Helvetica, Arial, sans-serif;
+    color: #666;
+    background-color: transparent;
+    border: 1px solid transparent;
+    vertical-align: middle;
+    overflow:auto;
+}
+
+.section-items{
+    min-height: 204px;
+    color: #BBB;
+    text-align: center;
+    vertical-align: middle;
+    list-style-type: none;
+    overflow: hidden;
+    padding-left: 0;
+}
+
+.category-nav-item div{
+    text-align: center;
+    font-weight: bold;
+    font-size: 13.5px;
+    margin-top: 8px;
+}
+
+.line{
+    height: 1px;
+    background-color: #cccccc;
+    margin:1px auto 1px auto;
+}
+
+.gift-entry, .gift-entry-purchased {
+   position: relative;
+   font-weight: bold;
+}
+
+.gift-entry {
+    margin:  7px 4px;
+    width: 162px;
+    height: 170px;
+    vertical-align: top;
+    float: left;
+    position: relative;
+    font-size: 10px;
+    text-align: left;
+    word-wrap: break-word;
+}
+
+.gift-entry .name {
+    font-size: 12px;
+    color: #666;
+}
+
+.gift-entry-purchased {
+    opacity : 0.6;
+    filter: alpha(opacity=60); // msie
+    background-color: #000;
+}
+
+.gift-entry-purchased .name, .gift-entry-purchased .price{
+    text-decoration: line-through;
+}
+
+.gift-entry .status {
+    float: right;
+}
+
+
+
+.gift-entry:hover > .buttons-left, .gift-entry:hover > .buttons-right, .gift-entry:hover > .buttons-top-right{
+    visibility: visible;
+}
+
+.gift-entry-info img{
+    vertical-align: top;
+}
+
+.buttons-left {
+    position: absolute;
+    top: 98px;
+    left: 4px;
+    visibility: hidden;
+}
+
+.buttons-right {
+    position: absolute;
+    top: 98px;
+    right: 4px;
+    visibility: hidden;
+}
+
+.buttons-top-right {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    visibility: hidden;
+}

@@ -1,0 +1,17 @@
+<div class="block-upload">
+  <div class="image-upload">
+    <h3> Choose an image for your profile </h3>
+    <%= form_for model, :url => {:action => :upload_image}, :html => {:class => "upload", :multipart => true} do |f| %>
+        <div>
+          <%= f.file_field attachment %>
+          <b id="bi"></b>
+        </div>
+    <% end %>
+  </div>
+</div>
+
+<script type="text/javascript">
+    $('form.upload').change(function(){
+        $('form.upload').submit();
+    });
+</script>

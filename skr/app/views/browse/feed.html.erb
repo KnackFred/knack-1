@@ -1,0 +1,84 @@
+<% content_for :title do %>
+    <% if @site %>
+        What's Hot From <%= @site %> | Knack Registry
+    <% else  %>
+        What's Hot | Knack Registry
+    <% end %>
+
+<%end%>
+
+<% content_for :head do %>
+    <meta name="description" content="See what your friends and others are adding to their wedding registry on Knack."/>
+    <%= stylesheet_link_tag "/stylesheets/Pages/Browse/Catalog.css"%>
+    <%= stylesheet_link_tag "/stylesheets/Pages/Browse/_category_nav.css" %>
+    <%= stylesheet_link_tag "/stylesheets/Pages/Browse/feed.css"%>
+    <%= stylesheet_link_tag "/stylesheets/Controls/GiftsControl.css"  %>
+    <%= javascript_include_tag "/javascripts/jquery.simplemodal.1.4.1.min.js"  %>
+    <%= javascript_include_tag "/javascripts/controls/_category_nav" %>
+    <%= javascript_include_tag "/javascripts/controls/_pop-up.js" %>
+
+    <%= javascript_include_tag "/javascripts/pages/addtoregistry.js"  %>
+    <%= javascript_include_tag "/javascripts/pages/Browse/knack.browse.feed.js"  %>
+    <%= javascript_include_tag "/javascripts/controls/jquery.infinitescroll.min.js"  %>
+<%end%>
+
+<% content_for :under_body do %>
+    <%= render :partial => 'shared/fb_init' %>
+<% end %>
+
+<% content_for :catalog do %>
+    <%= render :partial => "feed_breadcrumb" %>
+<% end %>
+
+<% content_for :pagename do %>
+    <% if @site %>
+        <%= image_tag "/images/general/hot-30.png", :alt => "flame" %> <%= @site %>
+    <% else  %>
+        <%= image_tag "/images/general/hot-30.png", :alt => "flame" %>What's Hot
+    <% end %>
+<% end %>
+
+<div class="withBackground">
+  <div class="content">
+    <div class="mainBlock">
+      <table id="mainBlockTable" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td id="menu">
+            <% cache "category_nav_hot" do %>
+                <%= render "category_nav" %>
+            <% end %>
+          </td>
+
+          <td id="content">
+            <%= render "anthro" if @site == "anthropologie.com" %>
+
+            <% if @registrant && @registrant.fbuid %>
+                <div class="filters">
+                  <%= link_to "All", feed_path(@site), :class=>"button-lrg " + (params[:filter].blank? ? "button-selected" : "") %>
+                  <%= link_to "Friends", feed_path(@site, :filter => "friends"), :class=>"button-lrg " + (params[:filter]=="friends" ? "button-selected" : "") %>
+                  <%= link_to "Me", feed_path(@site, :filter => "me"), :class=>"button-lrg " + (params[:filter]=="me" ? "button-selected" : "") %>
+                </div>
+            <% else %>
+                <div class="message">
+                  <h3>
+                    Check out what your friends are doing on Knack!
+                  </h3>
+                  <div class="faceBut">
+                    <a id="fb-login" href="#">
+                      <img src = "/images/general/social/fb-login.png"/>
+                    </a>
+                    <span id="login_spinner" style="position:absolute;padding-top:2px;padding-left:5px;display:none"><img src="/images/spinner.gif" alt="" /></span>
+                  </div>
+                </div>
+            <% end %>
+            <div class="Line"></div>
+            <ul id="items" class="group">
+              <%= render :partial => "feed_item", :collection => @registry_items %>
+            </ul>
+            <%= will_paginate(@registry_items) %>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

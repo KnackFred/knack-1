@@ -1,0 +1,62 @@
+
+/********* table payment *******/
+#table-payment
+{
+    width: 100%;
+}
+
+
+.payment
+{
+    margin: 15px auto auto 3px;
+}
+
+.payment-block
+{
+/*    margin: 30px auto;*/
+}
+
+.type-payment, .chb-credit
+{
+    color: #6699cc;
+    font-weight: bold;
+    margin:30px auto;
+}
+
+.text-credit
+{
+    font-size: 12px;
+    font-style: italic;
+}
+
+.div-info
+{
+    float: left;
+    width: 130px;
+    color: #616161;
+    vertical-align: top;
+    font-size: 14px;
+}
+
+.div-value
+{
+    margin: auto auto 6px;
+}
+
+.div-value input[type=text]
+{
+    width: 217px;
+}
+
+.div-data-block
+{
+    margin: 23px auto auto 21px;
+    font-size: 13px;
+    font-style: italic;
+}
+
+.date-block
+{
+    width:353px;
+}
+

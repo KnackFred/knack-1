@@ -1,0 +1,15 @@
+<% content_for :header do %>
+    <%= stylesheet_link_tag "/stylesheets/Global.css" %>
+    <%= stylesheet_link_tag "/stylesheets/Pages/buy_contribute.css" %>
+<% end %>
+<script type = "text/javascript">
+  window.parent.view_popup();
+</script>
+
+<div class="pageName">
+  <span>Error</span>
+</div>
+<div>
+	<%= error_messages_for flash[:error] %>
+  <span><%= @message%></span>
+</div>

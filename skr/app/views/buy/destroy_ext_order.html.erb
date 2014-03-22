@@ -1,0 +1,15 @@
+<% content_for :header do %>
+    <%= stylesheet_link_tag "/stylesheets/Global.css" %>
+    <%= stylesheet_link_tag "/stylesheets/Pages/Buy/buy_ext.css" %>
+    <%= javascript_include_tag "/javascripts/plugins/jquery.popupWindow.js"%>
+<% end %>
+<div class="centered">
+  <div id="header">
+    <h1>Delete Contribution</h1>
+    <%= show_flash %>
+  </div>
+
+  <div>
+    <%= link_to "View #{@registry.name_registry}", registry_path(@registry) %>
+  </div>
+</div>

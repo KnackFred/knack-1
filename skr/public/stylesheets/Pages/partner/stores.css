@@ -1,0 +1,28 @@
+.storesContent{
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+}
+
+.findCount{    
+    height: 30px;    
+}
+
+.findCount span{
+    float: left;
+}
+
+.block-title
+{
+    width: 220px;
+}
+
+.block-title input
+{
+    width: 150px;
+}
+
+.select-edit
+{
+    background-color: #F2E8C9!important;
+}

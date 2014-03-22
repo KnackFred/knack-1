@@ -1,0 +1,92 @@
+<% content_for :title do %>
+    Unique Wedding Registry With Gifts You Wont Find At National Retailers
+<% end %>
+<% content_for :head do %>
+    <link rel="canonical" href="https://knackregistry.com/" />
+    <%= javascript_include_tag "/javascripts/knack.registrant.home.js"  %>
+    <%= stylesheet_link_tag "/stylesheets/Pages/Home.css" %>
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7"/>
+    <meta name="description" content="Create a one of a kind wedding registry with traditional gifts, unique items, and honeymoon items on Knack."/>
+    <meta name="msvalidate.01" content="9B8AAB462457A6739630E695B0BC0662" />
+    <script type="text/javascript" src="https://fast.fonts.com/jsapi/1a1275b6-a264-4f4b-9d7c-e00caa86973f.js"></script>
+<%  end %>
+<% if Rails.env == "production" %>
+    <!-- Google Code for Visit Home Page Remarketing List -->
+    <script type="text/javascript">
+        /* <![CDATA[ */
+        var google_conversion_id = 1014910302;
+        var google_conversion_language = "en";
+        var google_conversion_format = "3";
+        var google_conversion_color = "666666";
+        var google_conversion_label = "X6XeCMK2tgIQ3pr54wM";
+        var google_conversion_value = 0;
+        /* ]]> */
+    </script>
+    <script type="text/javascript" src="https://www.googleadservices.com/pagead/conversion.js">
+    </script>
+    <noscript>
+      <div style="display:inline;">
+        <img height="1" width="1" style="border-style:none;" alt="" src="https://www.googleadservices.com/pagead/conversion/1014910302/?label=X6XeCMK2tgIQ3pr54wM&amp;guid=ON&amp;script=0"/>
+      </div>
+    </noscript>
+<% end %>
+
+<div class="div-c">
+  <div id="page-container">
+    <div id="heroboard_container">
+      <div id="static">
+        <div id="heroboard_text">
+          <h1 class="heroboard_headline">Build a list.<br>Share it.<br>Raise Money.</h1>
+          <h2 class="heroboard_copy">A free service that makes it easy to collect payments from family and friends.</h2>
+        </div>
+        <div id="heroboard_image_container">
+          <a id="heroboard_image">
+            <img src="/images/pages/home/hero_image.png" alt="create a more personalized and unique wedding registry with Knack"/>
+          </a>
+        </div>
+      </div>
+      <div id="video">
+      </div>
+      <div id="learn_more">
+        <a href="/info/tour"><img src="/images/pages/home/learn_more_lrg.png" width="147" height="32" alt="Learn More"  border="0"/></a>
+        <a href="/signup"><img src="/images/pages/home/sign_up_lrg.png" width="162" height="32" alt="Sign-up now" border="0"/></a>
+      </div>
+    </div>
+
+    <div id='home-calls-for-action'>
+      <table id="tbl-home">
+        <tbody>
+          <tr>
+            <td>
+              <div class="home-block" id="create-registry">
+                <div class="in-block">
+                  <p><span id="spn-crreg">Raise Money</span></p>
+                </div>
+                <a href="<%= signup_path %>">
+                  <div class="btn-in-block" id="div-btn-sign"></div>
+                </a>
+              </div>
+            </td>
+            <td>
+              <div class="home-block" id="find-registry">
+                <div class="in-block">
+                  <p><span id="spn-fndreg">Find Friends and Family</span></p>
+                  <p><span class="spn-text-in">Make payments towards whatever is most meaningful to those closest to you for free.</span></p>
+                  <form id="frm-home-find" action="<%= give_path %>" method="get">
+                    <input type="text" id="find" name="find"/>
+                    <a id="a-find" href="/">
+                      <div class="btn-in-block" id="div-btn-find">
+                      </div>
+                    </a>
+                    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
+                  </form>
+                </div>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>

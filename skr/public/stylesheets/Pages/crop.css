@@ -1,0 +1,29 @@
+.big_image
+{
+/*    border: 1px solid;*/
+}
+
+.productTD
+{
+    text-align: left;
+}
+
+.productTD table {
+    border: 0 none;
+    height: 124px;
+/*    margin: auto;*/
+    padding: 0;
+    table-layout: fixed;
+    width: 165px;
+}
+
+.imgTD {
+    border: 1px solid #CCCCCC;
+    height: 124px;
+    text-align: center;
+    width: 165px;
+}
+.imgTD img {
+    max-height: 124px;
+    max-width: 165px;
+}

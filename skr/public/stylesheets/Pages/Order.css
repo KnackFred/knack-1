@@ -1,0 +1,67 @@
+.div-block
+{
+    clear: both;
+    height: 20px;
+}
+
+.div-value
+{
+    float: left;
+}
+
+.div-key
+{
+    float: left;
+    width: 150px;
+}
+
+.div-key-value
+{
+    clear: both;
+}
+
+.div-info-header
+{
+    font-weight: bold;
+}
+
+
+.div-billing, .div-shipping, .div-payment, .div-shipment, .div-lines, .div-total, .div-buttons
+{
+    clear:both;
+    padding: 20px 0px 0px;
+}
+
+.BillingHeader, .ShippingHeader, .PaymentHeader, .ShipmentHeader, .LinesHeader
+{
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.total
+{
+    text-align: right;
+}
+
+.div-buttons
+{
+    text-align: right;
+}
+
+.cursive-text
+{
+    font-size: 12px;
+    font-style: italic;
+    clear: both;
+    margin-bottom: 10px;
+}
+
+.div-lines
+{
+    margin-bottom: 20px;
+    padding: 0px;
+}
+
+.tbl-lines td {
+    border: 1px solid #CBCDCF;
+}

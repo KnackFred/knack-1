@@ -1,0 +1,137 @@
+<% content_for :title do %>
+  Find a Registry | Knack Registry
+<% end %>
+<% content_for :head do %>
+        <%= stylesheet_link_tag "/stylesheets/Pages/Give.css"  %>
+        <%= javascript_include_tag "/javascripts/jquery.form.js"  %>
+        <%= javascript_include_tag "/javascripts/knack.registrant.give.js"  %>
+<%end%>
+
+  <% content_for :pagename do %>
+    <div>Find a Registry</div>
+  <% end %>
+
+  <div class="withBackground">
+    <div class="content">
+
+      <div class="mainBlock">
+        <div class="leftBlock">
+              <%= form_tag( give_path, :id => 'form_find', :method => "get") do%>
+                <div id="div_simple">
+                  <input id="tb_find" name="find" type="text" value="<%= @registry %>"/>
+                  <input id="sub-find" type="submit" class="btn-search" value=""/>
+                </div>
+              <% end %>
+
+             <% if !@registrants.blank? %>
+                <table id="tfind">
+                  <thead>
+                    <th class="fTD"></th>
+                    <th class="sTD">Registrant</th>
+                    <th class="tTD">Co - registrant</th>
+                    <th class="fourTD">Event date</th>
+                  </thead>
+
+                  <tbody>
+                    <% @registrants.each do |registrant| %>
+                      <tr>
+                        <td class="fTD">
+                          <div class="imageDIV">
+                            <a href="<%= registry_path(registrant.id) %>">
+                              <%= image_tag registrant.profile_image.url(:small) %>
+                            </a>
+                          </div>
+                        </td>
+
+                        <td class="sTD">
+                          <a href="<%= registry_path(registrant.id) %>">
+                            <%= registrant.FirstName %> <%= registrant.LastName %>
+                          </a>
+                        </td>
+
+                        <td class="tTD">
+                          <a href="<%= registry_path(registrant.id) %>">
+                            <%= registrant.FirstNameCoCreated %> <%= registrant.LastNameCoCreated %>
+                          </a>
+                        </td>
+
+                        <td class="fourTD">
+                          <a href="<%= registry_path(registrant.id) %>">
+                            <%= registrant.EventDate.nil? ? "" : registrant.EventDate.strftime('%m/%d/%Y') %>
+                          </a>
+                        </td>
+
+                      </tr>
+
+                    <% end %>
+                  </tbody>
+                </table>
+
+
+                <div class="div-pager">
+                    <%= will_paginate @registrants %>
+                </div>
+
+              <% else %>
+                <% if !@isPost.blank? %>
+                  <div class="not-found">
+                    <br/>
+                    <br/>
+                    Sorry, we were unable to find a registry to match your search.
+                    <br/>
+                    <br/>
+                    Please revise your search and try again.
+                  </div>
+                <% else %>
+                  <div class="no-search">
+                    <br/>
+                    <br/>
+                    <div class="section">
+                      <h3>Find the registry of an existing Knack user</h3>
+                      <div class="text">
+                        Enter their first or last name in the field above, and hit search.
+                      </div>
+                    </div>
+                    <div class="section">
+                      <h3>Order a gift from our catalog</h3>
+                      <div class="text">
+                        Anyone can order a gift from Knack, <a href="catalog">click here </a> to browse our catalog of unique gifts offered by small businesses.
+                      </div>
+                    </div>
+                    <div class="section">
+                      <h3>Create a registry on Knack</h3>
+                      <div class="text">
+                        If you want to learn more, you can <a href="/info/tour">take our tour</a> or <a href="/catalog">browse our catalog</a>.  When you are ready <a href="/signup"> sign-up </a> to create your registry on Knack.
+                      </div>
+                    </div>
+                  </div>
+                <% end %>
+              <% end %>
+        </div>
+
+        <div class="rightBlock">
+          <div class="topText">
+            <div class="div-block-text">
+                <div class="div-header">
+                  1. Fund something special
+                </div>
+                <div class="text">
+                  Contribute money towards physical gifts or experiences that are important to your friends and family.
+                </div>
+              </div>
+          </div>
+
+          <div class="centerText">
+            <div class="div-block-text">
+                <div class="div-header">
+                  2. Free for everyone
+                </div>
+                <div class="text">
+                  Knack is a free service.
+                </div>
+              </div>
+          </div>
+      </div>
+    </div>
+  </div>
+  </div>

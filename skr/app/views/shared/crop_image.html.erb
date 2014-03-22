@@ -1,0 +1,26 @@
+<% content_for :head do %>
+    <%= stylesheet_link_tag "/javascripts/jcrop/css/jquery.Jcrop.css" %>
+    <%= javascript_include_tag "/javascripts/jcrop/js/jquery.Jcrop.js" %>
+    <%= javascript_include_tag "/javascripts/controls/_crop.js"  %>
+    <%= javascript_include_tag "/javascripts/jquery.form.js"  %>
+<% end %>
+
+<div class="block-image">
+  <%= show_flash %>
+  <%= form_for model, :url => {:action => action} do |f| %>
+      <%= f.error_messages %>
+      <div class="image-container">
+        <%= image_tag model.send(attachment).url(:for_crop), :id => "crop-image"%>
+      </div>
+      <%= f.hidden_field :crop_x, :class => "crop_x" %>
+      <%= f.hidden_field :crop_y, :class => "crop_y"  %>
+      <%= f.hidden_field :crop_w, :class => "crop_w"  %>
+      <%= f.hidden_field :crop_h, :class => "crop_h"  %>
+      <script type="text/javascript" charset="utf-8">
+          var ratio_x = <%= model.ratio_x %>;
+          var ratio_y = <%= model.ratio_y %>;
+      </script>
+      <%= f.submit :class => "btn-save" %>
+  <% end %>
+</div>
+

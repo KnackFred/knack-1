@@ -1,0 +1,177 @@
+<% content_for :title do %>
+  Partners
+<% end %>
+<% content_for :head do %>
+        <%= stylesheet_link_tag "/stylesheets/jquery-ui-1.8.2.custom.css" %>
+        <%= stylesheet_link_tag "/stylesheets/Pages/Partners.css" %>
+        <%= stylesheet_link_tag "/stylesheets/Controls/Table.css" %>
+        <%= javascript_include_tag "/javascripts/jquery-ui-1.8.2.custom.min.js"  %>
+        <%= javascript_include_tag "/javascripts/datepicker.js"  %>
+        <%= javascript_include_tag "/javascripts/pages/accaunts.js"  %>
+        <%= javascript_include_tag "/javascripts/pages/partners.js"  %>
+        <%= javascript_include_tag "/javascripts/knack.pager.js"  %>
+<%end%>
+  <% content_for :pagename do %>
+    <div>Partners</div>
+  <% end %>
+
+  <% content_for :registry do %>
+      <div class="bl-block">
+        <div class="blue-line">
+          <div class="section-header">
+            Filter by:
+          </div>
+        </div>
+      </div>
+  <% end %>
+
+  <% content_for :background do %>
+      <div class="bl-block">
+        <div class="blue-line">
+          <input type="hidden" value="fghj"/>
+        </div>
+      </div>
+  <% end %>
+
+  <div class="withBackground">
+    <div class="content">
+      <div class="mainBlock">
+
+        <form action="/administrative/partners" method="post" id="frm-pager">
+          <input type="hidden" id="countP" name="countP" value="<%= @pager.page_size%>"/>
+          <input type="hidden" id="currentP" name="currentP" value="<%= @pager.current_page%>"/>
+          <input type="hidden" id="at" name="authenticity_token" value="<%= form_authenticity_token %>" />
+          <div id="filter">
+            <div class="fline">
+              <%#*-----------------------------%>
+              <%#*ID%>
+              <%#*-----------------------------%>
+              <div class="block-id">
+                <span>Id</span>
+                <%= text_field :filter, :id %>
+              </div>
+
+              <%#*-----------------------------%>
+              <%#*Partner%>
+              <%#*-----------------------------%>
+              <div class="block-partner">
+                <span>Partner</span>
+                <%= text_field :filter, :partner %>
+              </div>
+
+              <%#*-----------------------------%>
+              <%#*DateFrom%>
+              <%#*-----------------------------%>
+              <div class="block-date">
+                <span>Partner created from</span>
+                <%= text_field :filter, :date_from %>
+              </div>
+
+              <%#*-----------------------------%>
+              <%#*DateTo%>
+              <%#*-----------------------------%>
+              <div class="block-date-to">
+                <span>to</span>
+                <%= text_field :filter, :date_to %>
+              </div>
+
+              <%#*-----------------------------%>
+              <%#*Status%>
+              <%#*-----------------------------%>
+              <div class="block-status">
+                <span>Status</span>
+                <%= select(:filter, :status_id, @statuses.collect {|s| [s.Name, s.id.to_i]}) %>
+              </div>
+
+              <%#*-----------------------------%>
+              <%#*Report%>
+              <%#*-----------------------------%>
+              <div class="block-status">
+                <span>Show Report</span>
+                <%= check_box_tag(:show_report, "yes", @show_report) %>
+              </div>
+
+
+            </div>
+          </div>
+            <div class="div-btn-filter">
+                <%= button_to("Filter", {:controller => self.params[:controller], :action => "partners"}, :method => 'get') %>
+            </div>
+        </form>
+
+
+
+        <div class="table-container">
+          <table id="product-table" >
+            <thead>
+              <th class="id-column">Id</th>
+              <th class="title-column"> Date</th>
+              <th class="status-column">Partner</th>
+              <th>Active/Closed</th>
+              <th>Activated?</th>
+              <th>Gifts</th>
+              <th>Selected</th>
+              <th>Purchased</th>
+              <th>Ordered</th>
+              <th>#Logins</th>
+            </thead>
+            <tbody>
+              <% @partners.each do |partner| %>
+                <tr class="partner">
+                  <td><%=  partner.id%></td>
+                  <td><%=  Time.parse(partner.created_at.to_s).strftime("%m/%d/%Y")%></td>
+                  <td><a style="text-decoration: underline" href="/administrative/topartner/<%= partner.id %>"><%=  (partner.BillingName.blank? ? '' : partner.BillingName) + ' ' + (partner.BillingLastName.blank? ? '' : partner.BillingLastName) %></a></td>
+                  <td><a href="#" style="text-decoration: underline" class="active-link" dataid="<%= partner.id %>"><%=  partner.IsDeleted ? 'Deleted' : 'Active'%></a></td>
+                  <td><a href="#" style="text-decoration: underline" class="activated-link" dataid="<%= partner.id %>"><%=  partner.IsActivated ? 'Activated' : 'Not Activated'%></a></td>
+                  <td><%= partner.get_count_products if @show_report %></td>
+                  <td><%= partner.get_count_selected if @show_report %></td>
+                  <td><%= partner.get_count_purchased if @show_report %></td>
+                  <td><%= partner.get_count_ordered if @show_report %></td>
+                  <td><%= partner.Logins %></td>
+                </tr>
+              <%end%>
+            </tbody>
+          </table>
+
+
+          <div id="div-pager">
+                 <% if @pager.count_page > 1 %>
+                      <%= link_to "Previous", {:controller => self.params[:controller], :action => self.params[:action], :id => @pager.prev_page}, :pageid => @pager.prev_page%>
+                      <% @pager.left_pager.each do |page|%>
+                        <% if page.to_i == @pager.current_page.to_i%>
+                            <b>
+                        <% end %>
+                              <%= link_to page, {:controller => self.params[:controller], :action => self.params[:action], :id => page}, :pageid => page%>
+                        <% if page.to_i == @pager.current_page.to_i%>
+                            </b>
+                        <% end %>
+                      <%end%>
+
+                      <% if @pager.right_pager.count > 0 %>
+                       ...
+                        <% @pager.right_pager.each do |page|%>
+                          <% if page.to_i == @pager.current_page.to_i%>
+                            <b>
+                          <% end %>
+                              <%= link_to page, {:controller => self.params[:controller], :action => self.params[:action], :id => page}, :pageid => page%>
+                          <% if page.to_i == @pager.current_page.to_i%>
+                            </b>
+                          <% end %>
+                        <% end %>
+                      <%end%>
+
+                      <%= link_to "Next", {:controller => self.params[:controller], :action => self.params[:action], :id => @pager.next_page}, :pageid => @pager.next_page%>
+                <% end %>
+
+                <span class="span-per-page">Items per page</span>
+                <select id="per_page">
+                  <option value="50">50</option>
+                  <option value="100">100</option>
+                  <option value="150">150</option>
+                  <option value="200">200</option>
+                </select>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

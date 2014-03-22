@@ -1,0 +1,87 @@
+.tbl-profile
+{
+    width: 100%;
+}
+
+#content #change-picture {
+    margin: 4px 0 0 2px;
+    text-decoration: underline;
+}
+.rigthPane{
+
+}
+
+.rigthPane textarea{
+    font-family: Arial;
+    border: 1px solid #cccccc;
+    width: 216px;
+    margin-bottom: 10px;
+}
+
+.div-btn-save
+{
+    margin:0 0 0 334px;
+}
+
+.emptyBlock{
+    height: 25px;
+}
+
+.passwordBlock{
+    display:none;
+}
+
+#checkName{
+    margin-bottom: 27px;
+}
+
+#profile-l
+{
+    float: left;
+    width: 300px;
+}
+
+#profile-r
+{
+    width: 600px;
+    margin-left: 340px;
+}
+
+.leftMenu
+{
+    padding: 0 0 0;
+}
+
+
+
+.checkBlock
+{
+    height: 60px;
+}
+
+.div-profile
+{
+    margin-left: 40px;
+}
+
+
+#help {
+    margin-left: 10px;
+}
+
+.header {
+    width: 490px;
+    padding: 8px;
+    background: #FFFFFF;
+    border: 1px solid #666666;
+    border-radius: 15px;
+    display: none;
+}
+
+.sample-registry-info .sample-registry-help {
+    width: 70px;
+}
+
+.sample-registry-info .sample-registry-checkbox {
+    padding-left: 40px;
+}

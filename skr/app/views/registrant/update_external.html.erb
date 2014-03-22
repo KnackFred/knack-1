@@ -1,0 +1,66 @@
+<% content_for :title do %>
+    Update External Items  | Knack Registry
+<% end %>
+<% content_for :head do %>
+    <%= stylesheet_link_tag "/stylesheets/Pages/Registrant/Update_External.css" %>
+<%end%>
+
+<% content_for :pagename do %>
+    <div>Update External Items</div>
+<% end %>
+
+<%#*-----------------------------%>
+<%#*Content%>
+<%#*-----------------------------%>
+
+<div class="withBackground">
+  <div class="content">
+    <p>
+      Using this page you can quickly update existing gifts to external gifts.  When buying external gifts guests will be taken to the supplied url to purchase the item.
+    </p>
+    <div class="mainBlock">
+      <%= form_tag :url => "/registrant/update_external", :method => :put do  %>
+          <%=  submit_tag "Save Changes" %>
+          <span class="notice"> <%=  notice %> </span>
+          <% unless @valid %>
+              <span class="field_with_errors"> There was an issue. Please check that all external items have a URL and Name </span>
+          <% end %>
+          <table id="items">
+            <tr>
+              <th>
+                Name
+              </th>
+              <th>
+                Type
+              </th>
+              <th>
+                External Item URL
+              </th>
+              <th>
+                External Site Name
+              </th>
+            </tr>
+
+            <% @products.each do |prod| %>
+                <%= fields_for "products[]", prod do |p| %>
+                    <tr class="gift">
+                      <td>
+                        <%= p.text_field :Name, :class => "name" %>
+                      </td>
+                      <td>
+                        <%= p.select :external, [['Cash',false],['External',true]] %>
+                      </td>
+                      <td>
+                        <%= p.url_field :source_url, :class => "source-url" %>
+                      </td>
+                      <td>
+                        <%= p.text_field :source_name, :class => "source-name" %>
+                      </td>
+                    </tr>
+                <% end %>
+            <% end %>
+          </table>
+      <% end %>
+    </div>
+  </div>
+</div>

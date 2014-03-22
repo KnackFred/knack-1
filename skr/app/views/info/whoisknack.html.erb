@@ -1,0 +1,55 @@
+<% content_for :title do %>
+    About us | Knack Registry
+<% end %>
+<% content_for :head do %>
+    <%= stylesheet_link_tag "/stylesheets/Global.css" %>
+    <%= stylesheet_link_tag "/stylesheets/Pages/AboutUs.css" %>
+
+<%end%>
+<div class="div-c">
+
+  <div class="topMenu">
+    <table cellpadding="0px" cellspacing="0px">
+      <tr>
+        <td class="pageNameTD">
+          Who Runs Knack?
+        </td>
+        <td class="topMenuTD">
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="loginContent">
+
+    <table cellpadding="0px" cellspacing="0px" border="0">
+      <tr>
+        <td class="descriptionTD">
+          <%= render :partial => 'info_links', :locals => {:selected => "Who"}%>
+        </td>
+        <td class="rightPane">
+          <font color="#6699cc" >Fred McFerran - Co-Founder</font><br/>
+          <p>
+            Fred is an entrepreneur, skier, and technologist who likes to introduce people to technologies that make their
+            lives easier. Fred created Knack to help make it easier for people to recieve payments from friends and family. 
+            The big challenge was making the service free, and in 2014 Fred partnered with Venmo in order to make this possible.
+          </p>
+          <font color="#6699cc" >John Shriver-Blake - Co-Founder and Advisor</font><br/>
+          <p>
+            John is an innovative product leader with a love for bringing compelling and successful products to market. John
+            joined Knack to bring his technical expertise, product strategy insight and software design acumen to bear on this
+            exciting opportunity to change the payment landscape. It is safe to say that without John this site would never have 
+            gotten off the ground.
+          </p>
+          <br/><br/>
+        </td>
+      </tr>
+      <tr>
+        <td></td>
+
+      </tr>
+    </table>
+  </div>
+</div>
+
+

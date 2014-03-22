@@ -1,0 +1,130 @@
+<% content_for :title do %>
+  Profile
+<% end %>
+<% content_for :head do %>
+        <%= stylesheet_link_tag "/stylesheets/Controls/Table.css" %>
+        <%= stylesheet_link_tag "/stylesheets/Pages/Profile.css" %>
+        <%= stylesheet_link_tag "/stylesheets/Pages/Administrative.Profile.css" %>
+        <%= javascript_include_tag "/javascripts/pages/Partnerprofile.js"  %>
+<%end%>
+  <% content_for :pagename do %>
+    <div>Profile</div>
+  <% end %>
+
+  <% content_for :registry do %>
+      <div class="bl-block">
+        <div class="blue-line">
+          <div class="section-header">
+          </div>
+        </div>
+      </div>
+  <% end %>
+
+  <% content_for :background do %>
+      <div class="bl-block">
+        <div class="blue-line">
+          <input type="hidden" value="fghj"/>
+        </div>
+      </div>
+  <% end %>
+
+  <div class="withBackground">
+    <div class="content">
+      <div class="mainBlock">
+        <table class="tbl-profile" cellpadding="0px" cellspacing="0px" border="0px">
+          <tr>
+            <td class="leftMenu">
+							<%= render "left_menu" %>
+            </td>
+            <td class="rigthPane">
+
+              <div class="div-profile">
+                <% unless @is_saved.blank? %>
+                  <div class="success-save">
+                    <img class="img-apply" src="/images/apply.png"/><div class="success-text">Your changes has been saved.</div>
+                  </div>
+                <% end %>
+                <%= form_tag({:controller => :administrative, :action => :profile}, :id => 'profile_form') do%>
+                  <div id="div-profile">
+                      <%#*------------------------------%>
+                      <%#*Email%>
+                      <%#*------------------------------%>
+                      <div class="div-block">
+                        <div class="editor-label">
+                          <label for="Email">Email<i>(Login)</i> *</label>
+                        </div>
+                        <div class="editor-field">
+                          <%=text_field :partner, :Email, :disabled => :true %>
+                        </div>
+                        <div class="editor-error">
+                          <%= error_message_on :partner, :Email, :prepend_text => StaticDataUtilities.get_prepare_error_message %>
+                        </div>
+                      </div>
+
+                      <%#*------------------------------%>
+                      <%#*Set new password%>
+                      <%#*------------------------------%>
+                      <div class="div-block">
+                        <div class="editor-label">
+                          <label>Set new password </label>
+                        </div>
+                        <div class="editor-field">
+                          <input type="checkbox" id="passwordCheck" <%= @passCheck %>></input>
+                        </div>
+                      </div>
+
+
+                      <div class="passwordBlock">
+                        <%#*------------------------------%>
+                        <%#*Old password%>
+                        <%#*------------------------------%>
+                        <div class="div-block">
+                          <div class="editor-label">
+                                <label for="OldPassword">Old password *</label>
+                          </div>
+                          <div class="editor-field">
+                            <input type="password" id="oldpassword" name="oldpassword"/>
+
+                          </div>
+                          <div class="editor-field">
+                            <span class="error-text"><%= @err_oldpassword %></span>
+                          </div>
+                        </div>
+
+                        <%#*------------------------------%>
+                        <%#*New password%>
+                        <%#*------------------------------%>
+                        <div class="div-block">
+                          <div class="editor-label">
+                            <label for="NewPassword">New password *</label>
+                          </div>
+                          <div class="editor-field">
+                            <input type="password" id="newpassword" name="newpassword"/>
+
+                          </div>
+                          <div class="editor-field">
+                            <span class="error-text"><%= @err_newpassword %></span>
+                          </div>
+                        </div>
+
+                        <div class="emptyBlock">
+                        </div>
+                      </div>
+
+                      <div class="div-block">
+                        <div class="div-btn-save">
+                          <input type="submit" class="btn-save" value=" "/>
+                        </div>
+                      </div>
+
+                  </div>
+                <%end%>
+
+              </div>
+
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>

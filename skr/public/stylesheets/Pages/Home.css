@@ -1,0 +1,138 @@
+#content {
+    margin-top: 40px;
+}
+
+#home-calls-for-action {
+    padding: 2px 4px 5px 3px;
+}
+
+#home-image-links img.not_last {
+    margin-right: 4px;
+}
+
+.sample_reg {
+    width: 227px;
+    height: 236px;
+    float: left;
+    margin-right: 12px;
+}
+
+.item, .item-last{
+    float: left;
+    width: 152px;
+    height: 112px;
+    margin-bottom: 12px;
+    /*opacity : 0.8;*/
+    /*filter: alpha(opacity=80); // msie*/
+}
+
+.item
+{
+    margin-right: 12px;
+}
+
+.clear {
+    clear: both;
+}
+
+
+/********************************************************
+*Styles for heroboard
+********************************************************/
+
+img{
+    opacity:inherit;
+    filter:inherit;
+}
+
+.div-c {
+    padding-left: 42px;
+
+}
+
+#heroboard_container{
+    width:890px;
+    height:500px;
+    margin-top:0;
+    margin-bottom:70px;
+    z-index:1;
+    font-size: 55px;
+    float: left;
+    position: relative;
+}
+
+#static {
+    position:relative;
+    width:890px;
+    height:380px;
+    margin-top: 61px;
+}
+
+#heroboard_text{
+    position: absolute;
+    top: 14px;
+    left: 10px;
+    width: 360px;
+}
+
+.heroboard_headline{
+    color:#6699EE;
+    font-family: 'HelveticaNeueW01-Thin', sans-serif;
+    font-size:1em;
+    line-height:1.1em;
+    letter-spacing:1px;
+    font-weight:normal;
+    margin-top:0;
+    margin-bottom: .34em;
+}
+
+.heroboard_copy{
+    color:#6699EE;
+    font-family: 'HelveticaNeueW01-Thin', sans-serif;
+    line-height:1.2em;
+    font-size:.4em;
+    letter-spacing:0.5px;
+    font-weight:normal;
+}
+
+/*.heroboard_copy em{
+    display: inline-block;
+    width: 238px;
+    height:35px;
+    background-image:url(/images/pages/home/unique_wedding_registry.png);
+    overflow: hidden;
+    text-indent: -9999px;
+    vertical-align: bottom;
+}*/
+
+#learn_more{
+    position: absolute;
+    bottom: 96px;
+    left: 12px;
+    width: 340px;
+    height: 32px;
+    z-index:1;
+}
+
+#heroboard_image_container{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width:468px;
+    height:348px;
+    margin:0;
+}
+
+#heroboard_image img {
+    width: 468px;
+    height: 348px;
+}
+
+#video {
+    position: absolute;
+    top: 0;
+    display: none;
+    width: 890px;
+    height: 500px;
+}
+

@@ -1,0 +1,21 @@
+.block-title
+{
+    width: 220px;
+}
+
+.block-title input
+{
+    width: 150px;
+}
+
+
+.block-name
+{
+    width: 250px;
+    float:left;
+}
+
+.block-name input
+{
+    width: 150px;
+}

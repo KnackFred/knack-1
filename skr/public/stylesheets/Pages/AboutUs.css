@@ -1,0 +1,128 @@
+
+.div-c{
+    font-size: 12px;
+    color:#8C8C8C;
+    font-family:Helvetica;
+    font-size:12px;
+    line-height:20px;
+}
+
+.loginContent{
+    width: 915px;
+    margin: 35px auto 30px auto;
+}
+
+.descriptionTD{
+    width: 235px;
+    vertical-align: top;
+    text-align: left;
+    padding: 1px 0px 0px 0px;
+}
+
+.descriptionTD a{
+    font-size: 11px!important;
+    color: #666666;
+}
+
+.div-link-menu
+{
+    margin-left: 2px;
+}
+
+.link-menu
+{
+    height: 15px;
+}
+
+.current-page a
+{
+    color: #6699cc;
+    font-weight: bold;
+}
+
+.rightPane{
+    width: 684px;
+    vertical-align: top;
+    padding-left: 0px;
+}
+
+.leftPane img{
+    margin-top: 20px;
+    width: 230px;
+    height: 150px;
+}
+
+.head{
+    text-decoration: underline;
+    font-weight: bold;
+    line-height: 40px;
+}
+
+.head2{
+    color: #6699cc;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/*ul{
+    list-style-type: disc;
+}*/
+
+/*img{
+    float: left;
+    margin-right: 20px;
+}*/
+
+
+.topMenu{
+    width: 915px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.topMenu table{
+    width: 100%;
+    border: 0px;
+}
+
+.topMenu table .pageNameTD{
+    width: 415px;
+    text-align: left;
+    padding-left: 3px;
+    vertical-align: bottom;
+    font-family: Helvetica,sans-serif;
+    font-size: 32px;
+    font-weight: 100;
+    color: #6699cc;
+}
+
+.topMenu table .topMenuTD{
+    width: 500px;
+    text-align: right;
+    padding-right: 9px;
+    vertical-align: bottom;
+    padding-bottom: 4px;
+}
+
+#content
+{
+    margin-top: 46px;
+}
+
+.pageName
+{
+    font-size: 20px!important;
+    font-weight: bold;
+    margin: 4px auto 13px;
+}
+
+.contest-highlights li
+{
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.testimonial-img {
+    float: left;
+    margin-right: 15px;
+}

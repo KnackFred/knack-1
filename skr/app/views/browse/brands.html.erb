@@ -1,0 +1,52 @@
+<% content_for :title do %>
+    Unique Brands For Your Wedding Registry | Knack Registry
+<%end%>
+<% content_for :title do %>
+    Our Brands | Knack Registry
+<%end%>
+<% content_for :head do %>
+    <%= stylesheet_link_tag "/stylesheets/pages/browse/Catalog.css"%>
+    <%= stylesheet_link_tag "/stylesheets/Pages/Stores.css" %>
+    <%= javascript_include_tag "/javascripts/pages/stores.js"  %>
+<%end%>
+
+<% content_for :pagename do %>
+    <div>Brands</div>
+<% end %>
+
+
+<div class="withBackground">
+  <div class="content">
+    <table class="list-links">
+      <tbody>
+      <tr>
+        <% i = 0 %>
+
+        <% @array.each do |b| %>
+            <% if i == 0 %>
+                <td>
+            <% end %>
+
+            <div class="brand">
+              <%=  link_to b.Name, brand_path(b.id), :target => "_parent"%>
+            </div>
+
+            <% i += 1 %>
+
+            <% if i == (@array.length / 4.0).ceil %>
+                <% i = 0 %>
+                </td>
+            <% end %>
+
+        <% end %>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<%= form_tag catalog_path, :id => 'frm-category' do %>
+    <%= hidden_field_tag 'param', @param %>
+    <%= hidden_field_tag 'valparam', @valparam %>
+    <%= hidden_field_tag 'authenticity_token', form_authenticity_token %>
+<%end%>

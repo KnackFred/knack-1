@@ -1,0 +1,135 @@
+.productsTable{
+    margin-top: 10px;
+    margin-left: 15px;
+    width: 665px;
+    clear: both;
+}
+
+.tablePurchased{
+    width: 100%;
+    font-size: 11.5px;
+}
+
+
+.gift-entry {
+    height: 120px;
+    vertical-align: top;
+}
+
+.gift-entry .image{
+    width: 104px!important;
+    height: 87px !important;
+    table-layout: fixed;
+    padding-right: 20px;
+    float: left;
+    background-color: #fff;
+}
+
+.gift-entry .type img{
+    vertical-align: top;
+}
+
+.gift-entry-details {
+    float: left;
+}
+
+
+.gift-entry-details .name{
+    width: 534px;
+    font-weight: bold;
+    font-size: 14px;
+    background: #edf0f2;
+    padding: 2px;
+    margin-bottom: 4px;
+}
+
+.info{
+    width: 155px;
+    vertical-align: top;
+    float: left;
+    padding-left: 2px;
+}
+
+.info .staus{
+    font-weight: bold;
+}
+
+.amount{
+    width: 130px;
+    vertical-align: top;
+    float: left;
+}
+
+.contributions{
+    width: 130px;
+    vertical-align: top;
+    float: left;
+}
+
+.info .status{
+    font-weight: bold;
+}
+
+.actions, .confirm{
+    width: 110px;
+    vertical-align: top;
+    float: left;
+}
+
+.confirm {
+    background: #edf0f2;
+    padding: 4px;
+    text-align: center;
+}
+
+.confirm .actions{
+    font-weight: bold;
+}
+
+#order{
+    float: right;
+}
+
+#filter{
+    float: left;
+    margin-left: 132px;
+}
+
+#order, #filter{
+    font-size: 10.5px;
+    font-weight: bold;
+    text-align: right;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#order a, #filter a {
+    font-weight: normal;
+    font-size: 10.5px;
+}
+
+#order span, #filter span {
+    margin-left: 10px;
+}
+
+.pagination{
+    margin: 0 9px 15px;
+    float: right;
+    font-size: 11.5px;
+}
+
+.pagination a{
+    text-decoration: none;
+
+}
+.pagination a, .pagination span{
+    padding: 0.2em 0.3em
+}
+
+.pagination .current {
+    font-weight: bold;
+}
+
+#simplemodal-data {
+    overflow-x: hidden;
+}

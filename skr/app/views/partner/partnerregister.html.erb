@@ -1,0 +1,94 @@
+<%= content_for :title do %>
+  Partner Sign Up | Knack Registry
+<% end %>
+<%= content_for :head do %>
+  <%= stylesheet_link_tag "/stylesheets/Pages/Login.css" %>
+  <%= javascript_include_tag "/javascripts/jquery.form.js"  %>
+<%  end %>
+
+  <div class="div-container-login">
+  <div class="pageName">Partner Sign Up</div>
+  <%= form_tag :controller => :partner, :action => :partnerregister do%>
+    <div id="div-reg">
+
+         <div class="div-block">
+          <div class="editor-label">
+                <label for="FirstName">First Name</label>
+          </div>
+          <div class="editor-field">
+           <%=text_field :partner, :BillingName-%>
+
+          </div>
+          <div class="editor-error">
+            <%= error_message_on :partner, :BillingName, :prepend_text => StaticDataUtilities.get_prepare_error_message %>
+          </div>
+        </div>
+
+
+        <div class="div-block">
+          <div class="editor-label">
+            <label for="LastName">Last Name</label>
+          </div>
+          <div class="editor-field">
+            <%=text_field :partner, :BillingLastName-%>
+
+          </div>
+          <div class="editor-error">
+            <%= error_message_on :partner, :BillingLastName, :prepend_text => StaticDataUtilities.get_prepare_error_message %>
+          </div>
+        </div>
+
+        <div class="div-block">
+          <div class="editor-label">
+            <label for="Email">Email<i>(login)</i></label>
+          </div>
+          <div class="editor-field">
+            <%=text_field :partner, :Email %>
+
+          </div>
+          <div class="editor-error">
+            <%= error_message_on :partner, :Email, :prepend_text => StaticDataUtilities.get_prepare_error_message %>
+          </div>
+        </div>
+
+        <div class="div-block">
+          <div class="editor-label">
+                <label for="Password">Password</label>
+          </div>
+          <div class="editor-field">
+            <%=password_field :partner, :Password-%>
+
+          </div>
+          <div class="editor-error">
+            <%= error_message_on :partner, :Password, :prepend_text => StaticDataUtilities.get_prepare_error_message -%>
+          </div>
+        </div>
+
+
+        <div class="div-block">
+          <div class="editor-label">
+            <label for="ConfPassword">Confirm Password</label>
+          </div>
+          <div class="editor-field">
+            <%=password_field :partner, :Password_confirmation -%>
+
+          </div>
+          <div class="editor-error">
+            <%= error_message_on :partner, :Password_confirmation, :prepend_text => StaticDataUtilities.get_prepare_error_message -%>
+          </div>
+        </div>
+
+
+        <div id="div-accept">
+          <%= check_box :partner, :AgreeWithSitePolicy %> <span>I accept the </span> <a target="_blank" href='/info/policy'><span class="sitePolicyHref">Knackregistry.com's website policy</span></a>
+                <%= error_message_on :partner, :AgreeWithSitePolicy, :prepend_text => StaticDataUtilities.get_prepare_error_message %>
+        </div>
+
+
+        <div id="div-btn-reg">
+               <%=submit_tag 'Register'-%>
+        </div>
+
+    </div>
+  <%end%>
+</div>

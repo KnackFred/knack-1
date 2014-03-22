@@ -1,0 +1,134 @@
+<% content_for :title do %>
+  View All Transactions | Knack Registry
+<% end %>
+<% content_for :head do %>
+        <%= stylesheet_link_tag "/stylesheets/Pages/Purchased.css" %>
+        <%= stylesheet_link_tag "/stylesheets/Pages/ViewAll.css" %>
+        <%= javascript_include_tag "/javascripts/jquery.form.js"  %>
+        <%= javascript_include_tag "/javascripts/json2.js"  %>
+        <%= javascript_include_tag "/javascripts/jquery.simplemodal.1.4.1.min.js"  %>
+        <%= javascript_include_tag "/javascripts/knack.registrant.receive.js"  %>
+        <%= javascript_include_tag "/javascripts/knack.pager.js"  %>
+        <%#= javascript_include_tag "/javascripts/knackregistry.registrant.pager.js"  %>
+
+<%end%>
+  <% content_for :pagename do %>
+    <div>View All Transactions</div>
+  <% end %>
+  <% content_for :registry do %>
+    <%= @registrant.name_registry %>
+  <% end %>
+  <% content_for :background do %>
+    <% if !@registrant.is_invited? %>
+        <%= render :partial => 'your_credit', :object => @registrant.get_queue %>
+    <% end %>
+<% end %>
+
+  <%#*-----------------------------%>
+  <%#*Content%>
+  <%#*-----------------------------%>
+<div class="withBackground">
+  <div class="content">
+     <div class="mainBlock">
+      <table cellpadding="0px" cellspacing="0px" border="0px">
+        <tr>
+          <td class="leftMenu">
+            <%= render "left_nav" %>
+
+          </td>
+          <td class="rigthPane">
+
+            <div id="tabs">
+              <div class="wrap-header-table">
+                <div class="header-all">
+                  All Transaction
+                </div>
+              </div>
+
+              <div class="wrap-table">
+                <table class="tbl-all">
+                  <thead>
+                    <tr>
+                      <td class="td-date">Date</td>
+                      <td class="td-description">Description</td>
+                      <%#*<td class="td-details">Details</td>%>
+                      <td class="td-type">Type</td>
+                      <td class="td-amount">Amount</td>
+                      <td class="td-credit">Credit</td>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% @transactions.each do |t| %>
+                      <tr>
+                        <td><%= Time.parse(t.Date.to_s).strftime("%m/%d/%Y") %></td>
+                        <td>
+                          <%= Transactions::TYPES[t.Type] %><br/>
+                          <%= t.product_names + " ##{t.ID}" %>
+                        </td>
+                        <td><%= Transactions::LINES[t.Type] %></td>
+                        <td><%= formatted_price(t.Amount) %></td>
+                        <td><%= formatted_price(t.Credit) %></td>
+                      </tr>
+                    <% end %>
+                  </tbody>
+                </table>
+              </div>
+              <div id="div-pager">
+                  <%= form_tag({:controller => self.params[:controller], :action => self.params[:action]}, :id => 'frm-pager') do  %>
+                    <input type="hidden" id="countP" name="countP" value="<%= @pager.page_size%>"/>
+                    <input type="hidden" id="currentP" name="currentP" value="<%= @pager.current_page%>"/>
+                    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
+                  <% end %>
+
+                   <% if @pager.count_page > 1 %>
+                        <%= link_to "Previous", {:controller => self.params[:controller], :action => self.params[:action], :id => @pager.prev_page}, :pageid => @pager.prev_page%>
+                        <% @pager.left_pager.each do |page|%>
+                          <% if page.to_i == @pager.current_page.to_i%>
+                              <b>
+                          <% end %>
+                                <%= link_to page, {:controller => self.params[:controller], :action => self.params[:action], :id => page}, :pageid => page%>
+                          <% if page.to_i == @pager.current_page.to_i%>
+                              </b>
+                          <% end %>
+                        <%end%>
+
+                        <% if @pager.right_pager.count > 0 %>
+                         ...
+                          <% @pager.right_pager.each do |page|%>
+                            <% if page.to_i == @pager.current_page.to_i%>
+                              <b>
+                            <% end %>
+                                <%= link_to page, {:controller => self.params[:controller], :action => self.params[:action], :id => page}, :pageid => page%>
+                            <% if page.to_i == @pager.current_page.to_i%>
+                              </b>
+                            <% end %>
+                          <% end %>
+                        <%end%>
+
+                        <%= link_to "Next", {:controller => self.params[:controller], :action => self.params[:action], :id => @pager.next_page}, :pageid => @pager.next_page%>
+                  <% end %>
+
+                  <span class="span-per-page">Product per page</span>
+                  <select id="per_page">
+                    <option value="8">8</option>
+                    <option value="16">16</option>
+                    <option value="24">24</option>
+                    <option value="50">50</option>
+                  </select>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+    <form id="pager" name="edit" action="/registrant/ordered" method="post" style="display: none">
+      <div id="div-edit-r2p">
+        <input type="hidden" id="countP" name="countP" value="<%= @page_size%>"/>
+        <input type="hidden" id="currentP" name="currentP" value="<%= @current_page%>"/>
+        <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
+      </div>
+    </form>
+

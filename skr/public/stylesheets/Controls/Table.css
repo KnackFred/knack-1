@@ -1,0 +1,116 @@
+/******************* table ***************/
+.table-container
+{
+    clear: both;
+}
+
+#product-table
+{
+    width: 100%;
+    text-align: left;
+}
+
+#product-table thead
+{
+    background: #DAE5F3;
+/*    background: url("/images/design/blue_line.png") repeat scroll 0 0;*/
+    height: 27px;
+}
+
+#product-table td,th
+{
+    border: 1px solid #CBCDCF;
+}
+
+#product-table td
+{
+    font-size: 14px;
+    color: #A1A1A1;
+}
+
+#product-table tbody tr:nth-child(odd)
+{
+    background: #FFFFDE;
+}
+
+.id-column
+{
+    width: 30px;
+}
+
+.title-column
+{
+    width: 100px;
+}
+/***************** end table ************/
+
+.tbl-lines thead
+{
+    background: url("/images/design/blue_line.png") repeat scroll 0 0;
+    height: 20px;
+}
+
+.tbl-lines td
+{
+    border: 1px solid #000000;
+}
+
+.tbl-lines th
+{
+    text-align: left;
+}
+
+.tbl-lines tr:nth-child(odd)
+{
+    background: #FFFFDE;
+}
+
+/******************** table general ****************/
+.table-general
+{
+    width: 376px;;
+    text-align: left;
+}
+
+.table-general thead
+{
+    background: #DAE5F3;
+    height: 23px;
+}
+
+.table-general tr
+{
+    height: 23px;
+}
+
+.table-general td,th
+{
+    border: 1px solid #CBCDCF;
+}
+
+.table-general td
+{
+    font-size: 14px;
+    color: #A1A1A1;
+}
+
+.table-general .td-delete
+{
+    width: 50px;
+}
+
+.table-general a
+{
+    text-decoration: underline!important;
+}
+
+.table-general #tr-add, #tr-add-color, #tr-add-store, #tr-add-param
+{
+    display: none;
+}
+
+.div-tbl
+{
+    width: 390px;
+    float: left;
+}

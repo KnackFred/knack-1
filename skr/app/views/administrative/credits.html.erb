@@ -1,0 +1,322 @@
+<% content_for :title do %>
+  View payments
+<% end %>
+<% content_for :head do %>
+        <%= stylesheet_link_tag "/stylesheets/Controls/Table.css" %>
+        <%= stylesheet_link_tag "/stylesheets/Pages/Order.css" %>
+<%end%>
+  <% content_for :pagename do %>
+    View payments
+  <% end %>
+
+ <% content_for :registry do %>
+      <div class="bl-block">
+        <div class="blue-line">
+
+        </div>
+      </div>
+  <% end %>
+
+  <% content_for :background do %>
+      <div class="bl-block">
+        <div class="blue-line">
+          <input type="hidden" value="fghj"/>
+        </div>
+      </div>
+  <% end %>
+
+  <div class="withBackground">
+    <div class="content">
+      <div class="mainBlock">
+        <table cellpadding="0px" cellspacing="0px" border="0px">
+            <tr>
+              <td class="leftMenu">
+                <%= render "left_menu" %>
+              </td>
+              <td class="rigthPane">
+                  <%#*--------------------------------%>
+                  <%#* Lines %>
+                  <%#*--------------------------------%>
+                  <div class="div-lines">
+                    <div class="div-info-header">
+                      Lines
+                    </div>
+
+                    <%#*--------------------------------%>
+                    <%#* Table lines %>
+                    <%#*--------------------------------%>
+                    <div class="div-table">
+                      <table class="tbl-lines">
+                        <thead>
+                          <% if @withdrawal.blank? %>
+                            <th>
+                              ID
+                            </th>
+                            <th>
+                              Name
+                            </th>
+                            <th>
+                              Gift type
+                            </th>
+                            <th>
+                              Amount
+                            </th>
+                            <th>
+                              Cost
+                            </th>
+                          <% else %>
+                            <th>ID</th>
+                            <th>Gross</th>
+                            <th>Knack Fee</th>
+                            <th>Net</th>
+                            <th>Payment</th>
+                          <% end %>
+                        </thead>
+
+                        <tbody>
+                          <% if !@o2p.blank? %>
+                            <%#*------------------%>
+                            <%#*Products%>
+                            <%#*------------------%>
+                            <tr>
+                              <%#*------------------%>
+                              <%#*ID%>
+                              <%#*------------------%>
+                              <td><%= @o2p.id %></td>
+
+                              <%#*------------------%>
+                              <%#*Gift%>
+                              <%#*------------------%>
+                              <td><%= @o2p.order.BillingFirstName %> <%= @o2p.order.BillingLastName %></td>
+
+                              <%#*------------------%>
+                              <%#*Gift type%>
+                              <%#*------------------%>
+                              <td>Buy</td>
+
+                              <%#*------------------%>
+                              <%#*Amount%>
+                              <%#*------------------%>
+                              <td><%= formatted_price(@o2p.total) %></td>
+
+                              <%#*------------------%>
+                              <%#*Cost%>
+                              <%#*------------------%>
+                              <td><%= formatted_price(@o2p.total) %></td>
+                            </tr>
+                          <% end %>
+
+                          <%#*------------------%>
+                          <%#* Registrant2Products%>
+                          <%#*------------------%>
+                          <% if !@o2r2p.blank? %>
+                            <%# @r2p.orders2registry_items.each do |o2r2p| %>
+                              <tr>
+                                <%#*------------------%>
+                                <%#*ID%>
+                                <%#*------------------%>
+                                <td><%= @o2r2p.id %></td>
+
+                                <%#*------------------%>
+                                <%#*Gift%>
+                                <%#*------------------%>
+                                <td><%= @o2r2p.order.BillingFirstName %> <%= @o2r2p.order.BillingLastName %></td>
+
+                                <%#*------------------%>
+                                <%#*Gift type%>
+                                <%#*------------------%>
+                                <td>
+                                  <% if !@o2r2p.Contribute_ID.blank? %>
+                                    Give
+                                  <% else %>
+                                    <% if !@o2r2p.registry_item.IsGetMoney.blank? && @o2r2p.registry_item.IsGetMoney == true %>
+                                      Cash
+                                    <% else %>
+                                      Buy
+                                    <% end %>
+
+                                  <% end %>
+                                </td>
+
+                                <%#*------------------%>
+                                <%#*Amount%>
+                                <%#*------------------%>
+                                <td>
+                                  <% if !@o2r2p.contribute.blank? %>
+                                    <%= formatted_price(@o2r2p.contribute.Contribute) %>
+                                  <% end %>
+                                </td>
+
+                                <%#*------------------%>
+                                <%#*Cost%>
+                                <%#*------------------%>
+                                <td>
+                                  <%= formatted_price(@o2r2p.registry_item.total) %>
+                                </td>
+                              </tr>
+                            <%# end %>
+                          <% end %>
+
+                          <%#*------------------%>
+                          <%#* Cash%>
+                          <%#*------------------%>
+                          <% if !@withdrawal.blank? %>
+                            <tr>
+                              <%#*------------------%>
+                              <%#*ID%>
+                              <%#*------------------%>
+                              <td><%= @withdrawal.id %></td>
+
+                              <%#*------------------%>
+                              <%#*Gross%>
+                              <%#*------------------%>
+                              <td><%= formatted_price(@withdrawal.Cash) %></td>
+
+                              <%#*------------------%>
+                              <%#*Knack Fee%>
+                              <%#*------------------%>
+                              <td><%= formatted_price(@withdrawal.Tax) %></td>
+
+                              <%#*------------------%>
+                              <%#*Net%>
+                              <%#*------------------%>
+                              <td><%= formatted_price(@withdrawal.net) %></td>
+
+                              <%#*------------------%>
+                              <%#*Payment%>
+                              <%#*------------------%>
+                              <td><%= formatted_price(@withdrawal.get_amount_knack_payment) %></td>
+                            </tr>
+                          <% end %>
+                        </tbody>
+
+                      </table>
+                    </div>
+                  </div>
+
+                  <%#*--------------------------------%>
+                  <%#* Payments %>
+                  <%#*--------------------------------%>
+                  <table id="product-table" >
+                    <thead>
+                      <tr>
+                        <th>Id</th>
+                        <th>Date</th>
+                        <th>Payment method</th>
+                        <th>Status</th>
+                        <th>Order#</th>
+                        <th>Order amount</th>
+                        <th>Payment</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <% @payments.each do |payment| %>
+                        <% if !payment.order.blank? %>
+                          <tr>
+                            <%#******************%>
+                            <%#* orderid%>
+                            <%#******************%>
+                            <td><%= payment.id%></td>
+
+                            <%#******************%>
+                            <%#* DATETIME%>
+                            <%#******************%>
+                            <td><%= Time.parse(payment.DateTime.to_s).strftime("%m/%d/%Y")%></td>
+
+                            <%#******************%>
+                            <%#* PAYMENT METHOD%>
+                            <%#******************%>
+                            <td></td>
+
+                            <%#******************%>
+                            <%#* STATUS%>
+                            <%#******************%>
+                            <td>
+                            </td>
+
+                            <%#******************%>
+                            <%#* ORDER ID%>
+                            <%#******************%>
+                            <td>
+                              <%= payment.order.id %>
+                            </td>
+
+                            <%#******************%>
+                            <%#* ORDER AMOUNT%>
+                            <%#******************%>
+                            <td>
+                              <%= formatted_price(payment.order.get_partner_net(@partner.id)) %>
+                            </td>
+
+                            <%#******************%>
+                            <%#* PAYMENT%>
+                            <%#******************%>
+                            <td>
+                              <%= formatted_price(payment.Amount) %>
+                            </td>
+
+                          </tr>
+                        <% else %>
+                          <% if !payment.withdrawal.blank? %>
+                            <tr>
+                              <%#******************%>
+                              <%#* orderid%>
+                              <%#******************%>
+                              <td><%= payment.id%></td>
+
+                              <%#******************%>
+                              <%#* DATETIME%>
+                              <%#******************%>
+                              <td><%= Time.parse(payment.DateTime.to_s).strftime("%m/%d/%Y")%></td>
+
+                              <%#******************%>
+                              <%#* PAYMENT METHOD%>
+                              <%#******************%>
+                              <td></td>
+
+                              <%#******************%>
+                              <%#* STATUS%>
+                              <%#******************%>
+                              <td>
+                              </td>
+
+                              <%#******************%>
+                              <%#* ORDER ID%>
+                              <%#******************%>
+                              <td>
+                                <%= payment.withdrawal.order.id %>
+                              </td>
+
+                              <%#******************%>
+                              <%#* ORDER AMOUNT%>
+                              <%#******************%>
+                              <td>
+                                <%= formatted_price(payment.withdrawal.Cash) %>
+                              </td>
+
+                              <%#******************%>
+                              <%#* PAYMENT%>
+                              <%#******************%>
+                              <td>
+                                <%= formatted_price(payment.Amount) %>
+                              </td>
+
+                            </tr>
+                          <% end %>
+                        <% end %>
+                      <%end%>
+                    </tbody>
+                  </table>
+
+                  <%#*--------------------------------%>
+                  <%#* Buttons%>
+                  <%#*--------------------------------%>
+                  <div class="div-buttons">
+                    <%= button_to_function "", "document.location.assign('/administrative/order/" + params[:oid] + "')", :class => "btn-back" %>
+                  </div>
+              </td>
+            </tr>
+        </table>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,396 @@
+/* ============= registryListBlock =================*/
+
+.registryListBlock{
+    width: 915px;
+    margin-left: auto;
+    margin-right: auto;
+    height: 135px;
+    border: 0;
+    padding: 0;
+}
+
+.registryListImage{
+    position: relative;
+    width: 207px;
+    height: 135px;
+    background-color: #cccccc;
+    float: left;
+}
+
+.registryListImage div{
+    position: relative!important;
+    background-color: #ffffff;
+    width: 205px;
+    height: 133px;
+    top:1px;
+    left:1px;
+    vertical-align: middle;
+}
+
+.registryListImage div table tr th img{
+    max-width: 205px;
+    max-height: 133px;
+}
+
+#image_preview{
+    width: 205px;
+    height: 133px;
+}
+
+.registryListInfBlock{
+    float: right;
+    margin-left: 28px;
+    background-color: #ffffff;
+    width: 680px;
+    height: 135px;
+    float: right;
+}
+
+.registryListInfBlock .topic{
+    font-family: 'Arial';
+    font-size: 30px;
+
+    color: #669bd1;
+}
+
+.registryListInfBlock .names{
+    margin-top: 10px;
+}
+
+.registryListInfBlock .description{
+    margin-top: 10px;
+    width: 230px;
+    font-size: 15px;
+}
+
+/* ============= searchtBlock =================*/
+
+.searchBlock{
+    height: 87px;
+    width: 100%;
+}
+
+#GiftControl
+{
+    margin-top: 0px!important;
+    width: 523px!important;
+}
+#GiftControl .fourthRow
+{
+    width: 160px!important;
+}
+
+.giftsTable {
+    width: 160px!important;
+}
+.searchTD, .goTD
+{
+/*    vertical-align: top;*/
+}
+
+#searchBlockTable{
+    width: 100%;
+/*    height: 87px;*/
+}
+
+#searchBlockTable td{
+/*    vertical-align: top;*/
+}
+
+#searchfirstRow{
+    width: 217px;
+    text-align: left;
+    vertical-align: top;
+    color: #669bd1;
+}
+#searchfirstRow .narrow{
+    margin-top: 17px;
+    font-size: 12px;
+}
+
+#searchfirstRow .budget{
+    margin-top: 12px;
+    font-size: 17px;
+}
+
+#searchsecondRow{
+    width: 493px;
+    vertical-align: top;
+}
+
+#searchthirdRow{
+    width: 181px;
+    text-align: right;
+    vertical-align: middle;
+}
+
+#searchthirdRow label{
+    margin-right: 13px;
+}
+
+#searchthirdRow select{
+    width: 75px;
+    height: 23px;
+}
+/* ============================================*/
+
+
+
+.Line{
+    width: 100%;
+    height: 1px;
+    background-color: #cccccc;
+}
+
+/* ===================== mainBlock =======================*/
+
+.mainBlock{
+    margin-top: 32px;
+}
+
+#mainBlockTable{
+    width: 100%;
+}
+
+.mainBlock table tr #menu{
+    width: 205px;
+    vertical-align: top;
+}
+
+.mainBlock table tr #content{
+    vertical-align: top;
+}
+
+#tableProducts{
+    width: 710px;
+    margin-top: 20px;
+}
+
+.sootherTD{
+    width: 50px;
+    border: 0;
+}
+
+.sootherTR{
+    height: 46px;
+    border: 0;
+}
+
+
+
+.productInfoTD{
+/*    height: 55px;*/
+    vertical-align: top;
+    font-size: 10px;
+    color: #666;
+}
+
+.productInfoTD b{
+    font-size: 11px;
+}
+
+.productTR{
+    height: 180px;
+}
+
+
+
+.buttonsTR{
+    height: 19px;
+}
+
+.div-pager{
+    margin: 0px 9px 15px;
+    float: right;
+    font-size: 13px;   
+}
+
+.div-pager span{
+    margin: 0 30px 0 30px;
+}
+
+.div-pager span b{
+    font-size: 13px;
+}
+.div-pager a{
+    text-decoration: none;
+}
+
+.div-pager select{
+    height: 23px;
+    text-align: center;
+    width: 60px;
+    font-size: 16px;
+}
+
+/*=============== Menu ======================*/
+
+
+#go{
+    width: 36px;
+    height: 19px;
+    border: 0px;
+    background-image: url('/images/design/Buttons/go.png');
+    cursor: pointer;
+}
+
+.addtoregistrant{
+    width: 96px;
+    height: 19px;
+    border: 0px;
+    background-image: url('/images/design/Buttons/add.png');
+    cursor: pointer;
+    float: right;
+}
+
+.pr-nameH
+{
+    margin-top: 4px;
+}
+
+.pr-price img
+{
+    vertical-align: middle;
+}
+
+.withBackground
+{
+    margin: -35px auto auto;
+}
+
+.menu-catalog
+{
+    width: 800px;
+    position: absolute;
+    margin: -25px 0 0 32px;
+    color: #999999;
+    font-size: 14px;
+}
+
+.menu-category-link
+{
+    text-decoration: underline!important;
+    font-size: 14px!important;
+}
+
+.current-category-link
+{
+    font-size: 14px!important;
+}
+
+
+/******************************************************
+Image
+******************************************************/
+
+/********************* Vertical *********************/
+.productTD{
+    width: 178px;
+    height: 249px;
+}
+
+.productTD table{
+    width: 125px;
+    height: 249px;
+    table-layout: fixed;
+    border: 0;
+    padding: 0;
+    margin: auto;
+}
+
+.productTD table .buttonTD{
+    width: 144px;
+}
+
+.productTD table .emptyTDfotBut{
+    width: 0px;
+}
+
+.imgTD{
+    width: 124px;
+    height: 163px;
+    text-align: center;
+    border: 1px solid #cccccc;
+}
+
+.imgTD img{
+    max-width: 123px;
+    max-height: 165px;
+}
+
+/********************* Horizontal *********************/
+.productTDH{
+    width: 178px;
+    height: 180px;
+}
+
+.productTDH table{
+    width: 161px;
+    height: 180px;
+    table-layout: fixed;
+    border: 0;
+    padding: 0;
+    margin: auto;
+}
+
+
+.productTDH table .buttonTD{
+    width: 144px;
+}
+
+.productTDH table .emptyTDfotBut{
+    width: 0px;
+}
+
+.imgTDH{
+    height: 120px;
+}
+
+.emptyTRH
+{
+    height: 40px;
+}
+
+.current-link
+{
+    color: #6699CC;
+    font-weight: bold;
+}
+
+
+
+#textfind
+{
+    width: 280px;
+    height: 20px;
+    margin: auto;
+}
+
+.plus
+{
+    background: url('/images/design/tabs/plus.png') no-repeat;
+    width: 18px;
+    height: 17px;
+    cursor: pointer;
+    margin: 0 63px 0 0;
+    float: right;
+}
+
+/*================== PAGING ==============================*/
+.pagination{
+    margin: 0px 9px 15px;
+    float: right;
+    font-size: 13px;
+}
+
+.pagination a{
+    text-decoration: none;
+
+}
+.pagination a, .pagination span{
+    padding: 0.2em 0.3em
+}
+
+.pagination .current {
+    font-weight: bold;
+}

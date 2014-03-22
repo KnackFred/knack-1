@@ -1,0 +1,332 @@
+/********************************************************
+*Styles for slideshow
+********************************************************/
+
+
+
+
+#knack_slideshow{
+ width: 890px;
+ height: 539px;
+ background: url(/images/pages/tour/slideshow_background.png) no-repeat;
+ margin:0 auto; padding: 0;
+ position: relative;
+ z-index: 3000;
+}
+#knack_slideshow li {
+	margin: 0; padding: 0; list-style: none; display: block; position: absolute;
+}
+#knack_slideshow a {
+	display: block; text-indent: -9999px; text-decoration: none;
+}
+#support_small{
+	left: 0px; top: 0px; width: 216px; height: 222px; z-index: 40; float:left;
+}
+
+#support_small_start{
+	left: -2px; top: 1px; width: 216px; height: 212px; z-index: 41; float:left; background-color:#ffffff;
+}
+#support_small a {
+	height: 222px; width: 216px;
+}
+#support_small a:hover {
+	background: url(/images/pages/tour/slideshow_background.png) 0px -540px no-repeat;
+}
+
+#shop_our_start{
+    left: 270px; top: 0px; width: 280px; height: 244px; float:left; background-color:#ffffff; z-index: 43;
+}
+
+#shop_our{
+    left: 270px; top: 0px; width: 284px; height: 244px; float:left; z-index:42;
+}
+#shop_our a {
+    height: 244px;
+}
+#shop_our a:hover {
+    background: url(/images/pages/tour/slideshow_background.png) -270px -540px no-repeat;
+}
+
+#share_wishlist_start{
+	left: 640px; top: 0px; width: 232px; height: 210px; float:left; background-color:#ffffff;z-index: 45;
+}
+
+#share_wishlist{
+	left: 640px; top: 0px; width: 232px; height: 210px; float:left; z-index:44;
+}
+
+#share_wishlist a {
+	height: 244px;
+	height: 244px;
+}
+
+#share_wishlist a:hover {
+	background: url(/images/pages/tour/slideshow_background.png) -640px -540px no-repeat;
+}
+
+#add_gifts_start{
+    left: 0px; top: 300px; width: 260px; height: 220px; float:left;background-color:#ffffff; z-index: 47;
+}
+
+#add_gifts{
+    left: 0px; top: 300px; width: 260px; height: 220px; float:left; z-index:46;
+}
+#add_gifts a {
+    height: 220px;
+}
+#add_gifts a:hover {
+    background: url(/images/pages/tour/slideshow_background.png) -0px -840px no-repeat;
+}
+
+#fund_your_start{
+	left: 252px; top: 143px; width: 332px; height: 270px; float:left; background-color:#ffffff;z-index: 49;
+}
+
+#fund_your{
+	left: 252px; top: 143px; width: 332px; height: 270px; float:left; z-index:44;
+}
+
+#fund_your a {
+	height: 270px;
+}
+
+#fund_your a {
+	background: url(/images/pages/tour/slideshow_background.png) -260px -663px no-repeat;
+}
+
+#collect_your_start{
+	left: 640px; top: 266px; width: 247px; height: 272px; float:left; background-color:#ffffff; z-index: 52;
+}
+
+
+#collect_your{
+	left: 640px; top: 265px; width: 247px; height: 270px; float:left; z-index:51;
+}
+#collect_your a {
+	height: 270px;
+}
+#collect_your a:hover {
+	background: url(/images/pages/tour/slideshow_background.png) -640px -805px no-repeat;
+}
+
+
+#lines_slideshow{
+ width: 0px;
+ height: 539px;
+ background: url(/images/pages/tour/lines.png) no-repeat;
+ margin-top:-539px;
+ position: absolute;
+ display:none;
+}
+#slideshow_left_column{
+ float:left; color:#FFF;  sans-serif; width:200px; margin-left:25px; padding-top:0px; position: relative;
+}
+
+
+.slideshow_headline{
+	font-size:30px; line-height:36px; letter-spacing:-0.5px; font-weight:normal; margin-top:0px;font-family: 'HelveticaNeueW01-Thin', sans-serif; color:#f9f927;
+}
+
+
+
+
+#slideshow_left_column p {
+	line-height:25px; font-family:Arial, Helvetica, sans-serif; font-size:14px;
+}
+
+
+#sign_up_slideshow{
+	color:#FFF;
+	width:181px;
+	margin-left:20px;
+	margin-top:525px;
+	position:absolute;
+	height:71px;
+	left: 1px;
+	top: 2px;
+}
+
+#slideshow_support_screenshot{
+	float:left;
+	width:664px;
+	height:494px;
+	position: absolute;
+	margin-left:250px;
+	margin-top:66px;
+	left: -4px;
+	top: 1px;
+	background-image:url(/images/pages/tour/unique_registry.png);
+}
+
+#slideshow_shop_screenshot{
+	float:left;
+	width:664px;
+	height:494px;
+	position: absolute;
+	margin-left:250px;
+	margin-top:66px;
+	left: -4px;
+	top: 1px;
+	background-image:url(/images/pages/tour/shop_our_catalog.png);
+}
+
+#slideshow_add_screenshot{
+	float:left;
+	width:664px;
+	height:494px;
+	position: absolute;
+	margin-left:250px;
+	margin-top:66px;
+	left: -4px;
+	top: 1px;
+	background-image:url(/images/pages/tour/add_gifts_from_anywhere.png);
+}
+
+#slideshow_fund_screenshot{
+	float:left;
+	width:664px;
+	height:494px;
+	position: absolute;
+	margin-left:250px;
+	margin-top:66px;
+	left: -4px;
+	top: 1px;
+	background-image:url(/images/pages/tour/fund_your_honeymoon.png);
+}
+
+#slideshow_share_screenshot{
+	float:left;
+	width:664px;
+	height:494px;
+	position: absolute;
+	margin-left:250px;
+	margin-top:66px;
+	left: -4px;
+	top: 1px;
+	background-image:url(/images/pages/tour/share_wishlist.png);
+}
+
+#slideshow_collect_screenshot{
+	float:left;
+	width:664px;
+	height:494px;
+	position: absolute;
+	margin-left:250px;
+	margin-top:66px;
+	left: -4px;
+	top: 1px;
+	background-image:url(/images/pages/tour/collect_your_gifts.png);
+}
+
+
+#slideshow{
+	background-color: #6699cc;
+	background-repeat: no-repeat;
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+}
+
+#slideshow_footnote{
+    width:200px;
+	margin-left:20px;
+	margin-top:480px;
+	position:absolute;
+	height:71px;
+	left: 4px;
+	top: 2px;
+}
+#slideshow_footnote p{
+	color: #FFFFFF; font-size: 10px;
+}
+
+#slideshow_previous{
+	float:left; width:121px; height:24px; position:absolute; margin-left:640px; margin-top:566px; left: -6px; top: 2px;
+}
+
+#slideshow_previous{
+	float:left; width:121px; height:24px; position:absolute; margin-left:640px; margin-top:566px; left: -6px; top: 2px;
+}
+
+#slideshow_next{
+	width:121px; height:24px; position:absolute; margin-left:780px; margin-top:566px; left: -11px; top: 2px;
+}
+
+#line_background{
+	background-image:url(/images/pages/tour/line_background.png); height:66px; width:665px; 	position: relative; margin-left:250px; margin-top:20px; text-align:center;z-index:10; background-repeat:no-repeat;
+}
+
+.slideshow_nav{
+	font-family: 'HelveticaNeueW01-Thin', sans-serif; font-size:14px; text-decoration:none; color:#FFFFFF;
+}
+
+.slideshow_nav_on{
+	font-family: 'HelveticaNeueW01-Thin', sans-serif; font-size:14px; text-decoration:none; color:#F9F908;
+}
+
+.slideshow_nav:hover{
+	font-family: 'HelveticaNeueW01-Thin', sans-serif; font-size:14px; text-decoration:none; color:#F9F908;
+}
+#unique_registry{
+	float:left;
+    width: 100px;
+}
+
+#our_catalog{
+	float:left; margin-left:15px;
+    width: 100px;
+}
+
+#from_anywhere{
+	float:left; margin-left:10px;
+    width: 110px;
+}
+
+#your_honeymoon{
+	float:left; margin-left:10px;
+    width: 100px;
+}
+
+#wishlist{
+	float:left; margin-left:15px;
+    width: 100px;
+}
+
+#your_gifts{
+	float:left;margin-left:15px;
+    width: 75px;
+}
+#scribble_unique_registry_on{
+	background-image:url(/images/pages/tour/nav_hover.png); height:51px; width:120px; position: absolute; margin-top:10px; text-align:center; left: 243px; top: 5px; z-index:2;
+}
+
+#scribble_our_catalog_on{
+	background-image:url(/images/pages/tour/nav_hover.png); height:51px; width:120px; position: absolute; margin-top:10px; text-align:center; left: 479px; top: 3px; z-index:3;
+}
+
+#scribble_from_anywhere_on{
+	background-image:url(/images/pages/tour/nav_hover.png); height:51px; width:120px; position: absolute; margin-top:10px; text-align:center; left: 361px; top: 3px; z-index:4;
+}
+
+#scribble_your_honeymoon_on{
+	background-image:url(/images/pages/tour/nav_hover.png); height:51px; width:120px; position: absolute; margin-top:10px; text-align:center; left: 583px; top: 2px; z-index:5;
+}
+
+#scribble_share_wishlist_on{
+	background-image:url(/images/pages/tour/nav_hover.png); height:51px; width:120px; position: absolute; margin-top:10px; text-align:center; left: 705px; top: 2px; z-index:6; background-repeat: no-repeat;
+}
+
+#scribble_your_gifts_on{
+	background-image:url(/images/pages/tour/nav_hover_small.png); height:51px; width:120px; position: absolute; margin-top:10px; text-align:center; left: 823px; top: 2px; z-index:7; background-repeat: no-repeat;
+}
+
+
+
+img {
+	background: transparent;
+	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#00FFFFFF,endColorstr=#00FFFFFF)"; /* IE8 */
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#00FFFFFF,endColorstr=#00FFFFFF);   /* IE6 & 7 */
+	zoom: 1;
+
+}

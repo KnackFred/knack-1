@@ -1,0 +1,30 @@
+<div class="partnerBlock">
+  <div class="partnerLogo">
+    <%= link_to (image_tag partner.logo(:small), :alt => "Partner Items"), store_path(partner.default_store.id) %>
+  </div>
+
+  <div class="partner">
+    <div id="partner-name">
+      <%= link_to store_path(partner.default_store.id) do %>
+          Partner - <%= partner.default_store.Name %>
+      <% end %>
+    </div>
+    <div class="partner-location">
+      <%= partner.default_store.City %>, <%= partner.default_store.state.Name %>
+    </div>
+    <div class="partner-description">
+      <%= raw StringHelper.string_to_html(partner.Description) %>
+    </div>
+    <div id="partner-links">
+      <span id="gifts-link"><%= link_to "View Gifts", store_path(partner.default_store.id)%></span>
+      <% unless partner.WebSite.blank? %>
+          |
+          <span id="partner-link"><%= (link_to raw('View Site <img src="/images/design/external_link.gif"/>'), url_with_protocol(partner.WebSite), :target => "_blank")-%></span>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="partner-empty">
+    <input type="hidden" value="sdf"/>
+  </div>
+</div>

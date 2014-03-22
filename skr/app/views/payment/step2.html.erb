@@ -1,0 +1,196 @@
+<% content_for :title do %>
+  Payment Information | Knack Registry
+<% end %>
+<% content_for :head do %>
+    <%= stylesheet_link_tag "/stylesheets/layouts/Cart.css"%>
+    <%= stylesheet_link_tag "/stylesheets/Pages/Step2.css" %>
+    <%= javascript_include_tag "/javascripts/knack.payment.step2.js"  %>
+    <%= javascript_include_tag "/javascripts/plugins/jquery.tools.min.js"%>
+<%end%>
+
+<div class="div-c">
+  <div class="topMenu">
+    <div class="pageName">
+      Checkout
+    </div>
+    <div class="div-link-step">
+			<%= link_to "1. Billing Information", step1_path(1) %>
+			<b><%= link_to "2. Payment Information", step2_path(1) %></b>
+			<span>3. Confirm Order</span>
+    </div>
+  </div>
+
+  <div class="withBackground">
+    <div class="content">
+      <div class="mainBlock">
+        <div id="line-header" class="Line"></div>
+        <table id="table-payment">
+        	<tr>
+          <%#*Left column%>
+          <td class="leftTD">
+            <%= form_tag step2_path, :id => "frm-payment" do %>
+              <div>
+								<% if @cart_information.type == CartInformation::TYPE_WITHDRAW %>
+									<div class="payment">
+                    <span class="header-column">Cash withdraw</span>
+                  </div>
+                  <div class="payment-block">
+                    <%#*Cash paypal%>
+                    <div class="type-payment">
+                      <input name="payment" value="3" type="radio" checked="checked"><b>PayPal</b></input>
+                    </div>
+
+                    <div class="div-data-block">
+                      <%#*Email%>
+                      <div class="div-info">
+                        <span>Email*</span>
+                      </div>
+
+                      <div class="div-value">
+                        <input name="paypal_email" id="paypal_email" type="text"/>
+                      </div>
+
+                      <%#*Error email%>
+                      <div class="formError">
+                        <%= @error_paypal %>
+                      </div>
+                    </div>
+
+                    <%#*Check%>
+                    <div class="type-payment">
+                      <input name="payment" value="4" type="radio"><b>Check</b></input>
+                    </div>
+
+                    <div class="div-data-block">
+                      If you select check we will send check to primary registrant at billing address in your profile.
+                    </div>
+								<% else %>
+									<div class="payment">
+	                  <span class="header-column">Payment Information</span>
+	                </div>
+                  <div class="payment-block">
+                    <% unless @cart.use_cash && @cart_information.missing_amount >= 0 && Cart.is_registrant?(session) && !Cart.is_withdraw?(Cart.get_cart(session)) %>
+                      <%#*Payment credit card%>
+                      <div class="type-payment">
+                        <input name="payment" value="1" type="radio" checked="checked">Payment by Credit Card</input>
+                      </div>
+
+                      <div class="div-data-block">
+                        <%#*Card number%>
+                        <div class="div-info">
+                          <span>Card Number *</span>
+                        </div>
+
+                        <div class="div-value">
+													<%= text_field :credit_card, :card_number %>
+                        </div>
+
+                        <div class="div-info">
+                          <span>Security Code*</span>
+                        </div>
+
+                        <div class="div-value">
+                          <%= text_field :credit_card, :verification %>
+                          <img id="help" src="/images/help.png" alt="help"/>
+                          <div class="help-tooltip">
+                            <h2>Where can I find the Security Code? </h2>
+                            <h4>For Visa, MasterCard, and Discover: </h4>
+                            <p>
+                              Flip your card over and look at the signature box. You should see either the entire 16-digit credit card number or just the last four digits followed by a special 3-digit code. This 3-digit code is your Card Security Code.
+                            <p>
+                            <h4>For American Express:</h4>
+                            <p>
+                              Look for the 4-digit code printed on the front of your card just above and to the right of your main credit card number. This 4-digit code is your Card Security Code.
+                            </p>
+                          </div>
+
+                        </div>
+
+                        <div class="div-info">
+                          <span>Type*</span>
+                        </div>
+
+                        <div class="div-value">
+													<%= select(:credit_card, :card_type, @type_card.collect { |t| [t[:Type],t[:id]] }) %>
+                        </div>
+
+                        <div class="div-info">
+                          <span>Expiration Date</span>
+                        </div>
+                        <%#*Date block%>
+                        <div class="date-block">
+                          <%#*Month%>
+                          <%= select_month(Date.today, {:add_month_numbers => true}, :id => "credit_card_exp_month", :name => "credit_card[exp_month]") %>
+
+                          <%#*Year%>
+                          <%= select_year(Date.today, {:start_year => Date.today.year, :end_year => Date.today.year + 10},
+																											{:id => "credit_card_exp_year", :name => "credit_card[exp_year]"}) %>
+                        </div>
+
+                        <%#*------------------------------%>
+                        <%#*Error card%>
+                        <div class="formError">
+                          <%= @credit_card.message %>
+                        </div>
+                      </div>
+
+                      <div class="type-payment">
+                        <input name="payment" value="2" type="radio" >Payment by PayPal</input>
+                      </div>
+                    <% end %>
+
+                    <%#*Knack credit%>
+                    <% if Cart.is_registrant?(session) %>
+                      <% if @cart_information.queue > 0 %>
+                        <div class="text-credit">
+                          <%#*Where take money from queue is not enough%>
+                        	<% if @cart.use_cash && @cart_information.missing_amount < 0 && Cart.is_withdraw?(Cart.get_cart(session)) %>
+	                          <span>
+	                            <span style="color:red">Important!</span> You don't have sufficient credit in your Knack Registry. 
+	                            To complete this transaction you will have to pay an additional <%= formatted_price((@cart_information.missing_amount * -1)) %> via credit card or Paypal
+	                          </span>
+                          <% end %>
+                        </div>
+
+                        <div class="wrap-knack-credit">
+                          <div class="chb-credit">
+                            <%= check_box(:cart, :use_cash, :class => "use_cash") %> Apply Your Knack Credit
+                            <%= hidden_field_tag "change_credit", @change_credit %>
+                          </div>
+                        </div>
+                      <% end %>
+                    <% end %>
+                  </div>
+								<% end %>
+
+                </div>
+              </div>
+              <% end %>
+          </td>
+
+          <%#*Right column%>
+          <td class="rightTD">
+            <div class="order-summary">
+              <span class="header-column">
+                Order Summary
+              </span>
+            </div>
+
+            <table id="amount">
+							<tbody>
+								<%= render 'order_summary' %>
+							</tbody>
+            </table>
+          </td>
+        </tr>
+      </table>
+      
+      <div class="div-btn">
+        <input type="button" class="btn-continue" value=""/>
+      </div>
+
+      </div>
+    </div>
+  </div>
+
+</div>

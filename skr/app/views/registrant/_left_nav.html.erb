@@ -1,0 +1,29 @@
+<%= render :partial => 'registrant/registry_image' , :locals => {:registrant => @registrant}%>
+
+<div class="registryName">
+  <div class="name"><%= @registrant.FirstName%> <%= @registrant.LastName%><%if !@registrant.LastName.blank? %>'s<%end%> Registry</div>
+  <div class="link"><a href="<%= profile_path %>">Edit Profile</a></div>
+</div>
+<% unless @registrant.EventDate.nil? %>
+    <div class="event">
+      <div class="name">Event Date</div>
+      <div class="link"><%= @registrant.EventDate.strftime('%m/%d/%Y') %></div>
+    </div>
+<% end %>
+<% unless @registrant.EventLocation.blank? %>
+    <div class="event">
+      <div class="name">Event Location</div>
+
+      <div class="link" title="<%= @registrant.EventLocation -%>"><%= truncate(@registrant.EventLocation, :length => 30, :omission => "...") -%></div>
+<% end %>
+</div>
+
+<%#*<div class="RegistryLink">%>
+<%#*<div class="name">Add Knack Registry Link<br/> To Your Website!</div>%>
+<%#*<div class="link"><a href="/registrant/links">Learn More</a></div>%>
+<%#*</div>%>
+
+<%#*<div class="knackWork">%>
+<%#*<div class="name">How Does Knack Work</div>%>
+<%#*<div class="link"><a href="/info/learnmore">Learn More</a></div>%>
+<%#*</div>%>

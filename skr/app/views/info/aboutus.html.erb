@@ -1,0 +1,46 @@
+<% content_for :title do %>
+  About Us | Knack Registry
+<% end %>
+<% content_for :head do %>
+    <%= stylesheet_link_tag "/stylesheets/Global.css" %>
+    <%= stylesheet_link_tag "/stylesheets/Pages/AboutUs.css" %>
+
+<%end%>
+<div class="div-c">
+
+  <div class="topMenu">
+    <table cellpadding="0px" cellspacing="0px">
+      <tr>
+        <td class="pageNameTD">
+          What is Knack?
+        </td>
+        <td class="topMenuTD">
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="loginContent">
+
+    <table cellpadding="0px" cellspacing="0px" border="0">
+      <tr>
+        <td class="descriptionTD">
+          <%= render :partial => 'info_links', :locals => {:selected => "What"}%>
+        </td>
+        <td class="rightPane">
+          <p>
+            Knack is a free service that allows you to collect payments from family and friends towards anything.
+          </p>
+          <p>
+            With Knack you build a list of things or experiences you would want friends and family to contribute payents toward. You can add items from all your favorite websites.
+            Just find the item you want, click the “add to list” button in your bookmark bar, and it will be added directly to your Knack list.  
+          </p>
+          <p>
+            If traditional items from stores aren't your thing you can create listings for a trip, cooking classes or anything else you can imagine. 
+          </p>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+    

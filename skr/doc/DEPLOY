@@ -1,0 +1,128 @@
+INSTALLING V1.1
+
+FIRST CLEAN UP NGINX.
+Update NGINX If necessary:
+take a look at /opt/nginx/conf/conf.d/virtual.conf
+Make sure all of the path are right.
+check the environment
+Restart nginx:
+/usr/bin/nginx -s stop
+/usr/bin/nginx
+
+MAKE SURE EVERYTHING STILL WORKS double check the fonts.
+
+
+
+NOW FOR THE ACTUAL UPGRADE
+
+UPDATE RUBY INFRASTRUCTURE
+on server:
+gem update --system
+gem update bundler
+
+NOTES:  You may need to use bundle:exec cap instead of cap.
+A lot of this came from this article on capistrano.  https://github.com/capistrano/capistrano/wiki/2.x-From-The-Beginning
+
+
+GET CAPISTRANO UP AND RUNNING
+Check the config file ./config/deploy.rb make sure the information looks right.
+
+run cap deploy:setup
+You'll need to provide the password for the preview server.
+Make sure this passes without errors.
+
+run cap deploy:check
+You'll need to provide the password for the preview server.
+Make sure this passes without errors.  If there are errors log onto the server and fix the issues.
+
+INSTALL DEPENDENCIES:
+On the server run the following.
+yum install libxslt-devel libxml2-devel
+
+Install Sphinx:
+rpm -Uvh http://sphinxsearch.com/files/sphinx-2.0.1-1.el5.i386.rpm
+
+DEPLOY THE CODE
+
+- Deal with the cert Issues
+  SSH into the host.
+  run
+     svn info https://svn.blackshadow.name:1443/svn/knackregistry
+
+  Then select p to permanently accept the cert from the svn host.
+  You do not have to actually authenticate.
+
+- Deploy
+cap deploy:update
+
+NOTES:
+Be patient this may take a while.
+This gets the latest code from SVN, not from your local machine.
+
+
+MIGRATE THE DB
+Set the environment for where you are
+export RAILS_ENV="preview"
+or
+export RAILS_ENV="production"
+NOTE: You can skip this if the variable has already been set on log in.  look at /etc/profile.d/rails-env.sh
+
+migrate the database by running the following.
+   In Preview
+     bundle exec rake db:migrate RAILS_ENV="preview"
+   In Production
+     bundle exec rake db:migrate RAILS_ENV="production"
+
+Make sure everything ran properly.  Check the output carefully.
+
+UPDATE THE WEB SERVER CONFIGURATION:
+open /opt/nginx/conf/conf.d/virtual.conf
+name should point to current.
+Log files should go in shared.
+Also, If this is preview set the rails_env to "preview" in the config file.
+
+Restart nginx:
+/opt/nginx/sbin/nginx -s stop
+/opt/nginx/sbin/nginx
+
+START UP SPHINX:
+
+config
+  rake ts:config
+create the index;
+  rake ts:index
+Start Sphinx
+  rake ts:start
+
+SET UP THE SPHINX RE-INDEX SCHEDULED TASK
+create a new file sphinx in /etc/cron.hourly
+
+Put the following 3 lines in it.
+#!/bin/sh
+cd /home/ilya/public_html/current
+bundle exec /usr/local/bin/rake thinking_sphinx:index RAILS_ENV=preview
+
+Set the file permissions so the file is executable
+chmod a+x sphinx.sh
+
+Now the index will be rebuilt every hour.
+run it manually to make sure it work.
+./sphinx.sh
+
+RESTART THE APP
+  touch /home/ilya/public_html/current/tmp/restart.txt
+
+--------------------------
+First things to test:
+Search
+Log-in
+FB Integration
+Add from other site
+characters (Hansel stuff)
+
+--------------------------
+
+WHEN REDEPLOYING ALWAYS RESTART THINKING SPHINX.
+rake ts:restart
+
+In Preview update the callback url for the bookmark tool.

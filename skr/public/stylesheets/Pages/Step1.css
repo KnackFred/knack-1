@@ -1,0 +1,92 @@
+/********* content *******/
+.billinf
+{
+    margin: 15px auto auto 3px;
+}
+
+.shipinf
+{
+    margin: 30px auto auto 2px;
+}
+
+.use-bill
+{
+    margin:3px 328px auto auto;
+    float: right;
+    width:150px;
+}
+
+#order_is_use_bill_address
+{
+    float: left;
+}
+.use-bill-text
+{
+    font-size: 12px;
+    margin: 3px auto auto 25px;
+}
+/********* table billing *******/
+#table-billing
+{
+    width: 100%;
+}
+
+#table-order
+{
+    float: right;
+}
+
+#tbl-billing
+{
+    margin: 22px auto auto 2px;
+}
+
+#tbl-billing td
+{
+    border-bottom:4px solid #FFFFFF;
+}
+
+.td-label
+{
+    width: 130px;
+    color: #616161;
+    vertical-align: top;
+}
+
+.td-label label
+{
+    margin: 0px auto auto 2px;
+}
+
+.td-info
+{
+    width: 217px;
+}
+
+.td-info input[type=text]
+{
+    width: 217px;
+}
+
+.td-error{
+    width: 200px;
+}
+
+#tbl-shipping
+{
+    clear: both;
+    margin: 11px auto auto 2px;
+}
+
+#tbl-shipping td
+{
+    border-bottom:4px solid #FFFFFF;
+}
+
+
+
+
+#international-instructions {
+    display: none;
+    font-size: 12.5px;
+}

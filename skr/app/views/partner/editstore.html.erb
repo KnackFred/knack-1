@@ -1,0 +1,262 @@
+<% content_for :title do %>
+   Store  | Knack Registry
+<% end %>
+<% content_for :head do %>
+        <%= stylesheet_link_tag "/stylesheets/Pages/EditStore.css" %>
+   <%= javascript_include_tag "/javascripts/jquery.form.js"  %>
+    <%= stylesheet_link_tag "/javascripts/tree/codebase/dhtmlxtree.css" %>
+    <%= javascript_include_tag "/javascripts/tree/codebase/dhtmlxcommon.js" %>
+    <%= javascript_include_tag "/javascripts/tree/codebase/dhtmlxtree.js"  %>
+    <%= javascript_include_tag "/javascripts/tree/codebase/ext/dhtmlxtree_json.js"  %>
+   <%= javascript_include_tag "/javascripts/jquery.simplemodal.1.4.1.min.js"  %>
+   <%= javascript_include_tag "/javascripts/pages/editstore.js"  %>
+<%end%>
+
+  <% content_for :pagename do %>
+    <div>
+      Store
+    </div>
+  <% end %>
+
+  <% content_for :registry do %>
+      <div class="bl-block">
+        <div class="blue-line">
+
+        </div>
+      </div>
+  <% end %>
+
+  <% content_for :background do %>
+      <div class="bl-block">
+        <div class="blue-line">
+          <input type="hidden" value="fghj"/>
+        </div>
+      </div>
+  <% end %>
+
+  <div class="withBackground">
+    <div class="content">
+      <div class="mainBlock">
+        <table cellpadding="0px" cellspacing="0px" border="0px">
+            <tr>
+              <td class="leftMenu">
+                <%= render :partial => "left_menu" %>
+              </td>
+              <td class="rigthPane">
+
+                <%# form_tag ({:controller => :partner, :action =>:editstore}) do %>
+                <div class="wrap-data">
+                  <input type="hidden" name="id" value="<%= @store.id %>"/>
+                  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
+                  <div id="div-reg">
+                    <div class="Header">
+                      Store information
+                    </div>
+                    
+                    <%#*------------------------------%>
+                    <%#*Name%>
+                    <%#*------------------------------%>
+                    <div class="div-block">
+                      <div class="editor-label">
+                        <label for="Name">Store Name *</label>
+                      </div>
+                      <div class="editor-field">
+                        <%=text_field :store, :Name%>
+                      </div>
+                      <div class="editor-error">
+                        <%= error_message_on :store, :Name, :prepend_text => StaticDataUtilities.get_prepare_error_message %>
+                      </div>
+                    </div>
+
+                    <%#*------------------------------%>
+                    <%#*Street%>
+                    <%#*------------------------------%>
+                    <div class="div-block">
+                      <div class="editor-label">
+                        <label for="Street">Street *</label>
+                      </div>
+                      <div class="editor-field">
+                        <%= text_field :store, :Street %>
+                      </div>
+                      <div class="editor-error">
+                        <%= error_message_on :store, :Street, :prepend_text => StaticDataUtilities.get_prepare_error_message %>
+                      </div>
+                    </div>
+
+                    <%#*------------------------------%>
+                    <%#*City%>
+                    <%#*------------------------------%>
+                    <div class="div-block">
+                      <div class="editor-label">
+                        <label for="City">City *</label>
+                      </div>
+                      <div class="editor-field">
+                        <%=text_field :store, :City%>
+                      </div>
+                      <div class="editor-error">
+                        <%= error_message_on :store, :City, :prepend_text => StaticDataUtilities.get_prepare_error_message %>
+                      </div>
+                    </div>
+                  
+
+                    <%#*------------------------------%>
+                    <%#*State%>
+                    <%#*------------------------------%>
+                    <div class="div-block">
+                      <div class="editor-label">
+                        <label for="State">State *</label>
+                      </div>
+                      <div class="editor-field">
+                        <%= select :store, :State_ID, @states.collect {|s| [s.Name, s.id]}%>
+                      </div>
+                      <div class="editor-error">
+                        <%= error_message_on :store, :State_ID, :prepend_text => StaticDataUtilities.get_prepare_error_message %>
+                      </div>
+                    </div>
+
+                    
+
+                    <%#*------------------------------%>
+                    <%#*ZIP%>
+                    <%#*------------------------------%>
+                    <div class="div-block">
+                      <div class="editor-label">
+                        <label for="ZIP">ZIP *</label>
+                      </div>
+                      <div class="editor-field">
+                        <%= text_field :store, :ZIP %>
+                      </div>
+                      <div class="editor-error">
+                        <%= error_message_on :store, :ZIP, :prepend_text => StaticDataUtilities.get_prepare_error_message %>
+                      </div>
+                    </div>
+
+                    <%#*------------------------------%>
+                    <%#*Phone%>
+                    <%#*------------------------------%>
+                    <div class="div-block">
+                      <div class="editor-label">
+                        <label for="Phone">Phone</label>
+                      </div>
+                      <div class="editor-field">
+                        <%= text_field :store, :Phone %>
+                      </div>
+                      <div class="editor-error">
+                        <%= error_message_on :store, :Phone, :prepend_text => StaticDataUtilities.get_prepare_error_message %>
+                      </div>
+                    </div>
+
+                    <%#*------------------------------%>
+                    <%#*Web%>
+                    <%#*------------------------------%>
+                    <%#*<div class="div-block">%>
+                      <%#*<div class="editor-label">%>
+                        <%#*<label for="Web">Website</label>%>
+                      <%#*</div>%>
+                      <%#*<div class="editor-field">%>
+                        <%#= text_field :store, :Web %>
+                      <%#*</div>%>
+                      <%#*<div class="editor-error">%>
+                        <%#= error_message_on :store, :Web %>
+                      <%#*</div>%>
+                    <%#*</div>%>
+
+                    <%#*------------------------------%>
+                    <%#*Email%>
+                    <%#*------------------------------%>
+                    <div class="div-block">
+                      <div class="editor-label">
+                        <label for="Email">Email</label>
+                      </div>
+                      <div class="editor-field">
+                        <%= text_field :store, :Email %>
+                      </div>
+                      <div class="editor-error">
+                        <%= error_message_on :store, :Email, :prepend_text => StaticDataUtilities.get_prepare_error_message %>
+                      </div>
+                    </div>
+
+                    <%#*------------------------------%>
+                    <%#*Category%>
+                    <%#*------------------------------%>
+                    <div class="div-block">
+                      <div class="editor-label">
+                        <label for="Category">Category</label>
+                      </div>
+                      <div class="editor-field">
+                        <%= hidden_field :store, :Category_ID %>
+                        <%=text_field(:store, :CategoryName, :readonly => "readonly") %>
+                      </div>
+                      <div class="editor-error">
+                        <%= error_message_on :store, :Category_ID, :prepend_text => StaticDataUtilities.get_prepare_error_message %>
+                      </div>
+                    </div>
+
+                    <%#*------------------------------%>
+                    <%#*Is default%>
+                    <%#*------------------------------%>
+                    <div class="div-block">
+                      <div class="editor-label">
+                        <label for="Email">Is default</label>
+                      </div>
+                      <div class="editor-field">
+                        <%= check_box :store, :IsDefault %>
+                      </div>
+                      <div class="editor-error">
+                        <%= error_message_on :store, :IsDefault, :prepend_text => StaticDataUtilities.get_prepare_error_message %>
+                      </div>
+                    </div>
+
+                    <%#*------------------------------%>
+                    <%#*Text default%>
+                    <%#*------------------------------%>
+                    <div class="div-block">
+                      <div class="text-default">
+                        State of default store will be taken for tax calculation
+                      </div>
+                    </div>
+
+                    
+                  </div>
+
+                  <%#*------------------------------%>
+                  <%#*Button%>
+                  <%#*------------------------------%>
+                  <div class="div-buttons">
+                    <div class="div-block">
+                      <div class="editor-label">
+                        <input type="hidden" value="d"/>
+                        <div class="emptyBlock"></div>
+                      </div>
+                      <div class="editor-field">
+                        <div class="btn-container">
+                          <%= button_to_function "", "document.location.assign('/partner/storeslist')", :class => "btn-back" %>
+                          <input type="submit" class="btn-save" value=" "/>
+                        </div>
+                      </div>
+                      <div class="editor-error">
+                      </div>
+                    </div>
+                 </div>
+
+
+                 <div id="cat-iframe" style="overflow: auto;">
+                  <table>
+                      <tr>
+                          <td valign="top">
+                              <div id="treeboxbox_tree" class="treebox"></div><br/>
+                          </td>
+                      </tr>
+                  </table>
+                  <input type="button" id="btn-add-cat" class="btn-add" value=" " />
+                </div>
+
+                </div>
+                <%#end%>
+              </td>
+            </tr>
+        </table>
+
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,27 @@
+<li class="section">
+  <% section_obj = s.object%>
+  <%= s.hidden_field :id, :class => 's-id'%>
+  <%= s.hidden_field :order, :class=>"order" %>
+  <%= s.hidden_field :_destroy, :class=>"destroy" %>
+  <div class="line"></div>
+  <% if edit %>
+      <div class="section-controls">
+        <a href="#" class="move-section-up"><img src="/images/pages/manage_registry/up_arrow_24.png" title="Move section up"> </a>
+        <a href="#" class="move-section-down"><img src="/images/pages/manage_registry/down_arrow_24.png" title="Move section down"></a>
+        <a href="#" class="add-section"><img src="/images/pages/manage_registry/add_24.png" title="Add Section"></a>
+        <a href="#" class="delete-section"><img src="/images/pages/manage_registry/delete_24.png" title="Delete Section"></a>
+      </div>
+  <% end %>
+  <div class="section-heading">
+    <%= s.text_field :title, :placeholder => (edit ? 'Type a section title here...' : nil), :class => 'section-title', :maxlength => 50, :readonly => (edit ? nil : "readonly") %>
+    <%= s.text_area :description, :placeholder => (edit ? 'Add a note about this section...' : nil), :class => 'section-description', :maxlength => 299, :readonly => (edit ? nil : "readonly") %>
+  </div>
+  <ul class="section-items">
+    <%= f.fields_for :registry_items do |item| %>
+        <% if item.object.section == section_obj %>
+            <%= render :partial => 'registry_item', :locals => {:i => item, :edit => edit }%>
+        <% end %>
+    <% end %>
+  </ul>
+</li>
+

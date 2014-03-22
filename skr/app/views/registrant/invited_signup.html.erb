@@ -1,0 +1,32 @@
+<% content_for :title do %>
+  Sign-up to help your friend build their registry | Knack Registry
+<% end %>
+<% content_for :head do %>
+  <%= stylesheet_link_tag "/stylesheets/Pages/Login.css" %>
+  <%= javascript_include_tag "/javascripts/knack.registrant.login.js"  %>
+<%  end %>
+
+
+<div class="div-container-invited-login">
+  <h1>
+    Welcome to Knack!
+  </h1>
+  <p>
+    You've been invited by a friend to help them build their registry on Knack.
+  </p>
+  <p>
+    Click "get started" to sign in. Then start adding items to your sample registry.
+  </p>
+  <p>
+    Your friend will be able to see what you add, and can add items off your registry to their own.
+  </p>
+  <div id="fb-login-div">
+      <a id="fb-login-invited" href="#">
+        <img src="/images/general/social/fb-login-lrg.png"/>
+      </a>
+      <span id="login_spinner" style="position:absolute;padding-top:2px;padding-left:5px;display:none"><img src="/images/spinner.gif" alt="" /></span>
+  </div>
+</div>
+
+
+<%= render :partial => 'shared/fb_init' %>

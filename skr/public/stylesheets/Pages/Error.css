@@ -1,0 +1,16 @@
+.mainBlock
+{
+    font-size: 16px;
+    text-align: center;
+}
+
+.mainBlock a
+{
+    font-size: 16px!important;
+    text-decoration: underline!important;
+}
+
+.blue-line
+{
+    height: 0px;
+}

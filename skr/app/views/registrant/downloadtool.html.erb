@@ -1,0 +1,30 @@
+<%= content_for :head do %>
+  <%= stylesheet_link_tag "/stylesheets/Pages/AddMyOwnGift.css" %>
+  <%= stylesheet_link_tag "/stylesheets/Pages/download.css" %>
+<%end%>
+
+<%#*-----------------------------%>
+<%#*Content%>
+<%#*-----------------------------%>
+<div class="header-block">
+  <div class="header-text how-it">
+    You can add items from your favorite websites using the Knack ‘Add to Registry’ button
+    <%= tag :br %>
+    <%= tag :br %>
+    Follow the instructions below to install the button in your browser
+  </div>
+</div>
+
+<div class="Line"></div>
+
+<div class="wrap-toolbars">
+  <%= form_tag(toolbars_path, :id => "form_browser") do %>
+    <div class="wrap-select">
+    Select Your Browser * <%= select :browser, :id, @browsers.collect{|b| [b.name, b.id]}, {}, {:class=> 'browser_select', :onchange => "$('#form_browser').submit()"} %>
+  </div>
+  <% end %>
+
+  <div class="content-browsers">
+    <%= render @browser.layout%>
+  </div>
+</div>

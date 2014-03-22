@@ -1,0 +1,163 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://opengraphprotocol.org/schema/">
+
+<head>
+  <link rel="shortcut icon" href="/images/fav.gif" />
+  <%= stylesheet_link_tag "/stylesheets/layouts/Partners.css" %>
+  <%= stylesheet_link_tag "/stylesheets/Global.css" %>
+  <%= stylesheet_link_tag "/stylesheets/Controls/UpdateProgress.css" %>
+  <%= javascript_include_tag "/javascripts/jquery-1.4.2.min.js"  %>
+  <%= javascript_include_tag "/javascripts/hide_menu.js"  %>
+  <%= javascript_include_tag "/javascripts/jQuery.timer.js"  %>
+  <%= javascript_include_tag "/javascripts/knack.global.js"  %>
+  <%= javascript_tag "var AUTH_TOKEN = #{form_authenticity_token.inspect};" if protect_against_forgery? %>
+  <title><%= yield :title %></title>
+  <%= yield :head %>
+  <%= render :partial => 'layouts/analytics' %>
+</head>
+<body>
+<%= yield :under_body %>
+<div id="helper"></div>
+<div id="wrapper" class="redBorder">
+
+
+    <div id="header">
+      <table>
+        <tbody>
+          <tr>
+            <td>
+              <a href="/registrant/home"><img alt="" id="logo" alt="logo" src="/images/design/logo.gif"/></a>
+            </td>
+            <td>
+              <div id="navbar">
+            <table id="tbl-nav">
+              <tr>
+                <td>
+                  <ul>
+                    <li>
+                      <a href="/partner/partnerprofile">
+                        <div id="dm-home" class="menu-block">
+                          <span class="b5">Home</span>
+                        </div>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="/partner/orders">
+                        <div id="dm-give" class="menu-block">
+                          <span class="b5">Orders</span>
+                        </div>
+                      </a>
+                    </li>
+
+                    <li>
+                      <%= link_to admin_products_path do %>
+                        <div id="dm-receive" class="menu-block">
+                          <span class="b5">Products</span>
+                        </div>
+                      <% end %>
+                    </li>
+
+                    <li>
+                      <a href="/partner/knackpayments">
+                        <div id="dm-browse" class="menu-block">
+                          <span class="b5">Payments</span>
+                        </div>
+                      </a>
+                    </li>
+                  </ul>
+                </td>
+                <td>
+                  <%if session[:registrant].blank? && session[:partner].blank? %>
+                    <div id="div-rl">
+                      <a href="/partner/partnerregister">Sign Up</a> |
+                      <a href="/partner/partnerslogin">Sign In</a>
+                    </div>
+                  <% else %>
+                    <div id="div-rl">
+                        <%if !session[:partner].blank?%>
+                          <a href="/partner/partnerprofile"><%= @current_partner.display_name -%></a> |
+                          <a href="/partner/partnerslogout">Sign Out</a>
+                        <%end%>
+                    </div>
+                  <% end %>
+                </td>
+                </tr>
+              <tr id="gr"><td></td><td></td><td></td></tr>
+              </table>
+            </div>
+            </td>
+
+            <td>
+               <div id="menu_holder">
+                 <form id="frm-top-find" action="/registrant/give" method="post">
+                   <input id="it-find" name="find" type="text"/>
+                   <a id="btn-find-top" href="/">
+                     <div id="div-btn-find-top"></div>
+                   </a>
+                    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
+                  </form>
+
+               </div>
+             </td>
+            </tr>
+         </tbody>
+      </table>
+
+    </div>
+
+
+    <div id="content" >
+      <div class="div-c">
+
+        <%#*--------------------------------%>
+        <%#*Top Menu%>
+        <%#*--------------------------------%>
+
+        <div class="topMenu">
+          <table cellpadding="0px" cellspacing="0px">
+            <tr>
+              <td class="pageNameTD">
+                <%= yield :pagename %>
+              </td>
+              <td class="topMenuTD">
+                <% if !session[:partner].blank? %>
+                  <% if !@partner.blank? %>
+                    <%# if !@partner.State_ID.blank? %>
+                      <div class="div-user-menu">
+                        <a href="/partner/storeslist">Stores</a>
+                        <%= link_to "Administrators", admin_partner_administrators_path %>
+                      </div>
+                    <%# end %>
+                  <% end %>
+                  <%= yield :completemenu %>
+                <% end %>
+              </td>
+            </tr>
+            <tr>
+              <td class="registry">
+                <div class="empty-padding"></div>
+                <%= yield :registry %>
+              </td>
+              <td class="registry">
+                <div class="empty-padding"></div>
+                <%= yield :background %>
+              </td>
+            </tr>
+          </table>
+        </div>
+
+        <%#*--------------------------------%>
+        <%#*Content%>
+        <%#*--------------------------------%>
+
+              <%= yield %>
+      </div>
+    </div>
+
+  </div>
+
+<%= render :partial => 'layouts/footer' %>
+<%= render :partial => 'layouts/cat-wrapper' %>
+<%= render "layouts/snap_engage" %>
+</body>
+</html>

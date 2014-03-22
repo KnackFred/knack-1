@@ -1,0 +1,26 @@
+<% content_for :title do %>
+  Shipping info | Knack Registry
+<% end %>
+<% content_for :header do %>
+    <%= stylesheet_link_tag "/stylesheets/Global.css" %>
+    <%= stylesheet_link_tag "/stylesheets/Pages/buy_contribute.css" %>
+<% end %>
+
+    <table class="contributeTable" border="0" cellpadding="0px" cellspacing="0px;">
+      <tbody>
+        <tr>
+          <td class="contributors" colspan="2">
+            <div class="pageName">Shipping Info</div>
+          </td>
+        </tr>
+        <tr>
+          <td class="nameContr"><%= givers.From %> </td>
+          <td class="contribute"><%= givers.Contribute %></td>
+        </tr>
+        <tr>
+          <td colspan="2" class="notes">
+            <%= givers.Notes %>
+          </td>
+        </tr>
+      </tbody>
+    </table>

@@ -1,0 +1,124 @@
+<% content_for :title do %>
+  Confirm Payment
+<% end %>
+<% content_for :head do %>
+  <%= stylesheet_link_tag "/stylesheets/layouts/Cart.css"%>
+  <%= stylesheet_link_tag "/stylesheets/Pages/Step2.css" %>
+  <%= stylesheet_link_tag "/stylesheets/Pages/confirm.css" %>
+  <%= javascript_include_tag "/javascripts/knack.payment.step2.js"  %>
+<%end%>
+  <div class="div-c">
+
+    <div class="topMenu">
+      <div class="pageName">
+        Confirm Payment
+      </div>
+      <div class="div-link-step">
+      </div>
+    </div>
+
+    <div class="withBackground">
+      <div class="content">
+
+        <div class="mainBlock">
+
+          <div id="line-header" class="Line"></div>
+
+          <table id="table-payment">
+
+          <tr>
+            <%#*----------------------------%>
+            <%#*Left column%>
+            <%#*----------------------------%>
+            <td class="leftTD">
+                <div>
+                    <div class="payment">
+                      <span class="header-column">Please Confirm Your Payment Details</span>
+                    </div>
+
+                    <div class="div-data-block">
+                      <div class="div-info">
+                        <span>Name</span>
+                      </div>
+
+                      <div class="div-value">
+                        <%=  @address['name'] %>
+                      </div>
+                      
+                      <div class="div-info">
+                        <span>Company</span>
+                      </div>
+
+                      <div class="div-value">
+                        <%=  @address['company'] %>
+                      </div>
+                      
+                      <div class="div-info">
+                        <span>Address 1</span>
+                      </div>
+
+                      <div class="div-value">
+                        <%=  @address['address1'] %>
+                      </div>
+                      
+                      <div class="div-info">
+                        <span>Address 2</span>
+                      </div>
+
+                      <div class="div-value">
+                        <%=  @address['address2'] %>
+                      </div>
+                      
+                      <div class="div-info">
+                        <span>City</span>
+                      </div>
+
+                      <div class="div-value">
+                        <%=  @address['city'] %>
+                      </div>
+                      
+                      <div class="div-info">
+                        <span>State</span>
+                      </div>
+
+                      <div class="div-value">
+                        <%=  @address['state'] %>
+                      </div>
+
+                      <div class="div-info">
+                        <span>Country</span>
+                      </div>
+
+                      <div class="div-value">
+                        <%=  @address['country'] %>
+                      </div>
+
+                      <div class="div-info">
+                        <span>ZIP</span>
+                      </div>
+
+                      <div class="div-value">
+                        <%=  @address['zip'] %>
+                      </div>
+                    </div>
+                         
+                    
+                </div>
+            </td>
+          </tr>
+        </table>
+
+        <div class="div-btn-block">
+          <% form_tag :action => 'complete', :token => params[:token],
+            :payer_id => params[:PayerID], :amount => params[:amount], :g => params[:g] do %>
+            <%= submit_tag(' ', :class => 'btn-continue') %>
+          <% end %>
+        </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+

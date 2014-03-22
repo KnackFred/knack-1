@@ -1,0 +1,126 @@
+<% content_for :title do %>
+    Unique Wedding Registry With Gifts You Wont Find At National Retailers
+<% end %>
+<% content_for :head do %>
+    <link rel="canonical" href="https://knackregistry.com/" />
+    <%= javascript_include_tag "/javascripts/knack.registrant.home2.js"  %>
+    <%= stylesheet_link_tag "/stylesheets/Pages/Home2.css" %>
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7"/>
+    <meta name="description" content="Create a one of a kind wedding registry with traditional gifts, unique items, and honeymoon items on Knack."/>
+    <meta name="msvalidate.01" content="9B8AAB462457A6739630E695B0BC0662" />
+    <script type="text/javascript" src="https://fast.fonts.com/jsapi/1a1275b6-a264-4f4b-9d7c-e00caa86973f.js"></script>
+<%  end %>
+<% if Rails.env == "production" %>
+    <!-- Google Code for Visit Home Page Remarketing List -->
+    <script type="text/javascript">
+        /* <![CDATA[ */
+        var google_conversion_id = 1014910302;
+        var google_conversion_language = "en";
+        var google_conversion_format = "3";
+        var google_conversion_color = "666666";
+        var google_conversion_label = "X6XeCMK2tgIQ3pr54wM";
+        var google_conversion_value = 0;
+        /* ]]> */
+    </script>
+    <script type="text/javascript" src="https://www.googleadservices.com/pagead/conversion.js">
+    </script>
+    <noscript>
+      <div style="display:inline;">
+        <img height="1" width="1" style="border-style:none;" alt="" src="https://www.googleadservices.com/pagead/conversion/1014910302/?label=X6XeCMK2tgIQ3pr54wM&amp;guid=ON&amp;script=0"/>
+      </div>
+    </noscript>
+<% end %>
+
+<div class="div-c">
+  <div id="page-container">
+    <div id="heroboard_container">
+      <div id="static">
+        <div id="heroboard_text">
+          <h1 class="heroboard_headline">Build a gift list.<br>Share it.<br>Get Cash.</h1>
+          <h2 class="heroboard_copy">A <em>Free Cash Registry</em> powered by Squarecash.</h2>
+        </div>
+        <div id="heroboard_image_container">
+          <a id="heroboard_image" href ="https://vimeo.com/42906582">
+            <img src="/images/pages/home/video_preview.png" alt="create a more personalized and unique wedding registry with Knack"/>
+          </a>
+        </div>
+      </div>
+      <div id="video">
+      </div>
+      <div id="learn_more">
+        <a href="/info/tour"><img src="/images/pages/home/learn_more_lrg.png" width="147" height="32" alt="Learn More"  border="0"/></a>
+        <a href="/signup"><img src="/images/pages/home/sign_up_lrg.png" width="162" height="32" alt="Sign-up now" border="0"/></a>
+      </div>
+    </div>
+    <script type="text/javascript">
+        center_heroboard();
+        var video = '<iframe id="vimeo_frame" src="https://player.vimeo.com/video/42906582?color=6699ee&amp;title=0&amp;byline=0&amp;autoplay=1&amp;" width="890" height="500" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>';
+    </script>
+    <div id="home-image-links">
+
+      <a href="/sample_registry">
+        <img class="sample_reg" src="/images/pages/home/sample_reg-01.png" alt="Sample Registry"/>
+      </a>
+      <a href="/catalog/3">
+        <img class="item" src="/images/pages/home/kitchen.png" alt="Kitchenware Gifts:"/>
+      </a>
+      <a href="/catalog/39">
+        <img class="item" src="/images/pages/home/dining.png" alt="Dining and Entertaining"/>
+      </a>
+      <a href="/catalog/51">
+        <img class="item" src="/images/pages/home/home.png" alt="Home Gifts"/>
+      </a>
+      <a href="/catalog/45">
+        <img class="item-last" src="/images/pages/home/bed_and_bath.png" alt="Bed And Bath Gifts"/>
+      </a>
+      <a href="/catalog/10">
+        <img class="item" src="/images/pages/home/furniture.png" alt="Furniture Gifts"/>
+      </a>
+      <a href="/catalog/8">
+        <img class="item" src="/images/pages/home/art.png" alt="Art Gifts"/>
+      </a>
+      <a href="/catalog/7">
+        <img class="item" src="/images/pages/home/outdoors.png" alt="Outdoors Gifts"/>
+      </a>
+      <a href="/catalog/96">
+        <img class="item-last" src="/images/pages/home/experiences-s.png" alt="Experience Gifts: Honeymoon, Travel"/>
+      </a>
+      <div class="clear"></div>
+    </div>
+
+    <table id="tbl-home">
+      <tbody>
+      <tr>
+        <td>
+          <div class="home-block" id="create-registry">
+            <div class="in-block">
+              <p><span id="spn-crreg">Create A Gift Registry</span></p>
+              <span class="spn-text-in">Create a <em>unique wedding registry</em> and <em>support small business.</em></span>
+            </div>
+            <a href="<%= signup_path %>">
+              <div class="btn-in-block" id="div-btn-sign"></div>
+            </a>
+          </div>
+        </td>
+        <td>
+          <div class="home-block" id="find-registry">
+            <div class="in-block">
+              <p><span id="spn-fndreg">Find A Gift Registry</span></p>
+              <p><span class="spn-text-in">Search for the unique wedding registry, gift registry, or honeymoon registry of a user.</span></p>
+              <form id="frm-home-find" action="<%= give_path %>" method="get">
+                <input type="text" id="find" name="find"/>
+                <a id="a-find" href="/">
+                  <div class="btn-in-block" id="div-btn-find">
+                  </div>
+                </a>
+                <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
+              </form>
+            </div>
+          </div>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>

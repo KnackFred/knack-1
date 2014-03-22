@@ -1,0 +1,7 @@
+<div class="menu-catalog">
+  <% if @site %>
+      Listed in: <%= link_to "Catalog", catalog_path, :class => "menu-category-link" %> > <%= link_to "What's Hot", feed_path, :class => "menu-category-link" %> > <%= @site %>
+  <% else  %>
+      Listed in: <%= link_to "Catalog", catalog_path, :class => "menu-category-link" %> > What's Hot
+  <% end %>
+</div>

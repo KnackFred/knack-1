@@ -1,0 +1,19 @@
+<div class="div-block-item">
+  <%#*Item image%>
+  <div class="image-div">
+    <%= image_tag image,
+                  :alt => product_name,
+                  :class => "product-image-small" %>
+  </div>
+  <div class="details-div">
+    <%#*Item name%>
+    <div class="productName">
+      <%= product_name -%>
+    </div>
+
+    <%#*Item amount%>
+    <div class="div-items-amount">
+      <%= formatted_price(subtotal) %>
+    </div>
+  </div>
+</div>

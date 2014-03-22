@@ -1,0 +1,50 @@
+<% content_for :title do %>
+    Our Stores | Knack Registry
+<%end%>
+<% content_for :head do %>
+    <%= stylesheet_link_tag "/stylesheets/Pages/Stores.css" %>
+    <%= javascript_include_tag "/javascripts/pages/stores.js"  %>
+<%end%>
+
+<% content_for :pagename do %>
+    <div>Stores</div>
+<% end %>
+
+
+<div class="withBackground">
+  <div class="content">
+    <div class="list-links">
+      <div class="column">
+        <% total = Store.visible.count + (@categories.all.count * 2)%>
+
+        <% column_size = total / 4 %>
+
+        <% i = 0 %>
+
+        <% @categories.each do |category| %>
+            <% stores = category.stores.visible %>
+            <% unless stores.blank? %>
+              <div class="header-store"><%= category.name %></div>
+              <% stores.each do |store| %>
+                <div class="link-container">
+                  <%=  link_to store.Name, store_path(store.id), :target => "_parent"%>
+                </div>
+              <% end %>
+
+              <% i += stores.count + 2 %>
+              <% if i > (column_size + 0.25) %>
+                  <% i = i - column_size %>
+                  </div><div class="column">
+              <% end %>
+            <% end %>
+        <% end %>
+        </div>
+        </div>
+  </div>
+</div>
+
+<%= form_tag catalog_path, :id => 'frm-category' do %>
+    <%= hidden_field_tag 'param', @param %>
+    <%= hidden_field_tag 'valparam', @valparam %>
+    <%= hidden_field_tag 'authenticity_token', form_authenticity_token %>
+<%end%>

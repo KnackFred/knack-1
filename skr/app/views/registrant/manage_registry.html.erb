@@ -1,0 +1,146 @@
+<% content_for :title do %>
+    Manage Registry | Knack Registry
+<% end %>
+<% content_for :head do %>
+    <%= stylesheet_link_tag "/stylesheets/Pages/Registrant/Manage_Registry.css" %>
+    <%= javascript_include_tag "/javascripts/jquery.form.js"  %>
+    <%= javascript_include_tag "/javascripts/json2.js"  %>
+    <%= javascript_include_tag "/javascripts/jquery.simplemodal.1.4.1.min.js"  %>
+    <%= javascript_include_tag "/javascripts/knack.registrant.manage_registry.js"  %>
+    <%= javascript_include_tag "/javascripts/knackregistry.registrant.pager.js"  %>
+
+<%end%>
+
+<% content_for :pagename do %>
+    <div>Manage Registry</div>
+<% end %>
+
+<% content_for :registry do %>
+    <%= @registrant.name_registry %>
+<% end %>
+
+<% if Rails.env == "production" %>
+<!-- Google Code for Logged in User Remarketing List -->
+<script type="text/javascript">
+/* <![CDATA[ */
+var google_conversion_id = 1014910302;
+var google_conversion_language = "en";
+var google_conversion_format = "3";
+var google_conversion_color = "666666";
+var google_conversion_label = "LT6ICLq3tgIQ3pr54wM";
+var google_conversion_value = 0;
+/* ]]> */
+</script>
+<script type="text/javascript" src="https://www.googleadservices.com/pagead/conversion.js">
+</script>
+<noscript>
+<div style="display:inline;">
+<img height="1" width="1" style="border-style:none;" alt="" src="https://www.googleadservices.com/pagead/conversion/1014910302/?label=LT6ICLq3tgIQ3pr54wM&amp;guid=ON&amp;script=0"/>
+</div>
+</noscript>
+<% end %>
+
+<%#*-----------------------------%>
+<%#*Content%>
+<%#*-----------------------------%>
+
+<div class="withBackground">
+<div class="content">
+  <div class="mainBlock">
+    <table cellpadding="0px" cellspacing="0px" border="0px">
+      <tr>
+        <td class="leftMenu">
+          <%= render "left_nav" %>
+        </td>
+        <td class="rightPane">
+          <% if @registrant2products.length != 0 || (!params[:filter].blank? && params[:filter] != "0")%>
+
+              <div id="filter">
+                <span>Filter By Status: </span>
+                <span>
+                  <% if params[:filter] == RegistryItem::ORDERED.to_s%>
+                      Ordered
+                    <%= link_to image_tag("remove.png", :alt => "x"), :filter => "0", :sort => params[:sort] %>
+                  <% else %>
+                      <%= link_to "Ordered", :filter => RegistryItem::ORDERED, :sort => params[:sort]%>
+                  <% end %>
+                </span>
+
+                <span>
+                  <% if params[:filter] == RegistryItem::PURCHASED.to_s%>
+                      Purchased
+                      <%= link_to image_tag("remove.png", :alt => "x"), :filter => "0", :sort => params[:sort] %>
+                  <% else %>
+                      <%= link_to "Purchased", :filter => RegistryItem::PURCHASED, :sort => params[:sort]%>
+                  <% end %>
+                </span>
+
+                <span>
+                  <% if params[:filter] == RegistryItem::AVAILABLE.to_s%>
+                      Available
+                      <%= link_to image_tag("remove.png", :alt => "x"), :filter => "0", :sort => params[:sort] %>
+                  <% else %>
+                      <%= link_to "Available", :filter => RegistryItem::AVAILABLE, :sort => params[:sort]%>
+                  <% end %>
+                </span>
+              </div>
+              <div id="order">
+                <span>Sort By Price: </span>
+                <span>
+                  <% if params[:sort] == "2"%>
+                      High to Low
+                      <%= link_to  image_tag("remove.png", :alt => "x"), :sort => 0, :filter => params[:filter] %>
+                  <% else %>
+                      <%= link_to  "High to Low", :sort => 2, :filter => params[:filter] %>
+                  <% end %>
+                </span>
+                <span>
+                  <% if params[:sort] == "1"%>
+                      Low to High
+                      <%= link_to  image_tag("remove.png", :alt => "x"), :sort => 0, :filter => params[:filter] %>
+                  <% else %>
+                      <%= link_to  "Low to High", :sort => 1, :filter => params[:filter] %>
+                  <% end %>
+                </span>
+              </div>
+
+          <% end %>
+
+
+          <div class="productsTable">
+            <table class="tablePurchased" cellpadding="0px" cellspacing="0px" border="0px">
+              <tbody>
+              <% if @registrant2products.length == 0 %>
+                  <tr class="not-found">
+                    <td>
+                      <div class="not-found-heading"> You have no gifts in your wish list </div>
+
+                      <%= link_to "Add gifts now", {:controller => :registrant, :action => :addgift}%>
+
+                    </td>
+                  </tr>
+              <% end %>
+              <%= render :partial => 'registry_item_detail', :collection => @registrant2products %>
+              </tbody>
+            </table>
+
+            <%= will_paginate @registrant2products %>
+          </div>
+
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+
+
+<div class="block-pop tag-none">
+  <iframe id="ifr-popup" src="" width="310" height="320"  frameborder="0" style="border: 0;">
+  </iframe>
+</div>
+
+<div class="block-popb tag-none">
+  <iframe src="" id="ifr-popupBuy" width="485px" height="480px" frameborder="0" style="border: 0;">
+  </iframe>
+</div>

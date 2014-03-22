@@ -1,0 +1,67 @@
+
+.loginContent{
+    width: 915px;
+    margin: 70px auto 30px auto;
+    color: #8c8c8c;
+    font-size: 12px;
+    font-family: Helvetica;
+    line-height:20px;
+}
+
+.descriptionTD{
+    width: 235px;
+    vertical-align: top;
+    text-align: left;
+    font-size: 12px;
+}
+
+.rightPane{
+    width: 684px;
+    vertical-align: top;
+    padding-left: 0px;
+}
+
+.policyContent{
+    margin-left:auto;
+    margin-right:auto;
+    margin-bottom: 30px;
+    width: 90%;
+    color: #8c8c8c;
+    font-size: 12px;
+    font-family: Helvetica;
+    line-height:20px;
+
+}
+
+.topicPage{
+    color: #6699cc;
+    font-size: 32px;
+    font-family: Helvetica,sans-serif;
+}
+
+.rule{
+    margin-top: 18px;
+}
+
+.ruleTopic{
+}
+
+.ruleContent{
+    margin-top: 7px;
+}
+
+.ruleContent img{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#shippingPolicy{
+    width: 500px;
+    border: 0;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#shippingPolicy td{
+    border: 1px solid #8c8c8c;
+}

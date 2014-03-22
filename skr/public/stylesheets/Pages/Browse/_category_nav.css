@@ -1,0 +1,99 @@
+.top-category
+{
+    display: block;
+    width: 150px;
+    height: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    color: #669BD1;
+    font-size: 13.5px;
+    padding: 10px 8px;
+}
+
+.top-category-on
+{
+    background: url('/images/design/tabs/category.png') no-repeat 0 -32px;
+}
+
+.top-category img
+{
+    vertical-align: bottom;
+}
+
+.top-category-off
+{
+    background: url('/images/design/tabs/category.png') no-repeat 0 0;
+}
+
+.cant
+{
+    background: url('/images/design/tabs/cant-1.png') no-repeat;
+    width: 150px;
+    height: 58px;
+    cursor: pointer;
+}
+
+.title b {
+    color: #669bd1;
+    font-size:16px;
+}
+
+#menu a{
+    font-size: 12px;
+    text-decoration:none;
+}
+
+#menu .top-category{
+    font-weight: bold;
+}
+
+
+.div-title
+{
+    color: #6699cc;
+    width: 180px;
+}
+
+
+.vendorInfo{
+    margin-top: 20px;
+    height: 43px;
+    padding: 13px 0 0 13px;
+    width: 143px;
+    cursor: pointer;
+}
+
+.vendorInfo:hover{
+    background: url('/images/design/tabs/empty_tab.png') no-repeat;
+}
+
+.brand
+{
+    margin-top: -13px;
+    padding: 13px 0 0 13px;
+    height: 43px;
+    width: 143px;
+    cursor: pointer;
+}
+
+.brand:hover{
+    background: url('/images/design/tabs/empty_tab.png') no-repeat;
+}
+
+.learn-more{
+    font-size: 12px;
+}
+
+.div-howd{
+    padding-left: 13px;
+}
+
+.local-text{
+    padding-left: 13px;
+    font-size: 13px;
+    text-decoration: none;
+}
+
+#store-brand-popup .knack-header {
+    display: none;
+}

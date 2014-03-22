@@ -1,0 +1,364 @@
+<%= content_for :title do %>
+    Profile | Knack Registry
+<% end %>
+<%= content_for :head do %>
+    <%= stylesheet_link_tag "/stylesheets/jquery-ui-1.8.2.custom.css" %>
+    <%= stylesheet_link_tag "/javascripts/jcrop/css/jquery.Jcrop.css" %>
+    <%= stylesheet_link_tag "/stylesheets/Pages/Profile.css" %>
+    <%= javascript_include_tag "/javascripts/jquery.validate.min.js"  %>
+    <%= javascript_include_tag "/javascripts/jquery.form.js"  %>
+    <%= javascript_include_tag "/javascripts/jquery.simplemodal.1.4.1.min.js"  %>
+    <%= javascript_include_tag "/javascripts/jquery-ui-1.8.2.custom.min.js"  %>
+    <%= javascript_include_tag "/javascripts/jcrop/js/adding.js"  %>
+    <%= javascript_include_tag "/javascripts/jcrop/js/jquery.Jcrop.js"  %>
+    <%= javascript_include_tag "/javascripts/controls/_pop-up.js"%>
+    <%= javascript_include_tag "/javascripts/pages/Registrant/knack.registrant.profile.js"%>
+    <%= javascript_include_tag "/javascripts/plugins/jquery.tools.min.js" %>
+<%end%>
+<%= content_for :pagename do %>
+    <% if @is_new %>
+        <div>Complete your profile</div>
+    <% else %>
+        <div>Profile</div>
+    <% end %>
+<% end %>
+
+<%= content_for :registry do %>
+    <%= @registrant.name_registry %>
+<% end %>
+
+<%= content_for :background do %>
+    <% if !@registrant.is_invited? %>
+        <%= render :partial => 'your_credit', :object => @registrant.get_queue %>
+    <% end %>
+<% end %>
+
+<% if Rails.env == "production" %>
+    <!-- Google Code for Logged in User Remarketing List -->
+    <script type="text/javascript">
+        /* <![CDATA[ */
+        var google_conversion_id = 1014910302;
+        var google_conversion_language = "en";
+        var google_conversion_format = "3";
+        var google_conversion_color = "666666";
+        var google_conversion_label = "LT6ICLq3tgIQ3pr54wM";
+        var google_conversion_value = 0;
+        /* ]]> */
+    </script>
+    <script type="text/javascript" src="https://www.googleadservices.com/pagead/conversion.js">
+    </script>
+    <noscript>
+      <div style="display:inline;">
+        <img height="1" width="1" style="border-style:none;" alt="" src="https://www.googleadservices.com/pagead/conversion/1014910302/?label=LT6ICLq3tgIQ3pr54wM&amp;guid=ON&amp;script=0"/>
+      </div>
+    </noscript>
+<% end %>
+
+<%#*-----------------------------%>
+<%#*Content%>
+<%#*-----------------------------%>
+
+<div class="withBackground">
+<div class="content">
+<div class="mainBlock">
+<table class="tbl-profile" cellpadding="0px" cellspacing="0px" border="0px">
+<tr>
+<td class="leftMenu">
+
+  <%= render :partial => 'registry_image' , :locals => {:registrant => @registrant}%>
+  <a href="/registrant/upload_image" id="change-picture"> Change Image </a>
+
+  <div class="event">
+    <div class="name">Payment preferences</div>
+    <div class="link">
+      <form action="/registrant/savepaymentsystem" method="post">
+        <div><%= radio_button :registrant , :PaymentSystem, "1" %>Send money via PayPal.</div>
+        <div><%= radio_button :registrant , :PaymentSystem, "2" %>Send money via Check.</div>
+        <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
+        <div><input id="savePayment" type="submit" value="save"/></div>
+      </form>
+    </div>
+  </div>
+
+</td>
+<td class="rightPane">
+
+<div class="div-profile">
+<% if flash[:success] %>
+    <div class="flash-success">
+      <img class="img-apply" src="/images/apply.png"/><div class="flash-success-text"><%= flash[:success] %></div>
+    </div>
+<% end %>
+<%= form_for @registrant, :url => profile_path do |f| %>
+    <div class="div-block form-sub-heading">
+      Personal Information
+    </div>
+    <div class="div-block">
+      <div class="editor-label">
+        <label for="Email">Email<i>(Login)</i> *</label>
+      </div>
+      <div class="editor-field">
+        <%= f.text_field :Email -%>
+      </div>
+      <div class="editor-error">
+        <%= f.error_message_on :Email, :prepend_text => StaticDataUtilities.get_prepare_error_message %>
+      </div>
+    </div>
+    <% if @registrant.fbuid.nil? %>
+        <div>
+          <div class="div-block">
+            <div class="editor-label">
+              <label for="change_password">Change Password *</label>
+            </div>
+            <div class="editor-field">
+              <%= f.check_box :change_password -%>
+            </div>
+            <div class="editor-error">
+              <%= f.error_message_on :change_password, :prepend_text => StaticDataUtilities.get_prepare_error_message %>
+            </div>
+          </div>
+
+          <div class="passwordBlock">
+            <%#*------------------------------%>
+            <%#*Old password%>
+            <%#*------------------------------%>
+            <div class="div-block">
+              <div class="editor-label">
+                <label for="old_password">Old Password *</label>
+              </div>
+              <div class="editor-field">
+                <%= f.password_field :old_password %>
+
+              </div>
+              <div class="editor-error">
+                <%= f.error_message_on :old_password, :prepend_text => StaticDataUtilities.get_prepare_error_message %>
+              </div>
+            </div>
+
+            <%#*------------------------------%>
+            <%#*New password%>
+            <%#*------------------------------%>
+            <div class="div-block">
+              <div class="editor-label">
+                <label for="new_password">New Password *</label>
+              </div>
+              <div class="editor-field">
+                <%= f.password_field :new_password %>
+
+              </div>
+              <div class="editor-error">
+                <%= f.error_message_on :new_password, :prepend_text => StaticDataUtilities.get_prepare_error_message %>
+              </div>
+            </div>
+
+
+            <div class="emptyBlock">
+            </div>
+
+            <div class="emptyBlock">
+            </div>
+          </div>
+        </div>
+    <% end %>
+    <div class="div-block">
+      <div class="editor-label">
+        <label for="FirstName">First Name *</label>
+      </div>
+      <div class="editor-field">
+        <%=f.text_field :FirstName-%>
+
+      </div>
+      <div class="editor-error">
+        <%= f.error_message_on :FirstName, :prepend_text => StaticDataUtilities.get_prepare_error_message %>
+      </div>
+    </div>
+    <div class="div-block">
+      <div class="editor-label">
+        <label for="LastName">Last Name *</label>
+      </div>
+      <div class="editor-field">
+        <%=f.text_field :LastName-%>
+
+      </div>
+      <div class="editor-error">
+        <%= f.error_message_on :LastName, :prepend_text => StaticDataUtilities.get_prepare_error_message %>
+      </div>
+    </div>
+    <div class="div-block">
+      <div class="editor-label">
+        <label for="Address">Street Address</label>
+      </div>
+      <div class="editor-field">
+        <%=f.text_field :Address-%>
+      </div>
+
+      <div class="editor-error">
+        <%= f.error_message_on :Address, :prepend_text => StaticDataUtilities.get_prepare_error_message %>
+      </div>
+    </div>
+    <div class="div-block">
+      <div class="editor-label">
+        <label for="City">City</label>
+      </div>
+      <div class="editor-field">
+        <%=f.text_field :City-%>
+
+      </div>
+      <div class="editor-error">
+        <%= f.error_message_on :City, :prepend_text => StaticDataUtilities.get_prepare_error_message %>
+      </div>
+    </div>
+    <div class="div-block">
+      <div class="editor-label">
+        <label for="State">State *</label>
+      </div>
+      <div class="editor-field">
+        <%= select(:registrant, :State_ID, @states.collect {|s| [s.Name, s.id]}) %>
+
+      </div>
+
+      <div class="editor-error">
+        <%= f.error_message_on :State_ID, :prepend_text => StaticDataUtilities.get_prepare_error_message %>
+      </div>
+    </div>
+    <div class="div-block">
+      <div class="editor-label">
+        <label for="ZIP">ZIP</label>
+      </div>
+      <div class="editor-field">
+        <%=f.text_field :ZIP-%>
+      </div>
+      <div class="editor-error">
+        <%= f.error_message_on :ZIP, :prepend_text => StaticDataUtilities.get_prepare_error_message %>
+      </div>
+    </div>
+    <div class="div-block">
+      <div class="editor-label">
+        <label for="PhoneNumber">Phone Number</label>
+      </div>
+      <div class="editor-field">
+        <%=f.text_field :PhoneNumber-%>
+      </div>
+
+      <div class="editor-error">
+        <%= f.error_message_on :PhoneNumber, :prepend_text => StaticDataUtilities.get_prepare_error_message %>
+      </div>
+    </div>
+    <div class="div-block form-sub-heading">
+      Registry Information
+    </div>
+    <div class="div-block">
+      <div class="editor-label">
+        <%= label :registrant, :is_invited, "Sample Registry?" %>
+      </div>
+      <div class="editor-field">
+        <%= f.check_box :is_invited-%>
+        <img id="help" src="/images/help.png" alt="help"/>
+        <div class="header">
+          <h3>What is a sample registry?</h3>
+          <p>
+            You can create a sample registry if you are helping a friend create their registry. Your registry will not appear when guest search for a registry, and no one will be able to buy anything from the registry.
+          </p>
+        </div>
+      </div>
+      <div class="editor-error">
+        <%= f.error_message_on :is_invited, :prepend_text => StaticDataUtilities.get_prepare_error_message %>
+      </div>
+    </div>
+    <div class="div-block">
+      <div class="editor-label">
+        <label for="FirstNameCoCreated">Co-registrant First Name</label>
+      </div>
+      <div class="editor-field">
+        <%=f.text_field :FirstNameCoCreated %>
+      </div>
+      <div class="editor-error">
+        <%= f.error_message_on :FirstNameCoCreated, :prepend_text => StaticDataUtilities.get_prepare_error_message %>
+      </div>
+    </div>
+    <div class="div-block">
+      <div class="editor-label">
+        <label for="LastNameCoCreated">Co-registrant Last Name</label>
+      </div>
+      <div class="editor-field">
+        <%=f.text_field :LastNameCoCreated %>
+      </div>
+      <div class="editor-error">
+        <%= f.error_message_on :LastNameCoCreated, :prepend_text => StaticDataUtilities.get_prepare_error_message %>
+      </div>
+
+      <div class="emptyBlock">
+      </div>
+    </div>
+    <div class="div-block">
+      <div class="editor-label">
+        <label for="RegistryType_ID">Registry Type</label>
+      </div>
+      <div class="editor-field">
+        <%= f.select:RegistryType_ID, @types.collect {|s| [s.Name, s.id]} %>
+
+      </div>
+      <div class="editor-error">
+        <%= f.error_message_on :RegistryType_ID, :prepend_text => StaticDataUtilities.get_prepare_error_message %>
+      </div>
+    </div>
+    <div class="div-block">
+      <div class="editor-label">
+        <label for="EventDate">Event Date</label>
+      </div>
+      <div class="editor-field">
+        <%= f.text_field :EventDate, :value => @registrant.EventDate.nil? ? "" : @registrant.EventDate.strftime(raw "%m/%d/%Y") %>
+      </div>
+
+      <div class="editor-error">
+        <%= f.error_message_on :EventDate, :prepend_text => StaticDataUtilities.get_prepare_error_message %>
+      </div>
+    </div>
+    <div class="div-block">
+      <div class="editor-label">
+        <label for="EventLocation">Event Location</label>
+      </div>
+      <div class="editor-field">
+        <%= f.text_field :EventLocation %>
+
+      </div>
+      <div class="editor-error">
+        <%= f.error_message_on :EventLocation, :prepend_text => StaticDataUtilities.get_prepare_error_message %>
+      </div>
+    </div>
+    <div class="div-block">
+      <div class="editor-label">
+        <label for="Description">Registry Description</label>
+      </div>
+      <div class="editor-field">
+        <%= f.text_area :Description, :cols => 23, :rows => 8 %>
+      </div>
+
+      <div class="editor-error">
+        <%= f.error_message_on :Description, :prepend_text => StaticDataUtilities.get_prepare_error_message %>
+      </div>
+    </div>
+    <input type="hidden" id="iscomplete" name="iscomplete"/>
+    <div class="div-block">
+      <div class="div-btn-save">
+        <%=  f.submit "Save" %>
+      </div>
+    </div>
+<%end%>
+
+</div>
+
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+
+
+<div id="h-form" ></div>
+<div class="block-iframe tag-none">
+  <iframe src="" id="errorPopup" width="485px" height="280px" frameborder="0" style="border: 0;">
+
+  </iframe>
+</div>

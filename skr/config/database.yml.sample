@@ -1,0 +1,73 @@
+# MySQL.  Versions 4.1 and 5.0 are recommended.
+#
+# Install the MySQL driver:
+#   gem install mysql
+# On Mac OS X:
+#   sudo gem install mysql -- --with-mysql-dir=/usr/local/mysql
+# On Mac OS X Leopard:
+#   sudo env ARCHFLAGS="-arch i386" gem install mysql -- --with-mysql-config=/usr/local/mysql/bin/mysql_config
+#       This sets the ARCHFLAGS environment variable to your native architecture
+# On Windows:
+#   gem install mysql
+#       Choose the win32 build.
+#       Install MySQL and put its /bin directory on your path.
+#
+# And be sure to use new-style password hashing:
+#   http://dev.mysql.com/doc/refman/5.0/en/old-client.html
+
+
+# Andersen
+#development:
+#  adapter: mysql
+#  encoding: utf8
+#  reconnect: false
+#  database: ShopDB
+#  pool: 5
+#  username: root
+#  password: 111
+#  host: 192.168.1.20
+
+# Local
+development:
+  adapter: mysql2
+  #encoding: utf8
+  reconnect: true
+  database: knack_development
+  pool: 5
+  username: root
+  host: localhost
+  read_timout: 2147483
+  wait_timeout: 2147483
+
+
+# Warning: The database defined as "test" will be erased and
+# re-generated from your development database when you run "rake".
+# Do not set this db to the same as development or production.
+test: &test
+  adapter: mysql2
+  encoding: utf8
+  reconnect: false
+  database: test
+  pool: 5
+  username: root
+  host: localhost
+
+#preview:
+  #adapter: mysql2
+  #reconnect: true
+  #database: p3r83364_knack
+  #username: root
+  #password: 1qazxsw2
+  #encoding: utf8
+
+#production:
+  #adapter: mysql2
+  #reconnect: true
+  #database: p3r83364_knack
+  #username: root
+  #password: 1qazxsw2
+  #encoding: utf8
+
+
+cucumber:
+  <<: *test

@@ -1,0 +1,248 @@
+body {
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+}
+
+.header{
+    position: relative;
+}
+
+.div-c{
+    position: relative;
+}
+
+.header-right{
+    position: absolute;
+    right: 0;
+    text-decoration: none;
+    font: 12px helvetica,sans-serif;
+    z-index: 1;
+}
+
+.header-right img {
+    margin-top: -20px;
+    vertical-align: top;
+}
+
+.hero{
+    margin-left: 42px;
+    background-image: url(/images/pages/san_francisco/SF_Header.png);
+    width: 891px;
+    height: 398px;
+    position: relative;
+    margin-top: -20px;
+}
+
+h1 {
+    text-align: right;
+    color: white;
+    font-family: 'RalewayThin', sans-serif;
+    font-size: 66px;
+    line-height: 66px;
+    letter-spacing: -0.5px;
+    font-weight: bold;
+    margin: 0;
+}
+
+h2 {
+    text-align: right;
+    color: white;
+    font-family: 'RalewayThin', sans-serif;
+    line-height: 40px;
+    font-size: 35px;
+    letter-spacing: 0.5px;
+    font-weight: normal;
+    margin-top: 30px;
+}
+
+.hero-container {
+    width: 650px;
+    right: 45px;
+    top: 45px;
+    position: absolute;
+}
+
+.actions {
+    text-align: center;
+    position: absolute;
+    top: 355px;
+    right: 80px;
+    width: 306px;
+    text-decoration: underline;
+    size: 13px;
+}
+
+.tour-action{
+    position: absolute;
+    left: 50px;
+    margin-top: 10px;
+}
+
+.sample-reg-action{
+    position: absolute;
+    right: 50px;
+    margin-top: 10px;
+}
+
+.mag {
+    text-align: center;
+    position: absolute;
+    top: 490px;
+    right: 80px;
+    text-decoration: underline;
+}
+
+h3 {
+    font-size: 30px;
+    color: #666;
+    margin: 30px 0 0px 8px;
+}
+
+.partners-left{
+    margin-left: 42px;
+    width: 525px;
+}
+
+.partners-bottom{
+    margin-left: 42px;
+}
+
+.partner {
+    display: inline-block;
+    width: 156px;
+    margin: 8px;
+    vertical-align: middle;
+}
+
+.partner .image{
+    width: 156px;
+    height: 118px;
+    border: 1px solid #CCC;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.partner .name{
+    font-size: 13px;
+    margin-bottom: 2px;
+}
+
+
+.bio {
+    display: none;
+    width: 600px;
+    height: 180px;
+    border: #666666 solid 1px;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 16px;
+    z-index: 2;
+}
+
+.hidden {
+    visibility: hidden;
+}
+
+.bottom {
+    margin-top: 5px;
+}
+
+.bottom img:first-child {
+    margin-right: 1px;
+}
+
+.images{
+    float:left;
+    margin-right: 16px;
+    height: 180px;
+}
+
+.description {
+  margin-left: 8px;
+  margin-top: 0;
+}
+
+.description p {
+    margin-top: 0;
+    font-size: 13px;
+}
+
+.more {
+    display: inline-block;
+    width: 156px;
+    font-size: 13px;
+}
+
+h1.headline{
+font-family: 'Raleway', sans-serif; font-size:26px; color:#FFF; line-height:40px; margin-top:-20px; text-align:center
+}
+h2.partners{
+font-family: 'Raleway', sans-serif; font-size:24px; color:#000000; line-height:40px; text-align:left;
+}
+
+#more {
+    display: inline-block;
+    vertical-align: middle;
+    width: 312px;
+    margin: 8px;
+}
+
+#more a{
+    font-size: 14px;
+}
+
+#main{
+float:left; background-image:url(https://knackregistry.com/images/pages/facebook/main_background.jpg); height:823px; width:810px
+}
+
+#liked{
+float:left; background-image:url(https://knackregistry.com/images/pages/facebook/liked_background.jpg); height:823px; width:810px
+}
+
+#headline{
+float:left; text-align:center; margin-top:260px; padding-bottom:0px; padding-left:30px; padding-right:30px
+}
+
+#headline_liked{
+margin-top:150px;  margin-left:20px; margin-bottom:10p;
+}
+
+#secondary{
+float:left; margin-top:-10px; width:680px; margin-left:60px; margin-bottom:-20px;
+}
+#first_row{
+float:left; margin-left:50px;
+}
+
+#title_desc{
+color:#FFFFFF; font-family:Arial, Helvetica, sans-serif; font-size:12px; padding-top:5px;
+}
+
+#hover_1{
+height:120px; position:absolute; margin-left:272px; margin-top:40px
+}
+
+#hover_2{
+height:120px; position:absolute; margin-left:-5px; margin-top:40px
+}
+
+#hover_3{
+height:120px; position:absolute; margin-left:-30px; margin-top:40px
+}
+
+#hover_4{
+height:120px; position:absolute; margin-left:-36px; margin-top:40px
+}
+
+#video_facebook{
+float:left; margin-left:150px; margin-top:20px
+}
+
+#signup_buttons{
+float:left; text-align:center; width:600px; margin-left:90px; margin-top:30px
+}
+
+

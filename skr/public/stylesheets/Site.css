@@ -1,0 +1,785 @@
+body {
+background-color:#568DC6;
+}
+body, td, th {
+font-family:Gill Sans,Arial,Helvetica,sans-serif;
+}
+.class1 a:link {
+color:#333333;
+text-decoration:none;
+}
+.class1 a:visited {
+color:#333333;
+text-decoration:none;
+}
+.class1 a:hover {
+color:#333333;
+text-decoration:none;
+}
+.class1 a:active {
+color:#333333;
+text-decoration:none;
+}
+.redBorder {
+border:4px solid #FF0004;
+}
+.whiteFontFooter {
+color:#FFFFFF;
+font-family:"Gill Sans",Arial,Helvetica,sans-serif;
+font-size:10pt;
+}
+.class2 a:link {
+color:#FFFFFF;
+font-size:10pt;
+text-decoration:none;
+}
+.class2 a:visited {
+color:#FFFFFF;
+text-decoration:none;
+}
+.class2 a:hover {
+color:#FFFFFF;
+text-decoration:underline;
+}
+.class2 a:active {
+color:#FFFFFF;
+text-decoration:none;
+}
+.bodyText {
+color:#666666;
+font-size:11pt;
+font-style:normal;
+}
+.headerText1 {
+color:#9D3026;
+font-size:12pt;
+font-style:normal;
+}
+.dottedLineR {
+border-right:1px dotted #999999;
+}
+
+a img
+{
+    border: none;
+}
+
+.d100
+{
+    width: 100px;
+}
+
+.d200
+{
+    width: 200px!important;
+}
+
+.w100
+{
+    width: 100px!important;
+}
+
+.w150
+{
+    width: 150px!important;
+}
+
+.w200
+{
+    width: 200px!important;
+}
+
+.w350
+{
+    width: 350px!important;
+}
+
+.ml100
+{
+   margin-left: 100px;
+}
+
+.mt10
+{
+    margin-top: 10px;
+}
+
+.mt60
+{
+    margin-top: 60px;
+}
+
+a
+{
+    color: black;
+}
+
+.pb5
+{
+    padding-bottom: 5px;
+}
+
+.pb20
+{
+    padding-bottom: 20px;
+}
+
+.pos-r
+{
+    text-align: right;
+}
+.login-right-block
+{
+    width: 305px;
+    text-align: right;
+}
+
+.tar
+{
+    text-align: right;
+}
+
+.fr
+{
+    float: right;
+}
+.fcolumn
+{
+    width: 200px;
+    float: left;
+}
+.ccolumn
+{
+    float: left;
+}
+.lcolumn
+{
+    margin-bottom: 5px;
+    text-align: right;
+}
+#wrapper
+{
+    width: 1000px;
+    margin: auto;
+    min-height: 600px;
+}
+
+#logo
+{
+    width: 220px;
+    border-style: solid;
+    border-width: 10px;
+    border-color: #ffffff;
+    height: 70px;
+}
+
+#customer_diagram
+{
+    width:300px;
+}
+
+#getmore
+{
+    border-style: solid;
+    border-width: 5px;
+    border-color: #ffffff;
+    float: right;
+    margin-bottom: 0px;
+}
+
+#div-pager
+{
+    margin: auto;
+    width: 400px;
+}
+
+#navbar
+{
+    width: 100%;
+    padding-left: 100px;
+}
+
+#navbar ul
+{
+    list-style-type: none;
+    margin: 0 auto;
+    padding: 0;
+}
+
+#navbar ul li
+{
+    display: inline;
+    float: left;
+    position: relative;
+    text-align: center;
+}
+
+#navbar a:link
+{
+    color:#333333;
+    text-decoration:none;
+}
+
+#navbar ul li a
+{
+    background:none repeat scroll 0 0 #CCCCCC;
+    border:3px solid #FFFFFF;
+    color:#333333;
+    display:block;
+    font:15px "Gill Sans";
+    padding:6px 0;
+    text-decoration:none;
+    width:194px;
+}
+
+.div-c
+{
+    margin: 0 auto;
+    width: 1000px;
+    height: 100%;
+}
+
+#footer div
+{
+    width: 25%;
+    float: left;
+}
+
+.class2 ul
+{
+    list-style-type: none;
+    margin: 0 auto;
+    padding: 0;
+}
+
+#header
+{
+    height: 140px;
+}
+
+#login-block
+{
+    float: right;
+}
+
+#login-block input[type=submit]
+{
+    width: 100px;
+}
+
+.editor-label
+{
+	float: left;
+	width:200px;
+}
+.editor-field
+{
+	margin-left: 100px;
+	margin-bottom: 15px;
+}
+
+.t-is
+{
+    font-style: italic;
+    font-size: small;
+}
+
+.comment
+{
+    width: 200px;
+}
+
+.formError
+{
+    color: red;
+    font-style: italic;
+    font-size: smaller;
+    margin-left: 320px;
+    margin-top: -25px;
+}
+
+.error-text
+{
+    color: red;
+    font-style: italic;
+    font-size: smaller;
+}
+
+#profile-l
+{
+    float: left;
+    width: 300px;
+}
+
+#profile-r
+{
+    width: 600px;
+    margin-left: 340px;
+}
+
+.left-block
+{
+    float: left;
+    width: 200px;
+}
+
+.right-block
+{
+    width: 700px;
+    margin-left: 240px;
+}
+
+#get-st
+{
+    list-style-type: decimal;
+}
+
+.ph20
+{
+    padding: 0px 20px;
+}
+
+#div-description textarea
+{
+    height: 100px;
+}
+
+table
+{
+    border-collapse: collapse;
+}
+
+table TD, TH {
+ padding: 3px;
+ border: 1px solid black; 
+}
+.tdProductFilter
+{
+ padding: 3px;
+ border: 0px solid white;
+}
+
+.tdNotBorder
+{
+ padding: 3px;
+ border: 0px solid white;
+}
+
+#t-category th:first-child
+{
+    width:200px;
+}
+#t-color th:first-child
+{
+    width:200px;
+}
+
+#content
+{
+    height: 100%;
+}
+
+
+/*******************************************************
+IMAGE CONTAINER
+*******************************************************/
+.image_block
+{
+    float: left;
+}
+
+#div-mainimage
+{
+    float: left;
+}
+
+#images
+{
+    height: 200px;
+}
+
+#image-main
+{
+    height: 100px;
+    max-width: 100px;
+}
+
+.div-image
+{
+    margin: 10px;
+    
+}
+
+.imageimg
+{
+    height: 80px;
+    
+}
+
+#image-container
+{
+    height: 100%;
+    vertical-align: bottom;
+}
+
+.file-upload
+{
+    width: 50px;
+    height: 30px;
+    opacity: 0;
+}
+
+/*********************************************************
+*POP UP
+*********************************************************/
+#simplemodal-overlay {background-color:#000;}
+#simplemodal-container {background-color:#fff; border:1px solid #444; padding:1px;}
+#simplemodal-container a.modalCloseImg {
+	/*background:url(/img/x.png) no-repeat; /* adjust url as required */
+	/*width:25px;
+	height:29px;*/
+	display:inline;
+	z-index:3200;
+	position:absolute;
+	top: 0px;
+	right: 0px;
+	cursor:pointer;
+}
+
+#cat-iframe
+{
+    width:600px;
+    height: 400px;
+    display: none;
+}
+.tag-none{
+    display: none;
+}
+/**************************************************************
+*EDIT REGISTRANT2PRODUCTS
+**************************************************************/
+#div-edit-r2p
+{
+    width: 600px;
+    padding: 20px;
+}
+
+.image_view
+{
+    height: 100px;
+}
+
+#product_info
+{
+    width: 100px;
+}
+
+
+
+#quantity
+{
+    width: 30px;
+}
+
+#notes 
+{
+    width: 400px;
+}
+
+#note
+{
+    width: 400px;
+}
+
+#save_r2p
+{
+    float: right;
+}
+/**************************************************************
+*BUY REGISTRANT2PRODUCTS
+**************************************************************/
+#div-buy-r2p
+{
+    width: 600px;
+    padding: 20px;
+}
+
+#product_info_buy
+{
+    width: 100px;
+}
+
+#quantity_buy
+{
+    width: 30px;
+}
+
+#notes_buy
+{
+    width: 400px;
+}
+
+#notes_buy
+{
+    width: 400px;
+}
+
+#save_r2p_buy
+{
+    float: right;
+}
+/********************************************************
+*Update Progress
+********************************************************/
+#cat-wrapper
+{
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	vertical-align: middle;
+	background: #FFF;
+	margin: 0;
+	padding: 0;
+}
+#cat-container
+{
+	position: relative;
+	left: 50%;
+	top: 50%;
+	margin: -25px -25px;
+	display: block;
+	width: 50px;
+	height: 50px;
+	vertical-align: middle;
+	text-align: center;
+	background: #FFF;
+	font-size: 180%;
+	padding: 10px;
+}
+/********************************************************
+*ITEM
+********************************************************/
+.MainImage
+{
+    max-width: 400px;
+    max-height: 400px;
+    padding: 5px;
+}
+.additional-image
+{
+    max-width: 90px;
+    max-height: 90px;
+    padding: 10px;
+}
+
+#item-image-container
+{
+    width: 400px;
+    min-height: 400px;
+}
+
+/********************************************************
+*GIVE
+********************************************************/
+#tfind tr{
+    height: 80px;
+}
+/********************************************************
+*Registrant
+********************************************************/
+#t-products
+{
+    margin-left: 100px;
+}
+#t-products td
+{
+    width: 180px;
+    border: none;
+    height: 200px;
+    vertical-align: bottom;
+}
+
+#t-products img
+{
+    max-height: 100px;
+}
+#slider-range-min
+{
+    width: 200px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+#amount-text{
+    width: 100px!important;
+}
+#tbl-search td
+{
+    border: none;
+    padding: 10px;
+}
+/********************************************************
+*Home
+********************************************************/
+.home-block
+{
+    background: url('/images/block.png') no-repeat;
+    height: 180px;
+    width: 250px;
+    float: left;
+}
+
+#home-wrapper
+{
+    margin: 10px auto;
+    width: 750px;
+}
+
+.home-block .button-to
+{
+    width: 70px;
+    margin-top: -2px;
+    float: right;
+}
+
+.home-block #span-find, #find
+{
+    margin-left: 20px;
+}
+
+.span-center
+{
+    margin-top: 75px;
+    text-align: center;
+}
+
+#home-browse
+{
+    text-align: center;
+    margin-top: 15px;
+}
+
+#home-customer
+{
+    margin-top: 200px;
+}
+
+#find-br
+{
+    margin: 10px 50px;
+}
+
+/********************************************************
+*Add my own gift
+********************************************************/
+#div-left
+{
+    float: left;
+    width: 400px;
+}
+#div-right
+{
+    margin-left: 400px;
+    height: 600px;
+}
+
+#div-left input[type=text], textarea
+{
+    width: 220px;
+}
+
+.l100
+{
+    width: 100px;
+}
+
+.img-select
+{
+    height: 60px;
+    
+}
+
+.img-selected
+{
+    border: 3px outset #FF0004;
+}
+
+/********************************************************
+*Check out registry
+********************************************************/
+#checkout
+{
+    border: none;
+    width: 80%;
+    margin: auto;
+}
+
+#checkout td
+{
+    border: none;
+    border-bottom: 1px solid #000;
+}
+
+#checkout th{
+    border: none;
+}
+
+#amount
+{
+    border: none;
+    width: 80%;
+    margin: auto;
+}
+
+#amount td
+{
+    border: none;
+
+}
+
+/********************************************************
+*BROWSE CATEGORY
+********************************************************/
+#c-products
+{
+    
+}
+#c-products td
+{
+    width: 180px;
+    border: none;
+    height: 200px;
+    vertical-align: bottom;
+}
+
+#c-products img
+{
+    max-height: 100px;
+}
+
+#find-block
+{
+    float:left;
+    width: 200px;
+}
+
+/********************************************************
+*RECEIVE
+********************************************************/
+.table-purchased
+{
+    width: 100%
+}
+
+.table-purchased td
+{
+    border: none;
+}
+
+.table-purchased img
+{
+    max-height: 100px;
+    max-width: 100px;
+}

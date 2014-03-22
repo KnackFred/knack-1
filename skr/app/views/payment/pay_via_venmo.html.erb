@@ -1,0 +1,22 @@
+<% content_for :title do %>
+  Pay via Venmo
+<% end %>
+
+<% unless @venmo.authorized? %>
+  <%= link_to 'Authorize us on Venmo', @venmo.authorize_url(pay_via_venmo_url) %>
+<% else %>
+  <%= form_tag 'make_payment_via_venmo' do %>
+    <% @cart_information.registry_items_by_registrant.each do |registrant, items| %>
+      <dl>
+        <% amount = items.map(&:contribute).sum %>
+        <%= hidden_field_tag :amount, amount %>
+        <%= hidden_field_tag :registrant_id, registrant.id %>
+        <dt><%= label_tag "Amount" %></dt>
+        <dd><%= label_tag number_to_currency(amount) %></dd>
+        <dt><%= label_tag "Recipient" %></dt>
+        <dd><%= label_tag registrant.display_name %><dd>
+        <%= submit_tag 'Make Payment' %>
+      </dl>
+    <% end %>
+  <% end %>
+<% end %>

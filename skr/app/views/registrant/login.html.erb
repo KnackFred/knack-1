@@ -1,0 +1,91 @@
+<% content_for :title do %>
+  Login | Knack Registry
+<% end %>
+<% content_for :head do %>
+  <%= stylesheet_link_tag "/stylesheets/Pages/Login.css" %>
+  <%= javascript_include_tag "/javascripts/knack.registrant.login.js"  %>
+<%  end %>
+
+
+  <div class="div-container-login">
+          <div class="pageName">
+            Login
+          </div>
+          <div>
+            <%= form_tag signin_path do%>
+              <div id="div-login">
+                <div class="div-block">
+                  <div class="editor-label">
+                    <label for="Email">Email</label>
+                  </div>
+                  <div class="editor-field">
+                    <%=text_field :registrant, 'Email'-%>
+
+                  </div>
+                  <div class="editor-error">
+                    <span class="formError"><%= @err_email %></span>
+                  </div>
+                </div>
+
+                <div class="div-block">
+                  <div class="editor-label">
+                        <label for="Password">Password</label>
+                  </div>
+                  <div class="editor-field">
+                    <%=password_field :registrant, :Password-%>
+
+                  </div>
+                  <div class="editor-error">
+                    <span class="formError"><%= @err_pass %></span>
+                  </div>
+                </div>
+
+                <div class="div-block">
+                  <div id="forgotPas" class="editor-label">
+                    <a href="/registrant/forgotpassword" >Forgot Password?</a>
+                  </div>
+                  <div id="remember" class="editor-field">
+                    <%= check_box_tag 'rememberMe', 'yes', false %>Remember me
+                  </div>
+                </div>
+
+                <div class="div-block">
+                  <div id="register" class="editor-label">
+                    <a href="<%= signup_path %>" >Not a member? Register!</a>
+                  </div>
+                  <div id="logButton" class="editor-field">
+                    <%=submit_tag 'Login'-%>
+                  </div>
+                </div>
+
+
+
+                <div class="formError div-generr"><%= @err_general %></div>
+
+              </div>
+            <%end%>
+          </div>
+
+          <div class="div-block">
+            <div class="line"></div>
+
+
+            <div class="facebookBlock">
+              Login using Facebook:
+
+              <div class="faceBut">
+                <a id="fb-login" href="#">
+                  <img src = "/images/general/social/fb-login.png"/>
+                </a>
+                <span id="login_spinner" style="position:absolute;padding-top:2px;padding-left:5px;display:none"><img src="/images/spinner.gif" alt="" /></span>
+              </div>
+            </div>
+          </div>
+
+
+
+</div>
+  <div class="clearfloat"></div>
+
+
+<%= render :partial => 'shared/fb_init' %>

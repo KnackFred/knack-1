@@ -1,0 +1,244 @@
+#knackWindow{
+	font-family:Arial sans-serif;
+	color:#595858;
+	font-size:10pt;
+	width:550px !important;
+    line-height: 100%;
+}
+
+#knakWindow img{
+	border:0;
+}
+
+#knack-header{
+	background:#d8e4f2;
+	text-align:center;
+	padding:5px 10px;
+	max-width:550px !important;
+	max-height:35px;
+	cursor:default;
+}
+
+#knackWindow a{
+	color:#595858;
+	text-decoration:none;
+	font-weight:normal;
+    float: right;
+}
+
+#knack-header #knack-help{
+    float: left;
+}
+
+#knack-header a:link{
+	color:#595858;
+	text-decoration:none;
+}
+#knack-header a:hover{
+	color:#595858 !important;
+	background:#d8e4f2;
+	
+}
+
+#knack-content-wraper{
+	position:relative;
+	z-index:101;
+	top:0;
+	left:0;
+	border:solid 0;
+	
+}
+
+#knack-tax-form{
+	position:absolute;
+	z-index:101;
+	top:25px;
+	left:0;
+	border:solid 0;
+	max-width:550px !important;
+	
+	height:280px;
+	background:#fff;
+	display: none;
+	color:#595858;
+	text-align:right;
+	font-size:10pt;
+	font-family:Arial sans-serif;
+	font-weight:normal;
+	padding:10px 50px 0 0;
+}
+
+#knack_add_result{
+	position:absolute;
+	z-index:110;
+	top:35px;
+	left:0;
+	border:solid 0;
+	max-width:550px !important;
+	width:550px;
+	height:293px;
+	background:#fff;
+	visibility:hidden;
+	color:#6599cb;
+	text-align:center;
+	font-size:14pt;
+	font-family:Arial sans-serif;
+	font-weight:normal;
+}
+
+#knack-wait-wrapper{
+	position:absolute;
+	z-index:110;
+	top:40px;
+	left:0;
+	border:solid 0;
+	max-width:548px !important;
+	width:548px !important;
+	height:480px;
+	background:#fff;
+	visibility:hidden;
+	
+}
+
+#knack-wait-container{
+	 position:relative;
+	 padding-left:250px;
+	 padding-top:125px;
+	 width: 50px !important;
+	 height: 50px !important;
+}
+
+#knack-tax-form label{
+	color:#6599cb;
+	font-weight:bold;
+	font-size:10pt;
+	font-family:Arial sans-serif;
+	background:#fff;
+}
+#knack-tax-form input{
+	font-family:Arial sans-serif;
+	font-size:10pt;
+	color:#595858;
+	font-weight:normal;
+	border:1px;
+	border-style:solid;
+	border-color:#999;
+	background:#fff;
+	padding:1px;
+	
+	
+}
+#knack-tax-form input[disabled]{
+	background:#eee;
+	color:#999 ;
+}
+#knack-tax-form  input[type=image]{
+	border:0 !important;
+}
+
+#knack-tax-form  fieldset{
+	border:solid 1px #999;
+	color:#999;
+	padding:5px 15px 10px 15px !important;
+	max-height:110px;
+	width:250px;
+	margin:0 0 10px 0;
+	float:right;
+	background:#fff;
+	
+	
+}
+#knack-tax-form legend{
+	background:#fff !important;
+	color:#999 !important;
+}
+#knack-tax-form input[type=image]{
+	border:0;
+}
+
+#image-side{
+	float:left;
+	width:28%;
+	padding:10px 10px 5px 35px;
+	height:285px;
+}
+#img-navi{
+	width:170px;
+	padding-top:5px;
+	font-family:Arial sans-serif;
+	font-size:9pt;
+	text-align:center;
+}
+#knack-table{
+	width:230px !important;
+	min-width:230px !important;
+	text-align:left !important;
+	border:solid 0 !important;
+	border-collapse:collapse;
+	
+	background:#fff !important;
+	height:200px !important;
+	max-height:200px !important;
+}
+
+#knack-table td{
+	border: 0 solid!important;
+}
+
+#image-number{
+  margin-left:25px;
+  margin-right:25px;
+  
+}
+
+#ht{
+	font-size:13pt;
+	font-weight:bold;
+	color:#000;
+	
+}
+
+#knack-input-form label{
+	font-family:Arial sans-serif;
+	font-size:10pt;
+	color:#6698cb;
+	font-weight:bold;
+	background:#fff;
+	
+	
+}
+#knack-input-form input,textarea{
+	font-family:Arial sans-serif;
+	font-size:10pt;
+	color:#8c8c8c !important;
+	font-weight:normal;
+	border:1px;
+	border-style:solid;
+	border-color:#999 !important;
+	background:#fff;
+	padding:1px;
+	margin:0;
+	
+}
+#knack-input-form input[type=image]{
+	border:0 !important;
+}
+
+
+#knack-input-form span{
+	font-family:Arial sans-serif;
+	font-size:9pt;
+	color:#595858;
+	font-weight:normal;
+	padding-left:2px;
+	
+}
+
+#knack-logo{
+	text-align:center;
+	margin-top:20px;
+	padding-right:5px;
+	
+	
+}
+

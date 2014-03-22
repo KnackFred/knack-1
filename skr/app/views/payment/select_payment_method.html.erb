@@ -1,0 +1,37 @@
+<% content_for :title do %>
+  Select Payment Method
+<% end %>
+
+<h3>Please select the payment method you would like to use</h3>
+<table id="tbl-payment-method">
+  <tbody>
+    <tr>
+      <td>
+        <div class="pay-block" id="pay-via-venmo">
+          <div class="in-block">
+            <p><span id="spn-venmo">Pay via Venmo</span></p>
+            <p><span class="spn-text-in">Use the Venmo service to securely pay online.</span></p>
+          </div>
+          <a href="<%= pay_via_venmo_path %>">
+            <div class="btn-in-block" id="div-btn-venmo">
+              <span>PAY VIA VENMO</span>
+            </div>
+          </a>
+        </div>
+      </td>
+      <td>
+        <div class="pay-block" id="find-registry">
+          <div class="in-block">
+            <p><span id="spn-check">Pay via Check</span></p>
+            <p><span class="spn-text-in">Pay using the old-fashioned method of mailing a check.</span></p>
+          </div>
+          <a href="<%= pay_via_check_path %>">
+            <div class="btn-in-block">
+              <span>PAY VIA CHECK</span>
+            </div>
+          </a>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>

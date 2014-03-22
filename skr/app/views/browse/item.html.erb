@@ -1,0 +1,332 @@
+<% content_for :title do %>
+    <%= @product.Name %> | Knack Registry
+<%end%>
+<% content_for :head do -%>
+    <% unless @product.cash? %>
+        <link rel="canonical" href="/item/<%= @product.categories.blank? ? 0 : @product.categories[0].id %>/<%= @product.id %>/<%= @product.name_url %>" />
+    <% end %>
+    <%= stylesheet_link_tag "/javascripts/gallery/css_pirobox/style_1/style.css" %>
+    <%= stylesheet_link_tag "/stylesheets/Pages/Item.css" %>
+    <%= stylesheet_link_tag "/stylesheets/Pages/Browse/_partner.css" %>
+    <%= stylesheet_link_tag "/stylesheets/Pages/Browse/_category_nav.css" %>
+    <%= stylesheet_link_tag "/stylesheets/Pages/Buy/buy_ext_popup.css" %>
+    <%= javascript_include_tag "/javascripts/jquery.form.js"  %>
+    <%= javascript_include_tag "/javascripts/jquery-ui-1.8.2.custom.min.js"  %>
+    <%= javascript_include_tag "/javascripts/json2.js"  %>
+    <%= javascript_include_tag "/javascripts/jquery.simplemodal.1.4.1.min.js"  %>
+    <%= javascript_include_tag "/javascripts/gallery/pirobox_extended_min.js" %>
+    <%= javascript_include_tag "/javascripts/controls/_category_nav" %>
+    <%= javascript_include_tag "/javascripts/controls/_pop-up" %>
+    <%= javascript_include_tag "/javascripts/pages/Browse/knack.browse.item.js"  %>
+    <%= javascript_include_tag "/javascripts/pages/Buy/knack.registrant.buy-ext.js"%>
+    <%= javascript_include_tag "/javascripts/pages/addtoregistry.js"  %>
+
+    <meta content="<%= @product.Name %>" name="title"/>
+    <meta content="<%= truncate(@product.Description, :length => 300, :omission => "...") -%>" name="description"/>
+    <meta property="og:title" content="<%= @product.Name -%>"/>
+    <meta property="og:type" content="article"/>
+    <meta property="og:url" content="<%= request.url -%>"/>
+    <meta property="og:site_name" content="<%= ::APP_CONFIG['base_url'] -%>"/>
+    <meta property="og:image" content="<%= ::APP_CONFIG['base_url'] + @product.main_product_thumb.url(:medium) %>" />
+    <meta property="og:description" content="<%= truncate(@product.Description, :length => 300, :omission => "...") -%>"/>
+    <meta property="fb:app_id" content="<%= ::APP_CONFIG['facebook_app_id'] -%>"/>
+<% end %>
+
+<% content_for :catalog do %>
+    <%= render :partial => "category_breadcrumb", :object => @category.catalog_menu if @category.catalog_menu.count > 1%>
+    <%= render "store_breadcrumb" unless @store.nil?%>
+    <%= render "brand_breadcrumb" unless @brand.nil?%>
+
+<% end %>
+
+<% content_for :pagename do %>
+    <div><%= truncate(@product.Name, :length => 20, :omission => "...") -%></div>
+<% end %>
+
+<% content_for :under_body do %>
+    <%= render :partial => 'shared/fb_init' %>
+<% end %>
+<div class="withBackground">
+<div class="content">
+<table id="table-item">
+<tr>
+<%#*------------------------%>
+<%#*Left column%>
+<%#*------------------------%>
+<td id="td-left">
+  <% unless @registry_item.blank?  %>
+      <div>
+        <%= render 'registrant_block' %>
+      </div>
+  <% else %>
+      <div class="category">
+        <%= render "category_nav" %>
+      </div>
+  <% end %>
+</td>
+
+<%#*------------------------%>
+<%#*Center column%>
+<%#*------------------------%>
+<td id="td-center">
+  <div class="div-mainimage">
+    <div id="wrap" class="wrap">
+      <table id="table_main" class="imageTable">
+        <tbody>
+        <tr>
+          <td class="prev">
+            <input type="button" value=" " class="btn-prev"/>
+          </td>
+          <td>
+            <%= image_tag @product.main_product_image.url(:large),
+                          :alt => @product.Name,
+                          :class => 'main_image' %>
+          </td>
+          <td class="next">
+            <input type="button" value=" " class="btn-next"/>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="empty-div" style="clear: both"></div>
+
+  <div class="imagesBlock group">
+    <% @product.all_product_images.each do |image| %>
+        <%= link_to  image.url(:large),
+                     :class => "preview",
+                     :'data-url' => image.url(:large) do %>
+            <%= image_tag image.url(:small),
+                          :alt => @product.Name,
+                          :class => "additional-image add-image"%>
+        <% end %>
+    <% end %>
+  </div>
+  <div class="attachBlock group">
+    <% @product.product_attachments.each do |attach| %>
+        <%= link_to attach.product_attachment.url,
+                    :title => attach.title,
+                    :target=> "_blank" do -%>
+            <%= image_tag ProductAttachment::ICON_URL,
+                          :alt => attach.title%>
+        <% end %>
+    <% end %>
+  </div>
+  <%= hidden_field_tag 'count_image', @product.product_images.count %>
+</td>
+
+<%#*------------------------%>
+<%#*Right column%>
+<%#*------------------------%>
+<td id="td-right">
+  <div class="right-container">
+    <%#*------------------------%>
+    <%#*Item item%>
+    <%#*------------------------%>
+    <div class="item-name">
+      <div class="label-title">Name</div>
+      <%= @product.Name  %>
+    </div>
+
+    <%#*------------------------%>
+    <%#*Like facebook%>
+    <%#*------------------------%>
+    <div class="like-facebook">
+      <div id="facebooklike">
+        <div class="fb-like" data-send="false" data-layout="box_count" data-width="55" data-show-faces="false"></div>
+      </div>
+    </div>
+
+    <%#*------------------------%>
+    <%#*Item price%>
+    <%#*------------------------%>
+    <div class="item-price">
+      <div class="label-title">Price</div>
+      <% if @registry_item %>
+          <%= formatted_price(@registry_item.Price) -%>
+      <% else %>
+          <% if @product.is_sales? %>
+              <div class="div-prices">
+                <span class="sp-unline"><%= formatted_price(@product.MasterPrice) -%></span>
+                <br/><span class="sale">Sale! <%= formatted_price(@product.SalesPrice) -%></span>
+              </div>
+          <% else %>
+              <%= formatted_price(@product.Price) -%>
+          <% end %>
+      <% end %>
+    </div>
+
+    <div class="div-qc">
+      <%#*------------------------%>
+      <%#*Item brand%>
+      <%#*------------------------%>
+      <% unless @product.brand.blank? %>
+          <div class="item-brand" id="item-brand">
+            <div class="label-title">Brand</div>
+            <%= link_to @product.brand.Name, @product.brand, :id => "brand-link" %>
+          </div>
+      <% end %>
+
+      <%#*------------------------%>
+      <%#*Item Quantity%>
+      <%#*------------------------%>
+      <div class="item-quantity">
+        <div class="label-title">Quantity</div>
+        <% if @registry_item.blank?  %>
+            <%= text_field_tag "quantity", 1, {:readonly => @product.IsKind} -%>
+        <% else %>
+            <%= formatted_remaining(@registry_item, true) %>
+        <% end %>
+      </div>
+
+      <%#*------------------------%>
+      <%#*Item Color%>
+      <%#*------------------------%>
+      <% if @product.colors.count > 0 %>
+          <div class="item-color">
+            <div class="label-title">Color</div>
+            <% if @product.colors.count > 1 %>
+                <%= select_tag 's-color',
+                               options_from_collection_for_select(@product.colors, :id, :Name, :selected => @registry_item && @registry_item.color.id),
+                               :class => "s-color", :disabled => !@registry_item.blank? -%>
+            <% else %>
+                <%= label_tag @product.colors.first.Name -%>
+                <%= hidden_field_tag "s-color", @product.colors.first.id, :class => "s-color" -%>
+            <% end %>
+          </div>
+      <%end%>
+    </div>
+
+    <div class="float-left">
+      <%#*------------------------%>
+      <%#*Item Variants%>
+      <%#*------------------------%>
+      <% @product.product_params.each do |p| %>
+          <div class="item-params" dataid="<%= p.id -%>">
+            <div class="label-title"><%= p.Name -%></div>
+
+            <% if p.value_params.count >= 1 %>
+                <%=  select("product_params", p.Name, p.value_params.collect {|v| [ v.Value, v.id ] }, {:selected => (@registry_item && @registry_item.get_product_params[p.Name] if @registry_item)}, {:disabled => !@registry_item.blank?}) %>
+            <% end %>
+          </div>
+      <%end%>
+    </div>
+
+    <%#*------------------------%>
+    <%#*Buttons%>
+    <%#*------------------------%>
+    <div class="item-buttons-and-description">
+      <div class="item-buttons">
+        <% if @registry_item  %>
+            <% unless  @registry_item.registrant == @registrant  %>
+                <% unless @registry_item.registrant.is_invited?%>
+                    <% if @registry_item.Purchased_ID == RegistryItem::AVAILABLE %>
+                        <% if @registry_item.product.external?%>
+                            <a class="contribute-ext button-red-lrg" itemid="<%= @registry_item.id%>" data-url="<%= skim_link(@registry_item.product.source_url, @registry_item.registrant.id)%>" data-src-name="<%= @registry_item.product.source_name%>"/>
+                                BUY NOW <%= image_tag "/images/general/item_types/external-white.png", :alt => "External Link" %>
+                            </a>
+                            <div class="order-note">
+                              This gift is from <%=  @registry_item.product.source_name %>.
+                            </div>
+                        <% else %>
+                            <% unless @in_cart%>
+                                <div>
+                                  <a id="btn-contribute" class="button-red-lrg">
+                                    <%= @registry_item.allow_contribute? ? "BUY/CONTRIBUTE" : "BUY" %>
+                                  </a>
+                                </div>
+                            <% end %>
+                        <% end %>
+                    <% else %>
+                        <% if @registry_item.product.external? %>
+                            <%= link_to skim_link(@registry_item.product.source_url, @registry_item.registrant.id), :class =>"button-red-lrg", :target => "_blank" do %>
+                                VIEW <%= image_tag "/images/general/item_types/external-white.png", :alt => "External Link" %>
+                            <% end %>
+                            <div class="order-note">
+                              This gift is from <%=  @registry_item.product.source_name %>.
+                            </div>
+                        <% end %>
+                    <% end %>
+                <% end %>
+                <% if @registrant%>
+                    <a class="button-lrg addfromregistry" href="<%= add_from_registry_path @registry_item.id %>" data-id="<%=@registry_item.id%>">
+                      ADD TO MY REGISTRY
+                    </a>
+                <% end %>
+            <% end %>
+        <% else %>
+            <% unless @product.cash? %>
+                <% if session[:registrant]  %>
+                    <div>
+                      <a id="addtoregistry" class="button-red-lrg addfromregistry">
+                        ADD TO MY REGISTRY
+                      </a>
+                    </div>
+                <% end %>
+                <div>
+                  <a id="buynow" class="button-red-lrg">
+                    BUY NOW
+                  </a>
+                </div>
+            <% end %>
+        <% end %>
+      </div>
+      <div class="item-description">
+        <% unless @product.Description.blank? %>
+            <div class="label-title l-desc">Description</div>
+            <%= raw truncate(StringHelper.string_to_html(@product.Description), :length => 900, :omission => "")  %>
+        <% end %>
+      </div>
+
+      <div class="item-back">
+        <%= form_tag (session[:back_path].blank? ? catalog_path : session[:back_path]) do %>
+            <%= hidden_field_tag "back_view", 'true' -%>
+            <%= submit_tag "BACK TO CATALOG", {:id => "btn-backtocatalog", :class => "button-lrg"} %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</td>
+</tr>
+</table>
+
+<%= render :partial => "partner", :object => @partner if @partner%>
+
+</div>
+</div>
+
+<% if @product %>
+    <%= hidden_field_tag "productId", @product.id, {:name => "pid"} -%>
+<% end %>
+
+<% if @registrant %>
+    <%= hidden_field_tag "registrantId", @registrant.id -%>
+<% end %>
+<% if @registry %>
+    <%= hidden_field_tag "registryId", @registry.id -%>
+<% end %>
+
+<% if @registry_item %>
+    <%= hidden_field_tag "r2pId", @registry_item.id -%>
+<% end %>
+<%= hidden_field_tag "categoryId", @category_id -%>
+
+<div class="block-iframe tag-none">
+  <iframe src="" id="ifr-popup" width="500" height="490" frameborder="0" style="border: 0;">
+  </iframe>
+</div>
+
+<div id="store-brand-popup" class="tag-none">
+  <iframe src="" width="500" height="490" frameborder="0" style="border: 0;">
+  </iframe>
+</div>
+
+<%= render "registrant/buy-ext-popup" %>
+
+<div class="block-popb tag-none">
+  <iframe src="" id="ifr-popup-add-to-registry" width="485px" height="480px" frameborder="0" style="border: 0;">
+  </iframe>
+</div>
+

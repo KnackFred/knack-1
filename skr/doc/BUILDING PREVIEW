@@ -1,0 +1,22 @@
+Preview should be created based on production.
+
+1) Take a backup of production (or use a recent daily or weekley backup).
+
+2) rebuild the preview slice using that backup.
+    Go to the slice in the slicehost admin console.
+    Select rebuild
+    Pick the image.
+    Wait for the backup to complete.
+
+3) update the preview server so it works right
+     - ssh into preview
+        - You may have to remove the signature for the host by running the following.
+            rm ~/.ssh/known_hosts
+     - update config
+        - the config file is here /opt/nginx/conf/conf.d/virtual.conf
+              /usr/local/nginx/conf/conf.d/virtual.conf
+        - replace knackregistry.com with preview.knackregistry.com everywhere you see it.
+        - set rails_env to preview.
+        - save the file
+     - restart the server
+        shutdown -r now

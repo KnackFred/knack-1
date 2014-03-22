@@ -1,0 +1,102 @@
+<% content_for :title do %>
+  Order Complete | Knack Registry
+<% end %>
+<% content_for :head do %>
+  <%= stylesheet_link_tag "/stylesheets/layouts/Cart.css"%>
+  <%= stylesheet_link_tag "/stylesheets/Pages/Success.css"%>
+<%end%>
+<% content_for :under_body do %>
+    <%= render :partial => 'shared/fb_init' %>
+<% end %>
+
+<div class="div-c">
+
+    <div class="topMenu">
+      <div class="pageName">
+        Thank You For Your Order
+      </div>
+      <div class="div-link-step">
+      </div>
+    </div>
+
+    <div class="withBackground">
+      <div class="content">
+
+        <div class="mainBlock">
+
+          <div id="line-header" class="Line"></div>
+
+          <table id="table-payment">
+
+          <tr>
+            <%#*----------------------------%>
+            <%#*Left column%>
+            <%#*----------------------------%>
+            <td class="leftTD">
+                <div>
+                    <%#*<div class="payment">%>
+                      <%#*<span class="header-column">Please Confirm Your Payment Details</span>%>
+                    <%#*</div>%>
+
+                  <div class="wrap-header-table">
+                    <div class="header-all">
+                      Order #<%=@transaction.ID%> Summary
+                    </div>
+
+                    <% unless session[:registrant].blank? %>
+                      <div class="div-credit">
+                        <div class="text-credit">Your Credit :</div>
+                        <div class="amount-credit"><%= formatted_price(@queue) %></div>
+                      </div>
+                    <% end %>
+                  </div>
+
+                  <div class="wrap-table">
+                    <table class="tbl-all">
+                      <thead>
+                        <tr>
+                          <td class="td-date">Date</td>
+                          <td class="td-description">Description</td>
+                          <td class="td-type"></td>
+                          <td class="td-amount">Amount</td>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      <tr>
+                        <td><%= Time.parse(@transaction.Date.to_s).strftime("%m/%d/%Y") %></td>
+                        <td>
+                          <%= Transactions::TYPES[@transaction.Type] %><br/>
+                          <%= @transaction.product_names %>
+                        </td>
+                        <td></td>
+                        <td><%= formatted_price(@transaction.Amount) %></td>
+                      </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <% if session[:registrant].blank? %>
+                    <div class="call-to-action">
+                      <div class="call-to-action-text">
+                        <p>
+                          Thanks for your order, and for helping us support small businesses, artisans and artists in local communities across the U.S.
+                        </p>
+                        <p>
+                          Let your friends know about Knack by liking us on facebook.
+                        </p>
+                      </div>
+                      <div class="call-to-action-fb">
+                        <div class="fb-like" data-href="http://facebook.com/knackregistry" data-send="false" data-width="300" data-show-faces="true" ref="signup"></div>
+                      </div>
+                    </div>
+                  <% end %>
+                </div>
+            </td>
+          </tr>
+        </table>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+

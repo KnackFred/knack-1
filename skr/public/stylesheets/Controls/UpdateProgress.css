@@ -1,0 +1,51 @@
+/********************************************************
+*Update Progress
+********************************************************/
+#cat-wrapper
+{
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	vertical-align: middle;
+	background: #FFF;
+	margin: 0;
+	padding: 0;
+    z-index: 9999999;
+}
+
+#cat-wrapper-image
+{
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	vertical-align: middle;
+	background: #FFF;
+	margin: 0;
+	padding: 0;
+    z-index: 9999999999;
+}
+#cat-container
+{
+	position: relative;
+	left: 50%;
+	top: 50%;
+	margin: -25px -25px;
+	display: block;
+	width: 50px;
+	height: 50px;
+	vertical-align: middle;
+	text-align: center;
+	background: #FFF;
+	font-size: 180%;
+	padding: 10px;
+}
+
+.tag-none{
+    display: none;
+}

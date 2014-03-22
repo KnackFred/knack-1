@@ -1,0 +1,27 @@
+<% content_for :title do %>
+   Contributors | Knack Registry
+<% end %>
+<% content_for :header do %>
+    <%= stylesheet_link_tag "/stylesheets/Global.css" %>
+    <%= stylesheet_link_tag "/stylesheets/Pages/buy_contribute.css" %>    
+<% end %>
+<div class="pageName">Contributors</div>
+<% @item.contributes.each do |giver| %>
+    <div class="contribution">
+      <div class="label">Amount:</div>
+      <div class="value"><%= formatted_price(giver.Contribute) %></div>
+      <% unless @item.product.external? %>
+          <div class="label">Name:</div>
+          <div class="value"><%= giver.order.try(:BillingFirstName)%> <%= giver.order.try(:BillingLastName) %></div>
+      <% end %>
+      <% unless giver.order.BillingEmail.blank? %>
+          <div class="label">Email:</div>
+          <div class="value"><%= giver.order.BillingEmail %></div>
+      <% end %>
+      <div class="label">From:</div>
+      <div class="value"><%= giver.From %> </div>
+      <div class="label">Note:</div>
+      <div class="value"> <%= giver.Notes %></div>
+      <div class="line"></div>
+    </div>
+<% end %>

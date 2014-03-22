@@ -1,0 +1,28 @@
+.rule{
+    margin-top: 18px;
+}
+
+.ruleTopic{
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.ruleContent{
+    margin-top: 7px;
+    font-size: 12px;
+    color: #666666;
+}
+
+.ruleContent p {
+    font-size: 12px;
+}
+
+.ul-info
+{
+    margin-left: -25px;
+}
+
+.rightPane a {
+    color: #333333;
+}
+

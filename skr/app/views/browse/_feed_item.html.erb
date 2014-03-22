@@ -1,0 +1,43 @@
+<% registry_item = feed_item %>
+<li class="gift-entry">
+  <%= link_to from_registry_path(registry_item.Registrant_ID, registry_item.id, registry_item.product.id, "item") do %>
+      <div class="gift-entry-image-box">
+        <%= image_tag registry_item.product.main_product_thumb.url(:medium), :alt => registry_item.product.Name, :class => "product-image-medium" %>
+      </div>
+  <% end %>
+  <div class="gift-entry-info">
+    <span class="faces">
+      <%= social_picture(registry_item.registrant) if @registrant.try(:follows?, registry_item.registrant) || registry_item.registrant == @registrant %><%= social_picture(registry_item.copied_from.registrant) if registry_item.copied_from && (@registrant.try(:follows?, registry_item.copied_from.registrant) || registry_item.copied_from.registrant == @registrant)%>
+    </span>
+    <%= link_to (registry_item.registrant.FirstName ? registry_item.registrant.FirstName : "A Knack User"), registry_path(registry_item.Registrant_ID), :class => "registry-name to-registry" %>
+    added
+    <%= link_to registry_item.product.Name, from_registry_path(registry_item.Registrant_ID, registry_item.id, registry_item.product.id, "item") %>
+
+    <% store = registry_item.product.stores.first %>
+    <% site = registry_item.product.source_name %>
+    <% source = registry_item.copied_from %>
+    <% if store %>
+        from <%= link_to store.Name, store_path(store) %>
+    <% elsif site %>
+        from <%= link_to site, feed_path(URI::encode(site)) %>
+  <% end %>
+    <% if source %>
+        off of <%= link_to ((source.registrant.FirstName ? source.registrant.FirstName : "A Knack User") +"'s Registry"), registry_path(source.registrant), :class => "registry-name from-registry"%>
+    <% end %>
+
+  </div>
+  <div class="buttons-left">
+    <% if @registrant %>
+        <a href="<%= add_from_registry_path registry_item.id %>" data-id="<%=registry_item.id%>" class="addfromregistry button-small">
+          ADD TO MY REGISTRY
+        </a>
+    <% else %>
+        <a href="<%= signup_path%>" class="button-small">
+          ADD TO MY REGISTRY
+        </a>
+    <% end %>
+  </div>
+  <div class="buttons-right">
+  </div>
+</li>
+

@@ -1,0 +1,51 @@
+<% content_for :title do %>
+  <% if @state.id == nil %>
+      Add
+    <% else %>
+      Edit
+    <% end %>
+       state
+<% end %>
+<% content_for :head do %>
+        <%= javascript_include_tag "/javascripts/knack.administrative.editstate.js"  %>
+<%end%>
+<div>
+  <h3>
+    <% if @state.id == nil %>
+      Add
+    <% else %>
+      Edit
+    <% end %>
+       product
+  </h3>
+
+  <%=  form_tag({:controller => :administrative, :action => :editstate}, :id => 'form-state') do%>
+        <div id="div-reg">
+            <div id="div-name">
+              <div class="editor-label">
+                <label for="Name">Name</label>
+              </div>
+              <div class="editor-field">
+                <%=text_field :state, :Name-%>
+                <%= error_message_on :state, :Name, :prepend_text => StaticDataUtilities.get_prepare_error_message %>
+              </div>
+            </div>
+            <div id="div-price">
+              <div class="editor-label">
+                    <label for="Tax">Tax</label>
+              </div>
+              <div class="editor-field">
+                <%= text_field :state, :GeneralTax %>%
+                <%= error_message_on :state, :GeneralTax, :prepend_text => StaticDataUtilities.get_prepare_error_message %>
+              </div>
+            </div>
+
+            <input type="hidden" id="iscancel" name="iscancel"/>
+        </div>
+        <div>
+          <input type="button" id="cancel" value="Cancel" />
+          <input type="submit" id="save" value="Save"/>
+        </div>
+    <%end%>
+
+</div>

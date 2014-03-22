@@ -1,0 +1,50 @@
+<% case @cart_information.type %>
+<% when CartInformation::TYPE_BUY_CONTRIBUTE %>
+    <%= render 'buy_contribute_summary'%>
+<% when CartInformation::TYPE_WITHDRAW %>
+    <tr>
+      <td></td>
+      <td class="rightColumn">Withdraw cash subtotal <span class="price"><%= formatted_price(@cart_information.withdraw_total) %></span></td>
+    </tr>
+
+    <% if @cart_information.commission > 0 %>
+        <tr>
+          <td></td>
+          <td class="rightColumn">Knack fee: <span class="price"><%= formatted_price(@cart_information.commission) %></span></td>
+        </tr>
+    <% end %>
+<% end %>
+
+<%= render "empty_tr" %>
+
+<%#*Total%>
+<% if @cart_information.total > 0 %>
+    <tr>
+      <td></td>
+      <td class="rightColumn">Total: <span class="price"><%= formatted_price(@cart_information.total) %></span></td>
+    </tr>
+<% end %>
+
+<%= render "empty_tr" %>
+
+<%#*Queue Info%>
+<% if @cart_information.use_cash && @cart_information.queue && @cart_information.queue > 0 && @cart_information.total && @cart_information.total > 0  &&  @cart_information.type != CartInformation::TYPE_WITHDRAW %>
+    <tr>
+      <td></td>
+      <td class="rightColumn">Knack Credit: <span class="price"><%= formatted_price((@cart_information.queue)) %></span></td>
+    </tr>
+
+<%#*Additional payment%>
+    <% if @cart_information.missing_amount < 0  %>
+        <tr>
+          <td></td>
+          <td class="rightColumn">Required Payment: <span class="price"><%= formatted_price((@cart_information.missing_amount * -1)) %></span></td>
+        </tr>
+
+    <% else %>
+        <tr>
+          <td></td>
+          <td class="rightColumn">Required Payment: <span class="price"><%= formatted_price(0.0) %></span></td>
+        </tr>
+    <% end %>
+<% end %>

@@ -1,0 +1,156 @@
+.topMenu{
+    height: 40px;
+}
+
+.second-tr-top-menu{
+    visibility: collapse;
+    height: 0;
+}
+
+.header {
+  display:none;
+}
+
+/* ============= controls =================*/
+.controls{
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    margin-bottom: -1px;
+    margin-left: -41px;
+    padding: 8px;
+    width: 82px;
+    z-index: 50;
+    border: 1px solid #a1a1a1;
+    border-radius: 15px 15px 0 0;
+    background-color: #fff;
+}
+
+input[type="submit"]
+{
+    background-color: #aaa;
+    border-radius: 15px;
+    color: #FFF;
+    border-width: 0;
+    width: 82px;
+    height: 38px;
+    font-size: 16px;
+}
+
+
+/* ============= registryListBlock =================*/
+
+#description-note.placeholder {
+    color: #BBB;!important
+}
+.section-title.placeholder {
+    color: #BBB;!important
+}
+h.section-description.placeholder {
+    color: #BBB;!important
+}
+::-webkit-input-placeholder {
+    color: #BBB;
+}
+:-moz-placeholder {
+    color: #BBB;
+}
+
+#registrant_Description:hover{
+    background-color: #FFC;
+    border: 1px solid #CCC;
+}
+
+.section-description:hover{
+    background-color: #FFC;
+    border: 1px solid #CCC;
+}
+
+.section-title:hover{
+    background-color: #FFC;
+    border: 1px solid #CCC;
+}
+
+.section-items-empty{
+    border: 1px dashed #BBB;
+    margin: -1px;
+}
+
+.section-controls{
+    position: absolute;
+    top: 20px;
+    right: 40px;
+    /*visibility: collapse;*/
+}
+
+.section-controls .hidden-button{
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=20)";
+    filter: alpha(opacity=20);
+    opacity: 0.2;
+}
+
+.section-controls a {
+    display: block;
+    margin: 4px;
+}
+
+.empty-section{
+    text-align: center;
+    witdth: 100%;
+    height: 24px;
+    margin-bottom: 4px;
+    margin-top: -28px;
+}
+
+.gift-entry-highlight{
+    margin:  6px;
+    width: 156px;
+    height: 170px;
+    vertical-align: top;
+    float: left;
+    background-color: #FFC;
+    border: 1px solid #CCC;
+}
+
+#help {
+    float: right;
+    margin-right: 35px;
+    margin-top: -40px;
+}
+
+.header {
+    width: 690px;
+    padding: 8px;
+    background: #FFFFFF;
+    border: 1px solid #666666;
+    border-radius: 15px;
+}
+
+.header h2{
+    font-size: 15.5px;
+}
+
+.header p {
+    font-size: 13.5px;
+}
+
+.header a {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+/* ============= Image Upload =================*/
+.image-upload {
+    padding: 0 12px;
+}
+
+.image-cont{
+    cursor: pointer;
+}
+
+.intro .image-cont{
+    font-size: 10.5px;
+    text-decoration: underline;
+    text-align: right;
+}

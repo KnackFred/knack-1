@@ -1,0 +1,239 @@
+#content{
+    margin-top: 38px;
+}
+
+th{
+    text-align: left;
+}
+/* ================ top ====================== */
+.topMenu{
+    width: 915px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.topMenu table{
+    width: 100%;
+    border: 0px;
+}
+
+.topMenu table .pageNameTD{
+    width: 415px;
+    text-align: left;
+    padding-left: 1px;
+    vertical-align: bottom;
+    font-family: Helvetica,sans-serif;
+    font-size: 32px;
+    font-weight: lighter;
+    color: #6699cc;
+}
+
+.topMenu table .topMenuTD{
+    width: 500px;
+    text-align: right;
+    padding-right: 9px;
+    vertical-align: bottom;
+    padding-bottom: 4px;
+}
+
+.topMenu table .topMenuTD a{
+    margin-left: 13px;
+    text-decoration: none;
+    font-size: 11.5px;
+    color: #999999;
+}
+
+.div-c{
+    font-family: 'Arial';
+    color: #8c8c8c;
+
+}
+
+.pageName
+{
+    text-align: left;
+    padding-left: 1px;
+    vertical-align: bottom;
+    font-family: Helvetica,sans-serif;
+    font-size: 32px;
+    font-weight: lighter;
+    color: #6699cc;
+    float: left;
+    height: 49px;
+    margin: 0px;
+}
+
+.div-link-step
+{
+    float: right;
+    margin: 13px 6px auto auto;
+}
+
+.div-link-step span, .div-link-step a
+{
+    color: #c2d4e8;
+    font-size: 14px!important;
+    padding-left: 25px;
+}
+
+.disabled-link
+{
+    color: #c2d4e8!important;
+}
+
+.div-link-step a
+{
+    color: #6699CC!important;
+}
+/* ============= table =================*/
+.leftTD
+{
+    text-align: left;
+    vertical-align: top;
+}
+
+.rightTD
+{
+    text-align: right;
+    vertical-align: top;
+}
+/* ============= table header items =================*/
+#table-header-item
+{
+    color: #6699cc;
+    font-family: Helvetica,sans-serif;
+    font-weight: bold;
+    margin-left:4px;
+/*    margin-top:16px;*/
+    width: 910px;
+}
+/********* content *******/
+
+.withBackground{
+    clear: both;
+    margin-top: 0px;
+    margin-left: -3px;
+/*    background-image: url('/images/design/Registrant/searchBackGround.png');*/
+    background-image: url('/images/table-head.png');
+    background-repeat:repeat-x;
+    background-position: 0 0;
+    min-height: 100px;
+}
+
+#line-header
+{
+    margin:42px auto auto -1px;
+    position:absolute;
+    width:915px;
+}
+/* ============================================*/
+
+
+
+.content{
+    width: 915px;
+    margin-left: auto;
+            margin-right: auto;
+}
+
+.Line{
+    width: 100%;
+    height: 1px;
+    background-color: #cccccc;
+}
+
+/* ===================== mainBlock =======================*/
+
+.mainBlock{
+/*    margin-top: -21px;*/
+}
+
+#mainBlockTable{
+    width: 100%;
+}
+
+.mainBlock table tr #menu{
+    width: 206px;
+    vertical-align: top;
+}
+
+.mainBlock table tr #content{
+    vertical-align: top;
+}
+
+
+.formError
+{
+    color: red;
+    font-style: italic;
+    font-size: smaller;
+    margin: 0px;
+}
+
+.header-column
+{
+    color:#6699CC;
+    font-family:Helvetica,sans-serif;
+    font-weight:bold;
+}
+
+/************* order summary **********/
+.order-summary
+{
+    margin:15px 6px auto auto;
+}
+
+#amount
+{
+    border:medium none;
+    float:right;
+    font-size:12px;
+    margin:36px 5px auto;
+}
+
+#amount td
+{
+    border: none;
+
+}
+
+#amount td.rightColumn
+{
+    width: 255px;
+    text-align: right;
+}
+
+.price
+{
+    font-weight: bold;
+    color: #656565;
+    font-size: 14px;
+}
+
+
+.div-btn
+{
+    margin: 24px auto 50px 781px;
+}
+
+.btn-continue
+{
+    background: url('/images/design/Buttons/continue.png') no-repeat;
+    border: 0px;
+    width: 124px;
+    height: 19px;
+}
+
+.btn-back
+{
+    background-image:url("/images/design/Buttons/backToCatalog.png");
+    border:0 none;
+    cursor:pointer;
+    height:19px;
+    width:124px;
+}
+
+.div-btn-block1
+{
+    margin: 80px auto auto;
+}

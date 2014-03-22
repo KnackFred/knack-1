@@ -1,0 +1,159 @@
+
+.registry{
+    visibility: hidden;
+}
+
+.topMenu{
+    visibility: hidden;
+    height: 0;
+}
+
+
+.loginContent{
+    width: 915px;
+    margin: 70px auto 30px auto;
+}
+
+.descriptionTD{
+    width: 235px;
+    vertical-align: top;
+    text-align: left;
+    font-size: 12px;
+}
+
+.div-container-login
+{
+    margin-left: 300px;
+}
+
+.div-container-invited-login
+{
+    margin-left: 300px;
+    margin-right: 330px;
+}
+
+.div-container-invited-login > h1
+{
+    text-align: center;
+}
+
+.div-container-invited-login > p
+{
+    text-align: justify;
+}
+
+
+#fb-login-div
+{
+    margin-top: 30px;
+    text-align: center;
+}
+
+.div-block
+{
+    height: 20px;
+}
+
+#remember{
+    font-size: 11px;
+    vertical-align: middle;
+}
+
+#div-accept{
+    margin-top: 20px;
+    font-size: 12px;
+}
+
+#div-accept a{
+    text-decoration: underline;
+}
+
+#register{
+}
+
+#logButton
+{
+    text-align: right;
+    margin-right: 5px;
+    width: 200px;
+}
+
+.line{
+    height: 1px;
+    width: 405px;
+    background-color: #cccccc;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.facebookBlock{
+    width: 420px;
+    font-size:20px;
+    color: #6699cc;
+    clear: both;
+}
+
+.faceBut{
+    float: right;
+}
+
+.dont-worry {
+    color: #8c8c8c;
+    font-size: 13px;
+    margin-top:  10px;
+    text-align: right;
+}
+
+.subheaderBlock{
+    width: 373px;
+    font-size:20px;
+    color: #6699cc;
+    clear: both;
+    margin-bottom: 20px;
+}
+
+.textInfo{
+    font-size: 13px;
+    margin-bottom: 30px;
+}
+
+#div-btn-forgot{
+    width: 405px;
+}
+
+#div-btn-forgot input{
+    float: right;
+}
+
+/* registry*/
+#div-reg{
+    width: 675px;
+}
+
+.editor-field{
+    height: 22px;
+}
+.editor-field input[type=text]{
+    width: 203px;
+    padding: 1px 1px 1px 1px;
+}
+ .editor-field input[type=password]{
+    width: 203px;
+    padding: 1px 1px 1px 1px;
+}
+ .editor-field select{
+    width: 208px;
+}
+
+.div-generr
+{
+    width: 400px;
+    margin-top: 10px;
+}
+
+#div-btn-reg
+{
+    margin:20px auto auto 300px;
+}
+
+

@@ -1,0 +1,71 @@
+<tr>
+  <td class="gift-entry">
+    <div class="image">
+      <%= image_tag registry_item_detail.product.main_product_thumb(:small), :class => "product-image-small" %>
+    </div>
+    <div class="gift-entry-details">
+      <div class="name"><%= registry_item_detail.product.Name%></div>
+      <div class="info">
+        <div class="status">
+          <% if registry_item_detail.fully_paid_for? %>
+            Paid for
+          <% else %>
+            Available
+          <% end %>
+        </div>
+        <div class="type">
+          <%=
+            if registry_item_detail.product.IsKind
+              image_tag("/images/general/item_types/knack.png", :title => "Guests will order this gift on Knack from one of our partners.") + " Unique Gift"
+            elsif registry_item_detail.product.Registrant_ID.nil?
+              image_tag("/images/general/item_types/knack.png", :title => "Guests will order this gift on Knack from one of our partners.") + " Catalog Gift"
+            elsif registry_item_detail.product.external
+              image_tag("/images/general/item_types/external.png", :title => "Guests will order this gift from #{registry_item_detail.product.source_name} ") + " External Gift "
+            else
+              image_tag("/images/general/item_types/cash.png", :title => "Guests will order this gift on Knack, you will receive cash to buy the gift.") + " Cash Gift"
+            end
+          %>
+      </div>
+      <% unless registry_item_detail.product.source_name.blank?%>
+        <div class="ext-link">
+          <%= link_to skim_link(registry_item_detail.product.source_url, @registrant_id), :target => "_blank" do %>
+            <%= registry_item_detail.product.source_name %>
+          <% end %>
+        </div>
+      <% end %>
+      <br>
+    </div>
+    <div class="amount">
+      <div class="quantity">Quantity <%= registry_item_detail.Quantity %></div>
+      <div class="item-price">Price <%= formatted_price(registry_item_detail.Price.to_f) %></div>
+      <div class="item-subtotal">Total <%= formatted_price(registry_item_detail.subtotal.to_f) %></div>
+      <br>
+    </div>
+    <div class="contributions">
+      <div class="contributed">
+        Contributed <%=formatted_price(registry_item_detail.Contributed) %>
+    </div>
+    <div >
+      <a class="contributors" dataid="<%= registry_item_detail.id %>" href="/">Contributors <%= contributor_names(registry_item_detail) %></a>
+    </div>
+    <br>
+  </div>
+  <div class="actions">
+    <% if Cart.registry_item_in_cart?(session, registry_item_detail.id) %>
+      <div><a dataid="<%= registry_item_detail.id %>" class="view-cart" href="/cart">In Cart</a></div>
+    <% else %>
+      <% if registry_item_detail.Purchased_ID == RegistryItem::AVAILABLE && registry_item_detail.contributed == 0%>
+        <div><a dataid="<%= registry_item_detail.id %>" class="delete-prod" href="/delete_registry_item/<%=registry_item_detail.id%>?countP=<%= @page_size %>&currentP=<%= @current_page %>">Delete</a></div>
+        <div><a dataid="<%= registry_item_detail.id %>" class="edit-prod" href="/registrant/edit_registry_item/<%=registry_item_detail.id%>">Edit</a></div>
+      <% end %>
+      <% if !registry_item_detail.product.cash? %>
+        <% if registry_item_detail.Purchased_ID == RegistryItem::AVAILABLE %>
+          <div><a dataid="<%= registry_item_detail.id %>" class="buy-prod" href="/buy/buy_available/<%=  registry_item_detail.id%>">Buy</a></div>
+        <% end %>
+      <% end %>
+    <% end %>
+
+  </div>
+</div>
+  </td>
+</tr>

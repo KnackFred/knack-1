@@ -1,0 +1,22 @@
+<%#*Sub-total%>
+<tr>
+  <td></td>
+  <td class="rightColumn">Sub-Total: <span class="price"><%= formatted_price(@cart_information.subtotal) %></span></td>
+</tr>
+
+
+<%#*Estimated Shipping%>
+<% if @cart_information.shipment_total > 0 %>
+  <tr>
+    <td></td>
+    <td class="rightColumn">Shipping: <span class="price"><%= formatted_price(@cart_information.shipment_total) %></span></td>
+  </tr>
+<% end %>
+
+<%#*Tax%>
+<% if @cart_information.tax_total > 0 %>
+    <tr>
+      <td></td>
+      <td class="rightColumn">Sales Tax: <span class="price"><%= formatted_price(@cart_information.tax_total) %></span></td>
+    </tr>
+<% end %>

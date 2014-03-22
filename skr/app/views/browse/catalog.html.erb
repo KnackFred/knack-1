@@ -1,0 +1,216 @@
+<% content_for :title do %>
+  <% if !@category.is_root? %>
+     <%= @category.name %> | Knack Registry
+  <% elsif !@store.nil? %>
+      <%= @store.Name %> | Knack Registry
+  <% elsif !@brand.nil? %>
+      <%= @brand.Name %> | Knack Registry
+  <% else %>
+     Unique wedding gifts from small businesses | Knack Registry
+  <%end%>
+<%end%>
+
+<% content_for :head do %>
+  <%= stylesheet_link_tag "/stylesheets/Pages/Browse/Catalog.css"%>
+  <%= stylesheet_link_tag "/stylesheets/Pages/Browse/_partner.css" %>
+  <%= stylesheet_link_tag "/stylesheets/Pages/Browse/_category_nav.css" %>
+  <%= stylesheet_link_tag "/stylesheets/Controls/GiftsControl.css"  %>
+  <%= stylesheet_link_tag "/stylesheets/jquery-ui-1.8.4.slider.css"  %>
+  <%= stylesheet_link_tag "/javascripts/autocomplete/styles.css"  %>
+  <%= stylesheet_link_tag "/javascripts/tree/codebase/dhtmlxtree.css" %>
+  <%= javascript_include_tag "/javascripts/jquery-ui-1.8.14.custom.min.js"  %>
+  <%= javascript_include_tag "/javascripts/jquery.form.js"  %>
+  <%= javascript_include_tag "/javascripts/jquery.simplemodal.1.4.1.min.js"  %>
+  <%= javascript_include_tag "/javascripts/tree/codebase/dhtmlxcommon.js" %>
+  <%= javascript_include_tag "/javascripts/tree/codebase/dhtmlxtree.js"  %>
+  <%= javascript_include_tag "/javascripts/tree/codebase/ext/dhtmlxtree_json.js"  %>
+  <%= javascript_include_tag "/javascripts/autocomplete/jquery.autocomplete-min.js"  %>
+  <%= javascript_include_tag "/javascripts/controls/_category_nav" %>
+  <%= javascript_include_tag "/javascripts/controls/_pop-up" %>
+  <%= javascript_include_tag "/javascripts/plugins/jquery.parse_url.js"  %>
+  <%= javascript_include_tag "/javascripts/knack.browse.category.js"  %>
+
+    <% if !@category.is_root? %>
+        <link rel="canonical" href="/catalog/<%= @category.id %>" />
+    <% elsif !@store.nil? %>
+        <link rel="canonical" href="/catalog/<%= @store.id %>" />
+    <% elsif !@brand.nil? %>
+        <link rel="canonical" href="/catalog/<%= @brand.id %>" />
+    <%end%>
+<%end%>
+
+<% content_for :catalog do %>
+  <%= render :partial => "category_breadcrumb", :object => @category.catalog_menu if @category.catalog_menu.count > 1%>
+  <%= render "store_breadcrumb" unless @store.nil?%>
+  <%= render "brand_breadcrumb" unless @brand.nil?%>
+<% end %>
+
+<% content_for :pagename do %>
+  <div><%= @category.is_root ? 'Catalog' : @category.name -%></div>
+<% end %>
+
+<%= content_for :registry do %>
+<% end %>
+<%= content_for :background do %>
+<% end %>
+
+<div class="withBackground">
+  <div class="content">
+    <div class="searchBlock">
+      <table id="searchBlockTable" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td class="goTD">
+            Search
+            <%= text_field_tag 'textfind', @findtext, :class => "findaregistry" -%>
+            <%= tag('input', {:type => 'button', :id => 'go', :onclick => "doSomething();"}) -%>
+          </td>
+          <td id="searchsecondRow">
+            <% if !@count_values.blank? && @count_values > 2 %>
+              <table id="GiftControl" cellpadding="0" cellspacing="0">
+                <tbody>
+                  <tr>
+                    <td class="firstRow">
+                      <b>$ <label id="min-price"></label></b>
+                      <%= tag :br %>
+                      <span>(Min price)</span>
+                      <%= tag :br %>
+                      <span id="leftvalue"/>
+                    </td>
+                    <td class="secondRow">
+                      <div id="slider-range-min"></div>
+                      <%= hidden_field_tag "values", @values -%>
+                    </td>
+                    <td class="thirdRow">
+                      <b>$ <label id="max-price"></label></b>
+                      <%= tag :br %>
+                      <span>(Max price)</span>
+                      <%= tag :br %>
+                      <span id="rightvalue"/>
+                    </td>
+                    <td class="fourthRow">
+                      <table class="giftsTable" cellpadding="0" cellspacing="0">
+                        <tr>
+                          <td id="first"><%= @count_gifts -%></td>
+                          <td id="second">gift(s)<%= tag :br %>available</td>
+                          <td id="third"></td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            <% end %>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="Line"></div>
+
+    <div class="mainBlock">
+      <table id="mainBlockTable" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td id="menu">
+              <% cache "category_nav_" + @category.id.to_s do %>
+                <%= render "category_nav" %>
+              <% end %>
+          </td>
+
+          <td id="content">
+            <%= render :partial => "partner", :object => @store.partner if @store%>
+            <table id="tableProducts" border="0" cellpadding="0" cellspacing="0">
+              <tbody>
+                <tr class="productTR">
+                  <% i = 0 %>
+                  <% @products.each do |product| %>
+                    <td class="productTDH">
+                      <%= link_to (@brand.nil? ? (@store.nil? ? (from_catalog_path(@category.id, product.id, product.name_url)) : (from_store_path(@store.id, product.id))) : (from_brand_path(@brand.id, product.id))) do -%>
+                        <table border="0" cellpadding="0" cellspacing="0">
+                          <tbody>
+                            <tr>
+                              <td class="imgTDH">
+                                <%= image_tag product.main_product_thumb.url(:medium), :alt => product.Name, :class => "product-image-medium" %>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td class="productInfoTD">
+                                <%= content_tag :div, :class => "pr-nameH" do -%>
+                                  <%= content_tag :b do -%>
+                                    <%= product.Name -%>
+                                  <%- end -%>
+                                <%- end -%>
+                                <div class="pr-price">
+                                  <% if product.local?(@registrant) %>
+                                      <%= image_tag "/images/design/local.png", :title => "This gift is offered by a partner in your area!"%>
+                                  <% end %>
+                                  <% if product.is_sales? %>
+                                      <span class="sp-unline"><%= formatted_price(product.MasterPrice) %></span>  <span class="sale">Sale! <%= formatted_price(product.SalesPrice) %></span>
+                                  <% else %>
+                                    <%= formatted_price(product.Price) %>
+                                  <% end %>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      <% end %>
+                    </td>
+
+                    <% i = i + 1 %>
+                    <% if i%4 == 0 && i< @products.length %>
+                      </tr>
+                      <tr class="productTR">
+                    <% end %>
+                  <% end %>
+                </tr>
+              </tbody>
+            </table>
+
+            <%= form_tag catalog_path(params[:id].blank? ? Category.root.id : params[:id]), :id => "frm-category", :method => :get do -%>
+              <%= hidden_field_tag 'page', @products.current_page %>
+              <%= hidden_field_tag 'per_page_value', @products.per_page, {:name => "per_page"} %>
+              <%= hidden_field_tag 'findid', @findid %>
+              <%= hidden_field_tag 'findtext', @findtext %>
+              <%= hidden_field_tag 'valleft', @valleft %>
+              <%= hidden_field_tag 'valright', @valright %>
+              <%= hidden_field_tag 'param', @param %>
+              <%= hidden_field_tag 'valparam', @valparam %>
+              <%= hidden_field_tag 'useslider', '' %>
+              <%= hidden_field_tag 'use_cat_link', '' %>
+              <%= hidden_field_tag 'cat_id', @category.id %>
+            <% end %>
+
+            <%= will_paginate(@products) %>
+            <% if @count_gifts >0 %>
+              <div class="div-pager">
+                <span class="span-per-page">Products per page</span>
+                <select id="per_page">
+                  <option value="8">8</option>
+                  <option value="16">16</option>
+                  <option value="32">32</option>
+                  <option value="64">64</option>
+                </select>
+              </div>
+            <% else %>
+              <div class="not-found">
+                No matching gifts found<br/><br/>
+                Can’t find a gift? <%= link_to "Add your own!", session[:registrant].blank? ? signup_path : addgift_path -%>
+              </div>
+            <% end %>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+<div class="block-iframe tag-none">
+  <iframe src="" id="ifr-popup" width="500" height="490" frameborder="0" style="border: 0;">
+  </iframe>
+</div>
+
+<div id="store-brand-popup" class="tag-none">
+  <iframe src="" width="500" height="490" frameborder="0" style="border: 0;">
+  </iframe>
+</div>

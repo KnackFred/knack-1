@@ -1,0 +1,151 @@
+#content{
+    width: 520px;
+    margin: 0;
+}
+
+body{
+    margin: 0;
+}
+.header{
+    position: relative;
+}
+
+.div-c{
+    position: relative;
+}
+
+.header-right{
+    position: absolute;
+    right: 0;
+    text-decoration: none;
+    font: 12px helvetica,sans-serif;
+    z-index: 1;
+}
+
+.header-right img {
+    margin-top: -20px;
+    vertical-align: top;
+}
+
+h3 {
+    font-size: 20px;
+    color: #666;
+    margin: 10px 0 0 2px;
+}
+
+.partners {
+    margin-left: 2px;
+    position: relative;
+}
+
+.partner {
+    display: inline-block;
+    width: 122px;
+    margin: 2px;
+    vertical-align: middle;
+}
+
+.partner .image{
+    width: 120px;
+    height: 91px;
+    border: 1px solid #CCC;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.partner .image img{
+    width: 120px;
+    height: 91px;
+}
+
+.partner .name{
+    font-size: 11px;
+    margin-bottom: 2px;
+}
+
+
+.bio {
+    display: none;
+    width: 500px;
+    height: 180px;
+    border: #666666 solid 1px;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 8px;
+    z-index: 2;
+}
+
+.bio-top {
+    position: absolute;
+    top: -160px;
+}
+
+.bio-bottom {
+    position: absolute;
+    top: -45px;
+}
+
+.hidden {
+    visibility: hidden;
+
+}
+
+.bottom {
+    margin-top: 5px;
+}
+
+.bottom img:first-child {
+    margin-right: 1px;
+}
+
+.images{
+    float:left;
+    margin-right: 16px;
+    height: 185px;
+}
+
+.description {
+  margin-left: 8px;
+  margin-top: 0;
+}
+
+.description p {
+    margin-top: 0;
+    font-size: 11px;
+}
+
+.sbs{
+    float: right;
+    margin-top: 12px;
+    margin-right: 3px;
+    font-size: 20px;
+}
+
+.sbs img{
+    vertical-align: bottom;
+}
+
+
+
+/* LIKED   */
+.hero {
+    position: relative;
+}
+
+.video {
+    position: absolute;
+    top: 249px;
+    left: 10px;
+}
+
+.actions {
+    position: absolute;
+    top: 570px;
+    text-align: center;
+    width: 100%;
+}
+
+.actions img {
+    margin: 0 10px;
+}

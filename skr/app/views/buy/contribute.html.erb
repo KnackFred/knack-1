@@ -1,0 +1,147 @@
+<% content_for :header do %>
+    <%= stylesheet_link_tag "/stylesheets/Global.css" %>
+    <%= stylesheet_link_tag "/stylesheets/Pages/buy_contribute.css" %>
+    <%= javascript_include_tag "/javascripts/jquery.keyfilter-1.7.js"  %>
+    <%= javascript_include_tag "/javascripts/jquery.form.js"  %>
+    <%= javascript_include_tag "/javascripts/jquery.validate.min.js"  %>
+    <%= javascript_include_tag "/javascripts/jquery.simplemodal.1.4.1.min.js"  %>
+    <%= javascript_include_tag "/javascripts/knack.buy.contribute.js"  %>
+<% end %>
+
+<%= form_for @buy_registry_item, :url => {:controller => 'buy', :action => 'contribute'} do |f| %>
+
+    <%= f.hidden_field :min_contribution %>
+    <%= f.hidden_field :max_contribution %>
+    <%= f.hidden_field :min_quantity %>
+    <%= f.hidden_field :max_quantity %>
+    <%= f.hidden_field :price %>
+
+    <div class="pageName">
+      <%= @buy_registry_item.product_name %>
+    </div>
+
+    <div class="buyTable">
+      <table cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td class="firstTD">
+            <%= image_tag @buy_registry_item.main_product_thumb_url_medium,
+                          :alt => @buy_registry_item.product_name,
+                          :class => "product-image-medium",
+                          :id => "contr_product_image",
+                          :name => "product_image" -%>
+          </td>
+          <td class="descriptionTD">
+            <% if @registry_item.allow_contribute? %>
+                <table>
+                  <tr>
+                    <td class="firstTD">
+                      <label>Price</label>
+                    </td>
+                    <td>
+                      <%= formatted_price(@buy_registry_item.price)  %>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="firstTD">
+                      <label>Quantity</label>
+                    </td>
+                    <td>
+                      <%= @registry_item.Quantity %>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="firstTD">
+                      <label>Needed</label>
+                    </td>
+                    <td>
+                      <%= formatted_price(@buy_registry_item.max_contribution) %>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="firstTD">
+                      <%= f.label :contribute %>
+                    </td>
+                    <td>
+                      <%= f.text_field :contribute, :class => "required", :readonly => @buy_registry_item.min_contribution == @buy_registry_item.max_contribution %>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="amount" colspan="2">
+                      Min amount to countribute is <%= formatted_price(@buy_registry_item.min_contribution) %>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="lineTD" colspan="2">
+                      <div></div>
+                    </td>
+                  </tr>
+                </table>
+            <% else %>
+                <table>
+                  <tr>
+                    <td class="firstTD">
+                      <label>Price</label>
+                    </td>
+                    <td>
+                      <%= formatted_price(@buy_registry_item.price) %>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="firstTD">
+                      <label>Status</label>
+                    </td>
+                    <td>
+                      <%= formatted_remaining(@registry_item, true) %>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="firstTD">
+                      <%= f.label :quantity, "Quantity *" %>
+                    </td>
+                    <td>
+                      <%= f.text_field :quantity, :class => "required"%>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="firstTD">
+                      <label>Sub-Total</label>
+                    </td>
+                    <td class="subtotal">
+                      Enter a Quantity
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="lineTD" colspan="2">
+                      <div></div>
+                    </td>
+                  </tr>
+                </table>
+            <% end  %>
+          </td>
+        </tr>
+      </table>
+      <div class="note-section">
+        <div>
+          <%= f.label :from, "From: *" %>
+        </div>
+        <div>
+          <%= f.text_field :from, :class => "from"%>
+        </div>
+        <div>
+          <%= f.label :notes, "Note: " %>
+        </div>
+        <div>
+          <%= f.text_area :notes, :class => "note" %>
+        </div>
+      </div>
+      <div class="actions">
+        <%= f.submit %>
+      </div>
+    </div>
+
+<% end %>

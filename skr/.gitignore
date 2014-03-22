@@ -1,0 +1,15 @@
+.#*
+.svn
+.idea
+.bundle
+*.iml
+*.tmproj
+*.gem
+*.rbc
+Gemfile.lock
+log/*
+tmp/*
+coverage/*
+bin
+public/system
+config/database.yml

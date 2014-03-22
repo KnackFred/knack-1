@@ -1,0 +1,636 @@
+<script type="text/javascript">
+    var controller = "<%= @is_admin ? "/administrative" : "/partner" %>";
+</script>
+
+<%= form_for [:admin, @product], :id => 'form-product', :html => { :multipart => true } do |p| %>
+    <%= p.error_messages %>
+
+    <div class="hidden_container">
+
+
+      <input type="hidden" name="product[category_ids][]" value=""/>
+      <%= p.select :category_ids, Category.all.collect {|x| [x.name, x.id]}, {}, :multiple => true %>
+      <input type="hidden" name="product[color_ids][]" value=""/>
+      <%= p.select :color_ids, Color.all.collect {|x| [x.Name, x.id]}, {}, :multiple => true %>
+      <input type="hidden" name="product[store_ids][]" value=""/>
+      <%= p.select :store_ids, Store.all.collect {|x| [x.Name, x.id]}, {}, :multiple => true %>
+
+      <input type="hidden" id="list_params" name="list_params"/>
+    </div>
+
+    <div class="Header">
+      Product information
+    </div>
+
+    <div class="div-block">
+      <div class="editor-label">
+        <%= p.label :Name, "Name *" %>
+      </div>
+      <div class="editor-field">
+        <%= p.text_field :Name %>
+      </div>
+      <div class="editor-error">
+        <%= p.error_message_on :Name, :prepend_text => StaticDataUtilities.get_prepare_error_message %>
+      </div>
+    </div>
+
+    <div class="div-block">
+      <div class="editor-label">
+        <%= p.label :MasterPrice, "Master Price *" %>
+      </div>
+      <div class="editor-field">
+        <%= p.text_field :MasterPrice%>
+      </div>
+      <div class="editor-error">
+        <%= p.error_message_on :MasterPrice, :prepend_text => StaticDataUtilities.get_prepare_error_message %>
+      </div>
+    </div>
+
+    <div class="div-block">
+      <div class="editor-label">
+        <%= p.label :SalesPrice, "Sales Price"%>
+        <label for="SalesPrice">Sales Price</label>
+      </div>
+      <div class="editor-field">
+        <%=p.text_field :SalesPrice%>
+      </div>
+      <div class="editor-error">
+        <%= p.error_message_on :SalesPrice, :prepend_text => StaticDataUtilities.get_prepare_error_message %>
+      </div>
+    </div>
+
+    <div class="photoInfo">
+      <div class="">
+        <div class="Header">
+          Main Image *
+        </div>
+        <div class="">
+          <%= image_tag @product.main_product_thumb.url(:medium), :alt => @product.Name, :class => 'product-image-medium' %>
+          <div>
+            <%= p.file_field :main_product_image %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="div-description-block">
+      <div class="Header">
+        <%= p.label :Description %>
+      </div>
+      <div class="div-description group">
+        <%=p.text_area :Description, :cols => 44, :rows => 10 %>
+      </div>
+      <div class="editor-error">
+        <%= p.error_message_on :Description, :prepend_text => StaticDataUtilities.get_prepare_error_message %>
+      </div>
+    </div>
+    <div class="emptyBlock"></div>
+    <% if @is_admin%>
+        <div class="div-block">
+          <div class="editor-label">
+            <%= p.label :ProductStatus_ID, "Status *"%>
+          </div>
+          <div class="editor-field">
+            <%= p.collection_select :ProductStatus_ID, StaticDataUtilities.get_product_status_select, :id, :Name, :prompt => true %>
+          </div>
+          <div class="editor-error">
+            <%= p.error_message_on :ProductStatus_ID, :prepend_text => StaticDataUtilities.get_prepare_error_message %>
+          </div>
+        </div>
+    <% else %>
+        <div class="div-block">
+          <div class="editor-label">
+            <%= p.label :ProductStatus_ID, "Status *"%>
+          </div>
+          <div class="editor-field">
+            <%= p.object.product_status.Name %>
+          </div>
+          <div class="editor-error">
+          </div>
+        </div>
+    <% end %>
+
+    <% if @is_admin %>
+        <div class="div-block">
+          <div class="editor-label">
+            <%= p.label :priority%>
+          </div>
+          <div class="editor-field">
+            <%=  p.select :priority, 0..::APP_CONFIG['max_priority'].to_i %>
+          </div>
+          <div class="editor-error">
+            <%= p.error_message_on :priority, :prepend_text => StaticDataUtilities.get_prepare_error_message %>
+          </div>
+        </div>
+    <% end %>
+
+    <div class="div-block">
+      <div class="editor-label">
+        <%= p.label :IsDeleted, "Inactive"%>
+      </div>
+      <div class="editor-field">
+        <%= p.check_box :IsDeleted %>
+      </div>
+      <div class="editor-error">
+        <%= p.error_message_on :IsDeleted, :prepend_text => StaticDataUtilities.get_prepare_error_message %>
+      </div>
+    </div>
+
+    <div class="div-block">
+      <div class="editor-label">
+        <%= p.label :IsKind, "One of a kind product" %>
+      </div>
+      <div class="editor-field">
+        <%= p.check_box :IsKind %>
+      </div>
+      <div class="editor-error">
+        <%= p.error_message_on :IsKind, :prepend_text => StaticDataUtilities.get_prepare_error_message %>
+      </div>
+    </div>
+
+    <div class="div-block h50">
+      <div class="text-default">
+        One of a kind means there is only one made. An example would be a painting or a custom made table.
+      </div>
+    </div>
+
+    <div class="div-brand-block">
+      <div class="Header">
+        Brand
+      </div>
+
+      <div class="div-block">
+        <div class="editor-label">
+          <%= p.radio_button :BrandType, "1" %>
+          <label for="Brand">Brand</label>
+        </div>
+        <div class="editor-field">
+          <%= p.collection_select :Brand_ID, Brand.all, :id, :Name, :prompt => "Select Brand" %>
+        </div>
+        <div class="editor-error">
+          <%= p.error_message_on :Brand_ID, :prepend_text => StaticDataUtilities.get_prepare_error_message %>
+        </div>
+      </div>
+
+      <div class="div-block">
+        <div class="editor-label">
+          <%= p.radio_button :BrandType, "2" %>
+          <label for="Brand">Add new brand</label>
+        </div>
+        <div class="editor-field">
+          <%= p.text_field :BrandName%>
+        </div>
+        <div class="editor-error">
+          <%= p.error_message_on :BrandName, :prepend_text => StaticDataUtilities.get_prepare_error_message %>
+        </div>
+      </div>
+    </div>
+
+    <div class="div-shipmnent-block">
+      <div class="Header">
+        Shipment
+      </div>
+
+      <div class="div-block">
+        <div class="editor-label">
+          <%= p.radio_button :ShipmentType, Product::STANDARD %>
+          <label for="ShipmentCategory">Shipment Category</label>
+        </div>
+        <div class="editor-field">
+          <%= p.collection_select :ShipmentCategory_ID, Category.get_second_level, :id, :name, :include_blank => "Select Category" %>
+        </div>
+        <div class="editor-error">
+          <%= p.error_message_on :ShipmentCategory_ID, :prepend_text => StaticDataUtilities.get_prepare_error_message %>
+        </div>
+      </div>
+
+      <div class="div-shipment">
+        <div class="rb-shipment">
+          <%= p.radio_button :ShipmentType, Product::CUSTOM %>
+        </div>
+        <div class="div-shipping">
+          <div class="text-shipment">
+            If this is an oversized or delicate item which will incur additional shipping
+            charges (beyond Knacks standard shipping rates) please enter that amount here
+          </div>
+
+          <div class="div-block">
+            <div class="editor-label w143">
+              <%= p.label :ShipmentCost, "Your shipping price" %>
+            </div>
+            <div class="editor-field">
+              <%= p.text_field :ShipmentCost%>
+            </div>
+            <div class="editor-error">
+              <%= p.error_message_on :ShipmentCost, :prepend_text => StaticDataUtilities.get_prepare_error_message %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <%#*No shipment%>
+      <div class="div-block">
+        <div class="editor-label">
+          <%= p.radio_button :ShipmentType, Product::FREE %> Free Shipping
+        </div>
+        <div class="editor-field"></div>
+        <div class="editor-error"></div>
+      </div>
+    </div>
+
+<%#*Category block%>
+    <div class="category-block">
+      <div class="Header">
+        Choose catalog category *
+      </div>
+
+      <%#*Categories%>
+      <div class="">
+        <div class="div-tbl">
+          <table id="t-category" class="table-general">
+            <thead>
+            <tr>
+              <th>Name</th>
+              <th class="td-delete"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <% p.object.categories.each do |category| %>
+                <tr dataid="<%= category.id %>">
+                  <td><%= category.name %></td>
+                  <td><%= link_to "Delete", "/", :class => "delete-cat", :dataid => category.id %></td>
+                </tr>
+            <% end %>
+            <tr id="tr-add"><td></td><td></td></tr>
+            </tbody>
+          </table>
+          <div class="div-add"><%= link_to "Add category", "/", :id => "add-cat" %></div>
+          <div class="emptyBlock"></div>
+        </div>
+        <div class="editor-error">
+          <div class="formError">
+            <%= error_message_on :product, :categories, :prepend_text => StaticDataUtilities.get_prepare_error_message %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<%#*Color block%>
+    <div class="category-block">
+      <div class="Header">
+        Choose possible colors
+      </div>
+
+      <div id="jquery-colour-picker-example" style="display:none;">
+        <p>
+          <label>
+            <br />
+            <select name="colour">
+              <% Color.all.each do |color| %>
+                  <option dataid="<%= color.id%>" value="<%= color.RGB %>"><%= color.Name %></option>
+              <% end %>
+            </select>
+          </label>
+        </p>
+      </div>
+
+      <%#*Color%>
+      <div class="">
+        <div class="div-tbl">
+          <table id="t-color" class="table-general">
+            <thead>
+            <tr>
+              <th>Name</th>
+              <th class="td-delete"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <% p.object.colors.each do |color| %>
+                <tr dataid="<%= color.id %>">
+                  <td><%= color.Name %></td>
+                  <td><%= link_to "Delete", "/", :class => "delete-color", :dataid => color.id %></td>
+                </tr>
+            <% end %>
+            <tr id="tr-add-color"><td></td><td></td></tr>
+            </tbody>
+          </table>
+          <div class="div-add"><%= link_to "Add color", "/", :id => "add-color" %></div>
+          <div class="emptyBlock"></div>
+        </div>
+        <div class="editor-error">
+          <div class="formError">
+            <%= error_message_on :product, :colors, :prepend_text => StaticDataUtilities.get_prepare_error_message %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<%#*Params block%>
+    <div class="category-block">
+      <div class="Header">
+        Choose product variants
+      </div>
+
+      <%#*Params%>
+      <div class="">
+        <div class="div-tbl">
+          <table id="t-param" class="table-general">
+            <thead>
+            <tr>
+              <th>Name</th>
+              <th>Value</th>
+              <th class="td-delete"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <% @product_params.list.each do |param| %>
+                <tr dataid="<%= param.id %>" template="<%= param.is_template %>">
+                  <td><%= param.name %></td>
+                  <td><%= param.values %></td>
+                  <td>
+                    <a dataid="<%= param.id %>" class="delete-param" href="/">Delete</a>
+                  </td>
+                </tr>
+            <% end %>
+            <tr id="tr-add-param"><td></td><td></td></tr>
+            </tbody>
+          </table>
+          <div class="div-add">
+            <a id="add-param" href="/">Add variant</a>
+          </div>
+          <div class="emptyBlock"></div>
+        </div>
+        <div class="editor-error">
+          <div class="formError">
+            <%= @err_params %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<%#*Store block%>
+    <div class="category-block">
+      <div class="Header">
+        Store *
+      </div>
+
+      <%#*Store%>
+      <div class="">
+        <div class="div-tbl">
+          <table id="t-store" class="table-general">
+            <thead>
+            <tr>
+              <th>Name</th>
+              <th class="td-delete"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <% p.object.stores.each do |store| %>
+                <tr dataid="<%= store.id %>">
+                  <td><%= store.Name %> <% if store.IsDefault %><i>(default)</i><% end %></td>
+                  <td><%= link_to "Delete", "/", :class => "delete-store", :dataid => store.id %></td>
+                </tr>
+            <% end %>
+            <tr id="tr-add-store"><td></td><td></td></tr>
+            </tbody>
+          </table>
+          <div class="div-add"><%= link_to "Add store", "/", :id => "add-store" %></div>
+          <div class="emptyBlock"></div>
+        </div>
+        <div class="editor-error">
+          <div class="formError">
+            <%= p.error_message_on :stores, :prepend_text => StaticDataUtilities.get_prepare_error_message %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="category-block">
+      <div class="Header">
+        Additional Images
+      </div>
+
+      <div class="limit-file-text">Images must be less than 3 MB</div>
+
+      <div id="image-list">
+        <%= p.fields_for :product_images do |i| %>
+            <div class="image_block group">
+              <div class="image">
+                <%= image_tag i.object.product_image.url(:small), :alt => "Product Image", :class => "product-additional-image-small"%>
+              </div>
+              <div class="controls">
+                <div>
+                  <%= i.label :product_image, "New Image" %>
+                  <%= i.file_field :product_image %>
+                </div>
+                <div>
+                  <%= i.check_box :_destroy %>
+                  <%= i.label :_destroy, "Remove" %>
+                </div>
+              </div>
+            </div>
+        <% end %>
+        <div class="image-template">
+        <%= p.fields_for :product_images, ProductImage.new do |i| %>
+              <div class="image_block group">
+                <div class="image product-additional-image-small">
+                  New Image
+                </div>
+                <div class="controls">
+                  <div>
+                    <%= i.label :product_image, "New Image" %>
+                    <%= i.file_field :product_image %>
+                  </div>
+                  <div>
+                    <%= i.check_box :_destroy %>
+                    <%= i.label :_destroy, "Remove" %>
+                  </div>
+                </div>
+              </div>
+        <% end %>
+        </div>
+      </div>
+      <div class="emptyBlock"></div>
+      <div class="div-block">
+        <a id="add-new-image" href="">Add New Image</a>
+      </div>
+    </div>
+
+    <div class="category-block">
+      <div class="Header">
+        Attachments (PDF's)
+      </div>
+
+      <div class="limit-file-text">Files must be less than 3 MB</div>
+
+      <div id="attachment-list">
+        <%= p.fields_for :product_attachments do |a| %>
+            <div class="image_block group">
+              <div class="image">
+                <%= image_tag "/images/pdf.jpg" , :alt => "Product Image" %>
+              </div>
+              <div class="controls">
+                <div>
+                  <%= a.label :title, "Title" %>
+                  <%= a.text_field :title %>
+                </div>
+                <div>
+                  <%= a.label :product_attachment, "Change File" %>
+                  <%= a.file_field :product_attachment %>
+                </div>
+                <div>
+                  <%= a.check_box :_destroy %>
+                  <%= a.label :_destroy, "Remove" %>
+                </div>
+              </div>
+            </div>
+        <% end %>
+        <div class="attachment-template">
+          <%= p.fields_for :product_attachments, ProductAttachment.new do |a| %>
+              <div class="image_block group">
+                <div class="image">
+                  <%= image_tag "/images/pdf.jpg", :alt => "Product Image" %>
+                </div>
+                <div class="controls">
+                  <div>
+                    <%= a.label :title, "Title" %>
+                    <%= a.text_field :title %>
+                  </div>
+                  <div>
+                    <%= a.label :product_attachment, "Change File" %>
+                    <%= a.file_field :product_attachment %>
+                  </div>
+                  <div>
+                    <%= a.check_box :_destroy %>
+                    <%= a.label :_destroy, "Remove" %>
+                  </div>
+                </div>
+              </div>
+          <% end %>
+        </div>
+      </div>
+      <div class="emptyBlock"></div>
+      <div class="div-block">
+        <a id="add-new-attachment" href="">Add New Attachment</a>
+      </div>
+    </div>
+
+    <div class="buttons-block">
+      <%= link_to "View All Products", admin_products_path %>
+      <input type="button" id="save" class="btn-save" value=" "/>
+    </div>
+    <div class="emptyBlock"></div>
+
+<% end %>
+
+
+<div id="cat-iframe" style="overflow: auto;">
+  <table>
+    <tr>
+      <td valign="top">
+        <div id="treeboxbox_tree" class="treebox"></div><br/>
+      </td>
+    </tr>
+  </table>
+  <input type="button" id="btn-add-cat" class="btn-add" value=" " />
+</div>
+
+<div id="store-iframe" style="overflow: auto;">
+  <table>
+    <tr>
+      <td valign="top">
+        <div id="treeboxbox_tree_store" class="treebox"></div><br/>
+      </td>
+    </tr>
+  </table>
+  <input type="button" id="btn-add-store" class="btn-add" value=" " />
+</div>
+
+<div id="param-iframe" style="overflow: auto;">
+  <div class="block-param">
+    <input type="hidden" id="param-id"/>
+    <input type="hidden" id="param-is-edit"/>
+
+    <%#*------------------------------%>
+    <%#*Templates%>
+    <%#*------------------------------%>
+    <div class="div-block">
+      <div class="editor-label">
+        <label for="Templates">Templates</label>
+      </div>
+      <div class="editor-field">
+        <%= select :product, :templates, [] %>
+        <div class="delete-template"></div>
+      </div>
+      <div class="editor-error">
+        <input type="checkbox" id="use-template"/> Use as template
+        <div class="text-template"></div>
+      </div>
+    </div>
+
+    <%#*------------------------------%>
+    <%#*Name%>
+    <%#*------------------------------%>
+    <div class="div-block">
+      <div class="editor-label">
+        <label for="Name">Name *</label>
+      </div>
+      <div class="editor-field">
+        <input type="text" id="param-name"/>
+      </div>
+      <div class="editor-error">
+      </div>
+    </div>
+
+    <%#*------------------------------%>
+    <%#*Value%>
+    <%#*------------------------------%>
+    <div class="div-block">
+      <div class="editor-label">
+        <label for="value">Value *</label>
+      </div>
+      <div class="editor-field">
+        <input type="text" class="value-param"/>
+      </div>
+      <div class="editor-error">
+        <a href="#" class="delete-value" style="text-decoration: underline">Delete</a>
+      </div>
+    </div>
+
+    <%#*------------------------------%>
+    <%#*AddValue%>
+    <%#*------------------------------%>
+    <div class="div-block add-param">
+      <div class="editor-label">
+        <label style="visibility: hidden">Value *</label>
+      </div>
+      <div class="editor-field">
+        <a href="#" id="add-value" style="text-decoration: underline">Add value</a>
+      </div>
+      <div class="editor-error">
+      </div>
+    </div>
+
+    <%#*------------------------------%>
+    <%#*Value%>
+    <%#*------------------------------%>
+    <div class="div-block display-none" id="value-param">
+      <div class="editor-label">
+        <label for="value">Value *</label>
+      </div>
+      <div class="editor-field">
+        <input type="text" class="value-param"/>
+      </div>
+      <div class="editor-error">
+        <a href="#" class="delete-value" style="text-decoration: underline">Delete</a>
+      </div>
+    </div>
+
+    <input type="button" id="btn-add-param" class="btn-add" value=" " />
+  </div>
+</div>
+
+<div class="block-iframe tag-none">
+  <iframe src="" id="errorPopup" width="485px" height="280px" frameborder="0" style="border: 0;">
+  </iframe>
+</div>

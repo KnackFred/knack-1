@@ -1,0 +1,72 @@
+
+#GiftControl{
+    width: 483px;
+    height: 48px;
+    border-collapse: collapse;
+    border: 1px solid #cccccc;
+    background-color: #ffffff;
+    text-align: center;
+    margin-top: 22px;
+}
+
+#GiftControl .firstRow{
+    width: 66px;    
+}
+
+#GiftControl .secondRow{
+    width: 230px;
+}
+
+#GiftControl .thirdRow{
+    width: 66px;    
+}
+
+#GiftControl
+{
+    font-size: 13px;
+}
+
+#GiftControl label
+{
+    font-size: 13px;
+}
+
+#GiftControl span{
+    font-size: 8px;
+}
+
+#GiftControl .fourthRow{
+    width: 122px;
+    border-left: 1px solid #cccccc;
+    background-color: #d9e5f3;
+}
+
+#slider-range-min
+{
+    width: 182px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.giftsTable{
+    border: 0;
+    width: 122px;
+    height: 46px;
+}
+
+.giftsTable tr #first{
+    text-align: right;
+    width: 49px;
+    font-size: 35px;    
+}
+
+.giftsTable tr #second{
+    text-align: center;
+    width: 56px;
+    font-size: 11px;   
+}
+
+.giftsTable tr #third{
+    width: 17px;
+}
+

@@ -1,0 +1,114 @@
+
+GETTING STARTED:
+
+NOTE: these instructions are for windows and Ubantu Linux.
+
+1) Get Ruby and some basic build dependencies.
+    WINDOWS:
+        Use Ruby version 1.8.x, on windows this is best done using the ruby installer. http://rubyinstaller.org/
+        You also need to install the Ruby DevKit.  make sure to check out the instructions.  http://rubyinstaller.org/add-ons/devkit/
+        Install Rubygems
+    LINUX:
+        install package ruby1.8
+        install package rubygems
+        install gem bundler "sudo gem install bundler"
+
+2) Get the latest code from SVN
+
+3) install dependencies.
+  Navigate to the source directory, run bundle install.
+  It will install some gems, but fail on a few.  When it does debug the issue then run bundle install again until it passes without error. (Some of the common issues are below)
+
+    - Get Nokigiri working.
+        http://nokogiri.org/tutorials/installing_nokogiri.html
+
+        LINUX:
+        # ruby developer packages
+        sudo apt-get install ruby1.8-dev ruby1.8 ri1.8 rdoc1.8 irb1.8
+        sudo apt-get install libreadline-ruby1.8 libruby1.8 libopenssl-ruby
+
+        # nokogiri requirements
+        sudo apt-get install libxslt-dev libxml2-dev
+
+    - Get Capybara Webkit working
+        https://github.com/thoughtbot/capybara-webkit/wiki/Installing-Qt-and-compiling-capybara-webkit
+
+        LINUX:
+            sudo apt-get install libqt4-dev
+
+    - Get Mysql2 working.
+        WINDOWS:
+            Install MY SQL.  make sure you get a 32 bit version.  And make sure you install it to a path WITHOUT spaces.
+            https://github.com/oneclick/rubyinstaller/wiki/Troubleshooting#wiki-gems_mix_bits
+            Make sure you install the version that bundler is attempting to isntall.
+        LINUX:
+            install mysql client and server package
+            Then dev packages
+            sudo apt-get install libmysql-ruby libmysqlclient-dev
+
+    - Get RMagick working.
+        WINDOWS:
+            Follow the instructions here fr installing imageMagick.  http://phosphor-escence.blogspot.com/2010/10/install-rmagick-on-mingw-and-msys.html
+            I was a bit confused about which version of imageMagick to install. So i sed this one. ImageMagick-6.7.3-1-Q16-windows-dll.exe.
+            Then install the gem. (Verify that the paths and the version are correct for your install)
+            C:\Users\jshriver-blake\RailsApps\KnackRegistry>gem install rmagick --version=2.12.0 --platform=ruby -- --with-opt-lib=C:\ImageMagick-6.7.3-Q16\lib --with-opt-include=C:\ImageMagick-6.7.3-Q16\include
+        LINUX:
+            sudo apt-get install libmagickwand-dev imagemagick
+
+
+4) Get Sphinx Working.
+    WINDOWS
+      http://www.espace.com.eg/blog/2009/03/23/thinking-sphinx-on-windows/
+        1: Download sphinx form here.  http://sphinxsearch.com/downloads/beta/
+        2: UNZIP it to a location on your disk e.g. c:\shpinx (do not use spaces in the path)
+        3: open ./config/sphinx.yml and set bin path to point o the bin directory in sphinx.  Make sure to to do this for dev and test.
+
+    LINUX:
+        install sphinxsearch package
+
+    NOTE: Sphinx does not index all the time, in order to refresh the index you must run rake thinking_sphinx:index.
+    You then need to run rake thinking_sphinx:start to start up the server.
+    NOTE: You need to start the server on reboot using the same command.
+
+5) Get the database set up
+    FROM SCRATCH
+    Check the credentials for the dev environment in ./config/database.yml and set up that username and password in your mysql database.
+    go to the app root directory and run
+      rake db:create
+    Run the script to initialize the database to the V1 schema.
+      mysql -u root -p p3r83364_knack < ./db/migrate/knack_v1_schema.sql
+    Run migrations to the most recent schema
+      rake db:migrate
+        (You may get some errors when migrating about constraint that can not be found.  In this case go to the migration that is throwing the error and comment out the line that removes the constraints (REMEMBER TO UNCOMMENT IT AFTER THE MIGRATION IS COMPLETE)
+    Populate seed data.
+      rake db:seed
+
+    FROM PRODUCTION
+        Log Into The Server FOR GODS SAKE BE CAREFUL
+        Dump the Database to file
+            mysqldump -u root -p[root_password] p3r83364_knack > db.sql
+        Back On the Dev Machine
+            Copy the dump file back
+                scp root@knackregistry.com:db.sql ./
+            Create databases test and development using mysql client.  "create database [X]"
+            Restore the file to the databases. (Dev and Test)
+                mysql -u root -p[root_password] development < db.sql
+                mysql -u root -p[root_password] test < db.sql
+
+
+6) START UP SPHINX:
+
+  Create the index;
+    rake ts:index
+  Start Sphinx
+    rake ts:start
+
+  If you make product changes and you want to see the results in the search you need to re-index the tables.
+    rake ts:reindex
+
+7) Try running some tests.
+   rake spec
+   rake cucumber
+
+   Ideally all test will pass, but there may be a few broken.  If a majority of the tests are broken you have a problem.
+ TEST

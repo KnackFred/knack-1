@@ -1,0 +1,177 @@
+<% content_for :title do %>
+    Invite Friends | Knack Registry
+<% end %>
+<% content_for :head do %>
+    <%= javascript_include_tag "/javascripts/knack.registrant.manage_registry.js"  %>
+    <%= stylesheet_link_tag "/stylesheets/Pages/invite_friends.css" %>
+<%end%>
+<% content_for :under_body do %>
+    <%= render :partial => 'shared/fb_init' %>
+<% end %>
+
+<% content_for :pagename do %>
+    <div>Your Friends</div>
+<% end %>
+
+<% content_for :registry do %>
+    <%= @registrant.name_registry %>
+<% end %>
+<% content_for :background do %>
+    <% unless @registrant.is_invited? %>
+        <%= render :partial => 'registrant/your_credit', :object => @registrant.get_queue %>
+    <% end %>
+<% end %>
+
+<% if Rails.env == "production" %>
+    <!-- Google Code for Logged in User Remarketing List -->
+    <script type="text/javascript">
+        /* <![CDATA[ */
+        var google_conversion_id = 1014910302;
+        var google_conversion_language = "en";
+        var google_conversion_format = "3";
+        var google_conversion_color = "666666";
+        var google_conversion_label = "LT6ICLq3tgIQ3pr54wM";
+        var google_conversion_value = 0;
+        /* ]]> */
+    </script>
+    <script type="text/javascript" src="https://www.googleadservices.com/pagead/conversion.js">
+    </script>
+    <noscript>
+      <div style="display:inline;">
+        <img height="1" width="1" style="border-style:none;" alt="" src="https://www.googleadservices.com/pagead/conversion/1014910302/?label=LT6ICLq3tgIQ3pr54wM&amp;guid=ON&amp;script=0"/>
+      </div>
+    </noscript>
+<% end %>
+
+<%#*-----------------------------%>
+<%#*Content%>
+<%#*-----------------------------%>
+
+<div class="withBackground">
+  <div class="content">
+    <div class="mainBlock">
+      <table cellpadding="0px" cellspacing="0px" border="0px">
+        <tr>
+          <td class="leftMenu">
+            <%= render "registrant/left_nav" %>
+          </td>
+          <td class="rightPane">
+            <% if @registrant.fbuid.present? %>
+                <div>
+                  <h1>
+                    Create a better registry with your friends
+                  </h1>
+                  <p>
+                    Invite your facebook friends to build a sample registry on Knack.  You’ll be able to view it for inspiration, and even add items from their registry to your own.
+                  </p>
+                  <a id="share" href="#">
+                    <img id="invite-button" src="/images/invite_button.png"/>
+                  </a>
+                </div>
+
+                <h2> Your Friends On Knack</h2>
+                <div class="fb-friends group">
+                  <% @followed.each do |fb_profile| %>
+                      <div class="friend">
+                        <div class="fb_image">
+                          <%= link_to registry_path(fb_profile.id) do %>
+                            <img src="https://graph.facebook.com/<%=fb_profile.fbuid%>/picture"/>
+                          <% end %>
+                        </div>
+                        <div class="right">
+                          <div class="fb-friends-name">
+                            <%= link_to "#{fb_profile.FirstName} #{fb_profile.LastName}", registry_path(fb_profile.id) %>
+                          </div>
+                          <div class="fb-friends-view-registry">
+                            <%= link_to "View", registry_path(fb_profile.id) %>
+                          </div>
+                        </div>
+                      </div>
+                  <% end %>
+                  <% if @followed.blank? %>
+                      <p>
+                        Sorry, you don't have any friends on Knack.  Why don't you invite some now.
+                      </p>
+                  <% end %>
+                </div>
+
+
+                <div id="faces_spinner"><img src="/images/spinner.gif" alt="" /></div>
+                <div id="engaged-faces">
+
+                  <h2>
+                    Engaged Facebook Friends
+                  </h2>
+                  <div class="fb-friends group">
+                    <div class="friend tag-none" data-fbuid="12">
+                      <div class="fb_image">
+                        <a href="#" class="invite_friend">
+                          <img src=""/>
+                        </a>
+                      </div>
+                      <div class="right">
+                        <div class="fb-friends-name"><a href="#" class="invite_friend"></a></div>
+                        <div class="fb-friends-view-registry"><a href="#" class="invite_friend">Invite</a> </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            <%else%>
+                <div>
+                  <h1>
+                    Create a better registry with your friends
+                  </h1>
+                  <p>
+                    Invite your facebook friends to build a sample registry on Knack.  You’ll be able to view it for inspiration, and even add items from their registry to your own. To invite your friends, you first need to connect you knack account with facebook.
+                  </p>
+                  <div class="connect-with-fb">
+                    <div class="connect-with-fb-text">
+                      Connect your Knack account with facebook:
+                    </div>
+                    <div class="connect-with-fb-login">
+                      <div class="faceBut">
+                        <a id="fb-login" href="#">
+                          <img src = "/images/general/social/fb-login.png"/>
+                        </a>
+                        <span id="login_spinner" style="position:absolute;padding-top:2px;padding-left:5px;display:none"><img src="/images/spinner.gif" alt="" /></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            <%end%>
+
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+    var fetch_friends = true;
+    var invite_friends = true;
+
+    function friends_filter(friend) {
+        return (friend.relationship_status == "Engaged");
+    }
+
+    function friends_action(friends) {
+
+        var template = $('#engaged-faces .friend').remove().removeClass("tag-none");
+        var once = false;
+        $.each(friends, function(i, friend){
+            if (friend.installed != true) {
+                once = true;
+                var face = template.clone();
+                $(face).attr("data-fbuid", friend.id)
+                $(face).find("img").attr("src", "https://graph.facebook.com/"+friend.id+"/picture");
+                $(face).find(".fb-friends-name a").text(friend.name);
+                $("#engaged-faces .fb-friends").append(face);
+            }
+        });
+        $('#faces_spinner').hide();
+        if (once) {
+            $('#engaged-faces').fadeIn("fast");
+        }
+    }
+</script>

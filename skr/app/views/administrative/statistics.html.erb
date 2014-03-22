@@ -1,0 +1,88 @@
+<% content_for :title do %>
+    Profile
+<% end %>
+<% content_for :head do %>
+    <%= stylesheet_link_tag "/stylesheets/Controls/Table.css" %>
+    <%= stylesheet_link_tag "/stylesheets/Pages/Profile.css" %>
+    <%= stylesheet_link_tag "/stylesheets/Pages/Administrative.Profile.css" %>
+    <%= javascript_include_tag "/javascripts/pages/Partnerprofile.js"  %>
+<%end%>
+<% content_for :pagename do %>
+    <div>Statistics</div>
+<% end %>
+
+<% content_for :registry do %>
+    <div class="bl-block">
+      <div class="blue-line">
+        <div class="section-header">
+        </div>
+      </div>
+    </div>
+<% end %>
+
+<% content_for :background do %>
+    <div class="bl-block">
+      <div class="blue-line">
+        <input type="hidden" value="fghj"/>
+      </div>
+    </div>
+<% end %>
+
+
+<div class="withBackground">
+  <div class="content">
+    <div class="mainBlock">
+      <table class="tbl-profile" cellpadding="0px" cellspacing="0px" border="0px">
+        <tr>
+          <td class="leftMenu">
+            <%= render "left_menu" %>
+          </td>
+          <td class="rigthPane">
+            <% unless @show_year %>
+                <a href="/administrative/full_statistics">Include Year</a>
+            <% end %>
+            <div class="table-container">
+              <table id="product-table" >
+                <thead>
+                <tr>
+                  <th class=""></th>
+                  <th class="">Today</th>
+                  <th class="">Week</th>
+                  <th>Month</th>
+                  <% if @show_year %>
+                      <th>Year</th>
+                  <% end %>
+
+                </tr>
+                </thead>
+                <tbody>
+                <% @statistics.each do |s| %>
+                    <tr>
+                      <td><%=  s.name%></td>
+                      <% if s.type == 0 %>
+                          <td><%= s.today%></td>
+                          <td><%= s.week %></td>
+                          <td><%= s.month %></td>
+                          <% if @show_year %>
+                              <td><%= s.year %></td>
+                          <% end %>
+
+                      <% else %>
+                          <td><%= formatted_price(s.today) %></td>
+                          <td><%= formatted_price(s.week) %></td>
+                          <td><%= formatted_price(s.month) %></td>
+                          <% if @show_year %>
+                              <td><%= formatted_price(s.year) %></td>
+                          <% end %>
+                      <% end %>
+                    </tr>
+                <%end%>
+                </tbody>
+              </table>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

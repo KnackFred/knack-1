@@ -1,0 +1,77 @@
+<% content_for :title do %>
+  States list
+<% end %>
+<% content_for :head do %>
+        <%= javascript_include_tag "/javascripts/knack.administrative.statelist.js"  %>
+<%end%>
+<div id="div-mainCategory">
+  <h3>Edit Catalog States</h3>
+
+  <form action="/administrative/statelist" method="post" id="filters">
+    <input type="hidden" id="countP" name="countP" value="<%= @page_size%>"/>
+    <input type="hidden" id="currentP" name="currentP" value="<%= @current_page%>"/>
+    <input type="hidden" id="at" name="authenticity_token" value="<%= form_authenticity_token %>" />
+  </form>
+
+  <table id="catalog-table">
+    <thead style="background-color:#f6e39c;">
+      <th>ID</th>
+      <th>State</th>
+      <th>Tax(Percent)</th>
+      <th>Edit</th>
+    </thead>
+    <tbody>
+      <% @states.each do |state| %>
+        <tr>
+          <td><%= state.id %></td>
+          <td><%= state.Name %></td>
+          <td><%= "%.2f%" % state.GeneralTax%></td>
+          <td><%=  link_to 'Edit', :controller => :administrative, :action => :editstate, :id => state.id%></td>
+        </tr>
+      <%end%>
+    </tbody>
+  </table>
+  <div id="div-pager">
+    <% if @count_page > 1 %>
+          <%= link_to "Previous", {:controller => :registrant, :action => :registrant, :id => @prev_page}, :pageid => @prev_page%>
+          <% @leftpager.each do |page|%>
+            <% if page.to_i == @current_page.to_i%>
+                <b>
+            <% end %>
+                  <%= link_to page, {:controller => :registrant, :action => :registrant, :id => page}, :pageid => page%>
+            <% if page.to_i == @current_page.to_i%>
+                </b>
+            <% end %>
+          <%end%>
+
+          <% if @rightpager.count > 0 %>
+           ...
+            <% @rightpager.each do |page|%>
+              <% if page.to_i == @current_page.to_i%>
+                <b>
+              <% end %>
+                  <%= link_to page, {:controller => :registrant, :action => :registrant, :id => page}, :pageid => page%>
+              <% if page.to_i == @current_page.to_i%>
+                </b>
+              <% end %>
+            <% end %>
+          <%end%>
+
+          <b><%= link_to "Next", {:controller => :registrant, :action => :registrant, :id => @next_page}, :pageid => @next_page%></b>
+    <% end %>
+
+
+    <span>Items per page</span>
+    <select id="per_page">
+      <option value="8">8</option>
+      <option value="16">16</option>
+      <option value="24">24</option>
+      <option value="50">50</option>
+    </select>
+  </div>
+
+  <div id="div-addCategory">
+    <%= button_to("Add", {:controller => "administrative", :action => "editstate"}, :method => 'get') %>
+  </div>
+</div>
+

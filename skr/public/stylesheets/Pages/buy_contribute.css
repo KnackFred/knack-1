@@ -1,0 +1,286 @@
+.pageName {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+div{
+    font-size: 12px;
+}
+
+.editor-label
+{
+	float: left;
+	width:200px;
+}
+.editor-field
+{
+	margin-left: 100px;
+	margin-bottom: 15px;
+}
+.error
+{
+    color: red;
+    font-style: italic;
+}
+/**************************************************************
+*EDIT REGISTRANT2PRODUCTS
+**************************************************************/
+#div-edit-r2p
+{
+    padding: 20px;
+}
+
+#product_info
+{
+    width: 100px;
+}
+
+
+
+#quantity
+{
+    width: 30px;
+}
+
+
+
+
+
+
+/**************************************************************
+*BUY REGISTRANT2PRODUCTS
+**************************************************************/
+#div-buy-r2p
+{
+    width: 600px;
+    padding: 20px;
+}
+
+#product_info_buy
+{
+    width: 100px;
+}
+
+#quantity_buy
+{
+    width: 30px;
+}
+
+#notes_buy
+{
+    width: 400px;
+}
+
+#notes_buy
+{
+    width: 400px;
+}
+
+#save_r2p_buy, #proceed-contr
+{
+    float: right;
+}
+
+
+
+
+body{
+    font-family: Helvetica, arial, sans-serif;
+    color: #666666;
+    font-weight: normal;
+    font-size: 15px;
+/*    width: 505px;*/
+    padding-left: 15px;   
+    padding-right: 15px;
+}
+
+input, textarea{
+    border: 1px solid #CCCCCC;
+    color: #666666;
+    padding: 2px;
+}
+
+
+a{
+    font-size: 11.5px;
+    color: #666666;
+
+}
+
+
+
+
+.firstTD{
+    width: 200px;
+    vertical-align: top;
+}
+
+.descriptionTD{
+    width: 235px;
+    vertical-align: top;
+    text-align: left;
+    font-size: 12px;
+}
+
+.descriptionTD td{
+    vertical-align: top;
+    height: 25px;
+}
+
+.descriptionTD .firstTD{
+    width: 70px;
+}
+
+.imageTD{
+    border: 1px solid #cccccc;
+    width: 200px;
+    height: 150px;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.imageTD img{
+    max-height: 148px;
+    max-width: 198px;
+    padding: 0;
+}
+
+.infoTD{
+    height: 50px !important;
+    vertical-align: middle!important;
+}
+
+.buttonTD .addtoregB{
+    cursor: pointer;
+    height: 19px;
+    width: 124px;
+    background-image: url('/images/design/Buttons/addToRegistry.png');
+    border:0;
+}
+
+.lineTD div{
+    vertical-align: middle !important;
+    width: 100%;
+    height: 1px;
+    background-color: #cccccc;
+}
+
+.amount{
+    font-size: 11px;
+    vertical-align: top!important;
+    height: 20px;
+}
+
+
+label{
+    font-weight: bold;
+}
+
+label, input, textarea {
+    font-size: 12px;
+}
+
+
+.contribution .value{
+    margin-bottom: 6px;
+}
+
+.contribution .line{
+    height: 1px;
+    background-color: #cccccc;
+    margin:1px auto 1px auto;
+}
+
+.contribution{
+    margin-bottom: 10px;
+}
+
+
+.btn-proceed
+{
+/*    margin-top: 20px;*/
+    background: url('/images/design/Buttons/ok.png') no-repeat;
+    width: 50px;
+    height: 19px;
+    float: right;
+}
+
+#buy_registry_item_submit
+{
+    background: url('/images/design/Buttons/ok.png') no-repeat;
+    width: 50px;
+    height: 19px;
+    float: right;
+    color: transparent;
+    border-width: 0;
+    padding: 0;
+}
+
+.descriptionTD select
+{
+    width: 100px;
+}
+
+.descriptionTD input{
+	width: 141px;
+	height: 15px;
+}
+
+.description, #source, #edit-source {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.description textarea{
+    width: 98%;
+    height: 100px;
+}
+
+#source #edit-source-link{
+    font-size: .8em;
+    text-decoration: underline;
+}
+
+
+/* These are definately being used for contribute*/
+#buy_registry_item_quantity, #buy_registry_item_contribute {
+    width: 80px
+}
+
+.note-section {
+    margin-top: 12px;
+}
+
+.from, .note {
+    width: 390px;
+    vertical-align: top;
+}
+
+.note {
+    height: 70px;
+}
+
+.actions {
+    margin: 10px;
+    float: right;
+}
+
+
+dt, dd, label {
+    margin: .2em 0;
+}
+
+dt {
+    clear: left;
+    float: left;
+    width: 30%;
+}
+
+dd {
+    float: left;
+    width: 70%;
+}
+
+dd input{
+    width: 98%;
+}

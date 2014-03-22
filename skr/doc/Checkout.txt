@@ -1,0 +1,44 @@
+Exists 3 cases of operations in cart:
+ 	1. Buy for himself
+ 	2. Buy (contribute) for someone
+ 	3. Withdraw cash
+
+they can not be simultaneously.
+
+Exists 2 roles:
+	I.  Registrant (authorized user)
+	II. Buyer (not authenticated user)
+	
+Registrant (I) can buy for himself (1), 
+				   buy (contribute) for someone (2),
+				   withdraw cash (3).
+				
+				
+Buyer (II) can  buy for himself (1), 
+				buy (contribute) for someone (2)
+				
+Test payment method:
+#PayPal
+
+developer.paypal.com
+ john@knackregistry.com ==============> Kn@ck1980
+ 
+www.sandbox.paypal.com
+ #knack
+ seller_1343145780_biz@knackregistry.com =========> 12345678
+ 
+ #payer
+ buyer_1343138536_per@knackregistry.com =========> 12345678
+
+Credit card
+Number: 4097175626266205
+Month: 7
+Year: 2017
+Verification value: 234
+Type: visa
+
+Creating Errors:
+Security Code Error: Set Security Code to 116.
+
+More Info
+http://www.paypalobjects.com/en_US/ebook/PP_Sandbox_UserGuide/testing_error_conditions.html

@@ -1,0 +1,111 @@
+<%= content_for :head do %>
+    <%= stylesheet_link_tag "/stylesheets/Pages/AddMyOwnGift.css" %>
+    <%= stylesheet_link_tag "/javascripts/jcrop/css/jquery.Jcrop.css" %>
+    <%= javascript_include_tag "/javascripts/jquery.form.js"  %>
+    <%= javascript_include_tag "/javascripts/jquery.keyfilter-1.7.js"  %>
+    <%= javascript_include_tag "/javascripts/jquery.validate.min.js"  %>
+    <%= javascript_include_tag "/javascripts/jquery.simplemodal.1.4.1.min.js"  %>
+    <%= javascript_include_tag "/javascripts/jcrop/js/adding.js"  %>
+    <%= javascript_include_tag "/javascripts/jcrop/js/jquery.Jcrop.js"  %>
+    <%= javascript_include_tag "/javascripts/plugins/jquery.caret.min.js"  %>
+    <%= javascript_include_tag "/javascripts/plugins/jquery.decimalMask.js"  %>
+    <%= javascript_include_tag "/javascripts/knack.registrant.addmyowngift.js"  %>
+<%end%>
+
+<%= form_for @item, :url => {:action => :addmyowngift}, :html => {:multipart => true} do |f|%>
+    <%= f.fields_for :product do |p|%>
+        <div class="div-addgift">
+          <div class="left-column">
+            <%#***************************%>
+            <%#*Title%>
+            <%#***************************%>
+            <div class="form-row group">
+              <div class="editor-label">
+                Title *
+              </div>
+              <div class="editor-field">
+                <%= p.text_field :Name %>
+              </div>
+            </div>
+
+            <%#***************************%>
+            <%#*Uploadable image%>
+            <%#***************************%>
+            <div class="form-row group">
+              <div class="editor-label">
+                Upload an Image *
+              </div>
+              <div class="editor-field">
+                <div class="small-label"><%= p.file_field :main_product_image %></div>
+                <div class="small-label"><img id="stock-preview" class="tag-none" src=""/><%= link_to "Use Stock Image", "#", :id => "link-stock-image" %></div>
+                <div class="small-label"><%= p.hidden_field :stock_image %></div>
+              </div>
+            </div>
+
+            <%#***************************%>
+            <%#*Description%>
+            <%#***************************%>
+            <div class="form-row group">
+              <div class="editor-label">
+                Description
+              </div>
+              <div class="editor-field">
+                <%= p.text_area :Description, :cols => 20, :rows => 5 %>
+              </div>
+            </div>
+
+            <%#***************************%>
+            <%#*Price%>
+            <%#***************************%>
+            <div class="form-row group">
+              <div class="editor-label">
+                Price *
+              </div>
+              <div class="editor-field">
+                <%= p.text_field :MasterPrice %>
+              </div>
+            </div>
+
+            <%#***************************%>
+            <%#*Quantity%>
+            <%#***************************%>
+            <div class="form-row group">
+              <div class="editor-label">
+                Quantity *
+              </div>
+              <div class="editor-field">
+                <%= f.text_field :Quantity %>
+              </div>
+            </div>
+
+            <%#***************************%>
+            <%#*Total Cost%>
+            <%#***************************%>
+            <div class="form-row group">
+              <div class="editor-label">
+                Total Cost
+              </div>
+
+              <div class="editor-field">
+                <label for="product_total_cost">$0.00</label>
+              </div>
+            </div>
+            <%= f.submit :class => "button-lrg"%>
+          </div>
+        </div>
+
+        <div class="block-iframe tag-none">
+          <iframe src="" id="errorPopup" width="485px" height="280px" frameborder="0" style="border: 0;">
+          </iframe>
+        </div>
+
+        <div class="stock-images tag-none">
+          <div class="stock-container group">
+            <% 1.step(12) do |i| -%>
+                <%= image_tag "/images/stocks/stock#{i}.png", :alt => "Stock Image", :class => "stock_image", "data-stock-url" => i %>
+            <% end %>
+          </div>
+          <%= tag(:input, {:type => :button, :id => "btn-back-stock"}) %>
+        </div>
+    <% end %>
+<% end %>

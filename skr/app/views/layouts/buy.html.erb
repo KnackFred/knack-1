@@ -1,0 +1,20 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <link rel="shortcut icon" href="/images/fav.gif" />
+  <%= stylesheet_link_tag "/stylesheets/Controls/UpdateProgress.css" %>
+  <%= javascript_include_tag "/javascripts/jquery-1.4.4.min.js"  %>
+  <%= javascript_include_tag "/javascripts/jQuery.timer.js"  %>
+  <%= javascript_include_tag "/javascripts/knack.global.js"  %>
+  <%= javascript_tag "var AUTH_TOKEN = #{form_authenticity_token.inspect};" if protect_against_forgery? %>
+  <%= yield :header %>
+  <%= render :partial => 'layouts/analytics' %>
+</head>
+<body>
+  <div id="wrapper">
+    <%= yield %>
+ </div>
+  <%= render :partial => 'layouts/cat-wrapper' %>
+
+</body>
+</html>

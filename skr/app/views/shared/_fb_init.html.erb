@@ -1,0 +1,214 @@
+<div id="fb-root"></div>
+<script type="text/javascript">
+    var fbusername = null;
+    var fbuid = null;
+    var fbimage = null;
+    var users = [{}];
+    var invited = false;
+    fetch_friends = (typeof fetch_friends == "undefined")? false : fetch_friends
+    invite_friends = (typeof invite_friends == "undefined")? false : invite_friends
+
+    function set_fb_vars(response) {
+        fbuid = response.id;
+        fbusername = response.name;
+        fbimage = "https://graph.facebook.com/"+response.id+"/picture";
+    }
+
+    window.fbAsyncInit = function() {
+        FB.init({appId: <%= ::APP_CONFIG['facebook_app_id'] %>,
+            channelUrl: '//knackregistry.com/channel.html',
+            status: true,
+            cookie: true,
+            xfbml: true});
+
+        FB.getLoginStatus(function(status_response) {
+            if (status_response.status == 'connected') {
+                FB.api('/me', function(me_response) {
+                    set_fb_vars(me_response);
+                });
+            }
+        });
+
+        if(fetch_friends){
+            doFriendCalc();
+        }
+
+        $("#fb-login").click(function(){
+            invited = false;
+            fb_login();
+        });
+
+        $("#fb-login-invited").click(function(){
+            invited = true;
+            fb_login();
+        });
+
+        FB.Event.subscribe('edge.create', function(targetUrl) {
+            _gaq.push(['_trackSocial', 'facebook', 'like']);
+        });
+        FB.Event.subscribe('edge.remove', function(targetUrl) {
+            _gaq.push(['_trackSocial', 'facebook', 'unlike']);
+        });
+
+        $('#share').click(function () {
+            _gaq.push(['_trackSocial', 'facebook', 'share']);
+
+            FB.ui({
+                method: 'send',
+                name: 'Help me build my registry on Knack',
+                picture: 'https://knackregistry.com/images/defaultImage.png',
+                description: 'You’ve been invited by a friend to help them build their wedding registry on Knack.  Just follow this link, sign up with your facebook account, and start adding items to your sample registry. Your friend will be able to see what you have added, and can add items off of your registry to their own.',
+                link: '<%= invited_signup_url %>'
+            });
+        });
+
+        $('#engaged-faces').delegate('.invite_friend', 'click', function (event) {
+
+            event.preventDefault();
+            _gaq.push(['_trackSocial', 'facebook', 'share']);
+
+            var fbuid = $(this).parents(".friend").data("fbuid");
+
+            FB.ui({
+                method: 'send',
+                to: fbuid,
+                name: 'Help me build my registry on Knack',
+                picture: 'https://knackregistry.com/images/defaultImage.png',
+                description: 'You’ve been invited by a friend to help them build their wedding registry on Knack.  Just follow this link, sign up with your facebook account, and start adding items to your registry. Your friend will be able to see what you have added, and can add items off of your registry to their own.',
+                link: '<%= home_url %>'
+            });
+        });
+
+    };
+
+    (function(d){
+        var js, id = 'facebook-jssdk'; if (d.getElementById(id)) {return;}
+        js = d.createElement('script'); js.id = id; js.async = true;
+        js.src = "//connect.facebook.net/en_US/all.js";
+        d.getElementsByTagName('head')[0].appendChild(js);
+    }(document));
+
+    function fb_login() {
+        hide_login_ui();
+        FB.getLoginStatus(function(response) {
+            if (response.status != 'connected')
+            {
+                FB.login(function(response) {
+                            if (response.authResponse) {
+                                knack_fb_login();
+                            } else {
+                                show_login_ui();
+                            }
+                        },
+                        {scope: 'email,user_birthday,user_likes,user_education_history,user_hometown,user_interests,user_activities,user_location,friends_relationships'}
+                );
+            }
+            else
+            {
+                knack_fb_login();
+            }
+        });
+    }
+
+    function hide_login_ui() {
+        $('#fb-login-invited').hide();
+        $('#fb-login').hide();
+        $('#login_spinner').show();
+    }
+
+    function show_login_ui() {
+        $('#fb-login-invited').show();
+        $('#fb-login').show();
+        $('#login_spinner').hide();
+    }
+
+
+    function knack_fb_login() {
+        FB.api('/me', function(response) {
+            set_fb_vars(response);
+            $.ajax({
+                url: "/registrant/registerfb",
+                type: "POST",
+                async: true,
+                data: {
+                    fbuid: fbuid,
+                    Email: response.email,
+                    FirstName: response.first_name,
+                    LastName: response.last_name,
+                    Location: response.location ? response.location.name : "",
+                    is_invited: invited
+                },
+                success: function(res) {
+                    uploadFriends(function() {
+                        if (invite_friends)
+                            document.location.replace("/invite_friends");
+                        else
+                            document.location.replace(res.url);
+                    });
+                },
+                error: function(res) {
+                    alert(res.responseText);
+                    show_login_ui();
+                }
+            });
+        });
+
+    }
+
+    function uploadFriends(nextFunction) {
+        FB.getLoginStatus(function(response) {
+            if (response.status === 'connected') {
+                getAllFBUsersWhere("/"+response.authResponse.userID+"/friends?fields=installed",
+                        installedFilter,
+                        function(friends){
+                            $.ajax({
+                                url: "/follows/follow_fb_friends",
+                                type: "POST",
+                                async: true,
+                                data: {
+                                    friends:$.map(friends, function(i) {return i.id})
+                                },
+                                success: nextFunction,
+                                error: nextFunction
+                            });
+                        });
+            }
+        });
+    }
+
+    function doFriendCalc() {
+        FB.getLoginStatus(function(response) {
+            if (response.status === 'connected') {
+                getAllFBUsersWhere("/"+response.authResponse.userID+"/friends?fields=installed,name,picture,relationship_status",
+                        friends_filter,
+                        friends_action);
+            }
+        });
+    }
+
+    function getAllFBUsersWhere(url, condition_func, complete_func, friends) {
+        friends = typeof friends !== 'undefined' ? friends : [];
+        FB.api(url, function(response) {
+            users = response.data;
+            for (var i = 0; i < users.length; i++) {
+                var user = users[i];
+                if (condition_func(user))
+                {
+                    friends.push(user);
+                }
+            }
+
+            if (response.paging && response.paging.next) {
+                return friends.concat(getAllFBUsersWhere(response.paging.next, condition_func, complete_func, friends))
+            } else {
+                complete_func(friends);
+            }
+        });
+
+    }
+
+    function installedFilter(friend) {
+        return (friend.installed);
+    }
+
+</script>

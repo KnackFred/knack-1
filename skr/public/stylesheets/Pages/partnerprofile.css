@@ -1,0 +1,92 @@
+.ownerInfo, .BillingInfo, .paymentInfo, .photoInfo
+{
+    clear:both;
+/*    border-top: 1px #CCCCCC solid;*/
+   
+    padding: 20px 0px 0px;
+}
+
+.description-block
+{
+    height: 180px;
+}
+
+.ownerHeader, .BillingHeader, .paymentHeader
+{
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+#image2upload input{
+    border: 0;
+    width: 200px;
+}
+
+#image2upload table{
+    margin-top:10px;
+}
+
+#image2upload table .imageTD{
+    border: 1px solid #cccccc;
+    text-align: center;
+    width: 216px;
+    height: 163px;
+}
+
+#image2upload table .imageTD img{
+    max-height: 163px !important;
+    max-width: 216px !important;
+}
+
+#image2upload table .linksTD{
+    vertical-align: top;
+    font-size: 12px;
+    padding-top: 4px;
+    text-align: right;
+}
+
+
+.add-store
+{
+    text-align: right;
+    text-decoration: underline;
+}
+
+.add-store a
+{
+/*    margin: 0px 10px 0px;*/
+}
+
+.span-use
+{
+    font-size: 14px;
+    font-weight: normal;
+}
+
+.wrap-logo input{
+    border: 0;
+    width: 200px;
+}
+
+.wrap-logo table{
+    margin-top:10px;
+}
+
+.wrap-logo table .imageTD{
+    border: 1px solid #cccccc;
+    text-align: center;
+    width: 208px;
+    height: 129px;
+}
+
+.wrap-logo table .imageTD img{
+    max-height: 129px !important;
+    max-width: 208px !important;
+}
+
+.wrap-logo table .linksTD{
+    vertical-align: top;
+    font-size: 12px;
+    padding-top: 4px;
+    text-align: right;
+}

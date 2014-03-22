@@ -1,0 +1,430 @@
+
+
+td.td-image, th.td-image-header
+{
+    width: 120px;
+    vertical-align: top;
+}
+
+td.td-name, th.td-name-header
+{
+    width: 150px;
+    vertical-align: top;
+    padding-right: 6px;
+}
+
+td.td-description, th.td-description-header
+{
+    width: 245px;
+    vertical-align: top;
+}
+
+#span-description
+{
+/*    margin-left: 1px;*/
+}
+
+td.td-price, th.td-price-header
+{
+    width: 143px;
+    vertical-align: top;
+}
+
+#span-price
+{
+/*    margin-left: 1px;*/
+}
+
+td.td-tax
+{
+    width: 80px;
+    vertical-align: top;
+}
+
+#span-tax
+{
+/*    margin-left: 1px;*/
+}
+
+td.td-shipment
+{
+    width: 80px;
+    vertical-align: top;
+}
+
+#span-shipment
+{
+/*    margin-left: 1px;*/
+}
+
+td.td-quantity
+{
+    width: 80px;
+    vertical-align: top;
+}
+
+#span-quantity
+{
+/*    margin-left: 2px;*/
+}
+
+td.td-takequeue
+{
+/*    width: 100px;*/
+    vertical-align: top;
+}
+
+#span-takequeue
+{
+    margin-left: 1px;
+}
+
+#span-total
+{
+/*    margin-left: 16px;*/
+}
+
+.td-total, .td-total-header
+{
+    text-align: right;
+    vertical-align: top;
+/*    width: 100px;*/
+}
+
+.td-withdraw
+{
+    text-align: left;
+    vertical-align: top;
+    width: 150px;
+}
+
+.td-knackfee
+{
+    text-align: left;
+    vertical-align: top;
+}
+
+.td-balance
+{
+    text-align: left;
+    vertical-align: top;
+}
+
+td.td-delete
+{
+/*    width: 82px;*/
+    vertical-align: top;
+    text-align: center;
+}
+
+td.td-contribute
+{
+    width: 150px;
+    vertical-align: top;
+    text-align: left;
+}
+
+td.td-contribute-buy
+{
+    vertical-align: top;
+    text-align: left;
+}
+
+#span-delete
+{
+    margin-left: 1px;
+}
+
+/* ============= table product list ================ */
+/********************************************************
+*Check out registry
+********************************************************/
+#checkout
+{
+    border: none;
+    margin: auto;
+    width: 910px;
+
+}
+
+#checkout td
+{
+    border: none;
+    border-bottom: 1px solid #cccccc;
+/*    height: 150px;*/
+    padding: 20px 0px 15px 0px;
+}
+
+.imageDIV
+{
+    float: left;
+    margin-left: 2px;
+}
+
+.imageSize
+{
+    max-width: 120px;
+    max-height: 90px;
+}
+
+.productName
+{
+    color: #676767;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.productParams
+{
+    color: #676767;
+    font-size: 12.5px;
+}
+
+.productPrice
+{
+    color: #676767;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.div-description
+{
+    font-size:12px;
+    margin:-1px auto auto 2px;
+    width:230px;
+}
+
+.payment
+{
+    width: 230px;
+}
+
+#checkout th{
+    border: none;
+}
+
+#line-header
+{
+    margin: 6px auto auto -1px!important;
+}
+
+/* ============= Buttons =================*/
+.contshopping
+{
+    background: url('/images/design/Buttons/continueShopping.png') no-repeat;
+    border: 0px;
+    width: 134px;
+    height: 19px;
+}
+
+.emptycart
+{
+    background: url('/images/design/Buttons/emptyCart.png') no-repeat;
+    border: 0px;
+    width: 124px;
+    height: 19px;
+}
+
+.checkout
+{
+    background: url('/images/design/Buttons/checkOut.png') no-repeat;
+    border: 0px;
+    width: 124px;
+    height: 19px;
+}
+
+/* ============= table amount =================*/
+#amount
+{
+    border: none;
+    width: 910px;
+    margin: auto;
+    font-size: 12px;
+}
+
+#amount td
+{
+    border: none;
+
+}
+
+#amount td.rightColumn
+{
+    width: 255px;
+    text-align: right;
+}
+
+.price
+{
+    font-weight: bold;
+    color: #656565;
+}
+
+.quantity
+{
+    width: 30px;
+}
+
+.contributeTB
+{
+    width: 80px;
+}
+
+.withdraw
+{
+    width: 80px;
+}
+
+/* ============= registryListBlock =================*/
+
+.registryListBlock{
+    width: 915px;
+    margin-left: auto;
+    margin-right: auto;
+    height: 135px;
+    border: 0;
+    padding: 0;
+}
+
+.registryListImage{
+    position: relative;
+    width: 207px;
+    height: 135px;
+    background-color: #cccccc;
+    float: left;
+}
+
+.registryListImage div{
+    position: relative!important;
+    background-color: #ffffff;
+    width: 205px;
+    height: 133px;
+    top:1px;
+    left:1px;
+    vertical-align: middle;
+}
+
+.registryListImage div table tr th img{
+    max-width: 205px;
+    max-height: 133px;
+}
+
+#image_preview{
+    width: 205px;
+    height: 133px;
+}
+
+.registryListInfBlock{
+    float: right;
+    margin-left: 28px;
+    background-color: #ffffff;
+    width: 680px;
+    height: 135px;
+    float: right;
+}
+
+.registryListInfBlock .topic{
+    font-family: 'Arial';
+    font-size: 30px;
+
+    color: #669bd1;
+}
+
+.registryListInfBlock .names{
+    margin-top: 10px;
+}
+
+.registryListInfBlock .description{
+    margin-top: 10px;
+    width: 230px;
+    font-size: 15px;
+}
+
+/* ============= searchtBlock =================*/
+
+.searchBlock{
+    height: 28px;
+    width: 100%;
+    padding-top: 16px;
+}
+
+#searchBlockTable{
+    width: 100%;
+    height: 87px;
+}
+
+#searchfirstRow{
+    width: 217px;
+    text-align: left;
+    vertical-align: top;
+    color: #669bd1;
+}
+#searchfirstRow .narrow{
+    margin-top: 17px;
+    font-size: 12px;
+}
+
+#searchfirstRow .budget{
+    margin-top: 12px;
+    font-size: 17px;
+}
+
+#searchsecondRow{
+    width: 483px;
+    vertical-align: top;
+}
+
+#searchthirdRow{
+    width: 181px;
+    text-align: right;
+    vertical-align: middle;
+}
+
+#searchthirdRow label{
+    margin-right: 13px;
+}
+
+#searchthirdRow select{
+    width: 75px;
+    height: 23px;
+}
+
+.deletebuycart, .deletefromcart, .deletecash
+{
+    background: url('/images/design/Buttons/delete.png') no-repeat;
+    border: 0px;
+    width: 124px;
+    height: 19px;
+}
+
+.div-delete
+{
+    text-align: right;
+    margin:100px auto auto;
+}
+
+.total-div
+{
+    margin-right: 8px;
+}
+
+.imageTable
+{
+    table-layout: fixed;
+    width: 120px;
+}
+
+.imageTable td{
+    border: 0px none!important;
+    width: 120px;
+    height: 90px!important;
+    vertical-align: middle!important;
+    text-align: center;
+    padding: 0px!important;
+}
+
+.imageTable td img{
+    max-height: 90px;
+    max-width: 120px;
+    padding: 0px;
+}

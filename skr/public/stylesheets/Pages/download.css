@@ -1,0 +1,53 @@
+.item-text
+{
+    font-size: 12px;
+    margin: 10px 0px 10px;
+}
+
+.Header
+{
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.links
+{
+    text-decoration: underline!important;
+}
+
+.down-button
+{
+    background: #DAE5F3;
+    border: 0px;
+    width: 160px;
+    height: 25px;
+    font-size: 11px;
+    cursor: pointer;
+    color: #6E6F71;
+}
+
+#content{
+    margin:0;
+}
+
+.header-block .header-text{
+    font-weight: normal;
+    width: 100%;
+}
+
+.wrap-toolbars{
+    color: #669BD1;
+    padding: 20px 0 0 10px;
+}
+
+.wrap-toolbars .browser_select{
+    color: #669BD1;
+}
+
+.wrap-toolbars .links{
+    margin: 10px 40px 0;
+}
+
+.wrap-toolbars .links a{
+    font-size: 16px!important;
+}

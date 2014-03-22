@@ -1,0 +1,44 @@
+.text-default
+{
+    font-style: italic;
+    font-size: 14px;
+    margin:-10px 0 0;
+}
+
+.wrap-image input{
+    border: 0;
+    width: 207px;
+}
+
+.wrap-image table{
+    margin-top:10px;
+}
+
+.wrap-image table .imageTD{
+    border: 1px solid #cccccc;
+    text-align: center;
+    width: 207px;
+    height: 135px;
+}
+
+.wrap-image table .imageTD img{
+    max-height: 133px !important;
+    max-width: 205px !important;
+}
+
+.wrap-image table .linksTD{
+    vertical-align: top;
+    font-size: 12px;
+    padding-top: 4px;
+    text-align: right;
+}
+
+.div-buttons
+{
+    padding: 20px 0px 0px;
+}
+
+.div-additionals, #div-reg, .div-buttons
+{
+    clear: both;
+}

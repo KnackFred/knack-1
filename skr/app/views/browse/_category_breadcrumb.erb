@@ -1,0 +1,16 @@
+<div class="menu-catalog">
+  <% if category_breadcrumb.count > 1 %>
+    Listed in Category:
+    <% category_breadcrumb.each do |menu| %>
+      <% if menu.id == Category.root.id %>
+        <a class="menu-category-link" href="<%= catalog_path %>">Catalog</a>
+      <% else %>
+        > <% if menu.id == params[:id].to_i %>
+            <a class="current-category-link" onclick="javascript:void(0);"><%= menu.name %></a>
+          <% else %>
+            <a class="menu-category-link" href="<%= catalog_path(menu.id) %>"><%= menu.name %></a>
+          <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>

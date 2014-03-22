@@ -1,0 +1,47 @@
+<% content_for :title do %>
+    What Does It Cost?
+<% end %>
+<% content_for :head do %>
+    <%= stylesheet_link_tag "/stylesheets/Global.css" %>
+    <%= stylesheet_link_tag "/stylesheets/Pages/AboutUs.css" %>
+<%end%>
+
+<div class="div-c">
+
+  <div class="topMenu">
+    <table cellpadding="0px" cellspacing="0px">
+      <tr>
+        <td class="pageNameTD">
+          What Does it Cost?
+        </td>
+        <td class="topMenuTD">
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="loginContent">
+
+    <table cellpadding="0px" cellspacing="0px" border="0">
+      <tr>
+        <td class="descriptionTD">
+          <%= render :partial => 'info_links', :locals => {:selected => "Fees"}%>
+        </td>
+        <td class="rightPane">
+
+          <p>
+            Knack is completely free for you and your friends and family.
+          </p>
+          <p>
+            No fine print:) Just a better way to collect payments.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td></td>
+
+      </tr>
+    </table>
+  </div>
+</div>
+

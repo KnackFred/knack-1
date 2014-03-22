@@ -1,0 +1,111 @@
+#header {
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+body{
+    font-family: Helvetica,sans-serif;
+    color: #666;
+    font-size: 14px;
+    margin: 4px;
+    padding: 0;
+    background: #fff;
+    border-right-width: 1px;
+    border-color: #666;
+}
+
+#source {
+    margin: .1em .5em .1em .5em;
+    font-weight: bold;
+    text-align: center;
+}
+
+.step {
+    padding: .5em 1em;
+    border: 1px solid #69C;
+    border-radius: 4px;
+    margin: 0 0 6px 0;
+    font-size: .85em;
+}
+
+.step h1 {
+    float: left;
+    font-size: 5em;
+    margin: -.1em .2em -.1em 0;
+}
+
+#step2 h1, #step2 h2 {
+    color: #693;
+}
+
+#step2 {
+    border-color: #693;
+}
+
+#step3 h1, #step3 h2 {
+    color: #C00;
+}
+
+#step3 {
+    border-color: #C00;
+}
+
+h2 {
+    padding: 0;
+    margin: 0;
+    font-size: 1.6em;
+}
+
+dl, form {
+    margin-top: 1em;
+}
+dt, dd, label {
+    margin: .2em 0;
+}
+
+dt {
+    clear: left;
+    float: left;
+    width: 30%;
+    font-weight: bold;
+}
+
+dd {
+    float: left;
+    width: 70%;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+}
+
+input, textarea, button{
+    border: 1px solid #CCCCCC;
+    color: #666666;
+    padding: 2px;
+    width: 95%;
+    font-size: 1em;
+}
+
+textarea {
+    height: 4em;
+}
+
+#buy_registry_item_submit {
+    float: right;
+    width: 60px;
+    margin: 5px 5px 0 0;
+}
+
+#cancel {
+    width: 60px;
+    margin-top: 5px;
+}
+
+/* Styles for the confirm page*/
+
+div#confirm {
+    padding: 100px 10px;
+    text-align: center;
+}

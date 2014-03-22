@@ -1,0 +1,162 @@
+<% content_for :title do %>
+   Category
+<% end %>
+<% content_for :head do %>
+        <%= stylesheet_link_tag "/stylesheets/Pages/EditCategory.css" %>
+        <%= stylesheet_link_tag "/javascripts/tree/codebase/dhtmlxtree.css" %>
+        <%= javascript_include_tag "/javascripts/tree/codebase/dhtmlxcommon.js" %>
+        <%= javascript_include_tag "/javascripts/tree/codebase/dhtmlxtree.js"  %>
+        <%= javascript_include_tag "/javascripts/tree/codebase/ext/dhtmlxtree_json.js"  %>
+        <%= javascript_include_tag "/javascripts/jquery.form.js"  %>
+        <%= javascript_include_tag "/javascripts/jquery.input-file.js"  %>
+        <%= javascript_include_tag "/javascripts/jquery.simplemodal.1.4.1.min.js"  %>
+        <%= javascript_include_tag "/javascripts/knack.administrative.editcategory.js"  %>
+<%end%>
+
+  <% content_for :pagename do %>
+    <div>
+      Category
+    </div>
+  <% end %>
+
+  <% content_for :registry do %>
+      <div class="bl-block">
+        <div class="blue-line">
+
+        </div>
+      </div>
+  <% end %>
+
+  <% content_for :background do %>
+      <div class="bl-block">
+        <div class="blue-line">
+          <input type="hidden" value="fghj"/>
+        </div>
+      </div>
+  <% end %>
+
+  <div class="withBackground">
+    <div class="content">
+      <div class="mainBlock">
+        <table cellpadding="0px" cellspacing="0px" border="0px">
+            <tr>
+              <td class="leftMenu">
+                <%= render "left_menu" %>
+              </td>
+              <td class="rigthPane">
+                <%form_tag({:controller => :administrative, :action => :editcategory}, :id => 'form-category') do%>
+                  <div id="div-reg">
+                      <div class="Header">
+                        Category information
+                      </div>
+
+                      <%#*------------------------------%>
+                      <%#*Name%>
+                      <%#*------------------------------%>
+                      <div class="div-block">
+                        <div class="editor-label">
+                          <label for="name">Name *</label>
+                        </div>
+                        <div class="editor-field">
+                          <%=text_field :category, :name%>
+                        </div>
+                        <div class="editor-error">
+                          <%= error_message_on :category, :name, :prepend_text => StaticDataUtilities.get_prepare_error_message %>
+                        </div>
+                      </div>
+
+                      <%#*------------------------------%>
+                      <%#*Priority%>
+                      <%#*------------------------------%>
+                      <div class="div-block">
+                        <div class="editor-label">
+                          <label for="Parent">Priority</label>
+                        </div>
+                        <div class="editor-field">
+                          <%=text_field :category, :priority%>
+                        </div>
+                        <div class="editor-error">
+                          <%= error_message_on :category, :priority, :prepend_text => StaticDataUtilities.get_prepare_error_message %>
+                        </div>
+                      </div>
+
+                       <%#*------------------------------%>
+                      <%#*ParentCategory%>
+                      <%#*------------------------------%>
+                      <div class="div-block">
+                        <div class="editor-label">
+                          <label for="Parent">Parent Category *</label>
+                        </div>
+                        <div class="editor-field">
+                          <%= hidden_field :category, :parent_id %>
+                          <%=text_field(:category, :parent_name, :readonly => "readonly") %>
+                        </div>
+                        <div class="editor-error">
+                          <%= error_message_on :category, :parent_id, :prepend_text => StaticDataUtilities.get_prepare_error_message %>
+                        </div>
+                      </div>
+
+                      <%#*------------------------------%>
+                      <%#*per_shipment%>
+                      <%#*------------------------------%>
+                      <div class="div-block">
+                        <div class="editor-label">
+                          <label for="per_shipment">Per Shipment *</label>
+                        </div>
+                        <div class="editor-field">
+                          <%=text_field :category, :per_shipment%>
+                        </div>
+                        <div class="editor-error">
+                          <%= error_message_on :category, :per_shipment, :prepend_text => StaticDataUtilities.get_prepare_error_message %>
+                        </div>
+                      </div>
+
+                      <%#*------------------------------%>
+                      <%#*visible%>
+                      <%#*------------------------------%>
+                      <div class="div-block">
+                        <div class="editor-label">
+                          <label for="visible">Visible </label>
+                        </div>
+                        <div class="editor-field">
+                          <%=check_box :category, :visible%>
+                        </div>
+                        <div class="editor-error">
+                          <%= error_message_on :category, :visible, :prepend_text => StaticDataUtilities.get_prepare_error_message %>
+                        </div>
+                      </div>
+
+
+                      <input type="hidden" id="iscancel" name="iscancel"/>
+                  </div>
+              <%end%>
+
+              <div class="emptyBlock"></div>
+
+                <%#*------------------------------%>
+                <%#*Buttons%>
+                <%#*------------------------------%>
+                <div class="buttons-block">
+                  <input type="button" id="cancel" class="btn-back" value=" " />
+                  <input type="button" id="save" class="btn-save" value=" "/>
+                </div>
+
+                <div class="emptyBlock"></div>
+
+                <div id="cat-iframe" style="overflow: auto;">
+                  <table>
+                      <tr>
+                          <td valign="top">
+                              <div id="treeboxbox_tree" class="treebox"></div><br/>
+                          </td>
+                      </tr>
+                  </table>
+                  <input type="button" id="btn-add-cat" class="btn-add" value=" " />
+                </div>
+              </td>
+            </tr>
+          </table>
+
+      </div>
+    </div>
+</div>

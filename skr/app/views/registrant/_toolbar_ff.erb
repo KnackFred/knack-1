@@ -1,0 +1,20 @@
+<div class="header-text addtool">Instructions for Firefox Users:</div>
+
+<div class="how-it-works">
+  <div class="item-text">
+    1. Drag the Add to Knack Registry link below into the Bookmarks Toolbar at the top of your browser.
+    <br/><br/>
+    Note: if you don't see the Bookmarks toolbar, go to the View menu, select Toolbars then 'Bookmarks Toolbar'.
+  </div>
+
+  <div class="links">
+    <a href = "javascript:function%20knackGetParams(){return%20'<%= @registrant.id %>_<%= @registrant.State_ID %>_<%= @registrant.City %>_<%= @registrant.ZIP %>';}if(document.getElementById){var%20knack_x=document.getElementsByTagName('head').item(0);var%20knack_o=document.createElement('script');if(typeof(knack_o)!='object')%20knack_o=document.standardCreateElement('script');knack_o.setAttribute('src','<%= ::APP_CONFIG['base_url'] %>javascripts/bookmarklet/knackwind.js');knack_o.setAttribute('type','text/javascript');knack_x.appendChild(knack_o);}void%200;">Add to Knack Registry</a>
+  </div>
+
+  <div class="item-text">
+    2. The 'Add to Knack Registry' button will appear on the Firefox toolbar
+  </div>
+  <%= image_tag "/images/toolbar/ff3.png", :alt => 'FireFox' %>
+
+</div>
+<%= render "toolbar_use" %>

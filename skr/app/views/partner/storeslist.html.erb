@@ -1,0 +1,97 @@
+<% content_for :title do %>
+  Stores | Knack Registry
+<% end %>
+<% content_for :head do %>       
+        <%= stylesheet_link_tag "/stylesheets/Pages/StoresList.css" %>
+        <%= stylesheet_link_tag "/stylesheets/Controls/Table.css" %>
+        <%= javascript_include_tag "/javascripts/knack.pager.js"  %>
+<%end%>
+
+  <% content_for :pagename do %>
+    <div>Stores</div>
+  <% end %>
+
+    <div class="content">
+      <div class="mainBlock">
+        <div class="table-container">
+          <table id="product-table" >
+            <thead>
+              <th class="id-column">Id</th>
+              <th class="title-column">Name</th>
+              <th>City</th>
+              <th>State</th>
+              <th>Street</th>
+              <th>Zip</th>
+              <th>Phone</th>
+              <th>Email</th>
+              <th></th>
+              <%#*<th></th>%>
+            </thead>
+            <tbody>
+              <% @stores.each do |store| %>
+                <tr>
+                  <td><%=  store.id%></td>
+                  <td><%=  store.Name%></td>
+                  <td><%=  store.City%></td>
+                  <td><%=  store.state.Name%></td>
+                  <td><%=  store.Street%></td>
+                  <td><%=  store.ZIP%></td>
+                  <td><%=  store.Phone%></td>
+                  <td><%=  store.Email %></td>
+                  <td><%=  link_to 'Edit', :controller => :partner, :action => :editstore, :id => store.id%></td>
+                  <%#*<td><%=  link_to 'Delete', :controller => :partner, :action => :delstore, :id => store.id></td>%>
+                </tr>
+              <%end%>
+            </tbody>
+          </table>
+
+          <div id="div-pager">
+                <%= form_tag({:controller => self.params[:controller], :action => self.params[:action]}, :id => 'frm-pager') do  %>
+                  <input type="hidden" id="countP" name="countP" value="<%= @pager.page_size%>"/>
+                  <input type="hidden" id="currentP" name="currentP" value="<%= @pager.current_page%>"/>
+                  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
+                <% end %>
+                  
+                 <% if @pager.count_page > 1 %>
+                      <%= link_to "Previous", {:controller => self.params[:controller], :action => self.params[:action], :id => @pager.prev_page}, :pageid => @pager.prev_page%>
+                      <% @pager.left_pager.each do |page|%>
+                        <% if page.to_i == @pager.current_page.to_i%>
+                            <b>
+                        <% end %>
+                              <%= link_to page, {:controller => self.params[:controller], :action => self.params[:action], :id => page}, :pageid => page%>
+                        <% if page.to_i == @pager.current_page.to_i%>
+                            </b>
+                        <% end %>
+                      <%end%>
+
+                      <% if @pager.right_pager.count > 0 %>
+                       ...
+                        <% @pager.right_pager.each do |page|%>
+                          <% if page.to_i == @pager.current_page.to_i%>
+                            <b>
+                          <% end %>
+                              <%= link_to page, {:controller => self.params[:controller], :action => self.params[:action], :id => page}, :pageid => page%>
+                          <% if page.to_i == @pager.current_page.to_i%>
+                            </b>
+                          <% end %>
+                        <% end %>
+                      <%end%>
+
+                      <%= link_to "Next", {:controller => self.params[:controller], :action => self.params[:action], :id => @pager.next_page}, :pageid => @pager.next_page%>
+                <% end %>
+
+                <span class="span-per-page">Product per page</span>
+                <select id="per_page">
+                  <option value="8">8</option>
+                  <option value="16">16</option>
+                  <option value="24">24</option>
+                  <option value="50">50</option>
+                </select>
+          </div>
+        </div>
+
+        <div class="div-button">
+			<%= link_to(tag(:input, {:type => :button, :class => 'btn-add'}), '/partner/editstore', :title => "Add") %>
+        </div>
+      </div>
+    </div>

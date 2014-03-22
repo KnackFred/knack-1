@@ -1,0 +1,181 @@
+<% content_for :title do %>
+  Products | Knack Registry
+<% end %>
+<% content_for :head do %>
+  <%= stylesheet_link_tag "/stylesheets/Pages/ProductList.css" %>
+  <%= stylesheet_link_tag "/stylesheets/Controls/Table.css" %>
+  <%= javascript_include_tag "/javascripts/plugins/jquery.parse_url.js"  %>
+  <%= javascript_include_tag "/javascripts/pages/productlist.js"  %>
+<%end%>
+<% content_for :pagename do %>
+  <div>Products</div>
+<% end %>
+
+<% content_for :registry do -%>
+  <div class="bl-block">
+    <div class="blue-line">
+      <div class="section-header">
+        Filter by:
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<% content_for :background do -%>
+  <div class="bl-block">
+    <div class="blue-line">
+			<%= hidden_field 'sdf', 'asd' %>
+    </div>
+  </div>
+<% end %>
+
+<div class="withBackground">
+  <div class="content">
+    <div class="mainBlock">
+			<%= form_tag(admin_products_path, :id => "filters", :method => :get) do -%>
+        <%= hidden_field_tag 'page', @products.current_page, {:name => "filter[page]"} %>
+        <%= hidden_field_tag 'per_page_value', @products.per_page, {:name => "filter[per_page]"} %>
+        <%= hidden_field_tag 'sort_field', @filter.sort_field, {:name => "filter[sort_field]"} %>
+        <%= hidden_field_tag 'sort_direction', @filter.sort_direction, {:name => "filter[sort_direction]"} %>
+        <div id="filter">
+          <div class="fline">
+            <%#*ID%>
+            <div class="block-id">
+              <span>Id</span>
+              <%= text_field :filter, :id %>
+            </div>
+
+            <%#*Title%>
+            <div class="block-title">
+              <span>Title</span>
+              <%= text_field :filter, :title %>
+            </div>
+
+            <%#*Product status%>
+            <div class="block-status">
+              <span>Status</span>
+              <%= select(:filter, :product_status_id, StaticDataUtilities.get_product_status.collect {|s| [s.Name, s.id.to_i]}) %>
+            </div>
+
+
+            <% if @is_admin %>
+                <div class="block-status">
+                  <span>Type</span>
+                  <%= select(:filter, :product_type_id, [['All', 0],['Catalog', 1],['Cash', 2]]) %>
+                </div>
+            <% end %>
+
+          <%#*Category%>
+            <div class="block-category">
+              <span>Category</span>
+              <%= select(:filter, :category_id, StaticDataUtilities.get_categories.collect {|c| [c.name, c.id.to_i]}) %>
+            </div>
+          </div>
+
+          <div class="sline">
+            <div class="section-header">
+              Sort by:
+            </div>
+            <%#*Sort%>
+            <div id="sort">
+              <%#*Price%>
+              <div class="block-sort">
+                <span>Price</span>
+                <%= select_tag(:current_price, options_from_collection_for_select(StaticDataUtilities.get_sort_params, :id, :Name)) %>
+              </div>
+
+              <%#*Selected%>
+              <div class="block-sort">
+                <span>Selected</span>
+                <%= select_tag(:selected, options_from_collection_for_select(StaticDataUtilities.get_sort_params, :id, :Name)) %>
+              </div>
+
+              <%#*Purchased%>
+              <div class="block-sort">
+                <span>Purchased</span>
+                <%= select_tag(:purchased, options_from_collection_for_select(StaticDataUtilities.get_sort_params, :id, :Name)) %>
+              </div>
+
+              <%#*Ordered%>
+              <div class="block-sort">
+                <span>Ordered</span>
+                <%= select_tag(:ordered, options_from_collection_for_select(StaticDataUtilities.get_sort_params, :id, :Name)) %>
+              </div>
+
+              <% if @is_admin %>
+                  <div class="block-sort">
+                    <span>Priority</span>
+                    <%= select_tag(:priority, options_from_collection_for_select(StaticDataUtilities.get_sort_params, :id, :Name)) %>
+                  </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+        <div class="div-btn-filter">
+        	<%= button_to("Filter", {:controller => self.params[:controller], :action => "productlist"}, :method => 'get') %>
+        </div>
+			<% end %>
+
+      <div class="table-container">
+        <%=  show_flash %>
+        <table id="product-table" >
+          <thead>
+            <th class="id-column">Id</th>
+            <th class="title-column">Name</th>
+            <th class="status-column">Active?</th>
+            <th>Status</th>
+            <th>Price</th>
+            <th>Knack fee</th>
+            <th>Categories</th>
+            <th>Store</th>
+            <th>Selected</th>
+            <th>Purchased</th>
+            <th>Ordered</th>
+            <% if @is_admin %>
+              <th>Priority</th>
+          <% end %>
+            <th>Edit</th>
+          </thead>
+          <tbody>
+            <% @products.each do |product| %>
+              <tr>
+                <td><%=  product.id -%></td>
+                <td><%=  product.Name -%></td>
+                <td><%=  product.IsDeleted ? 'No' : 'Yes' -%></td>
+                <td><%=  product.product_status.Name -%></td>
+                <td><%= formatted_price(product.current_price) %></td>
+                <td><%= formatted_price(product.knack_fee) %></td>
+                <td><%= product.category_names -%></td>
+                <td><%= product.store_names -%></td>
+                <td><%= product.selected %></td>
+                <td><%= product.purchased %></td>
+                <td><%= product.ordered %></td>
+                <% if @is_admin %>
+                    <td><%= product.priority %></td>
+                <% end %>
+                <td><%=  link_to 'Edit', edit_admin_product_path(product) %></td>
+              </tr>
+            <%end%>
+          </tbody>
+        </table>
+
+				<%= will_paginate(@products) %>
+        <% if @products.length > 0 %>
+					<div class="div-pager">
+	           <span class="span-per-page">Items per page</span>
+	           <select id="per_page">
+	             <option value="25">25</option>
+	             <option value="50">50</option>
+	             <option value="100">100</option>
+	             <option value="150">150</option>
+	             <option value="200">200</option>
+	           </select>
+	        </div>
+				<% end %>
+      </div>
+      <div class="div-button">
+        <%= button_to(" ", new_admin_product_path, :method => :get, :class => 'btn-add') %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,174 @@
+<% edit = (@registrant == @registry) %>
+
+<% content_for :title do %>
+  <%= @registry.FirstName %><%= @registry.FirstNameCoCreated.blank? ?
+    "'s" : " & " + @registry.FirstNameCoCreated.to_s + "'s" %> Registry | Knack Registry
+<% end %>
+
+<% content_for :head do %>
+    <%= stylesheet_link_tag "/stylesheets/Pages/Registrant/Registry-Shared.css" %>
+    <%= stylesheet_link_tag "/stylesheets/Pages/Registrant/Registry-Edit.css" if edit%>
+    <%= stylesheet_link_tag "/stylesheets/Pages/Registrant/Registry-View.css" unless edit%>
+    <%= stylesheet_link_tag "/stylesheets/Pages/Buy/buy_ext_popup.css" unless edit%>
+    <%= stylesheet_link_tag "/stylesheets/Controls/GiftsControl.css"  %>
+    <%= stylesheet_link_tag "/stylesheets/jquery-ui-1.8.4.slider.css"  %>
+    <%= javascript_include_tag "/javascripts/jquery-ui-1.8.14.custom.min.js"  %>
+    <%= javascript_include_tag "/javascripts/jquery.form.js"  %>
+    <%= javascript_include_tag "/javascripts/json2.js"  %>
+    <%= javascript_include_tag "/javascripts/jquery.simplemodal.1.4.1.min.js"  %>
+    <%= javascript_include_tag "/javascripts/jquery.keyfilter-1.7.js"  %>
+    <%= javascript_include_tag "/javascripts/jquery.validate.min.js"  %>
+    <%= javascript_include_tag "/javascripts/plugins/jquery.autoresize.js"  %>
+    <%= javascript_include_tag "/javascripts/plugins/jquery.placeholder.min.js"  %>
+    <%= javascript_include_tag "/javascripts/plugins/jquery.scrollTo-1.4.2-min.js"  %>
+    <%= javascript_include_tag "/javascripts/plugins/jquery.tools.min.js" if edit %>
+    <%= javascript_include_tag "/javascripts/controls/_pop-up.js" %>
+    <%= javascript_include_tag "/javascripts/plugins/jquery.cookie.js" unless edit  %>
+    <%= javascript_include_tag "/javascripts/plugins/jquery.popupWindow.js" unless edit  %>
+    <%= javascript_include_tag "/javascripts/pages/Registrant/knack.registrant.registrant-shared.js"  %>
+    <%= javascript_include_tag "/javascripts/pages/Registrant/knack.registrant.registrant-edit.js" if edit %>
+    <%= javascript_include_tag "/javascripts/pages/Registrant/knack.registrant.registrant-view.js" unless edit %>
+    <%= javascript_include_tag "/javascripts/pages/Buy/knack.registrant.buy-ext.js" unless edit %>
+    <%= javascript_include_tag "/javascripts/pages/addtoregistry.js"  %>
+
+<%end%>
+<div class="div-c">
+  <% if Rails.env == "production" %>
+
+    <!-- Google Code for Registry Guest Remarketing List -->
+    <script type="text/javascript">
+      /* <![CDATA[ */
+      var google_conversion_id = 1014910302;
+      var google_conversion_language = "en";
+      var google_conversion_format = "3";
+      var google_conversion_color = "666666";
+      var google_conversion_label = "mW2fCLK4tgIQ3pr54wM";
+      var google_conversion_value = 0;
+      /* ]]> */
+    </script>
+    <script type="text/javascript" src="https://www.googleadservices.com/pagead/conversion.js">
+    </script>
+    <noscript>
+      <div style="display:inline;">
+        <img height="1" width="1" style="border-style:none;" alt="" src="https://www.googleadservices.com/pagead/conversion/1014910302/?label=mW2fCLK4tgIQ3pr54wM&amp;guid=ON&amp;script=0"/>
+      </div>
+    </noscript>
+    <!-- END Google Code for Registry Guest Remarketing List -->
+  <% end %>
+
+
+  <%= form_for @registry, :url => { :action => "registry" } do |f| %>
+
+    <% if edit %>
+      <img id="help" src="/images/help.png" alt="help"/>
+      <div class="header">
+        <h2>This is what your guests will see when they visit your registry.</h2>
+        <p>
+          Personalize your registry by organizing your gifts in categories and leaving notes for your guests.
+        <p>
+        <p>
+          Use the controls to the right of each section to create and move sections.  Drag and drop items to arrange them within sections.  Save your changes when you are done.
+        </p>
+      </div>
+
+      <%= f.error_messages %>
+
+      <div class="controls">
+        <%= f.submit "SAVE"%>
+      </div>
+    <% end %>
+
+    <div class="intro">
+      <% if @registry.is_invited? %>
+        <h1>
+          <%= if(@registry.FirstName.blank?)
+                @registry.Email
+              else
+                @registry.FirstName
+              end
+          %>'s Sample Registry
+
+        </h1>
+      <% else %>
+          <% if edit %>
+              <a href="/registrant/upload_image" id="change-picture">
+          <% end %>
+          <div class="image-cont">
+            <img class="image" alt="Profile Image" src=<%= @registry.profile_image.url(:large)%> />
+            <% if edit %>
+                <div>
+                  Change Picture
+                </div>
+            <% end %>
+          </div>
+          <% if edit %>
+              </a>
+          <% end %>
+
+          <%= f.text_area :Description, :rows => 8, :placeholder => 'Type a personal note here ...', :maxlength => 600, :readonly => (edit ? nil : "readonly")%>
+      <% end %>
+    </div>
+    <ul class="category-nav">
+      <li style="display: none;" class="category-nav-template">
+        <div class="gift-entry-image-box">
+          <a class="category-nav-link" href="#">
+            <img class="category-nav-img" src=""></a>
+        </div>
+        <div class="category-nav-title"></div>
+      </li>
+    </ul>
+
+    <ul id="sections">
+      <%= f.fields_for :sections do |s| %>
+        <%= render :partial => "section", :locals => {:s => s, :f => f, :edit => edit} %>
+      <% end %>
+    </ul>
+    <% if edit %>
+      <script>
+    <% template_section = Section.new %>
+    <% txt = f.fields_for(:sections, template_section, :child_index => "new_section") do |s| render :partial => 'section', :locals => { :s => s, :f => f, :edit => edit } end %>
+    <%= raw ("var newSectionText = '" + escape_javascript(txt) + "'") %>
+      </script>
+    <% end %>
+  <% end %>
+</div>
+
+<div class="block-iframe tag-none">
+  <iframe src="" id="ifr-popup" width="500" height="490" frameborder="0" style="border: 0;">
+  </iframe>
+</div>
+
+<% unless edit %>
+  <div class="block-welcome tag-none">
+    <div class="welcome">
+      <h3>
+        Welcome to Knack
+      </h3>
+      <p>
+        At Knack we believe that the wedding registry should be a more personal and rewarding experience for everyone involved. So we give couples the flexibility to register for the gifts that are most meaningful to them, not just what’s in stock at a few big retailers.
+      </p>
+      <p>
+        Couples using Knack can choose gifts from our network of small boutiques, artisans and artists; add gifts from unique retailers not in our network; and create items for experiences like their honeymoon.
+      </p>
+      <p>
+        With all of these options you can be sure that every gift will become a cherished part of the couples new life together.
+      </p>
+      <p class="signature">
+        Happy gift giving,<br/>
+        The Knack Team
+      </p>
+      <div class="do-not-show">
+        <input type="checkbox" name="do-not-show" id="do-not-show">
+        <label for="do-not-show">Don't show this message again</label>
+      </div>
+    </div>
+  </div>
+
+  <%= render "buy-ext-popup" %>
+
+<% end %>
+
+<div class="block-popb tag-none">
+  <iframe src="" id="ifr-popup-add-to-registry" width="485px" height="480px" frameborder="0" style="border: 0;">
+  </iframe>
+</div>

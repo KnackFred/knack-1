@@ -1,0 +1,17 @@
+.div-user-menu
+{
+    display: none;
+}
+
+.a-next
+{
+    background: url('/images/design/Buttons/next.png') no-repeat;
+    width: 41px;
+    height: 19px;
+    border: 0px!important;
+}
+
+.div-next
+{
+    float: right;
+}

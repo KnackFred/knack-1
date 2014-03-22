@@ -1,0 +1,51 @@
+.block-id
+{
+    float: left;
+    width: 80px;
+}
+
+.block-id input[type="text"] {
+    width: 50px;
+}
+
+.block-partner
+{
+    float: left;
+    width: 280px;
+}
+
+.block-partner input[type="text"] {
+    width: 200px;
+}
+
+.block-date
+{
+    float: left;
+    width: 270px;
+}
+
+.block-date input[type="text"] {
+    width: 100px;
+}
+
+.block-date-to
+{
+    float: left;
+    width: 130px;
+}
+
+.block-date-to input[type="text"] {
+    width: 100px;
+}
+
+.block-status
+{
+    float: left;
+    width: 130px;
+}
+
+.div-btn-filter
+{
+    float: right;
+    margin: 0 25px 20px 0;
+}

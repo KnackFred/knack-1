@@ -1,0 +1,95 @@
+<% content_for :title do %>
+  Color
+<% end %>
+<% content_for :head do %>
+  <%= stylesheet_link_tag "/javascripts/colorpicker/css/colorpicker.css" %>
+  <%= javascript_include_tag "/javascripts/colorpicker/colorpicker.js"  %>
+  <%= javascript_include_tag "/javascripts/knack.administrative.color.js"  %>
+<%end%>
+
+  <% content_for :pagename do %>
+    <div>
+      Color
+    </div>
+  <% end %>
+
+  <% content_for :registry do %>
+      <div class="bl-block">
+        <div class="blue-line">
+
+        </div>
+      </div>
+  <% end %>
+
+  <% content_for :background do %>
+      <div class="bl-block">
+        <div class="blue-line">
+          <input type="hidden" value="fghj"/>
+        </div>
+      </div>
+  <% end %>
+
+
+  <div class="withBackground">
+    <div class="content">
+      <div class="mainBlock">
+          <table cellpadding="0px" cellspacing="0px" border="0px">
+            <tr>
+              <td class="leftMenu">
+                <%= render "left_menu" %>
+              </td>
+              <td class="rigthPane">
+                <%=  form_tag({:controller => :administrative, :action => :color}, :id => 'form-product') do%>
+                    <div id="div-reg">
+                      <div class="Header">
+                        Color
+                      </div>
+                      <%#*------------------------------%>
+                      <%#*Name%>
+                      <%#*------------------------------%>
+                      <div class="div-block">
+                        <div class="editor-label">
+                          <label for="Name">Name *</label>
+                        </div>
+                        <div class="editor-field">
+                          <%=text_field :color, :Name%>
+                        </div>
+                        <div class="editor-error">
+                          <%= error_message_on :color, :Name, :prepend_text => StaticDataUtilities.get_prepare_error_message %>
+                        </div>
+                      </div>
+
+                      <%#*------------------------------%>
+                      <%#*RGB%>
+                      <%#*------------------------------%>
+                      <div class="div-block">
+                        <div class="editor-label">
+                          <label for="RGB">RGB *</label>
+                        </div>
+                        <div class="editor-field">
+                          <%=text_field :color, :RGB%>
+                        </div>
+                        <div class="editor-error">
+                          <%= error_message_on :color, :RGB, :prepend_text => StaticDataUtilities.get_prepare_error_message %>
+                        </div>
+                      </div>
+                    </div>
+
+                    <%#*------------------------------%>
+                    <%#*Buttons%>
+                    <%#*------------------------------%>
+                    <div class="buttons-block">
+                      <input type="button" id="cancel" class="btn-back" value=" " />
+                      <input type="submit" id="save" class="btn-save" value=" "/>
+                    </div>
+                <%end%>
+
+                
+
+                <div class="emptyBlock"></div>
+                 </td>
+            </tr>
+          </table>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,193 @@
+<% content_for :header do %>
+    <%= stylesheet_link_tag "/stylesheets/Global.css" %>
+    <%= stylesheet_link_tag "/stylesheets/Pages/buy_contribute.css" %>
+    <%= javascript_include_tag "/javascripts/jquery-1.4.2.min.js"  %>
+    <%= javascript_include_tag "/javascripts/jquery.form.js"  %>
+    <%= javascript_include_tag "/javascripts/jquery.keyfilter-1.7.js"  %>
+    <%= javascript_include_tag "/javascripts/jquery.validate.js"  %>
+    <%= javascript_include_tag "/javascripts/knack.registrant.edit_registry_item.js" %>
+<% end %>
+
+<%= form_for @reg_item, :url => add_from_registry_path(@orig_item_id) do |f| %>
+    <%= f.error_messages %>
+    <div class="pageName">
+      <%= @reg_item.product.Name %>
+    </div>
+    <div class="buyTable">
+      <table cellpadding="0px" cellspacing="0px" border="0">
+        <tr>
+          <td class="firstTD">
+            <%= image_tag @reg_item.product.main_product_thumb.url(:medium),
+                          :alt => @reg_item.product.Name,
+                          :class => "product-image-medium",
+                          :id => "product_image",
+                          :name => "product_image" -%>
+          </td>
+          <td class="descriptionTD">
+
+            <table>
+              <% if @reg_item.product.cash? %>
+                  <%= f.fields_for :product do |p| %>
+                      <tr>
+                        <td class="firstTD">
+                          <%= p.label :Name %>
+                        </td>
+                        <td>
+                          <%= p.text_field :Name%>
+                        </td>
+                      </tr>
+                  <% end %>
+              <% end %>
+              <tr>
+                <td class="firstTD">
+                  <%= f.label :Quantity %>
+                </td>
+                <td>
+                  <%= f.text_field :Quantity, :class => "required min=12", :readonly => @reg_item.product.unique?  %>
+                </td>
+              </tr>
+              <% if @reg_item.product.cash? %>
+                  <%= f.fields_for :product do |p| %>
+                      <tr>
+                        <td class="firstTD">
+                          <%= f.label :Price, "Price"%>
+                        </td>
+                        <td>
+                          <%= f.text_field :Price%>
+                        </td>
+                      </tr>
+                  <% end %>
+              <% else %>
+                  <tr>
+                    <td class="firstTD">
+                      <label>Price</label>
+                    </td>
+                    <td>
+                      <%= formatted_price(@reg_item.product.Price) %>
+                    </td>
+                  </tr>
+              <% end %>
+
+              <% unless @reg_item.product.colors.blank? %>
+                  <tr>
+                    <td class="firstTD">
+                      <%= f.label :Color %>
+                    </td>
+                    <td>
+                      <% if @reg_item.product.colors.count > 1 %>
+                          <%= f.collection_select :Color_ID, @reg_item.product.colors.all, :id, :Name  %>
+                      <% else %>
+                          <%= @reg_item.product.colors[0].Name  %>
+                          <%= f.hidden_field :Color_ID  %>
+                      <% end %>
+                    </td>
+                  </tr>
+              <% end %>
+
+              <%#*------------------------%>
+              <%#*Item Variants%>
+              <%#*------------------------%>
+              <% @reg_item.product.product_params.each do |p| %>
+                  <tr>
+                    <td class="firstTD">
+                      <label><%= p.Name %></label>
+                    </td>
+                    <td>
+                      <% if p.value_params.count > 1 %>
+                          <%=  select("product_params", p.Name, p.get_select_values.collect {|v| [ v.Value, v.id ] }, :selected => @reg_item.get_product_params[p.Name]) %>
+                      <% end %>
+                    </td>
+                  </tr>
+              <%end%>
+              <% if @reg_item.product.cash? %>
+                  <%= f.fields_for :product do |p| %>
+                      <tr>
+                        <td class="firstTD">
+                          <%= p.label :ext_color, "Color/Style"%>
+                        </td>
+                        <td>
+                          <%= p.text_field :ext_color%>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="firstTD">
+                          <%= p.label :ext_size, "Size"%>
+                        </td>
+                        <td>
+                          <%= p.text_field :ext_size%>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="firstTD">
+                          <%= p.label :ext_other, "Other Instructions"%>
+                        </td>
+                        <td>
+                          <%= p.text_field :ext_other%>
+                        </td>
+                      </tr>
+                  <% end %>
+              <% end %>
+
+            </table>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <div id="source">
+      <label>Source:</label>
+      <% if @reg_item.product.cash? %>
+          <% if @reg_item.product.external? %>
+              Guests will order this gift from
+              <%= link_to @reg_item.product.source_name, skim_link(@reg_item.product.source_url, @registrant_id), :target => "_blank" %>
+              <img src="/images/design/external_link.gif"/>
+          <% else %>
+              Guests will order this gift on Knack, you will receive cash to buy the gift.
+          <% end %>
+          <a id="edit-source-link" href="#">(change)</a>
+      <% else %>
+          Guests will order this gift on Knack from one of our partners.
+      <% end %>
+    </div>
+
+    <% if @reg_item.product.cash? %>
+        <%= f.fields_for :product do |p| %>
+            <div id="edit-source" class="hidden group">
+              <%= p.check_box :external%>
+              <%= p.label :external, "Direct guests to an external site to buy this gift?"%>
+              <dl>
+                <dt>
+                  <%= p.label :source_name, "Site Name"%>
+                </dt>
+                <dd>
+                  <%= p.text_field :source_name%>
+                </dd>
+
+                <dt>
+                  <%= p.label :source_url, "Link To Gift"%>
+                </dt>
+                <dd>
+                  <%= p.text_field :source_url%>
+                </dd>
+              </dl>
+            </div>
+        <% end %>
+    <% end %>
+
+    <% if @reg_item.product.cash? %>
+        <div class="description">
+          <%= f.fields_for :product do |p| %>
+              <div>
+                <%= p.label :Description %>
+              </div>
+              <div>
+                <%= p.text_area :Description%>
+              </div>
+          <% end %>
+        </div>
+    <% end %>
+    <div class="actions">
+      <%= f.submit "SAVE", :class=>"btn-save"  %>
+    </div>
+<% end %>
+

@@ -1,0 +1,61 @@
+defaults: &defaults
+  venmo_secret_key: H9dfW9KupnzSF3V4fmwCb3D4aY2j3tB9
+  venmo_client_id: "1548"
+  venmo_url: "http://sandbox-api.venmo.com"
+
+development:
+  <<: *defaults
+  facebook_app_id: 114336911996044
+  skip_credit_card: false
+  skip_credit_card_validation: false
+  skip_paypal: true
+  use_test_email_address: true
+  test_email_address_for_send: john@knackregistry.com
+  base_url: "http://localhost:3000/"
+  max_priority: 50
+  gateway_login: seller_1343145780_biz_api1.knackregistry.com
+  gateway_password: 1343145811
+  gateway_signature: AbnNOb49i4XekwX4QStngxZQXQO.AuTbTIClwGa6uWLd1nxb4zPXwCBq
+
+test:
+  <<: *defaults
+  facebook_app_id: 114336911996044
+  skip_credit_card: true
+  skip_credit_card_validation: true
+  skip_paypal: true
+  use_test_email_address: true
+  test_email_address_for_send: john@knackregistry.com
+  base_url: "http://localhost:3000/"
+  max_priority: 50
+  gateway_login: seller_1343145780_biz_api1.knackregistry.com
+  gateway_password: 1343145811
+  gateway_signature: AbnNOb49i4XekwX4QStngxZQXQO.AuTbTIClwGa6uWLd1nxb4zPXwCBq
+
+preview:
+  <<: *defaults
+  facebook_app_id: 141113682594037
+  skip_credit_card: false
+  skip_credit_card_validation: false
+  skip_paypal: true
+  use_test_email_address: true
+  test_email_address_for_send: john@knackregistry.com
+  base_url: "https://preview.knackregistry.com/"
+  max_priority: 50
+  gateway_login: fred_api1.knackregistry.com
+  gateway_password: D6WW2ER3HHC8PTZL
+  gateway_signature: AFcWxV21C7fd0v3bYYYRCpSSRl31AEHLpUg1OUSEP68EyMQLlDZz2fPO
+
+production:
+  <<: *defaults
+  venmo_url: "http://api.venmo.com/v1"
+  facebook_app_id: 141113682594037
+  skip_credit_card: false
+  skip_credit_card_validation: false
+  skip_paypal: false
+  use_test_email_address: false
+  test_email_address_for_send: john@knackregistry.com
+  base_url: "https://knackregistry.com/"
+  max_priority: 50
+  gateway_login: fred_api1.knackregistry.com
+  gateway_password: D6WW2ER3HHC8PTZL
+  gateway_signature: AFcWxV21C7fd0v3bYYYRCpSSRl31AEHLpUg1OUSEP68EyMQLlDZz2fPO

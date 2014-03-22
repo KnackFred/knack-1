@@ -1,0 +1,51 @@
+.topMenu{
+    visibility: collapse;
+    height: 0;
+}
+
+
+/* ============= disable Fields =================*/
+textarea:focus {
+    outline-style: none;
+}
+
+::-webkit-input-placeholder {
+    color:  #FFF;
+}
+
+::-moz-placeholder {
+    color:  #FFF;
+}
+
+.block-welcome {
+    width: 500px;
+    position: relative;
+}
+
+.block-welcome .welcome{
+    margin-top: -40px;
+    padding: 0 30px;
+}
+
+
+.block-welcome h3 {
+    color: #444;
+}
+
+.block-welcome p {
+    font-size: 13.5px;
+    line-height: 18px;
+}
+
+.block-welcome label {
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 12px;
+    color: #666;
+}
+
+.block-welcome .do-not-show {
+    position: absolute;
+    bottom: 0;
+    right: 30px;
+
+}

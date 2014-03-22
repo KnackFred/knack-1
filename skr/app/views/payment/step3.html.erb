@@ -1,0 +1,224 @@
+<% content_for :title do %>
+  Confirm Order | Knack Registry
+<% end %>
+<% content_for :head do %>
+  <%= stylesheet_link_tag "/stylesheets/layouts/Cart.css" %>
+  <%= stylesheet_link_tag "/stylesheets/Pages/Step3.css" %>
+  <%= javascript_include_tag "/javascripts/knack.payment.step3.js"  %>
+<%end%>
+
+<div class="div-c">
+  <div class="topMenu">
+    <div class="pageName">
+      Checkout
+    </div>
+    <div class="div-link-step">
+			<%= link_to "1. Billing Information", step1_path %>
+			<%= link_to "2. Payment Information", step2_path %>
+			<b><%= link_to "3. Confirm Order", step3_path%></b>
+    </div>
+  </div>
+  <div class="withBackground">
+    <div class="content">
+      <%=  show_flash %>
+      <div class="mainBlock">
+        <div id="line-header" class="Line"></div>
+        <table id="table-payment">
+          <tr>
+            <%#*----------------------------%>
+            <%#*Left column%>
+            <%#*----------------------------%>
+            <td class="leftTD">
+              <div class="div-header-conf">
+                <span class="header-column">Confirm Order Information</span>
+              </div>
+
+              <div class="div-items">
+                <%= form_tag process_order_path, :id => "frm-order" do %>
+                  <div class="div-header-item">
+                    <span class="header-column">Items</span>
+                  </div>
+                    <% if @cart_information.type == CartInformation::TYPE_WITHDRAW %>
+                        <%= render 'item_thumbnail', :image => 'cash.png', :product_name => 'Withdraw cash', :subtotal => @cart_information.withdraw_total %>
+                    <% else %>
+                        <% @cart_information.list_registry_items.each do |registry_item| %>
+                            <%= render 'item_thumbnail', :image => registry_item.main_product_thumb_url_small, :product_name => registry_item.product_name, :subtotal => registry_item.subtotal %>
+                        <% end %>
+
+                        <% @cart_information.list_products.each do |item| %>
+                            <%= render 'item_thumbnail', :image => item.main_product_thumb_url_small, :product_name => item.product_name, :subtotal => item.subtotal %>
+                        <% end %>
+                    <% end %>
+                <% end %>
+              </div>
+            </td>
+
+            <%#*----------------------------%>
+            <%#*Center column%>
+            <%#*----------------------------%>
+            <td class="centerTD">
+              <div class="div-center-block">
+                <div class="div-header-item">
+                  <span class="header-column">Billing Address</span>
+                </div>
+
+                <div class="info-container">
+                  <div class="info-block">
+                    <%#*----------------------------%>
+                    <%#*Billing Name%>
+                    <%#*----------------------------%>
+                    <div class="info-name">
+                      <%= @order.BillingFirstName %> <%= @order.BillingLastName %>
+                    </div>
+
+                    <%#*----------------------------%>
+                    <%#*Billing Address%>
+                    <%#*----------------------------%>
+                    <div class="info-address">
+                      <%= @order.BillingAddress %>
+                    </div>
+
+                    <%#*----------------------------%>
+                    <%#*Billing City, State%>
+                    <%#*----------------------------%>
+                    <div class="info-cs">
+                      <%= @order.BillingCity %>, <%= @order.billing_state_name %>
+                    </div>
+
+                    <%#*----------------------------%>
+                    <%#*Billing ZIP%>
+                    <%#*----------------------------%>
+                    <div class="info-zip">
+                      <%= @order.BillingZip %>
+                    </div>
+                  </div>
+                  
+                  <%#*----------------------------%>
+                  <%#*Billing Edit%>
+                  <%#*----------------------------%>
+                  <div class="bill-edit">
+										<%= link_to "Edit", step1_path(1) %>
+                  </div>
+                </div>
+
+                <% if Cart.is_buy?(Cart.get_cart(session)) %>
+                  <div class="div-header-item">
+                    <span class="header-column">Shipping Address</span>
+                  </div>
+ 
+                  <div class="info-container">
+                  	<div class="info-block">
+	                    <%#*----------------------------%>
+	                    <%#*Shipping Name%>
+	                    <%#*----------------------------%>
+	                    <div class="info-name">
+	                      <%= @order.ShippingFirstName %> <%= @order.ShippingLastName %>
+	                    </div>
+
+	                    <%#*----------------------------%>
+	                    <%#*Shipping Address%>
+	                    <%#*----------------------------%>
+	                    <div class="info-address">
+	                      <%= @order.ShippingAddress %>
+	                    </div>
+
+	                    <%#*----------------------------%>
+	                    <%#*Shipping City, State%>
+	                    <%#*----------------------------%>
+	                    <div class="info-cs">
+	                      <%= @order.ShippingCity %>, <%= @order.shipping_state_name %>
+	                    </div>
+
+	                    <%#*----------------------------%>
+	                    <%#*Shipping ZIP%>
+	                    <%#*----------------------------%>
+	                    <div class="info-zip">
+	                      <%= @order.ShippingZip %>
+	                    </div>
+	                  </div>
+
+                  <%#*----------------------------%>
+                  <%#*Shipping Edit%>
+                  <%#*----------------------------%>
+                  <div class="bill-edit">
+										<%= link_to "Edit", step1_path(1) %>
+                  </div>
+                </div>
+                <% end %>
+
+                <div class="div-header-item">
+                  <span class="header-column">Payment Method</span>
+                </div>
+
+                <div class="info-container">
+                  <div class="info-block">
+										<% case @payment_info.type_payment %>
+											<% when PaymentInfo::TYPE_PAYMENT.invert['cash'] %>
+												Knack Credit
+											<% when PaymentInfo::TYPE_PAYMENT.invert['credit card'] %>
+                        <%#*Type creditcard%>
+                        <div class="info-name">
+                          <%= @payment_info.card_type %>
+                        </div>
+
+                        <%#*Number creditcard%>
+                        <div class="info-address">
+                          <% card_number = @payment_info.card_number[@payment_info.card_number.length - 4, @payment_info.card_number.length - 1] %>
+													<%= 'X'*(@payment_info.card_number.length - 4) << card_number %>
+                        </div>
+
+                        <%#*Name creditcard%>
+                        <div class="info-cs">
+                          <%= @payment_info.first_name %> <%= @payment_info.last_name %>
+                        </div>
+											<% when PaymentInfo::TYPE_PAYMENT.invert['buy paypal'] %>
+                        <div class="info-name">
+                          PayPal
+                        </div>
+											<% when PaymentInfo::TYPE_PAYMENT.invert['withdraw paypal'] %>
+												<div class="info-name">
+                          PayPal: <%= @payment_info.paypal_email %>
+                        </div>
+											<% when PaymentInfo::TYPE_PAYMENT.invert['check'] %>
+												<div class="info-name">
+                          Check
+                        </div>
+										<% end %>
+                  </div>
+
+                  <%#*----------------------------%>
+                  <%#*Payment Edit%>
+                  <%#*----------------------------%>
+                  <div class="bill-edit">
+										<%= link_to "Edit", step2_path(1) %>
+                  </div>
+                </div>
+              </div>
+            </td>
+
+            <%#*----------------------------%>
+            <%#*Right column%>
+            <%#*----------------------------%>
+            <td class="rightTD">
+              <div class="order-summary">
+                <span class="header-column">
+                  Order Summary
+                </span>
+              </div>
+
+              <table id="amount">
+                <tbody>
+									<%= render 'order_summary' %>
+                </tbody>
+              </table>
+            </td>
+          </tr>
+        </table>
+
+        <div class="div-btn">
+          <input type="button" class="btn-process" value=""/>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
